@@ -27,3 +27,7 @@ Cmd: compileSnippet
   api=1 type=1 insize=938 outsize=2357 kw=POINT SHADOWS_CUBE pd= ok=1
 Cmd: compileSnippet
   api=1 type=1 insize=938 outsize=2646 kw=SPOT SHADOWS_DEPTH SHADOWS_SOFT SHADOWS_NATIVE pd= ok=1
+Unhandled exception: Readfile from pipe failed. GLE=Přesměrování bylo ukončeno.
+
+
+Quitting shader compiler process
