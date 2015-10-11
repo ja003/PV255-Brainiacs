@@ -3,15 +3,16 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    private float speed = 2f;
-    private Vector3 up = new Vector3(0, 1, 0);
-    private Vector3 down = new Vector3(0, -1,0);
-    private Vector3 left = new Vector3(-1, 0,0);
-    private Vector3 right = new Vector3(1, 0,0);
+    public float speed = 0.5f;
+    private Vector2 up = Vector2.up;
+    private Vector2 down = Vector2.down;
+    private Vector2 left = Vector2.left;
+    private Vector2 right = Vector2.right;
+    
 
     // Use this for initialization
     void Start () {
-	
+        	
 	}
 	
 	// Update is called once per frame
@@ -35,12 +36,12 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    public Vector3 GetPosition()
+    public Vector2 GetPosition()
     {
         return transform.position;
     }
 
-    public void SetPosition(Vector3 vec)
+    public void SetPosition(Vector2 vec)
     {
         transform.position = vec;
     }
