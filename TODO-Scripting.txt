@@ -1,6 +1,10 @@
 
 
 ---Vukmir---
+12.10.2015
+character is effected by physical objects (rotating Quad, bullets,..)...shouldn't be
+
+---Vukmir---
 everybody clone this repository!
 
 Athi-pokus
