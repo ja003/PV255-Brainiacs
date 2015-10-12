@@ -1,0 +1,9 @@
+~Sprity postáv
+~Sprity zbraní,nábojov,boxov schopností
+~Animácie postáv
+~Animácie strelby
+~Mapy
+~úvodná Obrazovka
+~Portréty charakterov
+~GUI,Healthbars,AMMobars,...
+~Miniobrázky máp(menšia priorita)
