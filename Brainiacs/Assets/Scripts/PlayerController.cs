@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-    public float speed;
+    public float speed = 2f;
     private Vector2 up = Vector2.up;
     private Vector2 down = Vector2.down;
     private Vector2 left = Vector2.left;
@@ -16,11 +16,10 @@ public class PlayerController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
-        speed = 200f;
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
         if (Input.GetKey(KeyCode.W))
         {

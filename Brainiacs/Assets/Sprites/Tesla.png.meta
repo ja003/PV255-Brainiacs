@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: c4d92c0941adc7a4ab96fe9e78e23137
+labels:
+- Character
 timeCreated: 1444553910
 licenseType: Free
 TextureImporter:
@@ -26,7 +28,7 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
