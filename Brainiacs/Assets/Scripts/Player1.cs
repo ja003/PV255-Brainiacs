@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Player1 : PlayerBase {
 
@@ -17,8 +18,10 @@ public class Player1 : PlayerBase {
         base.rb2d = gameObject.GetComponent<Rigidbody2D>();
 
         base.speed = 2f;
+        
 
-        base.e = Event.current;
+        base.pressedKeys = new List<KeyCode>();
+        //base.pressedKeys.Add(KeyCode.X);
         //Debug.Log(base.rb2d.ToString());
 
     }
@@ -28,33 +31,7 @@ public class Player1 : PlayerBase {
         base.Movement();
     }
 
-    /// <summary>
-    /// taky napiču....
-    /// </summary>
-    protected void MyMovement()
-    {
-        if(e.isKey)
-        {
-            switch (e.keyCode)
-            {
-                case KeyCode.W:
-                    rb2d.velocity = base.up * speed;
-                    break;
-                case KeyCode.A:
-                    rb2d.velocity = base.left * speed;
-                    break;
-                case KeyCode.S:
-                    rb2d.velocity = base.down * speed;
-                    break;
-                case KeyCode.D:
-                    rb2d.velocity = base.right * speed;
-                    break;
-                default: rb2d.velocity = stop;
-                    break;
-            }
-        }
-        
-    }
+    
 
 
     

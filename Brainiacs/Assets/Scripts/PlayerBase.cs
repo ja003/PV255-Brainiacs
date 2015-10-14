@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class PlayerBase : MonoBehaviour
@@ -20,160 +21,147 @@ public abstract class PlayerBase : MonoBehaviour
     private KeyCode lastPressed { get; set; }
 
     public Rigidbody2D rb2d { get; set; }
+    
+    public List<KeyCode> pressedKeys { get; set; }
 
-    public Event e;
 
-    void OnGUI()
+
+    /// <summary>
+    /// last element of pressedKeys list
+    /// </summary>
+    /// <returns>defaul value (X) if no key was pressed</returns>
+    public KeyCode GetLastPressed()
     {
-        e = Event.current;
-        if (e.isKey)
-            Debug.Log("Detected key code: " + e.keyCode);
-
-
+        if (pressedKeys.Count < 1)
+            return KeyCode.X;
+        return pressedKeys[pressedKeys.Count-1];
+    }
+    
+    /// <summary>
+    /// removes all keys in pressedKeys list
+    /// </summary>
+    /// <param name="key"></param>
+    public void RemoveKeyPressed(KeyCode key)
+    {
+        for(int i=0; i<pressedKeys.Count; i++)
+        {
+            if(pressedKeys[i] == key)
+            {
+                pressedKeys.RemoveAt(i);
+            }
+        }
     }
 
-    public KeyCode GetKeyUp()
+    /// <summary>
+    /// debug
+    /// </summary>
+    /// <returns></returns>
+    public string PrintPressedKeys()
     {
-        return keyUp;
+        string s = "";
+        foreach(KeyCode k in pressedKeys)
+        {
+            s += k.ToString();
+            s += ";";
+        }
+        return s;
+    }
+
+    /// <summary>
+    /// prevents List from containg too many elements
+    /// shouldn't be neccessary (RemoveKey should do the job)
+    /// </summary>
+    public void CheckPressedKeys()
+    {
+        if(pressedKeys.Count > 5)
+        {
+            pressedKeys.RemoveAt(1);
+        }
+    }
+
+    public bool PressedKeysContains(KeyCode key)
+    {
+        foreach(KeyCode k in pressedKeys)
+        {
+            if (k == key)
+                return true;
+        }
+        return false;
     }
 
     protected void Movement()
     {
 
-        
-        if (Input.GetKey(keyUp) && lastPressed != keyUp)
+        //pouze debug
+        //funguje A+D+W
+        //nefunguje A+S+W, S+A+W, S+D+W...
+        //nevim proč, většina kombinací 3 kláves funguje
+        //4 klávesy nefungujou nikdy
+        if (Input.GetKeyDown(keyUp) )
         {
-
-            rb2d.velocity = up * speed;
-            //CheckUp();
-            lastPressed = keyUp;
-
+            Debug.Log("UP");
         }
-        else if (Input.GetKey(keyLeft) && lastPressed != keyLeft)
+        
+
+        if (Input.GetKeyDown(keyUp) && !PressedKeysContains(keyUp))
+        {
+            pressedKeys.Add(keyUp);
+        }
+        else if (Input.GetKeyDown(keyLeft) && !PressedKeysContains(keyLeft))
+        {
+            pressedKeys.Add(keyLeft);
+        }
+        else if (Input.GetKeyDown(keyDown) && !PressedKeysContains(keyDown))
+        {
+            pressedKeys.Add(keyDown);
+        }
+        else if (Input.GetKeyDown(keyRight) && !PressedKeysContains(keyRight))
+        {
+            pressedKeys.Add(keyRight);
+        }
+
+        if (GetLastPressed() == keyUp)
+        {
+            rb2d.velocity = up * speed;
+        }
+        else if (GetLastPressed() == keyLeft)
         {
             rb2d.velocity = left * speed;
-            //CheckLeft();
-            lastPressed = keyLeft;
         }
-        else if (Input.GetKey(keyDown) && lastPressed != keyDown)
+        else if (GetLastPressed() == keyDown)
         {
             rb2d.velocity = down * speed;
-            //CheckDown();
-            lastPressed = keyDown;
-
         }
-        else if (Input.GetKey(keyRight) && lastPressed != keyRight)
+        else if (GetLastPressed() == keyRight)
         {
             rb2d.velocity = right * speed;
-            //CheckRight();
-            lastPressed = keyRight;
         }
-        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D))
+
+        if (Input.GetKeyUp(keyUp) || Input.GetKeyUp(keyLeft) || 
+            Input.GetKeyUp(keyDown) || Input.GetKeyUp(keyRight))
         {
             rb2d.velocity = stop;
-            lastPressed = KeyCode.X;
+            if (Input.GetKeyUp(keyUp))
+            {
+                RemoveKeyPressed(keyUp);
+            }
+            if (Input.GetKeyUp(keyLeft))
+            {
+                RemoveKeyPressed(keyLeft);
+            }
+            if (Input.GetKeyUp(keyDown))
+            {
+                RemoveKeyPressed(keyDown);
+            }
+            if (Input.GetKeyUp(keyRight))
+            {
+                RemoveKeyPressed(keyRight);
+            }
         }
 
-
+        CheckPressedKeys();
+        Debug.Log(PrintPressedKeys());
     }
-
-    /// <summary>
-    /// na to dole nekoukejte, to byl takový..pokus, možná se bude hodit:D
-    /// </summary>
-
-    //check if user is pressing other key that UP
-    public void CheckUp()
-    {
-        if (Input.GetKey(keyLeft))
-        {
-            rb2d.velocity = left * speed;
-
-            //Debug.Log("UP+LEFT");
-
-
-        }
-        else if (Input.GetKey(keyDown))
-        {
-            rb2d.velocity = down * speed;
-
-        }
-        /*
-        else if (Input.GetKey(keyRight))
-        {
-            rb2d.velocity = right * speed;
-        }*/
-    }
-    //check if user is pressing other key that LEFT
-    public void CheckLeft()
-    {
-        //Debug.Log(Input.inputString);
-        if (Input.GetKey(keyUp))
-        {
-            rb2d.velocity = up * speed;
-
-        }
-        else if (Input.GetKey(keyDown))
-        {
-            rb2d.velocity = down * speed;
-
-        }
-        else if (Input.GetKey(keyRight))
-        {
-            rb2d.velocity = right * speed;
-        }
-    }
-    //check if user is pressing other key that DOWN
-    public void CheckDown()
-    {
-        //Debug.Log(Input.inputString);
-        if (Input.GetKey(keyLeft))
-        {
-            rb2d.velocity = left * speed;
-            //Debug.Log("DOWN+LEFT");
-
-
-        }
-        else if (Input.GetKey(keyUp))
-        {
-            rb2d.velocity = up * speed;
-
-        }
-        else if (Input.GetKey(keyRight))
-        {
-            rb2d.velocity = right * speed;
-        }
-    }
-    //check if user is pressing other key that RIGHT
-    public void CheckRight()
-    {
-        //Debug.Log(Input.inputString);
-        if (Input.GetKey(keyLeft))
-        {
-            rb2d.velocity = left * speed;
-
-        }
-        else if (Input.GetKey(keyUp))
-        {
-            rb2d.velocity = up * speed;
-
-        }
-        else if (Input.GetKey(keyDown))
-        {
-            rb2d.velocity = down * speed;
-        }
-    }
-
-
-
-
-
-    public Vector2 GetPosition()
-    {
-        return transform.position;
-    }
-
-    public void SetPosition(Vector2 vec)
-    {
-        transform.position = vec;
-    }
+    
+   
 }
