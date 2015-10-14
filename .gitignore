@@ -3,4 +3,6 @@ Brainiacs/Temp/
 Brainiacs/Obj/
 Brainiacs/UnityGenerated/
 Brainiacs/Library/
+Brainiacs/Library/metadata/*
 Brainiacs/AssetStoreTools*/
+*.dll
