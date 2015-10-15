@@ -17,9 +17,9 @@ public class BulletManager : MonoBehaviour {
     /// Ak je zdetekovana kolizia gulka sa zneaktivni a je pripravena na dalsie pouzitie
     /// </summary>
     /// <param name="coll"></param>
-    void OnCollisionEnter2D(Collision2D coll)
+    void OnTriggerEnter2D(Collider2D coll)
     {
-        if ((coll.gameObject.tag == "Enemy") || (coll.gameObject.tag == "Barrier"))
+        if ((coll.gameObject.tag == "Player") || (coll.gameObject.tag == "Barrier"))
             gameObject.SetActive(false);            
            
 
