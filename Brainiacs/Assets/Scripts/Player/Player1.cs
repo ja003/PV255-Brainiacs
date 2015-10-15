@@ -8,6 +8,12 @@ public class Player1 : PlayerBase {
     void Start()
     {
         //Debug.Log("!");
+        // JP pre alternative movement
+        base.pressed_keys.Push(KeyCode.Dollar);
+
+        // JP - farba spritu pre playerov
+        //      mala by byt na konci nazvu spritu
+        base.color = "blue";
 
         base.character = CharacterEnum.Tesla;
 

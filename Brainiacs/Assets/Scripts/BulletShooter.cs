@@ -18,8 +18,16 @@ public class BulletShooter : MonoBehaviour {
     public Vector3 direction {get; set; }
     private KeyCode keyFire;
 
+
+    //JP added
+    PlayerBase pb;
+
+
 	// Use this for initialization
 	void Start () {
+
+        //JP
+        pb = GetComponent<PlayerBase>();
         
 
         //direction = transform.Find("Tesla1").GetComponent<PlayerBase>().direction;
@@ -41,7 +49,7 @@ public class BulletShooter : MonoBehaviour {
         }
         
 
-    }
+    }   
 	
 	// Update is called once per frame
 	void FixedUpdate () {
