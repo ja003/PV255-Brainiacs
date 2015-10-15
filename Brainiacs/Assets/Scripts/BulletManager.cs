@@ -4,12 +4,15 @@ using System.Collections;
 public class BulletManager : MonoBehaviour {
 
     public float speed = 5;
+    public Vector2 direction { get; set; }
 
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(speed * Time.deltaTime, 0, 0);     //vystrelenie projektilu
+        direction = gameObject.transform.parent.gameObject.GetComponent<BulletShooter>().direction;
+
+        transform.Translate(direction.x * speed * Time.deltaTime, direction.y * speed * Time.deltaTime, 0);     //vystrelenie projektilu
         
 
     }

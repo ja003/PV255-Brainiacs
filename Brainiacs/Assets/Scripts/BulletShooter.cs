@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 
-public class ProjectileShooter : MonoBehaviour {
+public class BulletShooter : MonoBehaviour {
 
     //GameObject prefab;
     //Vector3 forward = new Vector3(1, 0, 0);
@@ -12,34 +13,46 @@ public class ProjectileShooter : MonoBehaviour {
     public float counter = 0;
     public GameObject bullet;                   //priradi sa sem prefab daneho projektilu
 
-    public int pooledAmount;                    //pocet projektily ktore sa vytvoria na zaciatku a dalej sa budu len recyklovat
+    public int pooledAmount = 5;                    //pocet projektily ktore sa vytvoria na zaciatku a dalej sa budu len recyklovat
     private List<GameObject> bullets;           //list pre tieto projektily
-    private Vector3 forward;
+    public Vector3 direction {get; set; }
+    private KeyCode keyFire;
 
 	// Use this for initialization
 	void Start () {
-        //delayTime = 0.5f;
-        //speed = 1;
-        forward = new Vector3(0.8f,0,0);
+        
+
+        //direction = transform.Find("Tesla1").GetComponent<PlayerBase>().direction;
+        //direction = new Vector2(1, 0);
         bullets = new List<GameObject>();
+        //bullet = GameObject.Find("Prefabs/Electricity");
+        bullet = (GameObject)Resources.Load("Prefabs/Electricity"); 
+        
+
+
+        pooledAmount = 5;
         for (int i=0; i < pooledAmount; i++)
         {
             GameObject obj = (GameObject)Instantiate(bullet);
+            obj.transform.parent = gameObject.transform;
             obj.SetActive(false);           //nastavenie toho, ze sa gulka nepouziva
             bullets.Add(obj);
+            
         }
+        
+
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-	    if(Input.GetKey(KeyCode.Q) && counter > delayTime)
+        direction = gameObject.transform.parent.gameObject.GetComponent<PlayerBase>().direction;
+        if (Input.anyKey && keyFire == KeyCode.None)
         {
-            //GameObject projectile = Instantiate(prefab) as GameObject;
-            //Destroy(projectile.gameObject, 1);
-            //projectile.transform.position = transform.position + forward;
-            //Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-            //rb.velocity = forward * speed;
+            keyFire = gameObject.transform.parent.gameObject.GetComponent<PlayerBase>().keyFire;
+        }
 
+        if (Input.GetKey(keyFire) && counter > delayTime)
+        {
             Fire();
             counter = 0;
         }
@@ -53,7 +66,7 @@ public class ProjectileShooter : MonoBehaviour {
         {
             if (!bullets[i].activeInHierarchy)
             {
-                bullets[i].transform.position = (transform.position + forward);
+                bullets[i].transform.position = (transform.position + direction);
                 bullets[i].transform.rotation = transform.rotation;
                 bullets[i].SetActive(true);
                 break;

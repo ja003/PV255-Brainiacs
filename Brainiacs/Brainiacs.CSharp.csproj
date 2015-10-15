@@ -69,13 +69,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BulletManager.cs" />
+    <Compile Include="Assets\Scripts\BulletShooter.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Player1.cs" />
-    <Compile Include="Assets\Scripts\Player2.cs" />
-    <Compile Include="Assets\Scripts\Player3.cs" />
-    <Compile Include="Assets\Scripts\Player4.cs" />
-    <Compile Include="Assets\Scripts\PlayerBase.cs" />
-    <Compile Include="Assets\Scripts\ProjectileShooter.cs" />
+    <Compile Include="Assets\Scripts\Player\CharacterEnum.cs" />
+    <Compile Include="Assets\Scripts\Player\Player1.cs" />
+    <Compile Include="Assets\Scripts\Player\Player2.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerBase.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponBase.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponEnum.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponPistol.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponTeslaSpecial.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

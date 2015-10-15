@@ -4,9 +4,14 @@ using UnityEngine;
 
 public abstract class PlayerBase : MonoBehaviour
 {
+    public CharacterEnum character;
+
     public string playerName { get; set; }
 
     public float speed { get; set; }
+
+    public List<WeaponBase> inventory { get; set; }
+    public WeaponBase activeWeapon { get; set; }
 
     public Vector2 direction;
 
@@ -46,6 +51,29 @@ public abstract class PlayerBase : MonoBehaviour
     }
 
 
+
+    protected void SwitchWeapon()
+    {
+        if (Input.GetKeyDown(keySwitchWeapon))
+        {
+            if (inventory.IndexOf(activeWeapon) == inventory.Count - 1)
+            {
+                activeWeapon = inventory[0];
+                transform.Find("weaponTry").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/weaponTry_01");
+
+            }
+            else
+            {
+                activeWeapon = inventory[inventory.IndexOf(activeWeapon) + 1];
+                transform.Find("weaponTry").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/weaponTry_02");
+
+            }
+            
+
+            //Debug.Log(activeWeapon);
+        }
+    }
+
     // <<<MOVEMENT...>>> //
     protected void Movement()
     {
@@ -82,11 +110,15 @@ public abstract class PlayerBase : MonoBehaviour
         {
             rb2d.velocity = up * speed;
             direction = up;
+            //gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Tesla_left");
+            
         }
         else if (GetLastPressed() == keyLeft)
         {
             rb2d.velocity = left * speed;
             direction = left;
+            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_left");
+
         }
         else if (GetLastPressed() == keyDown)
         {
@@ -97,6 +129,8 @@ public abstract class PlayerBase : MonoBehaviour
         {
             rb2d.velocity = right * speed;
             direction = right;
+            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_right");
+
         }
         else
         {
