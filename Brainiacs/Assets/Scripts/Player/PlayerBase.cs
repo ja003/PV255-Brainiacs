@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Brainiacs.Generate;
 
 public abstract class PlayerBase : MonoBehaviour
 {
@@ -24,7 +25,6 @@ public abstract class PlayerBase : MonoBehaviour
     public int hitPoints = maxHP;
 
     public Vector2 direction;
-    private Vector2 newRandomPosition;
 
     protected Vector2 up = Vector2.up;
     protected Vector2 down = Vector2.down;
@@ -351,10 +351,14 @@ public abstract class PlayerBase : MonoBehaviour
             //TODO delay nejake 2s
 
             //presun na novu poziciu
-            GenerateRandomPosition(newRandomPosition);
-            transform.Translate(newRandomPosition.x, newRandomPosition.y, 0);
+            var generator = new PositionGenerator();
+            Vector3 newRandomPosition = generator.GenerateRandomPosition();
             posX = newRandomPosition.x;
             posY = newRandomPosition.y;
+            transform.Translate(newRandomPosition.x, newRandomPosition.y, 0);
+            Debug.Log("X " + newRandomPosition.x);
+            Debug.Log("Y " + newRandomPosition.y);
+            hitPoints = maxHP;
         }
         else
         {
@@ -376,16 +380,5 @@ public abstract class PlayerBase : MonoBehaviour
 
     }
 
-    private void GenerateRandomPosition(Vector2 vec)
-    {
-        System.Random rnd = new System.Random();
-        int randX = rnd.Next(gameObject.transform.parent.gameObject.GetComponent<GameManager>().mapWidth);
-        vec.x = (randX / 100) + gameObject.transform.parent.gameObject.GetComponent<GameManager>().mapStartX;
-        int randY = rnd.Next(gameObject.transform.parent.gameObject.GetComponent<GameManager>().mapHeight);
-        vec.y = (randY / 100) + gameObject.transform.parent.gameObject.GetComponent<GameManager>().mapStartY;
-        //TODO check ci tam uz nieco neni
-        /*if(){
-            GenerateRandomPosition(vec);
-        }*/
-    }
+    
 }
