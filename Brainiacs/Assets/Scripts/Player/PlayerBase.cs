@@ -355,7 +355,7 @@ public abstract class PlayerBase : MonoBehaviour
             Vector3 newRandomPosition = generator.GenerateRandomPosition();
             posX = newRandomPosition.x;
             posY = newRandomPosition.y;
-            transform.Translate(newRandomPosition.x, newRandomPosition.y, 0);
+            transform.position = newRandomPosition;
             Debug.Log("X " + newRandomPosition.x);
             Debug.Log("Y " + newRandomPosition.y);
             hitPoints = maxHP;

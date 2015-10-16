@@ -16,15 +16,15 @@ namespace Brainiacs.Generate
             Vector3 vec = new Vector3();
             System.Random rnd = new System.Random();
             float randX = (float)rnd.NextDouble() * mapWidth;
-            vec.x = (randX / 100) + mapStartX;
+            vec.x = randX + mapStartX;
             Debug.Log("vec X " + vec.x);
             float randY = (float)rnd.NextDouble() * mapHeight;
-            vec.y = (randY / 100) + mapStartY;
+            vec.y = randY + mapStartY;
             Debug.Log("vec Y " + vec.y);
             vec.z = 0;
             //check ci tam uz nieco neni
             var hitColliders = Physics.OverlapSphere(vec, 1);
-            if (hitColliders.Length > 0.1)
+            if (hitColliders.Length > 1.0)
             {
                 vec = GenerateRandomPosition();
             }
