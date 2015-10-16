@@ -28,14 +28,13 @@ public class BulletManager : MonoBehaviour {
     /// <param name="coll"></param>
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if ((coll.gameObject.tag == "Player") || (coll.gameObject.tag == "Barrier"))
+        if ((coll.gameObject.tag == "Barrier") || (coll.gameObject.tag == "Player"))
         {
+            if(coll.gameObject.tag == "Player"){
+                coll.gameObject.SendMessage("ApplyDamage", gameObject.transform.parent.gameObject.GetComponent<BulletShooter>().damage);
+            }
             gameObject.SetActive(false);
             directionAssigned = false;
         }
-           
-
     }
-    
-
 }

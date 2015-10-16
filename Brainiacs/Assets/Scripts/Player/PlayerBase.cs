@@ -20,8 +20,11 @@ public abstract class PlayerBase : MonoBehaviour
     public List<WeaponBase> inventory { get; set; }
 
     public WeaponBase activeWeapon { get; set; }
+    private static int maxHP = 100;
+    public int hitPoints = maxHP;
 
     public Vector2 direction;
+    private Vector2 newRandomPosition;
 
     protected Vector2 up = Vector2.up;
     protected Vector2 down = Vector2.down;
@@ -46,8 +49,6 @@ public abstract class PlayerBase : MonoBehaviour
     // JP - pre alternatibny movement
     public Stack<KeyCode> pressed_keys  = new Stack<KeyCode>();
     int pops = 0;
-    
-
 
     public void SetControlKeys(KeyCode keyUp, KeyCode keyLeft, KeyCode keyDown, KeyCode keyRight, KeyCode keyFire, KeyCode keySwitchWeapon)
     {
@@ -339,4 +340,52 @@ public abstract class PlayerBase : MonoBehaviour
 
     // <<<...MOVEMENT>>> //
 
+    //HP management - MG
+    public void ApplyDamage(int dmg)
+    {
+        if ((hitPoints - dmg) <= 0)
+        {
+            hitPoints = 0;
+            //TODO sputenie animacie smrti
+            rb2d.velocity = stop;
+            //TODO delay nejake 2s
+
+            //presun na novu poziciu
+            GenerateRandomPosition(newRandomPosition);
+            transform.Translate(newRandomPosition.x, newRandomPosition.y, 0);
+            posX = newRandomPosition.x;
+            posY = newRandomPosition.y;
+        }
+        else
+        {
+            hitPoints -= dmg;
+        }
+        Debug.Log(hitPoints);
+    }
+
+    public void ApplyHeal(int heal)
+    {
+        if ((hitPoints + heal) > maxHP)
+        {
+            hitPoints = maxHP;
+        }
+        else
+        {
+            hitPoints += heal;
+        }
+
+    }
+
+    private void GenerateRandomPosition(Vector2 vec)
+    {
+        System.Random rnd = new System.Random();
+        int randX = rnd.Next(gameObject.transform.parent.gameObject.GetComponent<GameManager>().mapWidth);
+        vec.x = (randX / 100) + gameObject.transform.parent.gameObject.GetComponent<GameManager>().mapStartX;
+        int randY = rnd.Next(gameObject.transform.parent.gameObject.GetComponent<GameManager>().mapHeight);
+        vec.y = (randY / 100) + gameObject.transform.parent.gameObject.GetComponent<GameManager>().mapStartY;
+        //TODO check ci tam uz nieco neni
+        /*if(){
+            GenerateRandomPosition(vec);
+        }*/
+    }
 }

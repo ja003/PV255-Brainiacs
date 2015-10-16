@@ -18,7 +18,8 @@ public class BulletShooter : MonoBehaviour {
     public Vector3 direction {get; set; }
     private KeyCode keyFire;
 
-
+    //MG
+    public int damage;
     //JP added
     PlayerBase pb;
 
@@ -70,6 +71,8 @@ public class BulletShooter : MonoBehaviour {
 
     void Fire()
     {
+        System.Random rnd = new System.Random();
+        damage = rnd.Next(20, 30); //podla danej zbrane -> zbran musi mat min a max dmg
         for (int i = 0; i < bullets.Count; i++)
         {
             if (!bullets[i].activeInHierarchy)
