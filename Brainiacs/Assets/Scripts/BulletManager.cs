@@ -5,12 +5,18 @@ public class BulletManager : MonoBehaviour {
 
     public float speed = 5;
     public Vector2 direction { get; set; }
+    public bool directionAssigned = false;
 
 
     // Update is called once per frame
     void Update()
     {
-        direction = gameObject.transform.parent.gameObject.GetComponent<BulletShooter>().direction;
+        if (!directionAssigned)
+        {
+            Debug.Log("Dir assigned");
+            direction = gameObject.transform.parent.gameObject.GetComponent<BulletShooter>().direction;
+            directionAssigned = true;
+        }
 
         transform.Translate(direction.x * speed * Time.deltaTime, direction.y * speed * Time.deltaTime, 0);     //vystrelenie projektilu
         
@@ -23,7 +29,10 @@ public class BulletManager : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D coll)
     {
         if ((coll.gameObject.tag == "Player") || (coll.gameObject.tag == "Barrier"))
-            gameObject.SetActive(false);            
+        {
+            gameObject.SetActive(false);
+            directionAssigned = false;
+        }
            
 
     }
