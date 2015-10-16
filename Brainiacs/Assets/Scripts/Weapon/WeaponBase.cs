@@ -6,7 +6,6 @@ public class WeaponBase
 
     public int maxAmmo { get; set; }
     public int ammo { get; set; }
-    public int charger { get; set; }
     public int damage { get; set; }
     public WeaponEnum weaponType { get; set; }
     public string sprite { get; set; }

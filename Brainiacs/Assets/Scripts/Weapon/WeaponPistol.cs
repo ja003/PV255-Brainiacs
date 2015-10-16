@@ -8,6 +8,6 @@ public class WeaponPistol : WeaponBase {
         base.damage = 1;
         base.weaponType = WeaponEnum.pistol;
         base.ammo = int.MaxValue;
-        base.charger = 5;
+        base.maxAmmo = 5;
     }
 }
