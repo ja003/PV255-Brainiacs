@@ -9,20 +9,34 @@ public class AiBase : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
-        speed = 1f;
+        speed = 2f;
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
-        MoveTo(0.0, 3.5);
+        
+
+        if(Time.frameCount > 200)
+        {
+            MoveTo(GameObject.Find("Tesla1").transform.position.x,
+                    GameObject.Find("Tesla1").transform.position.y);
+        }
+        else
+        {
+            MoveTo(-4.5, -3);
+        }
+
+
     }
 
+    /// <summary>
+    /// gives copmmands to unit in order to get to the given coordinates
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
     public void MoveTo(double x, double y)
     {
-        //Debug.Log(gameObject.transform.position);
-        //Debug.Log("X=" + x + ",Y=" + y);
-        //Debug.Log("x="+gameObject.transform.position.x + ", y=" + gameObject.transform.position.y);
-
         if (ValueEquals(gameObject.transform.position.y, y) && ValueEquals(gameObject.transform.position.x, x))
         {
             //Debug.Log("You there");
@@ -30,32 +44,44 @@ public class AiBase : MonoBehaviour {
         }
         else
         {
-
-            if (ValueEquals(gameObject.transform.position.y, y))
+            if (Time.frameCount % 30 < 15)
             {
-                //Debug.Log("Y ok");
-            }
-            else if (ValueSmaller(gameObject.transform.position.y, y))
-            {
-                MoveUp();
+                PreferX(x,y);                
             }
             else
             {
-                MoveDown();
-            }
-            if (ValueEquals(gameObject.transform.position.x, x))
-            {
-                //Debug.Log("X ok");
-            }
-            else if (ValueSmaller(gameObject.transform.position.x, x))
-            {
-                MoveRight();
-            }
-            else
-            {
-                MoveLeft();
+                PreferY(x,y);
             }
         }
+    }
+
+    /// <summary>
+    /// moves preferably on x axis
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    public void PreferX(double x, double y)
+    {
+        if (ValueEquals(gameObject.transform.position.y, y)) { }
+        else if (ValueSmaller(gameObject.transform.position.y, y)) { MoveUp(); }
+        else { MoveDown(); }
+        if (ValueEquals(gameObject.transform.position.x, x)) { }
+        else if (ValueSmaller(gameObject.transform.position.x, x)) { MoveRight(); }
+        else { MoveLeft(); }
+    }
+    /// <summary>
+    /// moves preferably on y axis
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    public void PreferY(double x, double y)
+    {
+        if (ValueEquals(gameObject.transform.position.x, x)) { }
+        else if (ValueSmaller(gameObject.transform.position.x, x)) { MoveRight(); }
+        else { MoveLeft(); }
+        if (ValueEquals(gameObject.transform.position.y, y)) { }
+        else if (ValueSmaller(gameObject.transform.position.y, y)) { MoveUp(); }
+        else { MoveDown(); }        
     }
 
     public void MoveUp()
@@ -93,8 +119,7 @@ public class AiBase : MonoBehaviour {
         else
             return false;
     }
-
-    //1,3  3,7
+    
     public bool ValueEquals(double value1, double value2)
     {
         if (value2 - e <= value1 && value1 <= value2 + e)
