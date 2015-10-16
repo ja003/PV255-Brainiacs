@@ -7,6 +7,7 @@ public class Player1 : PlayerBase {
    
     void Start()
     {
+        base.playerNumber = 1;
         //Debug.Log("!");
         // JP pre alternative movement
         base.pressed_keys.Push(KeyCode.Dollar);

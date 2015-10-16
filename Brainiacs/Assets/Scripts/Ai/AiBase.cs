@@ -3,14 +3,30 @@ using System.Collections;
 
 public class AiBase : MonoBehaviour {
 
+    public int playerNumber{ get; set; }
+
     public float speed{get;set;}
     public Rigidbody2D rb2d { get; set; }
 
+    public int killPlayer1Priority { get; set; }
+    public int killPlayer2Priority { get; set; }
+    public int killPlayer3Priority { get; set; }
+    public int killPlayer4Priority { get; set; }
+
+    public AiActionEnum currentAction { get; set; }
+
     // Use this for initialization
     void Start () {
+        playerNumber = 3;
+        killPlayer1Priority = 0;
+        killPlayer2Priority = 0;
+        killPlayer3Priority = 0;
+        killPlayer4Priority = 0;
+
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         speed = 2f;
-        
+
+        currentAction = AiActionEnum.stand;
     }
 	
 	// Update is called once per frame
@@ -19,15 +35,117 @@ public class AiBase : MonoBehaviour {
 
         if(Time.frameCount > 200)
         {
-            MoveTo(GameObject.Find("Tesla1").transform.position.x,
-                    GameObject.Find("Tesla1").transform.position.y);
+            MoveTo(GameObject.Find("Player1").transform.position.x,
+                    GameObject.Find("Player1").transform.position.y);
         }
         else
         {
             MoveTo(-4.5, -3);
         }
 
+        //check only once per second
+        if (Time.frameCount % 30 == 0)
+        {
+            CheckPriorities();
+            /*
+            Debug.Log("kill_1=" + killPlayer1Priority);
+            Debug.Log("kill_2=" + killPlayer2Priority);
+            Debug.Log("kill_3=" + killPlayer3Priority);
+            Debug.Log("kill_4=" + killPlayer4Priority);
+            */
+            UpdateCurrentAction();
 
+            if(currentAction == AiActionEnum.stand)
+            {
+                Stand();
+            }
+            else if (currentAction == AiActionEnum.stand)
+            {
+                //...
+            }
+
+
+        }
+
+
+    }
+
+    // <<COMANDS...>>
+    public void Stand()
+    {
+
+    }
+
+    public void ShootAtPlayer(GameObject player)
+    {
+
+    }
+
+
+    // <<...COMANDS>>
+
+    public void CheckPriorities()
+    {
+        SetKillPriorities();
+        //....
+    }
+    public void UpdateCurrentAction()
+    {
+        //...
+    }
+
+    /// <summary>
+    /// nastaví kill priority podle zdálenosti
+    /// </summary>
+    public void SetKillPriorities()
+    {
+        foreach(GameObject obj in GetOtherPlayers())
+        {
+            int playerNumber = 0;
+            if(obj.GetComponent<PlayerBase>() == null)
+            {
+                //Debug.Log("its AI");
+                playerNumber = obj.GetComponent<AiBase>().playerNumber;
+            }
+            else
+            {
+                //Debug.Log("its human");
+                playerNumber = obj.GetComponent<PlayerBase>().playerNumber;
+            }
+            //největší vzdálenost je cca 200
+            switch (playerNumber)
+            {
+                case 1:
+                    killPlayer1Priority = 200 - (int)(GetDistance(gameObject, obj));
+                    break;
+                case 2:
+                    killPlayer2Priority = 200 - (int)(GetDistance(gameObject, obj));
+                    break;
+                case 3:
+                    killPlayer3Priority = 200 - (int)(GetDistance(gameObject, obj));
+                    break;
+                case 4:
+                    killPlayer4Priority = 200 - (int)(GetDistance(gameObject, obj));
+                    break;
+                default :
+                    break;
+            }
+        }
+    }
+
+    public Vector3 GetMyPosition()
+    {
+        return gameObject.transform.position;
+    }
+
+    public float GetDistance(GameObject object1, GameObject object2)
+    {
+        return (object1.transform.position - object2.transform.position).sqrMagnitude;
+    }
+
+    public GameObject[] GetOtherPlayers()
+    {
+        return GameObject.FindGameObjectsWithTag("Player");
     }
 
     /// <summary>

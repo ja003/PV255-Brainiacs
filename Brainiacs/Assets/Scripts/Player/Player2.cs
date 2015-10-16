@@ -8,7 +8,7 @@ public class Player2 : PlayerBase
 
     void Start()
     {
-        //Debug.Log("!");
+        base.playerNumber = 2;
 
         base.character = CharacterEnum.Tesla;
 

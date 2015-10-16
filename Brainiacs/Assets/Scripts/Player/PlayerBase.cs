@@ -7,6 +7,9 @@ public abstract class PlayerBase : MonoBehaviour
 {
     public CharacterEnum character;
 
+    public int playerNumber{ get; set; }
+
+
     // JP - farba spritu
     public string color { get; set; }
     // JP added
