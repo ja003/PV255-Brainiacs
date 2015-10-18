@@ -1,25 +1,61 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
     //Player1 player1;
     //Player1 p1;
     //GameObject player1;
 
-    //parametre na spawny (nech sa veci nespawnuju v okrajovych castiach)
-    /*public float mapStartX = -4.0f;
-    public float mapStartY = -4.0f;
-    public float mapHeight = 8.0f;
-    public float mapWidth = 12.0f;*/
+    private List<PowerUp> powerUps;
+    private int powerUpPool = 10;
+    private int indexOfReadiedPowerUp;
 
-     
-	// Use this for initialization
-	void Start () {
+    private bool isReady = false;
+    private float spawnInterval = 15.0f;
+    private float activationDelay = 1.0f;
+    private float time = 0.0f;
+
+    void Start()
+    {
         //player1.AddComponent("p1");
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+        powerUps = new List<PowerUp>();
+        for (int i = 0; i < powerUpPool; i++)
+        {
+            powerUps.Add(new PowerUp());
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (isReady)
+        {
+            if (time > activationDelay)
+            {
+                time = 0.0f;
+                powerUps[indexOfReadiedPowerUp].Activate();
+                isReady = false;
+            }
+        }
+        else
+        {
+            if (time > spawnInterval)
+            {
+                time = 0.0f;
+                for (int i = 0; i < powerUpPool; i++)
+                {
+                    if (powerUps[i].prefab == null)
+                    {
+                        indexOfReadiedPowerUp = i;
+                        powerUps[i].SetReady();
+                        isReady = true;
+                        break;
+                    }
+                }
+            }
+        }
+        time += Time.deltaTime;
+    }
 }

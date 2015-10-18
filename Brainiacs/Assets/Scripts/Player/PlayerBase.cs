@@ -24,8 +24,11 @@ public abstract class PlayerBase : MonoBehaviour
     public List<WeaponBase> inventory { get; set; }
 
     public WeaponBase activeWeapon { get; set; }
+
+    //--MG added
     private static int maxHP = 100;
     public int hitPoints = maxHP;
+    private bool isShielded = false;
 
     public Vector2 direction;
 
@@ -343,34 +346,41 @@ public abstract class PlayerBase : MonoBehaviour
 
     // <<<...MOVEMENT>>> //
 
-    //HP management - MG
+    //HP management - <<<MG...>>>
     public void ApplyDamage(int dmg)
     {
-        if ((hitPoints - dmg) <= 0)
+        if (isShielded)
         {
-            hitPoints = 0;
-            //TODO sputenie animacie smrti
-            rb2d.velocity = stop;
-            //TODO delay nejake 2s
-
-            //presun na novu poziciu
-            var generator = new PositionGenerator();
-            Vector3 newRandomPosition = generator.GenerateRandomPosition();
-            posX = newRandomPosition.x;
-            posY = newRandomPosition.y;
-            transform.position = newRandomPosition;
-            Debug.Log("X " + newRandomPosition.x);
-            Debug.Log("Y " + newRandomPosition.y);
-            hitPoints = maxHP;
+            isShielded = false;
         }
         else
         {
-            hitPoints -= dmg;
+            if ((hitPoints - dmg) <= 0)
+            {
+                hitPoints = 0;
+                //TODO sputenie animacie smrti
+                rb2d.velocity = stop;
+                //TODO delay nejake 2s
+
+                //presun na novu poziciu
+                var generator = new PositionGenerator();
+                Vector3 newRandomPosition = generator.GenerateRandomPosition();
+                posX = newRandomPosition.x;
+                posY = newRandomPosition.y;
+                transform.position = newRandomPosition;
+                Debug.Log("X " + newRandomPosition.x);
+                Debug.Log("Y " + newRandomPosition.y);
+                hitPoints = maxHP;
+            }
+            else
+            {
+                hitPoints -= dmg;
+            }
         }
         Debug.Log(hitPoints);
     }
 
-    public void ApplyHeal(int heal)
+    private void ApplyHeal(int heal)
     {
         if ((hitPoints + heal) > maxHP)
         {
@@ -383,5 +393,23 @@ public abstract class PlayerBase : MonoBehaviour
 
     }
 
-    
+    public void AddPowerUp(PowerUpEnum en)
+    {
+        switch (en)
+        {
+            case PowerUpEnum.shield:
+                isShielded = true;
+                break;
+            case PowerUpEnum.heal:
+                ApplyHeal(maxHP / 2);
+                break;
+            case PowerUpEnum.ammo:
+                activeWeapon.reload(100);
+                break;
+            default:
+                Debug.Log("Unknown powerUp received.");
+                break;
+        }
+    }
+    //<<<...MG>>>
 }
