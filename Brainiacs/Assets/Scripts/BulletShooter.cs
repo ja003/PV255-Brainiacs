@@ -20,15 +20,16 @@ public class BulletShooter : MonoBehaviour {
 
     //MG
     public int damage;
-    //JP added
+    //JP 
     PlayerBase pb;
+
 
 
 	// Use this for initialization
 	void Start () {
 
         //JP
-        //pb = GetComponent<PlayerBase>();
+        pb = GetComponent<PlayerBase>();
         
 
         //direction = transform.Find("Tesla1").GetComponent<PlayerBase>().direction;

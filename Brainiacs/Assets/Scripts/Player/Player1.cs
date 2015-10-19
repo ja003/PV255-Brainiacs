@@ -8,9 +8,7 @@ public class Player1 : PlayerBase {
     void Start()
     {
         base.playerNumber = 1;
-        //Debug.Log("!");
-        // JP pre alternative movement
-        base.pressed_keys.Push(KeyCode.Dollar);
+
 
         // JP - farba spritu pre playerov
         //      mala by byt na konci nazvu spritu
@@ -29,25 +27,22 @@ public class Player1 : PlayerBase {
         base.pressedKeys = new List<KeyCode>();
         //base.pressedKeys.Add(KeyCode.X);
         //Debug.Log(base.rb2d.ToString());
+
+   ////////////////////////////////////////////////////////// WEAPON HANDLING ////////////////////////////////////////////
         base.inventory = new List<WeaponBase>();
-
-        WeaponBase pistol = new WeaponPistol();
-        base.inventory.Add(pistol);
-        switch (base.character)
-        {
-            case CharacterEnum.Tesla:
-                WeaponBase teslaSpecial = new WeaponTeslaSpecial();
-                base.inventory.Add(teslaSpecial);
-                break;
-
-            default:
-                WeaponBase defaultSpecial = new WeaponTeslaSpecial();
-                base.inventory.Add(defaultSpecial);
-                break;
-        }
-
+        WeaponBase pistol = new WeaponPistol(CharacterEnum.Tesla);
+        base.inventory.Add(pistol);     
         base.activeWeapon = base.inventory[0];
-        //Debug.Log(base.inventory[0]);
+
+        transform.Find("Weapon").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(activeWeapon.sprite);
+
+
+        //TRY
+        WeaponBase skvrna = new Skvrna();
+        inventory.Add(skvrna);
+
+
+        /////////////////////////////////////////////////////////// END WH ///////////////////////////////////////////////////
 
 
     }

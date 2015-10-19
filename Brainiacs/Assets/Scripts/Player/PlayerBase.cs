@@ -7,8 +7,7 @@ public abstract class PlayerBase : MonoBehaviour
 {
     public CharacterEnum character;
 
-    public int playerNumber{ get; set; }
-
+    public int playerNumber { get; set; }
 
     // JP - farba spritu
     public string color { get; set; }
@@ -53,7 +52,7 @@ public abstract class PlayerBase : MonoBehaviour
 
     public List<KeyCode> pressedKeys { get; set; }
     // JP - pre alternatibny movement
-    public Stack<KeyCode> pressed_keys  = new Stack<KeyCode>();
+    public Stack<KeyCode> pressed_keys = new Stack<KeyCode>();
     int pops = 0;
 
     public void SetControlKeys(KeyCode keyUp, KeyCode keyLeft, KeyCode keyDown, KeyCode keyRight, KeyCode keyFire, KeyCode keySwitchWeapon)
@@ -62,7 +61,7 @@ public abstract class PlayerBase : MonoBehaviour
         this.keyLeft = keyLeft;
         this.keyDown = keyDown;
         this.keyRight = keyRight;
-        this.keyFire = keyFire; 
+        this.keyFire = keyFire;
         this.keySwitchWeapon = keySwitchWeapon;
     }
 
@@ -70,32 +69,113 @@ public abstract class PlayerBase : MonoBehaviour
 
     protected void SwitchWeapon()
     {
+        
+        //JP
+        if (inventory.Count == 1) return;
         if (Input.GetKeyDown(keySwitchWeapon))
         {
-            if (inventory.IndexOf(activeWeapon) == inventory.Count - 1)
-            {
-                activeWeapon = inventory[0];
-                transform.Find("weaponTry").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/weaponTry_01");
-
-            }
-            else
-            {
-                activeWeapon = inventory[inventory.IndexOf(activeWeapon) + 1];
-                transform.Find("weaponTry").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/weaponTry_02");
-
-            }
-            
-            // TEN Sí šarp je dobre prijebany !           
-
-            //Debug.Log(activeWeapon);
+            activeWeapon = inventory[((inventory.IndexOf(activeWeapon) + 1) % inventory.Count)];
+            Debug.Log(activeWeapon.sprite);
+            transform.Find("Weapon").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(activeWeapon.sprite);
         }
+
     }
 
     // <<<MOVEMENT...>>> //
     protected void Movement()
     {
 
-        /* JP alternativny movement
+
+        //pouze debug
+        //funguje A+D+W
+        //nefunguje A+S+W, S+A+W, S+D+W...
+        //nevim proč, většina kombinací 3 kláves funguje
+        //4 klávesy nefungujou nikdy
+        if (Input.GetKeyDown(keyUp))
+        {
+            //Debug.Log("UP");
+        }
+
+
+        if (Input.GetKeyDown(keyUp) && !PressedKeysContains(keyUp))
+        {
+            pressedKeys.Add(keyUp);
+        }
+        else if (Input.GetKeyDown(keyLeft) && !PressedKeysContains(keyLeft))
+        {
+            pressedKeys.Add(keyLeft);
+        }
+        else if (Input.GetKeyDown(keyDown) && !PressedKeysContains(keyDown))
+        {
+            pressedKeys.Add(keyDown);
+        }
+        else if (Input.GetKeyDown(keyRight) && !PressedKeysContains(keyRight))
+        {
+            pressedKeys.Add(keyRight);
+        }
+
+        if (GetLastPressed() == keyUp)
+        {
+            rb2d.velocity = up * speed;
+            direction = up;
+            //gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Tesla_left");
+
+        }
+        else if (GetLastPressed() == keyLeft)
+        {
+            rb2d.velocity = left * speed;
+            direction = left;
+            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_left");
+
+        }
+        else if (GetLastPressed() == keyDown)
+        {
+            rb2d.velocity = down * speed;
+            direction = down;
+        }
+        else if (GetLastPressed() == keyRight)
+        {
+            rb2d.velocity = right * speed;
+            direction = right;
+            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_right");
+
+        }
+        else
+        {
+            rb2d.velocity = stop;
+        }
+
+        if (Input.GetKeyUp(keyUp) || Input.GetKeyUp(keyLeft) ||
+            Input.GetKeyUp(keyDown) || Input.GetKeyUp(keyRight))
+        {
+            rb2d.velocity = stop;
+            if (Input.GetKeyUp(keyUp))
+            {
+                RemoveKeyPressed(keyUp);
+            }
+            if (Input.GetKeyUp(keyLeft))
+            {
+                RemoveKeyPressed(keyLeft);
+            }
+            if (Input.GetKeyUp(keyDown))
+            {
+                RemoveKeyPressed(keyDown);
+            }
+            if (Input.GetKeyUp(keyRight))
+            {
+                RemoveKeyPressed(keyRight);
+            }
+        }
+
+        CheckPressedKeys();
+        //Debug.Log(PrintPressedKeys());
+
+    }
+
+
+    private void movement2() {
+
+        //JP
 
         if (Input.GetKeyDown(keyUp) && pressed_keys.Peek() != keyUp)
         {
@@ -182,92 +262,7 @@ public abstract class PlayerBase : MonoBehaviour
             rb2d.velocity = stop;
         }
 
-        */
-
-        //pouze debug
-        //funguje A+D+W
-        //nefunguje A+S+W, S+A+W, S+D+W...
-        //nevim proč, většina kombinací 3 kláves funguje
-        //4 klávesy nefungujou nikdy
-        if (Input.GetKeyDown(keyUp))
-        {
-            //Debug.Log("UP");
-        }
-
-
-        if (Input.GetKeyDown(keyUp) && !PressedKeysContains(keyUp))
-        {
-            pressedKeys.Add(keyUp);
-        }
-        else if (Input.GetKeyDown(keyLeft) && !PressedKeysContains(keyLeft))
-        {
-            pressedKeys.Add(keyLeft);
-        }
-        else if (Input.GetKeyDown(keyDown) && !PressedKeysContains(keyDown))
-        {
-            pressedKeys.Add(keyDown);
-        }
-        else if (Input.GetKeyDown(keyRight) && !PressedKeysContains(keyRight))
-        {
-            pressedKeys.Add(keyRight);
-        }
-
-        if (GetLastPressed() == keyUp)
-        {
-            rb2d.velocity = up * speed;
-            direction = up;
-            //gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Tesla_left");
-            
-        }
-        else if (GetLastPressed() == keyLeft)
-        {
-            rb2d.velocity = left * speed;
-            direction = left;
-            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_left");
-
-        }
-        else if (GetLastPressed() == keyDown)
-        {
-            rb2d.velocity = down * speed;
-            direction = down;
-        }
-        else if (GetLastPressed() == keyRight)
-        {
-            rb2d.velocity = right * speed;
-            direction = right;
-            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_right");
-
-        }
-        else
-        {
-            rb2d.velocity = stop;
-        }
-
-        if (Input.GetKeyUp(keyUp) || Input.GetKeyUp(keyLeft) ||
-            Input.GetKeyUp(keyDown) || Input.GetKeyUp(keyRight))
-        {
-            rb2d.velocity = stop;
-            if (Input.GetKeyUp(keyUp))
-            {
-                RemoveKeyPressed(keyUp);
-            }
-            if (Input.GetKeyUp(keyLeft))
-            {
-                RemoveKeyPressed(keyLeft);
-            }
-            if (Input.GetKeyUp(keyDown))
-            {
-                RemoveKeyPressed(keyDown);
-            }
-            if (Input.GetKeyUp(keyRight))
-            {
-                RemoveKeyPressed(keyRight);
-            }
-        }
-
-        CheckPressedKeys();
-        //Debug.Log(PrintPressedKeys());
-       
+        
     }
 
     private void pop() {
