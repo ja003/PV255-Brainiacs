@@ -9,7 +9,15 @@ using Brainiacs.Generate;
 public class PowerUp : BonusItemSpawnBase
 {
     public PowerUpEnum powerUpType;
-    
+
+    public PowerUp()
+    {
+        prefab = (GameObject)Resources.Load("Prefabs/Ammo");
+        prefab.gameObject.SetActive(true);
+        SetReady();
+        //GameObject obj = (GameObject)Instantiate(prefab);...nelze, není monobehaviour
+    }
+
     override public void SetReady()
     {
         System.Random rnd = new System.Random();

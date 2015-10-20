@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
+# Visual Studio 2015
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brainiacs.CSharp", "Brainiacs.CSharp.csproj", "{18BB4067-9EDA-8D2B-113F-A649CE3F1B39}"
 EndProject
 Global

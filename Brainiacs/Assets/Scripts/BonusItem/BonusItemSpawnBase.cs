@@ -11,8 +11,10 @@ public abstract class BonusItemSpawnBase
     
     abstract public void SetReady();
 
+
+
     public void Activate()
     {
-        prefab.gameObject.SetActive(true);
+        
     }
 }

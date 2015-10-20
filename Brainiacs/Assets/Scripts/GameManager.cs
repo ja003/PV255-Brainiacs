@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < powerUpPool; i++)
         {
             powerUps.Add(new PowerUp());
+            //powerUps[i].SetReady();
         }
     }
 

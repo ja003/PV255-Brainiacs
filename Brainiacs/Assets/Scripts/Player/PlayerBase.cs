@@ -119,6 +119,10 @@ public abstract class PlayerBase : MonoBehaviour
             rb2d.velocity = up * speed;
             direction = up;
             //gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Tesla_left");
+            
+            //udělat metodu!
+            transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "Weapon_back";
+
 
         }
         else if (GetLastPressed() == keyLeft)
@@ -132,6 +136,9 @@ public abstract class PlayerBase : MonoBehaviour
         {
             rb2d.velocity = down * speed;
             direction = down;
+            //obj.transform.parent
+            transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "Weapon_front";
+            //GetComponent<SpriteRenderer>().o
         }
         else if (GetLastPressed() == keyRight)
         {
