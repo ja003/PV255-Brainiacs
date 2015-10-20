@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Ai\AiActionEnum.cs" />
     <Compile Include="Assets\Scripts\Ai\AiBase.cs" />
+    <Compile Include="Assets\Scripts\Ai\Ai_03.cs" />
     <Compile Include="Assets\Scripts\BonusItem\BonusItemSpawnBase.cs" />
     <Compile Include="Assets\Scripts\BonusItem\PowerUp.cs" />
     <Compile Include="Assets\Scripts\BonusItem\PowerUpEnum.cs" />

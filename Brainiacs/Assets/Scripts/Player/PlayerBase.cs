@@ -76,7 +76,7 @@ public abstract class PlayerBase : MonoBehaviour
         {
             activeWeapon = inventory[((inventory.IndexOf(activeWeapon) + 1) % inventory.Count)];
             Debug.Log(activeWeapon.sprite);
-            transform.Find("Weapon").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(activeWeapon.sprite);
+            transform.Find("weapon").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(activeWeapon.sprite);
         }
 
     }

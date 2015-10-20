@@ -34,7 +34,7 @@ public class Player1 : PlayerBase {
         base.inventory.Add(pistol);     
         base.activeWeapon = base.inventory[0];
 
-        transform.Find("Weapon").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(activeWeapon.sprite);
+        transform.Find("weapon").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(activeWeapon.sprite);
 
 
         //TRY

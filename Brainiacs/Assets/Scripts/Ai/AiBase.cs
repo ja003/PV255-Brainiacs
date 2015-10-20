@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AiBase : MonoBehaviour {
-
-    public int playerNumber{ get; set; }
-
-    public float speed{get;set;}
-    public Rigidbody2D rb2d { get; set; }
+public class AiBase : PlayerBase {
+    
+    
 
     public int killPlayer1Priority { get; set; }
     public int killPlayer2Priority { get; set; }
@@ -15,24 +12,12 @@ public class AiBase : MonoBehaviour {
 
     public AiActionEnum currentAction { get; set; }
 
-    // Use this for initialization
-    void Start () {
-        playerNumber = 3;
-        killPlayer1Priority = 0;
-        killPlayer2Priority = 0;
-        killPlayer3Priority = 0;
-        killPlayer4Priority = 0;
-
-        rb2d = gameObject.GetComponent<Rigidbody2D>();
-        speed = 2f;
-
-        currentAction = AiActionEnum.stand;
-    }
+   
 	
 	// Update is called once per frame
 	void Update () {
         
-
+        //follor player 1 
         if(Time.frameCount > 200)
         {
             MoveTo(GameObject.Find("Player1").transform.position.x,
@@ -63,6 +48,8 @@ public class AiBase : MonoBehaviour {
             {
                 //...
             }
+
+            SwitchWeapon();
 
 
         }
