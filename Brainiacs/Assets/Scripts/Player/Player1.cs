@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Player1 : PlayerBase {
+public class Player1 : HumanBase
+{
 
    
     void Start()
@@ -12,7 +13,7 @@ public class Player1 : PlayerBase {
 
         // JP - farba spritu pre playerov
         //      mala by byt na konci nazvu spritu
-        base.color = "blue";
+        color = "blue";
 
         base.character = CharacterEnum.Tesla;
 

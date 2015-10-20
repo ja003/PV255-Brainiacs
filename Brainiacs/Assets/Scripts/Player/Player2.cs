@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Player2 : PlayerBase
+public class Player2 : HumanBase
 {
 
 

@@ -58,7 +58,7 @@ public class BulletShooter : MonoBehaviour {
         direction = gameObject.transform.parent.gameObject.GetComponent<PlayerBase>().direction;
         if (Input.anyKey && keyFire == KeyCode.None)
         {
-            keyFire = gameObject.transform.parent.gameObject.GetComponent<PlayerBase>().keyFire;
+            keyFire = gameObject.transform.parent.gameObject.GetComponent<HumanBase>().keyFire;
         }
 
         if (Input.GetKey(keyFire) && counter > delayTime)

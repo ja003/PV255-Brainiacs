@@ -20,8 +20,15 @@ public class Ai_03 : AiBase {
         inventory = new List<WeaponBase>();
         WeaponBase pistol = new WeaponPistol(CharacterEnum.Tesla);
         inventory.Add(pistol);
+        WeaponBase special = new WeaponTeslaSpecial();
+        inventory.Add(special);
+
         activeWeapon = inventory[0];
+
+        InitializeBullets();
     }
+
+
 
    
 }

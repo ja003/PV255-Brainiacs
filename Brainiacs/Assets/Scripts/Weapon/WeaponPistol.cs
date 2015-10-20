@@ -17,9 +17,10 @@ public class WeaponPistol : WeaponBase {
     {
         switch (type)
         {
-            case (CharacterEnum.Tesla): base.sprite = "Sprites/Weapons/TeslaPistol"; base.bulletSprite = "Sprites / Weapons / NobelPistol"; break;
-            case (CharacterEnum.Nobel): base.sprite = "Sprites/Weapons/NobelPistol"; break;
-            case (CharacterEnum.Einstein): base.sprite = "Sprites/Weapons/EinsteinPistol"; break;
+            //ten bulletSprite se ještě nikde nevyužívá? -AJ
+            case (CharacterEnum.Tesla): base.sprite = "Sprites/Weapons/weapon_Tesla-pistol"; base.bulletSprite = "Sprites / Weapons / NobelPistol"; break;
+            case (CharacterEnum.Nobel): base.sprite = "Sprites/Weapons/weapon_Nobel-pistol"; break;
+            case (CharacterEnum.Einstein): base.sprite = "Sprites/Weapons/weapon_Einstein-pistol"; break;
         }
     }
 }

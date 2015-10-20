@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AiBase : PlayerBase {
     
@@ -18,7 +19,7 @@ public class AiBase : PlayerBase {
 	void Update () {
         
         //follor player 1 
-        if(Time.frameCount > 200)
+        if(Time.frameCount > 10)
         {
             MoveTo(GameObject.Find("Player1").transform.position.x,
                     GameObject.Find("Player1").transform.position.y);
@@ -49,7 +50,11 @@ public class AiBase : PlayerBase {
                 //...
             }
 
-            SwitchWeapon();
+            
+            //Fire();
+
+            
+            //SwitchWeapon();
 
 
         }
@@ -58,6 +63,61 @@ public class AiBase : PlayerBase {
     }
 
     // <<COMANDS...>>
+    private List<GameObject> bullets;
+    public GameObject bullet;
+    int damage;
+
+    public void InitializeBullets()
+    {
+        Debug.Log("!");
+
+        bullets = new List<GameObject>();
+        //bullet = GameObject.Find("Prefabs/Electricity");
+        bullet = (GameObject)Resources.Load("Prefabs/Electricity");
+
+
+
+        int pooledAmount = 5;
+        for (int i = 0; i < pooledAmount; i++)
+        {
+            GameObject obj = (GameObject)Instantiate(bullet);
+            obj.transform.parent = gameObject.transform.GetChild(0);
+            obj.SetActive(false);           //nastavenie toho, ze sa gulka nepouziva
+            bullets.Add(obj);
+
+        }
+    }
+    
+    /// <summary>
+    /// nefachá se současným BulletShooterem
+    /// </summary>
+    public void Fire()
+    {
+        System.Random rnd = new System.Random();
+        damage = rnd.Next(20, 30); //podla danej zbrane -> zbran musi mat min a max dmg
+        for (int i = 0; i < bullets.Count; i++)
+        {
+            if (!bullets[i].activeInHierarchy)
+            {
+                bullets[i].transform.position = (transform.position + new Vector3(direction.x, direction.y));
+                bullets[i].transform.rotation = transform.rotation;
+                bullets[i].SetActive(true);
+                break;
+
+            }
+        }
+    }
+    
+    public void SwitchWeapon()
+    {
+        if (inventory.Count == 1) return;
+
+        activeWeapon = inventory[((inventory.IndexOf(activeWeapon) + 1) % inventory.Count)];
+        transform.Find("weapon").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(activeWeapon.sprite);
+        //Debug.Log("active weapon = " + activeWeapon);
+        
+    }
+
     public void Stand()
     {
 
@@ -134,6 +194,28 @@ public class AiBase : PlayerBase {
     {
         return GameObject.FindGameObjectsWithTag("Player");
     }
+
+
+
+    /// <summary>
+    /// funguje jen když je barrier trigger....asi vymyslím jinak
+    /// </summary>
+    /// <param name="coll"></param>
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        //Debug.Log("col");
+        if ((coll.gameObject.tag == "Barrier"))
+        {
+            //Debug.Log("Barrier");
+            MoveDown();
+            MoveLeft();
+        }
+    }
+
+
+
+
+
 
     /// <summary>
     /// gives copmmands to unit in order to get to the given coordinates
