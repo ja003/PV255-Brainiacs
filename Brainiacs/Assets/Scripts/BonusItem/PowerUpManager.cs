@@ -9,7 +9,7 @@ public class PowerUpManager : MonoBehaviour
     private PowerUpEnum type;
     private bool assignedType = false;
 
-    private float floatingSpeed = 1.0f;
+    private float floatingSpeed = 0.2f;
     private float time = 0.0f;
 
     void Update()
@@ -34,7 +34,7 @@ public class PowerUpManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.Translate(0, (float)System.Math.Sin(floatingSpeed * Time.deltaTime * time), 0);
+        transform.Translate(0.0f, floatingSpeed * Time.deltaTime * (float)System.Math.Sin(time), 0.0f);
         time += Time.deltaTime;
     }
 }

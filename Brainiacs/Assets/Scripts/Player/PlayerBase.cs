@@ -28,6 +28,11 @@ public abstract class PlayerBase : MonoBehaviour
     private static int maxHP = 100;
     public int hitPoints = maxHP;
     private bool isShielded = false;
+    
+    private bool speedBuffIsActive = false;
+    private float time = 0.0f;                  //for speed/slow
+    private float speedAmount;                  //to remember if it is boost of slow
+    private float speedBuffDuration = 10.0f;
 
     public Vector2 direction;
 
@@ -61,7 +66,7 @@ public abstract class PlayerBase : MonoBehaviour
         }
     }
     
-    //HP management - <<<MG...>>>
+    //PowerUp and HP management - <<<MG...>>>
     public void ApplyDamage(int dmg)
     {
         if (isShielded)
@@ -108,18 +113,53 @@ public abstract class PlayerBase : MonoBehaviour
 
     }
 
+    void FixedUpdate()
+    {
+        if (speedBuffIsActive)
+        {
+            time += Time.deltaTime;
+            if (time > speedBuffDuration)
+            {
+                speedBuffIsActive = false;
+                time = 0.0f;
+                speed -= speedAmount;
+            }
+        }
+    }
+
+    private void ApplySpeedOrSlow(float amount)
+    {
+        speedAmount = amount;
+        speedBuffIsActive = true;
+        speed += speedAmount;
+    }
+
     public void AddPowerUp(PowerUpEnum en)
     {
         switch (en)
         {
-            case PowerUpEnum.shield:
+            case PowerUpEnum.Shield:
                 isShielded = true;
                 break;
-            case PowerUpEnum.heal:
+            case PowerUpEnum.Heal:
                 ApplyHeal(maxHP / 2);
                 break;
-            case PowerUpEnum.ammo:
+            case PowerUpEnum.Ammo:
                 activeWeapon.reload(100);
+                break;
+            case PowerUpEnum.Speed:
+                ApplySpeedOrSlow(1.5f);
+                break;
+            case PowerUpEnum.Mystery:
+                System.Random rnd = new System.Random();
+                var v = Enum.GetValues(typeof(PowerUpEnum));
+                AddPowerUp((PowerUpEnum)v.GetValue(rnd.Next(v.Length)));
+                break;
+            case PowerUpEnum.dealDamage:
+                ApplyDamage(maxHP / 3);
+                break;
+            case PowerUpEnum.slowSpeed:
+                ApplySpeedOrSlow(-1.0f);
                 break;
             default:
                 Debug.Log("Unknown powerUp received.");

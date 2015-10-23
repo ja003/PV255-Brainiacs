@@ -1,6 +1,10 @@
 ﻿public enum PowerUpEnum
 {
-    shield,
-    heal,
-    ammo
+    Shield,
+    Heal,
+    Ammo,
+    Speed,
+    Mystery,
+    slowSpeed,
+    dealDamage
 }
