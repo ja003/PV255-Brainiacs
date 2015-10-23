@@ -51,17 +51,17 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
@@ -77,18 +77,18 @@
     <Compile Include="Assets\Scripts\Ai\AiActionEnum.cs" />
     <Compile Include="Assets\Scripts\Ai\AiBase.cs" />
     <Compile Include="Assets\Scripts\Ai\Ai_03.cs" />
-    <Compile Include="Assets\Scripts\BonusItem\PowerUp.cs" />
-    <Compile Include="Assets\Scripts\BonusItem\PowerUpEnum.cs" />
-    <Compile Include="Assets\Scripts\BonusItem\PowerUpManager.cs" />
     <Compile Include="Assets\Scripts\BulletManager.cs" />
     <Compile Include="Assets\Scripts\BulletShooter.cs" />
-    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Player\Enums\CharacterEnum.cs" />
     <Compile Include="Assets\Scripts\Player\HumanBase.cs" />
     <Compile Include="Assets\Scripts\Player\Player1.cs" />
     <Compile Include="Assets\Scripts\Player\Player2.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBase.cs" />
-    <Compile Include="Assets\Scripts\PositionGenerator.cs" />
+    <Compile Include="Assets\Scripts\PositionGenerator\PositionGenerator.cs" />
+    <Compile Include="Assets\Scripts\SpawnItems\PowerUp.cs" />
+    <Compile Include="Assets\Scripts\SpawnItems\PowerUpEnum.cs" />
+    <Compile Include="Assets\Scripts\SpawnItems\PowerUpManager.cs" />
     <Compile Include="Assets\Scripts\Weapon\Skvrna.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponBase.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponEnum.cs" />

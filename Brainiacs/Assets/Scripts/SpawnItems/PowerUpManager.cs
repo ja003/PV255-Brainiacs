@@ -25,8 +25,12 @@ public class PowerUpManager : MonoBehaviour
     {
         if ((coll.gameObject.tag == "Player"))
         {
+            if (!assignedType)
+            {
+                type = gameObject.transform.parent.gameObject.GetComponent<PowerUp>().powerUpType;
+                assignedType = true;
+            }
             coll.gameObject.SendMessage("AddPowerUp", type);
-            Debug.Log(type);
             assignedType = false;
             gameObject.SetActive(false);
         }

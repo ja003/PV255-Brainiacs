@@ -12,7 +12,7 @@ public class PowerUp : MonoBehaviour
     
     private GameObject tmp;
     private int pooledAmount = 5;
-    private int numberOfPrefabedPowerUps = 15;
+    private int numberOfPrefabedPowerUps = 5;
     
     private List<GameObject> shields;
     private List<GameObject> heals;
@@ -21,7 +21,7 @@ public class PowerUp : MonoBehaviour
     private List<GameObject> mysteries;
 
     private float time = 0.0f;
-    private float spawnInterval = 5.0f;
+    private float spawnInterval = 15.0f;
     
     void Start(){
         

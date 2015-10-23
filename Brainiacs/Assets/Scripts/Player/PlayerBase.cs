@@ -24,7 +24,7 @@ public abstract class PlayerBase : MonoBehaviour
 
     public WeaponBase activeWeapon { get; set; }
 
-    //--MG added
+    //<<MG.. added
     private static int maxHP = 100;
     public int hitPoints = maxHP;
     private bool isShielded = false;
@@ -33,6 +33,7 @@ public abstract class PlayerBase : MonoBehaviour
     private float time = 0.0f;                  //for speed/slow
     private float speedAmount;                  //to remember if it is boost of slow
     private float speedBuffDuration = 10.0f;
+    //..MG>>
 
     public Vector2 direction;
 
@@ -65,8 +66,15 @@ public abstract class PlayerBase : MonoBehaviour
             transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "Weapon_front";
         }
     }
-    
+
+    void FixedUpdate()
+    {
+        SpeedBuffChecker();
+    }
+
     //PowerUp and HP management - <<<MG...>>>
+
+    //player receives damage
     public void ApplyDamage(int dmg)
     {
         if (isShielded)
@@ -100,6 +108,7 @@ public abstract class PlayerBase : MonoBehaviour
         Debug.Log(hitPoints);
     }
 
+    //player receives heal
     private void ApplyHeal(int heal)
     {
         if ((hitPoints + heal) > maxHP)
@@ -113,7 +122,8 @@ public abstract class PlayerBase : MonoBehaviour
 
     }
 
-    void FixedUpdate()
+    //checks if speed/slow buff duration has expired
+    private void SpeedBuffChecker()
     {
         if (speedBuffIsActive)
         {
@@ -127,6 +137,7 @@ public abstract class PlayerBase : MonoBehaviour
         }
     }
 
+    //receives speed/slow buff
     private void ApplySpeedOrSlow(float amount)
     {
         speedAmount = amount;
@@ -134,32 +145,40 @@ public abstract class PlayerBase : MonoBehaviour
         speed += speedAmount;
     }
 
+    //this way player receives info from collision with power up
     public void AddPowerUp(PowerUpEnum en)
     {
         switch (en)
         {
             case PowerUpEnum.Shield:
                 isShielded = true;
+                Debug.Log("player picked up shield");
                 break;
             case PowerUpEnum.Heal:
                 ApplyHeal(maxHP / 2);
+                Debug.Log("player picked up heal");
                 break;
             case PowerUpEnum.Ammo:
                 activeWeapon.reload(100);
+                Debug.Log("player picked up ammo");
                 break;
             case PowerUpEnum.Speed:
                 ApplySpeedOrSlow(1.5f);
+                Debug.Log("player picked up speed");
                 break;
             case PowerUpEnum.Mystery:
                 System.Random rnd = new System.Random();
                 var v = Enum.GetValues(typeof(PowerUpEnum));
+                Debug.Log("player picked up mystery");
                 AddPowerUp((PowerUpEnum)v.GetValue(rnd.Next(v.Length)));
                 break;
             case PowerUpEnum.dealDamage:
                 ApplyDamage(maxHP / 3);
+                Debug.Log("player picked up dealDamage");
                 break;
             case PowerUpEnum.slowSpeed:
                 ApplySpeedOrSlow(-1.0f);
+                Debug.Log("player picked up slowSPeed");
                 break;
             default:
                 Debug.Log("Unknown powerUp received.");
