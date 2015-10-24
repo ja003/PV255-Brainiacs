@@ -221,7 +221,7 @@ public class AiBase : PlayerBase {
             }
         }
     }
-    */
+    
     public void SwitchWeapon()
     {
         if (inventory.Count == 1) return;
@@ -231,7 +231,7 @@ public class AiBase : PlayerBase {
         //Debug.Log("active weapon = " + activeWeapon);
         
     }
-
+    */
     public void Stand()
     {
 
