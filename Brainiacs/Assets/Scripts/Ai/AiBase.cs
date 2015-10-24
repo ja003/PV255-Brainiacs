@@ -3,8 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class AiBase : PlayerBase {
-    
-    
+
+    public PlayerBase player1;
+    public PlayerBase player2;
+    public PlayerBase player3;
+    public PlayerBase player4;
 
     public int killPlayer1Priority { get; set; }
     public int killPlayer2Priority { get; set; }
@@ -14,20 +17,15 @@ public class AiBase : PlayerBase {
     public AiActionEnum currentAction { get; set; }
 
    
-	
 	// Update is called once per frame
 	void Update () {
+        if(Time.frameCount == 5)
+        {
+            SetPlayers();
+            Debug.Log("Other players set");
+        }
+
         
-        //follor player 1 
-        if(Time.frameCount > 10)
-        {
-            MoveTo(GameObject.Find("Player1").transform.position.x,
-                    GameObject.Find("Player1").transform.position.y);
-        }
-        else
-        {
-            MoveTo(-4.5, -3);
-        }
 
         //check only once per second
         if (Time.frameCount % 30 == 0)
@@ -39,31 +37,90 @@ public class AiBase : PlayerBase {
             Debug.Log("kill_3=" + killPlayer3Priority);
             Debug.Log("kill_4=" + killPlayer4Priority);
             */
+
+            //dont kill yourself
+            switch (playerNumber)
+            {
+                case 1:
+                    killPlayer1Priority = 0;
+                    break;
+                case 2:
+                    killPlayer2Priority = 0;
+                    break;
+                case 3:
+                    killPlayer3Priority = 0;
+                    break;
+                case 4:
+                    killPlayer4Priority = 0;
+                    break;
+                default:
+                    Debug.Log(gameObject.ToString() + " has no player number");
+                    break;
+            }
+
             UpdateCurrentAction();
 
-            if(currentAction == AiActionEnum.stand)
-            {
-                Stand();
-            }
-            else if (currentAction == AiActionEnum.stand)
-            {
-                //...
-            }
-
-            
             //Fire();
-
-            
             //SwitchWeapon();
-
-
         }
+
+        if(Time.frameCount % 200 == 0)
+        {
+            PrintPriorities();
+            PrintAction();
+        }
+
+        DoCurrentAction();
 
 
     }
 
-    // <<COMANDS...>>
-    /*
+
+    public void PrintAction()
+    {
+        string message = "";
+        message += "current action=" + currentAction;
+
+        Debug.Log(message);
+    }
+
+    public void PrintPriorities()
+    {
+        string message = "priorities \n";
+        message += "KillPlayer1=" + killPlayer1Priority;
+        message += ",KillPlayer2=" + killPlayer2Priority;
+        message += ",KillPlayer3=" + killPlayer3Priority;
+        message += ",KillPlayer4=" + killPlayer4Priority;
+
+        Debug.Log(message);
+    }
+
+    public void DoCurrentAction()
+    {
+        switch (currentAction)
+        {
+            case AiActionEnum.killPlayer1:
+                KillPlayer(player1);
+                break;
+            case AiActionEnum.killPlayer2:
+                KillPlayer(player2);
+                break;
+            case AiActionEnum.killPlayer3:
+                KillPlayer(player3);
+                break;
+            case AiActionEnum.killPlayer4:
+                KillPlayer(player4);
+                break;
+            default: Stand();
+                break;
+        }
+        //Debug.Log("processing action: " + currentAction);
+    }
+
+
+/*
+        //ˇˇˇˇpak bude v jiné třídě
+>>>>>>> origin/master
     private List<GameObject> bullets;
     public GameObject bullet;
     int damage;
@@ -88,7 +145,63 @@ public class AiBase : PlayerBase {
 
         }
     }
-    
+    */
+
+    public void KillPlayer(PlayerBase player)
+    {
+        Vector2 targetPlayerPosition = player.transform.position;
+        //move to same axis 
+        
+        //horizontal way is better
+        if(Mathf.Abs(posX - player.posX) < Mathf.Abs(posY - player.posY))
+        {
+            MoveTo(player.posX, posY);
+        }//vertical is better
+        else
+        {
+            MoveTo(posX, player.posY);
+        }
+        //turn his direction
+        LookAt(player.gameObject);
+
+        //shoot
+        //Debug.Log("killing player: " + player);
+    }
+
+    public void LookAt(GameObject obj)
+    {
+        
+        double distanceX = Mathf.Abs(posX - obj.transform.position.x);
+        double distanceY = Mathf.Abs(posY - obj.transform.position.y);
+
+        //prefer more dominant axis
+        if(distanceX > distanceY)
+        {
+            //it is on my left
+            if (obj.transform.position.x < posX)
+            {
+                direction = left;
+            }
+            else
+            {
+                direction = right;
+            }
+        }
+        else
+        {
+            //it is below me
+            if (obj.transform.position.y < posY)
+            {
+                direction = down;
+            }
+            else
+            {
+                direction = up;
+            }
+        }
+        
+    }
+    /*
     /// <summary>
     /// nefachá se současným BulletShooterem
     /// </summary>
@@ -123,11 +236,7 @@ public class AiBase : PlayerBase {
     {
 
     }
-
-    public void ShootAtPlayer(GameObject player)
-    {
-
-    }
+    
 
 
     // <<...COMANDS>>
@@ -135,50 +244,56 @@ public class AiBase : PlayerBase {
     public void CheckPriorities()
     {
         SetKillPriorities();
+       
         //....
     }
     public void UpdateCurrentAction()
     {
-        //...
+        if(killPlayer1Priority >= GetCurrentHighestPriority())
+        {
+            currentAction = AiActionEnum.killPlayer1;
+        }
+        else if (killPlayer2Priority >= GetCurrentHighestPriority())
+        {
+            currentAction = AiActionEnum.killPlayer2;
+        }
+        else if (killPlayer3Priority >= GetCurrentHighestPriority())
+        {
+            currentAction = AiActionEnum.killPlayer3;
+        }
+        else if (killPlayer4Priority >= GetCurrentHighestPriority())
+        {
+            currentAction = AiActionEnum.killPlayer4;
+        }
+    }
+
+    public int GetCurrentHighestPriority()
+    {
+        int highestPriority = 0;
+        if (killPlayer1Priority > highestPriority)
+            highestPriority = killPlayer1Priority;
+        if (killPlayer2Priority > highestPriority)
+            highestPriority = killPlayer2Priority;
+        if (killPlayer3Priority > highestPriority)
+            highestPriority = killPlayer3Priority;
+        if (killPlayer4Priority > highestPriority)
+            highestPriority = killPlayer4Priority;
+
+        return highestPriority;
     }
 
     /// <summary>
     /// nastaví kill priority podle zdálenosti
+    /// 200 je cca max vzdálenost na mapě
     /// </summary>
     public void SetKillPriorities()
     {
-        foreach(GameObject obj in GetOtherPlayers())
-        {
-            int playerNumber = 0;
-            if(obj.GetComponent<PlayerBase>() == null)
-            {
-                //Debug.Log("its AI");
-                playerNumber = obj.GetComponent<AiBase>().playerNumber;
-            }
-            else
-            {
-                //Debug.Log("its human");
-                playerNumber = obj.GetComponent<PlayerBase>().playerNumber;
-            }
-            //největší vzdálenost je cca 200
-            switch (playerNumber)
-            {
-                case 1:
-                    killPlayer1Priority = 200 - (int)(GetDistance(gameObject, obj));
-                    break;
-                case 2:
-                    killPlayer2Priority = 200 - (int)(GetDistance(gameObject, obj));
-                    break;
-                case 3:
-                    killPlayer3Priority = 200 - (int)(GetDistance(gameObject, obj));
-                    break;
-                case 4:
-                    killPlayer4Priority = 200 - (int)(GetDistance(gameObject, obj));
-                    break;
-                default :
-                    break;
-            }
-        }
+        killPlayer1Priority = 200 - (int)(GetDistance(gameObject, player1.gameObject));
+        killPlayer2Priority = 200 - (int)(GetDistance(gameObject, player2.gameObject));
+        killPlayer3Priority = 200 - (int)(GetDistance(gameObject, player3.gameObject));
+        //killPlayer4Priority = 200 - (int)(GetDistance(gameObject, player4.gameObject));
+            
+        
     }
 
     public Vector3 GetMyPosition()
@@ -191,9 +306,42 @@ public class AiBase : PlayerBase {
         return (object1.transform.position - object2.transform.position).sqrMagnitude;
     }
 
-    public GameObject[] GetOtherPlayers()
+    public List<PlayerBase> GetPlayers()
     {
-        return GameObject.FindGameObjectsWithTag("Player");
+        GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
+        List<PlayerBase> allPlayersBase = new List<PlayerBase>();
+        foreach(GameObject obj in allPlayers)
+        {
+            allPlayersBase.Add(obj.GetComponent<PlayerBase>());
+        }
+        return allPlayersBase;
+    }
+    public void SetPlayers()
+    {
+        List<PlayerBase> allPlayers = new List<PlayerBase>();
+        allPlayers = GetPlayers();
+        foreach(PlayerBase player in allPlayers)
+        {
+            switch (player.playerNumber)
+            {
+                case 1:
+                    player1 = player;
+                    break;
+                case 2:
+                    player2 = player;
+                    break;
+                case 3:
+                    player3 = player;
+                    break;
+                case 4:
+                    player4 = player;
+                    break;
+                default:
+                    Debug.Log(player.ToString() + " has no player number!");
+                    break;
+            }
+            Debug.Log("setting player: " + player.gameObject.name + ", number-" + player.playerNumber);
+        }
     }
 
 
@@ -241,6 +389,7 @@ public class AiBase : PlayerBase {
                 PreferY(x,y);
             }
         }
+        //Debug.Log("moving to: " + x + "," + y);
     }
 
     /// <summary>
