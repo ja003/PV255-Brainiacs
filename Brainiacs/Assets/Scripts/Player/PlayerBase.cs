@@ -54,20 +54,7 @@ public abstract class PlayerBase : MonoBehaviour
     //rigid body of controlled object
     public Rigidbody2D rb2d { get; set; }
 
-    public void createBullets() {
-        // JP LOADING BULLETS
-        
-        bullet = (GameObject)Resources.Load("Prefabs/Projectile");
-        
-        for (int i = 0; i < 20; i++)
-        {
-            GameObject obj = (GameObject)Instantiate(bullet);
-            obj.transform.parent = gameObject.transform;
-            obj.SetActive(false);           
-            prefabBullets.Add(obj);
-        }
-        // END
-    }
+   
 
     //TODO: transform.GetChild(1).GetComponent<SpriteRenderer>().sortingLayerName = "Hand_back";
     //až přídáme ruku
@@ -216,6 +203,22 @@ public abstract class PlayerBase : MonoBehaviour
     //<<<...MG>>>
 
     /////////////////////////////////////// WEAPON HANDLING ///////////////////////////////////////////
+
+    public void createBullets()
+    {
+        // JP LOADING BULLETS
+
+        bullet = (GameObject) Resources.Load("Prefabs/Projectile");
+
+        for (int i = 0; i < 20; i++)
+        {
+            GameObject obj = (GameObject)Instantiate(bullet);
+            obj.transform.parent = gameObject.transform;
+            obj.SetActive(false);
+            prefabBullets.Add(obj);
+        }
+        // END
+    }
 
     protected void SwitchWeapon()
     {

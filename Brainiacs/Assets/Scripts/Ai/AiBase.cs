@@ -118,34 +118,6 @@ public class AiBase : PlayerBase {
     }
 
 
-/*
-        //ˇˇˇˇpak bude v jiné třídě
->>>>>>> origin/master
-    private List<GameObject> bullets;
-    public GameObject bullet;
-    int damage;
-
-    public void InitializeBullets()
-    {
-        Debug.Log("!");
-
-        bullets = new List<GameObject>();
-        //bullet = GameObject.Find("Prefabs/Electricity");
-        bullet = (GameObject)Resources.Load("Prefabs/Electricity");
-
-
-
-        int pooledAmount = 5;
-        for (int i = 0; i < pooledAmount; i++)
-        {
-            GameObject obj = (GameObject)Instantiate(bullet);
-            obj.transform.parent = gameObject.transform.GetChild(0);
-            obj.SetActive(false);           //nastavenie toho, ze sa gulka nepouziva
-            bullets.Add(obj);
-
-        }
-    }
-    */
 
     public void KillPlayer(PlayerBase player)
     {
