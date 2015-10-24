@@ -71,8 +71,6 @@
     <Compile Include="Assets\Scripts\Ai\AiActionEnum.cs" />
     <Compile Include="Assets\Scripts\Ai\AiBase.cs" />
     <Compile Include="Assets\Scripts\Ai\Ai_03.cs" />
-    <Compile Include="Assets\Scripts\BulletManager.cs" />
-    <Compile Include="Assets\Scripts\BulletShooter.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Player\Enums\CharacterEnum.cs" />
     <Compile Include="Assets\Scripts\Player\HumanBase.cs" />
@@ -89,6 +87,8 @@
     <Compile Include="Assets\Scripts\Weapon\WeaponEnum.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponPistol.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponTeslaSpecial.cs" />
+    <Compile Include="Assets\Scripts\unused\BulletManager.cs" />
+    <Compile Include="Assets\Scripts\unused\BulletShooter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

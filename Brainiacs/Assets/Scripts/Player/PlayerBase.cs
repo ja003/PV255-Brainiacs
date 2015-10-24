@@ -174,7 +174,7 @@ public abstract class PlayerBase : MonoBehaviour
                 Debug.Log("player picked up heal");
                 break;
             case PowerUpEnum.Ammo:
-                activeWeapon.reload(100);
+                activeWeapon.reload();
                 Debug.Log("player picked up ammo");
                 break;
             case PowerUpEnum.Speed:

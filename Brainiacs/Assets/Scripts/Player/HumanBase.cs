@@ -66,7 +66,8 @@ public class HumanBase : PlayerBase {
         {
             rb2d.velocity = left * speed;
             direction = left;
-            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_left");
+            
+            //gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_left");
 
         }
         else if (GetLastPressed() == keyDown)
@@ -78,7 +79,8 @@ public class HumanBase : PlayerBase {
         {
             rb2d.velocity = right * speed;
             direction = right;
-            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_right");
+            
+            //gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_right");
 
         }
         else
@@ -114,7 +116,7 @@ public class HumanBase : PlayerBase {
     }
 
    
-
+    /*
     private void movement2()
     {
 
@@ -185,7 +187,10 @@ public class HumanBase : PlayerBase {
         {
             rb2d.velocity = left * speed;
             direction = left;
-            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_left");
+            //gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_left");
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
 
         }
         else if (pressed_keys.Peek() == keyDown)
@@ -197,7 +202,10 @@ public class HumanBase : PlayerBase {
         {
             rb2d.velocity = right * speed;
             direction = right;
-            gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_right");
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+            //gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_right");
 
         }
         else
@@ -206,7 +214,7 @@ public class HumanBase : PlayerBase {
         }
 
 
-    }
+    }*/
 
     private void pop()
     {

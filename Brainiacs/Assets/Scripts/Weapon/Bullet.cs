@@ -9,10 +9,10 @@ public class Bullet : MonoBehaviour {
     public bool isActive = false;
 
     public void iniciate(Vector2 dir, Vector2 pos, string sprt) {
+        direction = new Vector2(dir.x, dir.y);
 
-        transform.position = pos + dir.normalized;
+        transform.position = pos + direction.normalized;
         GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(sprt);
-        direction = dir;
         gameObject.SetActive(true);
         isActive = true;
     }
@@ -22,12 +22,14 @@ public class Bullet : MonoBehaviour {
 	}
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
+        
         if (isActive)
         {
-            transform.position = transform.position + new Vector3(direction.x, direction.y).normalized / 10;
             Debug.Log("fire3");
+            transform.position = transform.position + new Vector3(direction.x, direction.y).normalized / 10;
+            
         }
     }
 
