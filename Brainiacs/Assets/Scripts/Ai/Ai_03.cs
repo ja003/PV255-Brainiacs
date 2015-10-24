@@ -12,6 +12,8 @@ public class Ai_03 : AiBase {
         killPlayer3Priority = 0;
         killPlayer4Priority = 0;
 
+        
+
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         speed = 2f;
 
@@ -25,8 +27,9 @@ public class Ai_03 : AiBase {
 
         activeWeapon = inventory[0];
 
-        InitializeBullets();
+        //InitializeBullets();
     }
+    
 
 
 

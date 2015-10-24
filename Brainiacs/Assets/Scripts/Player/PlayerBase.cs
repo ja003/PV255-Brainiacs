@@ -70,6 +70,13 @@ public abstract class PlayerBase : MonoBehaviour
     void FixedUpdate()
     {
         SpeedBuffChecker();
+        UpdatePosition();
+    }
+
+    public void UpdatePosition()
+    {
+        posX = gameObject.transform.position.x;
+        posY = gameObject.transform.position.y;
     }
 
     //PowerUp and HP management - <<<MG...>>>
