@@ -11,8 +11,7 @@ public abstract class PlayerBase : MonoBehaviour
 
     // JP - farba spritu
     public string color { get; set; }
-    // JP added
-    public int ID { get; set; }
+
     public float posX;
     public float posY;
 
@@ -20,9 +19,16 @@ public abstract class PlayerBase : MonoBehaviour
 
     public float speed { get; set; }
 
+    /// //////////////////////////////////// WEAPON HANDLING ///////////////////////////////////
     public List<WeaponBase> inventory { get; set; }
-
     public WeaponBase activeWeapon { get; set; }
+    public float lastFired { get; set; }
+    public List<GameObject> prefabBullets = new List<GameObject>();
+    public GameObject bullet;
+    public int maxBullets = 20;
+    public int indexUsedBullet = 0;
+    /// //////////////////////////////////////// END ///////////////////////////////////////////
+   
 
     //<<MG.. added
     private static int maxHP = 100;
@@ -47,6 +53,21 @@ public abstract class PlayerBase : MonoBehaviour
 
     //rigid body of controlled object
     public Rigidbody2D rb2d { get; set; }
+
+    public void createBullets() {
+        // JP LOADING BULLETS
+        
+        bullet = (GameObject)Resources.Load("Prefabs/Projectile");
+        
+        for (int i = 0; i < 20; i++)
+        {
+            GameObject obj = (GameObject)Instantiate(bullet);
+            obj.transform.parent = gameObject.transform;
+            obj.SetActive(false);           
+            prefabBullets.Add(obj);
+        }
+        // END
+    }
 
     //TODO: transform.GetChild(1).GetComponent<SpriteRenderer>().sortingLayerName = "Hand_back";
     //až přídáme ruku
@@ -83,7 +104,7 @@ public abstract class PlayerBase : MonoBehaviour
         }
         else
         {
-            if ((hitPoints - dmg) <= 0)
+            if ((hitPoints - dmg) <= 0) 
             {
                 hitPoints = 0;
                 //TODO sputenie animacie smrti
@@ -178,7 +199,7 @@ public abstract class PlayerBase : MonoBehaviour
                 break;
             case PowerUpEnum.slowSpeed:
                 ApplySpeedOrSlow(-1.0f);
-                Debug.Log("player picked up slowSPeed");
+                Debug.Log("Player picked up slowSPeed");
                 break;
             default:
                 Debug.Log("Unknown powerUp received.");
@@ -187,5 +208,32 @@ public abstract class PlayerBase : MonoBehaviour
     }
     //<<<...MG>>>
 
+    /////////////////////////////////////// WEAPON HANDLING ///////////////////////////////////////////
 
+    protected void SwitchWeapon()
+    {
+        //JP
+        if (inventory.Count == 1) return;
+
+
+        activeWeapon = inventory[((inventory.IndexOf(activeWeapon) + 1) % inventory.Count)];
+        transform.Find("weapon").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(activeWeapon.sprite);
+
+    }
+
+    public void fire() {
+  
+        prefabBullets[indexUsedBullet].GetComponent<Bullet>().iniciate(direction, transform.position, activeWeapon.bulletSprite);
+        int bulletsLeft = activeWeapon.fire();
+
+        if (bulletsLeft == 0) {
+            WeaponBase toDel = activeWeapon;
+            SwitchWeapon();
+            inventory.Remove(toDel);
+        }
+
+        indexUsedBullet = (indexUsedBullet + 1) % maxBullets ;
+    }
+
+    
 }

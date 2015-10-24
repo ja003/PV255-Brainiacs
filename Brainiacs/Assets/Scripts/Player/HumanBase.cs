@@ -28,26 +28,17 @@ public class HumanBase : PlayerBase {
         this.keySwitchWeapon = keySwitchWeapon;
     }
 
-
-    
-
-    protected void SwitchWeapon()
-    {
-        //JP
-        if (inventory.Count == 1) return;
-        if (Input.GetKeyDown(keySwitchWeapon))
-        {
-            activeWeapon = inventory[((inventory.IndexOf(activeWeapon) + 1) % inventory.Count)];
-            //Debug.Log(activeWeapon.sprite);
-            transform.Find("weapon").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(activeWeapon.sprite);
-        }
-    }
-
-
     // <<<MOVEMENT...>>> //
     protected void Movement()
     {
+        if (Input.GetKeyDown(keyFire)) {
+            fire();
+        }
 
+        if (Input.GetKeyDown(keySwitchWeapon))
+        {
+            SwitchWeapon();
+        }
 
         if (Input.GetKeyDown(keyUp) && !PressedKeysContains(keyUp))
         {

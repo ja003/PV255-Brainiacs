@@ -63,6 +63,7 @@ public class AiBase : PlayerBase {
     }
 
     // <<COMANDS...>>
+    /*
     private List<GameObject> bullets;
     public GameObject bullet;
     int damage;
@@ -107,7 +108,7 @@ public class AiBase : PlayerBase {
             }
         }
     }
-    
+    */
     public void SwitchWeapon()
     {
         if (inventory.Count == 1) return;

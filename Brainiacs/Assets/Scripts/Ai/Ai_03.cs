@@ -25,7 +25,7 @@ public class Ai_03 : AiBase {
 
         activeWeapon = inventory[0];
 
-        InitializeBullets();
+        //InitializeBullets();
     }
 
 

@@ -49,7 +49,7 @@ public class Player2 : HumanBase
     {
         base.Movement();
 
-        base.SwitchWeapon();
+        //base.SwitchWeapon();
     }
 
 

@@ -9,7 +9,7 @@ public class Player1 : HumanBase
     void Start()
     {
         base.playerNumber = 1;
-
+        createBullets();
 
         // JP - farba spritu pre playerov
         //      mala by byt na konci nazvu spritu
@@ -51,7 +51,7 @@ public class Player1 : HumanBase
     {
         base.Movement();
 
-        base.SwitchWeapon();
+        //base.SwitchWeapon();
     }
 
    

@@ -13,6 +13,8 @@ public class WeaponBase
     public string sprite { get; set; }
     public string bulletSprite { get; set; }
 
+    public float reloadTime { get; set; }
+
     public void reload()
     {
         ammo = maxAmmo;
@@ -30,7 +32,7 @@ public class WeaponBase
         }
     }
 
-    int shoot()
+    public int fire()
     {
         if (weaponType == WeaponEnum.pistol) return 10;
         ammo -= 1;
