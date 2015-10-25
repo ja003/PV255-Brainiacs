@@ -36,6 +36,7 @@ public abstract class PlayerBase : MonoBehaviour
     private bool isShielded = false;
     
     private bool speedBuffIsActive = false;
+    private bool slowDebuffIsActive = false;
     private float time = 0.0f;                  //for speed/slow
     private float speedAmount;                  //to remember if it is boost of slow
     private float speedBuffDuration = 10.0f;
@@ -140,24 +141,63 @@ public abstract class PlayerBase : MonoBehaviour
     //checks if speed/slow buff duration has expired
     private void SpeedBuffChecker()
     {
-        if (speedBuffIsActive)
+        if (speedBuffIsActive || slowDebuffIsActive)
         {
             time += Time.deltaTime;
-            if (time > speedBuffDuration)
+            if (time > speedBuffDuration && speedBuffIsActive)
             {
                 speedBuffIsActive = false;
+                time = 0.0f;
+                speed -= speedAmount;
+            }
+            if (time > speedBuffDuration && slowDebuffIsActive)
+            {
+                slowDebuffIsActive = false;
                 time = 0.0f;
                 speed -= speedAmount;
             }
         }
     }
 
-    //receives speed/slow buff
-    private void ApplySpeedOrSlow(float amount)
+    //receives speed buff
+    private void ApplySpeed(float amount)
     {
-        speedAmount = amount;
-        speedBuffIsActive = true;
-        speed += speedAmount;
+        if (!speedBuffIsActive)
+        {
+            if (slowDebuffIsActive)
+            {
+                slowDebuffIsActive = false;
+                speed -= speedAmount;
+                return;
+            }
+            speedAmount = amount;
+            speedBuffIsActive = true;
+            speed += speedAmount;
+        }
+        else
+        {
+            time = 0.0f;
+        }
+    }
+
+    private void ApplySlow(float amount)
+    {
+        if (!slowDebuffIsActive)
+        {
+            if (speedBuffIsActive)
+            {
+                speedBuffIsActive = false;
+                speed -= speedAmount;
+                return;
+            }
+            speedAmount = amount;
+            slowDebuffIsActive = true;
+            speed += speedAmount;
+        }
+        else
+        {
+            time = 0.0f;
+        }
     }
 
     //this way player receives info from collision with power up
@@ -167,36 +207,36 @@ public abstract class PlayerBase : MonoBehaviour
         {
             case PowerUpEnum.Shield:
                 isShielded = true;
-                Debug.Log("player picked up shield");
+                //Debug.Log("player picked up shield");
                 break;
             case PowerUpEnum.Heal:
                 ApplyHeal(maxHP / 2);
-                Debug.Log("player picked up heal");
+                //Debug.Log("player picked up heal");
                 break;
             case PowerUpEnum.Ammo:
                 activeWeapon.reload();
-                Debug.Log("player picked up ammo");
+                //Debug.Log("player picked up ammo");
                 break;
             case PowerUpEnum.Speed:
-                ApplySpeedOrSlow(1.5f);
-                Debug.Log("player picked up speed");
+                ApplySpeed(1.5f);
+                //Debug.Log("player picked up speed");
                 break;
             case PowerUpEnum.Mystery:
                 System.Random rnd = new System.Random();
                 var v = Enum.GetValues(typeof(PowerUpEnum));
-                Debug.Log("player picked up mystery");
+                //Debug.Log("player picked up mystery");
                 AddPowerUp((PowerUpEnum)v.GetValue(rnd.Next(v.Length)));
                 break;
             case PowerUpEnum.dealDamage:
                 ApplyDamage(maxHP / 3);
-                Debug.Log("player picked up dealDamage");
+                //Debug.Log("player picked up dealDamage");
                 break;
             case PowerUpEnum.slowSpeed:
-                ApplySpeedOrSlow(-1.0f);
-                Debug.Log("Player picked up slowSPeed");
+                ApplySlow(-1.0f);
+                //Debug.Log("Player picked up slowSPeed");
                 break;
             default:
-                Debug.Log("Unknown powerUp received.");
+                Debug.Log("ERROR: Unknown powerUp received.");
                 break;
         }
     }

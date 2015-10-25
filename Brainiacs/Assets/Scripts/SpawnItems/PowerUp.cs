@@ -111,7 +111,7 @@ public class PowerUp : MonoBehaviour
                     {
                         shields[i].transform.position = generator.GenerateRandomPosition();
                         shields[i].SetActive(true);
-                        Debug.Log("Shield is generated" + " X: " + shields[i].transform.position.x + " Y: " + shields[i].transform.position.y);
+                        //Debug.Log("Shield is generated" + " X: " + shields[i].transform.position.x + " Y: " + shields[i].transform.position.y);
                         break;
                     }
                 }
@@ -123,7 +123,7 @@ public class PowerUp : MonoBehaviour
                     {
                         heals[i].transform.position = generator.GenerateRandomPosition();
                         heals[i].SetActive(true);
-                        Debug.Log("Heal is generated" + " X: " + heals[i].transform.position.x + " Y: " + heals[i].transform.position.y);
+                        //Debug.Log("Heal is generated" + " X: " + heals[i].transform.position.x + " Y: " + heals[i].transform.position.y);
                         break;
                     }
                 }
@@ -135,7 +135,7 @@ public class PowerUp : MonoBehaviour
                     {
                         ammos[i].transform.position = generator.GenerateRandomPosition();
                         ammos[i].SetActive(true);
-                        Debug.Log("Ammo is generated" + " X: " + ammos[i].transform.position.x + " Y: " + ammos[i].transform.position.y);
+                        //Debug.Log("Ammo is generated" + " X: " + ammos[i].transform.position.x + " Y: " + ammos[i].transform.position.y);
                         break;
                     }
                 }
@@ -147,7 +147,7 @@ public class PowerUp : MonoBehaviour
                     {
                         speeds[i].transform.position = generator.GenerateRandomPosition();
                         speeds[i].SetActive(true);
-                        Debug.Log("Speed is generated" + " X: " + speeds[i].transform.position.x + " Y: " + speeds[i].transform.position.y);
+                        //Debug.Log("Speed is generated" + " X: " + speeds[i].transform.position.x + " Y: " + speeds[i].transform.position.y);
                         break;
                     }
                 }
@@ -159,13 +159,13 @@ public class PowerUp : MonoBehaviour
                     {
                         mysteries[i].transform.position = generator.GenerateRandomPosition();
                         mysteries[i].SetActive(true);
-                        Debug.Log("Mystery is generated" + " X: " + mysteries[i].transform.position.x + " Y: " + mysteries[i].transform.position.y);
+                        //Debug.Log("Mystery is generated" + " X: " + mysteries[i].transform.position.x + " Y: " + mysteries[i].transform.position.y);
                         break;
                     }
                 }
                 break;
             default:
-                Debug.Log("Unknown powerUp is ready.");
+                Debug.Log("ERROR: Unknown powerUp is ready.");
                 break;
         }
     }
