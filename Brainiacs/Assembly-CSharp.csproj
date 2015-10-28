@@ -45,14 +45,31 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\BulletManager.cs" />
-     <Compile Include="Assets\Scripts\GameManager.cs" />
-     <Compile Include="Assets\Scripts\Player1.cs" />
-     <Compile Include="Assets\Scripts\Player2.cs" />
-     <Compile Include="Assets\Scripts\Player3.cs" />
-     <Compile Include="Assets\Scripts\Player4.cs" />
-     <Compile Include="Assets\Scripts\PlayerBase.cs" />
-     <Compile Include="Assets\Scripts\ProjectileShooter.cs" />
+     <Compile Include="Assets\Scripts\Ai\AiActionEnum.cs" />
+     <Compile Include="Assets\Scripts\Ai\AiBase.cs" />
+     <Compile Include="Assets\Scripts\Ai\Ai_03.cs" />
+     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Player\Components.cs" />
+     <Compile Include="Assets\Scripts\Player\Enums\CharacterEnum.cs" />
+     <Compile Include="Assets\Scripts\Player\HumanBase.cs" />
+     <Compile Include="Assets\Scripts\Player\Player1.cs" />
+     <Compile Include="Assets\Scripts\Player\Player2.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerBase.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerInfo.cs" />
+     <Compile Include="Assets\Scripts\PositionGenerator\PositionGenerator.cs" />
+     <Compile Include="Assets\Scripts\SpawnItems\PowerUp.cs" />
+     <Compile Include="Assets\Scripts\SpawnItems\PowerUpEnum.cs" />
+     <Compile Include="Assets\Scripts\SpawnItems\PowerUpManager.cs" />
+     <Compile Include="Assets\Scripts\Weapon\Bullet.cs" />
+     <Compile Include="Assets\Scripts\Weapon\BulletManager.cs" />
+     <Compile Include="Assets\Scripts\Weapon\Skvrna.cs" />
+     <Compile Include="Assets\Scripts\Weapon\WeaponBase.cs" />
+     <Compile Include="Assets\Scripts\Weapon\WeaponEnum.cs" />
+     <Compile Include="Assets\Scripts\Weapon\WeaponHandling.cs" />
+     <Compile Include="Assets\Scripts\Weapon\WeaponPistol.cs" />
+     <Compile Include="Assets\Scripts\Weapon\WeaponTeslaSpecial.cs" />
+     <Compile Include="Assets\Scripts\unused\BulletManager2.cs" />
+     <Compile Include="Assets\Scripts\unused\BulletShooter.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

@@ -5,14 +5,15 @@ using System.Collections.Generic;
 public class Player2 : HumanBase
 {
 
-
+    
     void Start()
     {
         base.playerNumber = 2;
+        //createBullets();
 
-        base.character = CharacterEnum.Tesla;
+        //base.character = CharacterEnum.Tesla;
 
-        base.playerName = "Player1";
+
         base.speed = 2f;
         base.direction = base.right;
 
@@ -27,6 +28,7 @@ public class Player2 : HumanBase
 
         WeaponBase pistol = new WeaponPistol();
         base.inventory.Add(pistol);
+        /*
         switch (base.character)
         {
             case CharacterEnum.Tesla:
@@ -39,10 +41,10 @@ public class Player2 : HumanBase
                 base.inventory.Add(defaultSpecial);
                 break;
         }
-
+        */
         base.activeWeapon = base.inventory[0];
         //Debug.Log(base.inventory[0]);
-
+        
 
     }
     void Update()

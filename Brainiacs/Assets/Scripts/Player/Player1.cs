@@ -5,47 +5,42 @@ using System.Collections.Generic;
 public class Player1 : HumanBase
 {
 
-   
+    Components comp = new Components();
+    PlayerInfo playInfo = new PlayerInfo();
+    WeaponHandling weaponHandling; 
+
     void Start()
     {
+        weaponHandling = GetComponent<WeaponHandling>();
+
+        comp.spriteRend = GetComponent<SpriteRenderer>();
+        comp.rb2d       = gameObject.GetComponent<Rigidbody2D>();
+
+        playInfo.charEnum       = CharacterEnum.Tesla;
+        playInfo.playerNumber   = 1;
+        playInfo.playerColor    = "Red";
+
         base.playerNumber = 1;
-        createBullets();
-
-        // JP - farba spritu pre playerov
-        //      mala by byt na konci nazvu spritu
-        color = "blue";
-
-        base.character = CharacterEnum.Tesla;
-
-        base.playerName = "Player1";
         base.speed = 2f;
         base.direction = base.right;
 
         SetControlKeys(KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.LeftControl, KeyCode.LeftShift);
 
-        base.rb2d = gameObject.GetComponent<Rigidbody2D>();
-
-        base.pressedKeys = new List<KeyCode>();
-        //base.pressedKeys.Add(KeyCode.X);
-        //Debug.Log(base.rb2d.ToString());
-
-   ////////////////////////////////////////////////////////// WEAPON HANDLING ////////////////////////////////////////////
-        base.inventory = new List<WeaponBase>();
-        WeaponBase pistol = new WeaponPistol(CharacterEnum.Tesla);
-        base.inventory.Add(pistol);     
-        base.activeWeapon = base.inventory[0];
-
-        transform.Find("weapon").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(activeWeapon.sprite);
-
-
+        ////////////////////////////////////////////////////////// WEAPON HANDLING ////////////////////////////////////////////
+        WeaponPistol pistol = new WeaponPistol(CharacterEnum.Tesla);
+        weaponHandling.inventory.Add(pistol);
+        weaponHandling.activeWeapon = weaponHandling.inventory[0];
+        weaponHandling.weaponRenderer = transform.Find("weapon").GetComponent<SpriteRenderer>();
+        weaponHandling.weaponRenderer.sprite = Resources.Load<Sprite>(pistol.sprite);
         //TRY
         WeaponBase skvrna = new Skvrna();
-        inventory.Add(skvrna);
-
+        weaponHandling.inventory.Add(skvrna);
 
         /////////////////////////////////////////////////////////// END WH ///////////////////////////////////////////////////
+        
 
-
+        setUpHB(comp, playInfo);
+        setUpPB(comp, playInfo);
     }
         void Update()
     {

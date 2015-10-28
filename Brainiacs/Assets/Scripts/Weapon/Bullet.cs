@@ -18,18 +18,15 @@ public class Bullet : MonoBehaviour {
     }
 	// Use this for initialization
 	void Start () {
-	
+        
 	}
 
     // Update is called once per frame
     void Update()
     {
-        
         if (isActive)
         {
-            Debug.Log("fire3");
             transform.position = transform.position + new Vector3(direction.x, direction.y).normalized / 10;
-            
         }
     }
 

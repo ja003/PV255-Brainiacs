@@ -12,11 +12,22 @@ public class HumanBase : PlayerBase {
 
 
     private KeyCode lastPressed { get; set; }
+    public List<KeyCode> pressedKeys = new List<KeyCode>();
 
-    public List<KeyCode> pressedKeys { get; set; }
+    Components comp;
+    PlayerInfo playInfo;
+    WeaponHandling weaponHandling;
+
     // JP - pre alternatibny movement
-    public Stack<KeyCode> pressed_keys = new Stack<KeyCode>();
-    int pops = 0;
+    //public Stack<KeyCode> pressed_keys = new Stack<KeyCode>();
+    //int pops = 0;
+
+    public void setUpHB(Components c, PlayerInfo p) {
+        comp = c;
+        playInfo = p;
+        weaponHandling = GetComponent<WeaponHandling>();
+        rb2d = gameObject.GetComponent<Rigidbody2D>();
+    }
 
     public void SetControlKeys(KeyCode keyUp, KeyCode keyLeft, KeyCode keyDown, KeyCode keyRight, KeyCode keyFire, KeyCode keySwitchWeapon)
     {
@@ -32,12 +43,12 @@ public class HumanBase : PlayerBase {
     protected void Movement()
     {
         if (Input.GetKeyDown(keyFire)) {
-            fire();
+            weaponHandling.fire(direction);
         }
 
         if (Input.GetKeyDown(keySwitchWeapon))
         {
-            SwitchWeapon();
+            weaponHandling.SwitchWeapon();
         }
 
         if (Input.GetKeyDown(keyUp) && !PressedKeysContains(keyUp))
@@ -47,6 +58,11 @@ public class HumanBase : PlayerBase {
         else if (Input.GetKeyDown(keyLeft) && !PressedKeysContains(keyLeft))
         {
             pressedKeys.Add(keyLeft);
+            if (direction != left)
+            {
+                comp.spriteRend.transform.localRotation = Quaternion.Euler(0, 180, 0);
+            }
+           
         }
         else if (Input.GetKeyDown(keyDown) && !PressedKeysContains(keyDown))
         {
@@ -55,6 +71,10 @@ public class HumanBase : PlayerBase {
         else if (Input.GetKeyDown(keyRight) && !PressedKeysContains(keyRight))
         {
             pressedKeys.Add(keyRight);
+            if (direction != right)
+            {
+                comp.spriteRend.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            }
         }
 
         if (GetLastPressed() == keyUp)
@@ -65,9 +85,13 @@ public class HumanBase : PlayerBase {
         else if (GetLastPressed() == keyLeft)
         {
             rb2d.velocity = left * speed;
+
+            if (direction != left)
+            {
+                comp.spriteRend.transform.localRotation = Quaternion.Euler(0, 180, 0);
+            }
+
             direction = left;
-            
-            //gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_left");
 
         }
         else if (GetLastPressed() == keyDown)
@@ -78,9 +102,13 @@ public class HumanBase : PlayerBase {
         else if (GetLastPressed() == keyRight)
         {
             rb2d.velocity = right * speed;
+
+            if (direction != right)
+            {
+                comp.spriteRend.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            }
+
             direction = right;
-            
-            //gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_right");
 
         }
         else
@@ -115,118 +143,8 @@ public class HumanBase : PlayerBase {
         SortLayers();
     }
 
-   
-    /*
-    private void movement2()
-    {
-
-        //JP
-
-        if (Input.GetKeyDown(keyUp) && pressed_keys.Peek() != keyUp)
-        {
-            pressed_keys.Push(keyUp);
-        }
-        else if (Input.GetKeyDown(keyLeft) && pressed_keys.Peek() != keyLeft)
-        {
-            pressed_keys.Push(keyLeft);
-        }
-        else if (Input.GetKeyDown(keyDown) && pressed_keys.Peek() != keyDown)
-        {
-            pressed_keys.Push(keyDown);
-        }
-        else if (Input.GetKeyDown(keyRight) && pressed_keys.Peek() != keyRight)
-        {
-            pressed_keys.Push(keyRight);
-        }
-
-        if (Input.GetKeyUp(keyUp))
-        {
-            if (keyUp == pressed_keys.Peek())
-            {
-                pressed_keys.Pop();
-                pop();
-            }
-            else { pops++; }
-        }
-        else if (Input.GetKeyUp(keyLeft))
-        {
-            if (keyLeft == pressed_keys.Peek())
-            {
-                pressed_keys.Pop();
-                pop();
-            }
-            else { pops++; }
-        }
-        else if (Input.GetKeyUp(keyDown))
-        {
-            if (keyDown == pressed_keys.Peek())
-            {
-                pressed_keys.Pop();
-                pop();
-            }
-            else { pops++; }
-        }
-        else if (Input.GetKeyUp(keyRight))
-        {
-            if (keyRight == pressed_keys.Peek())
-            {
-                pressed_keys.Pop();
-                pop();
-            }
-            else { pops++; }
-        }
-
-        if (pressed_keys.Peek() == keyUp)
-        {
-            rb2d.velocity = up * speed;
-            direction = up;
-            //gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Tesla_left");
-
-        }
-        else if (pressed_keys.Peek() == keyLeft)
-        {
-            rb2d.velocity = left * speed;
-            direction = left;
-            //gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_left");
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
-
-        }
-        else if (pressed_keys.Peek() == keyDown)
-        {
-            rb2d.velocity = down * speed;
-            direction = down;
-        }
-        else if (pressed_keys.Peek() == keyRight)
-        {
-            rb2d.velocity = right * speed;
-            direction = right;
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
-            //gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_right");
-
-        }
-        else
-        {
-            rb2d.velocity = stop;
-        }
 
 
-    }*/
-
-    private void pop()
-    {
-
-        for (int i = 0; i < pops; i++)
-        {
-            pressed_keys.Pop();
-        }
-
-        pops = 0;
-
-    }
 
     /// <summary>
     /// last element of pressedKeys list
@@ -294,3 +212,141 @@ public class HumanBase : PlayerBase {
     // <<<...MOVEMENT>>> //
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+private void movement2()
+{
+
+    //JP
+
+    if (Input.GetKeyDown(keyUp) && pressed_keys.Peek() != keyUp)
+    {
+        pressed_keys.Push(keyUp);
+    }
+    else if (Input.GetKeyDown(keyLeft) && pressed_keys.Peek() != keyLeft)
+    {
+        pressed_keys.Push(keyLeft);
+    }
+    else if (Input.GetKeyDown(keyDown) && pressed_keys.Peek() != keyDown)
+    {
+        pressed_keys.Push(keyDown);
+    }
+    else if (Input.GetKeyDown(keyRight) && pressed_keys.Peek() != keyRight)
+    {
+        pressed_keys.Push(keyRight);
+    }
+
+    if (Input.GetKeyUp(keyUp))
+    {
+        if (keyUp == pressed_keys.Peek())
+        {
+            pressed_keys.Pop();
+            pop();
+        }
+        else { pops++; }
+    }
+    else if (Input.GetKeyUp(keyLeft))
+    {
+        if (keyLeft == pressed_keys.Peek())
+        {
+            pressed_keys.Pop();
+            pop();
+        }
+        else { pops++; }
+    }
+    else if (Input.GetKeyUp(keyDown))
+    {
+        if (keyDown == pressed_keys.Peek())
+        {
+            pressed_keys.Pop();
+            pop();
+        }
+        else { pops++; }
+    }
+    else if (Input.GetKeyUp(keyRight))
+    {
+        if (keyRight == pressed_keys.Peek())
+        {
+            pressed_keys.Pop();
+            pop();
+        }
+        else { pops++; }
+    }
+
+    if (pressed_keys.Peek() == keyUp)
+    {
+        rb2d.velocity = up * speed;
+        direction = up;
+        //gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Tesla_left");
+
+    }
+    else if (pressed_keys.Peek() == keyLeft)
+    {
+        rb2d.velocity = left * speed;
+        direction = left;
+        //gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_left");
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+
+    }
+    else if (pressed_keys.Peek() == keyDown)
+    {
+        rb2d.velocity = down * speed;
+        direction = down;
+    }
+    else if (pressed_keys.Peek() == keyRight)
+    {
+        rb2d.velocity = right * speed;
+        direction = right;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+        //gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/Tesla_right");
+
+    }
+    else
+    {
+        rb2d.velocity = stop;
+    }
+
+        private void pop()
+    {
+
+        for (int i = 0; i < pops; i++)
+        {
+            pressed_keys.Pop();
+        }
+
+        pops = 0;
+
+    }
+
+}*/

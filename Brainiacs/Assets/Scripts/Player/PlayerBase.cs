@@ -5,21 +5,23 @@ using Brainiacs.Generate;
 
 public abstract class PlayerBase : MonoBehaviour
 {
-    public CharacterEnum character;
+    //public CharacterEnum character;
 
     public int playerNumber { get; set; }
 
     // JP - farba spritu
-    public string color { get; set; }
+ //   public string color { get; set; }
 
     public float posX;
     public float posY;
 
-    public string playerName { get; set; }
+  //  public string playerName { get; set; }
 
     public float speed { get; set; }
 
     /// //////////////////////////////////// WEAPON HANDLING ///////////////////////////////////
+    WeaponHandling weaponHandling;
+
     public List<WeaponBase> inventory { get; set; }
     public WeaponBase activeWeapon { get; set; }
     public float lastFired { get; set; }
@@ -29,33 +31,57 @@ public abstract class PlayerBase : MonoBehaviour
     public int indexUsedBullet = 0;
     /// //////////////////////////////////////// END ///////////////////////////////////////////
    
-
+    // //////////////////////////////////////// HP /////////////////////////////////////////////
     //<<MG.. added
     private static int maxHP = 100;
     public int hitPoints = maxHP;
     private bool isShielded = false;
     
+    // ///////////////////////////////////// POWER UPS ///////////////////////////////////////////
     private bool speedBuffIsActive = false;
     private bool slowDebuffIsActive = false;
     private float time = 0.0f;                  //for speed/slow
     private float speedAmount;                  //to remember if it is boost of slow
     private float speedBuffDuration = 10.0f;
     //..MG>>
-
+    
+    // /////////////////////////////////////// Movement ///////////////////////////////////////////
     public Vector2 direction;
-
     protected Vector2 up = Vector2.up;
     protected Vector2 down = Vector2.down;
     protected Vector2 left = Vector2.left;
     protected Vector2 right = Vector2.right;
     protected Vector2 stop = Vector2.zero;
-
+    // ///////////////////////////////////////////////////////////////////////////////////////////
    
-
+    // //////////////////////////////////////  Components ///////////////////////////////////////
     //rigid body of controlled object
     public Rigidbody2D rb2d { get; set; }
+    Components comp;
+    /////////////////////////////////////////////////////////////////////////////////////////////
+    PlayerInfo playInfo;
 
-   
+    public void setUpPB(Components c, PlayerInfo p)
+    {
+        comp = c;
+        playInfo = p;
+        weaponHandling = GetComponent<WeaponHandling>();
+        
+        setUpSprites();
+        weaponHandling.buletManager = transform.parent.GetComponent<BulletManager>();
+        weaponHandling.buletManager.createBullets();
+    }
+
+    private void setUpSprites() {
+        string sprite = "";
+        sprite += playInfo.charEnum.ToString();
+        sprite += playInfo.playerColor;
+
+        Debug.Log(playInfo.playerColor);
+        Debug.Log(sprite);
+
+        comp.spriteRend.sprite = Resources.Load<Sprite>("Sprites/Players/" + sprite);
+    }
 
     //TODO: transform.GetChild(1).GetComponent<SpriteRenderer>().sortingLayerName = "Hand_back";
     //až přídáme ruku
@@ -124,6 +150,7 @@ public abstract class PlayerBase : MonoBehaviour
         Debug.Log(hitPoints);
     }
 
+    /// ////////////////////////////////////// POWER UPS ///////////////////////////////////////////
     //player receives heal
     private void ApplyHeal(int heal)
     {
@@ -242,48 +269,11 @@ public abstract class PlayerBase : MonoBehaviour
     }
     //<<<...MG>>>
 
+    /// /////////////////////////////////////END //////////////////////////////////////////////////////
+
+     
     /////////////////////////////////////// WEAPON HANDLING ///////////////////////////////////////////
 
-    public void createBullets()
-    {
-        // JP LOADING BULLETS
-
-        bullet = (GameObject) Resources.Load("Prefabs/Projectile");
-
-        for (int i = 0; i < 20; i++)
-        {
-            GameObject obj = (GameObject)Instantiate(bullet);
-            obj.transform.parent = gameObject.transform;
-            obj.SetActive(false);
-            prefabBullets.Add(obj);
-        }
-        // END
-    }
-
-    protected void SwitchWeapon()
-    {
-        //JP
-        if (inventory.Count == 1) return;
-
-
-        activeWeapon = inventory[((inventory.IndexOf(activeWeapon) + 1) % inventory.Count)];
-        transform.Find("weapon").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(activeWeapon.sprite);
-
-    }
-
-    public void fire() {
-  
-        prefabBullets[indexUsedBullet].GetComponent<Bullet>().iniciate(direction, transform.position, activeWeapon.bulletSprite);
-        int bulletsLeft = activeWeapon.fire();
-
-        if (bulletsLeft == 0) {
-            WeaponBase toDel = activeWeapon;
-            SwitchWeapon();
-            inventory.Remove(toDel);
-        }
-
-        indexUsedBullet = (indexUsedBullet + 1) % maxBullets ;
-    }
-
+    
     
 }
