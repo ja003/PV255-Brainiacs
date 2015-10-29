@@ -50,7 +50,10 @@
      <Compile Include="Assets\Scripts\Ai\Ai_03.cs" />
      <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
      <Compile Include="Assets\Scripts\Player\Components.cs" />
+     <Compile Include="Assets\Scripts\Player\ControlKeys.cs" />
+     <Compile Include="Assets\Scripts\Player\ControlKeysP1.cs" />
      <Compile Include="Assets\Scripts\Player\Enums\CharacterEnum.cs" />
+     <Compile Include="Assets\Scripts\Player\Enums\Colors.cs" />
      <Compile Include="Assets\Scripts\Player\HumanBase.cs" />
      <Compile Include="Assets\Scripts\Player\Player1.cs" />
      <Compile Include="Assets\Scripts\Player\Player2.cs" />
