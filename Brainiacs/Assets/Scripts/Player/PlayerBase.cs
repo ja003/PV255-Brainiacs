@@ -78,7 +78,7 @@ public abstract class PlayerBase : MonoBehaviour
         sprite += playInfo.playerColor;
 
         Debug.Log(playInfo.playerColor);
-        Debug.Log(sprite);
+        Debug.Log(comp.spriteRend);
 
         comp.spriteRend.sprite = Resources.Load<Sprite>("Sprites/Players/" + sprite);
     }
@@ -129,7 +129,7 @@ public abstract class PlayerBase : MonoBehaviour
             {
                 hitPoints = 0;
                 //TODO sputenie animacie smrti
-                rb2d.velocity = stop;
+                comp.rb2d.velocity = stop;
                 //TODO delay nejake 2s
 
                 //presun na novu poziciu
@@ -268,11 +268,6 @@ public abstract class PlayerBase : MonoBehaviour
         }
     }
     //<<<...MG>>>
-
-    /// /////////////////////////////////////END //////////////////////////////////////////////////////
-
-     
-    /////////////////////////////////////// WEAPON HANDLING ///////////////////////////////////////////
 
     
     

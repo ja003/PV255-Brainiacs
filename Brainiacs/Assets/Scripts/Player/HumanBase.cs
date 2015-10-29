@@ -27,6 +27,7 @@ public class HumanBase : PlayerBase {
         playInfo = p;
         weaponHandling = GetComponent<WeaponHandling>();
         rb2d = gameObject.GetComponent<Rigidbody2D>();
+        Debug.Log(rb2d);
     }
 
     public void SetControlKeys(KeyCode keyUp, KeyCode keyLeft, KeyCode keyDown, KeyCode keyRight, KeyCode keyFire, KeyCode keySwitchWeapon)
@@ -48,15 +49,18 @@ public class HumanBase : PlayerBase {
 
         if (Input.GetKeyDown(keySwitchWeapon))
         {
+            
             weaponHandling.SwitchWeapon();
         }
 
         if (Input.GetKeyDown(keyUp) && !PressedKeysContains(keyUp))
         {
+            Debug.Log(keyUp);
             pressedKeys.Add(keyUp);
         }
         else if (Input.GetKeyDown(keyLeft) && !PressedKeysContains(keyLeft))
         {
+            Debug.Log(keyLeft);
             pressedKeys.Add(keyLeft);
             if (direction != left)
             {
@@ -66,10 +70,13 @@ public class HumanBase : PlayerBase {
         }
         else if (Input.GetKeyDown(keyDown) && !PressedKeysContains(keyDown))
         {
+
+            Debug.Log(keyDown); 
             pressedKeys.Add(keyDown);
         }
         else if (Input.GetKeyDown(keyRight) && !PressedKeysContains(keyRight))
         {
+            Debug.Log(keyRight);
             pressedKeys.Add(keyRight);
             if (direction != right)
             {
@@ -80,7 +87,7 @@ public class HumanBase : PlayerBase {
         if (GetLastPressed() == keyUp)
         {
             rb2d.velocity = up * speed;
-            direction = up;
+            direction = up; 
         }
         else if (GetLastPressed() == keyLeft)
         {

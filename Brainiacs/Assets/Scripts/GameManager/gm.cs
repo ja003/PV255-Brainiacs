@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
-public class GameManager : MonoBehaviour
-{
+public class gm : MonoBehaviour {
+
+    GameObject prefab;
 
     GameObject player1;
     GameObject player2;
@@ -29,10 +29,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        player1 = (GameObject)Resources.Load("Prefabs/PlayerManagment"); player1.SetActive(false);
-        player2 = (GameObject)Resources.Load("Prefabs/PlayerManagment"); player2.SetActive(false);
-        player3 = (GameObject)Resources.Load("Prefabs/PlayerManagment"); player3.SetActive(false);
-        player4 = (GameObject)Resources.Load("Prefabs/PlayerManagment"); player4.SetActive(false);
+        prefab = (GameObject)Resources.Load("Prefabs/PlayerManagment"); 
+
+        player1 = Instantiate(prefab); player1.SetActive(false);
+        player2 = Instantiate(prefab); player2.SetActive(false);
+        player3 = Instantiate(prefab); player3.SetActive(false);
+        player4 = Instantiate(prefab); player4.SetActive(false);
+
         Debug.Log(player1);
 
         player1Comp = player1.transform.GetChild(0).GetComponent<Player1>();
@@ -40,14 +43,19 @@ public class GameManager : MonoBehaviour
         player3Comp = player3.transform.GetChild(0).GetComponent<Player1>();
         player4Comp = player4.transform.GetChild(0).GetComponent<Player1>();
 
-        SetUpPlayer(1, CharacterEnum.Tesla);
+        SetUpPlayer(1, CharacterEnum.Einstein);
+        SetUpPlayer(2, CharacterEnum.Nobel);
+        SetUpPlayer(3, CharacterEnum.Tesla);
         Run();
     }
 
-    public void SetUpPlayer(int playerNumber, CharacterEnum charEnum) {
+    public void SetUpPlayer(int playerNumber, CharacterEnum charEnum)
+    {
         if (playerNumber < 1 || playerNumber > 4) return;
-        switch (playerNumber) {
-            case 1: player1Info.playerNumber = 1;
+        switch (playerNumber)
+        {
+            case 1:
+                player1Info.playerNumber = 1;
                 player1Info.charEnum = charEnum;
                 player1Info.playerColor = "Red";
                 player1Comp.SetUpPlayer(player1Info, new ControlKeysP1());
@@ -88,6 +96,6 @@ public class GameManager : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+
     }
 }

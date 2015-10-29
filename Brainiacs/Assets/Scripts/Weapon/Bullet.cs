@@ -10,7 +10,6 @@ public class Bullet : MonoBehaviour {
 
     public void iniciate(Vector2 dir, Vector2 pos, string sprt) {
         direction = new Vector2(dir.x, dir.y);
-
         transform.position = pos + direction.normalized;
         GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(sprt);
         gameObject.SetActive(true);

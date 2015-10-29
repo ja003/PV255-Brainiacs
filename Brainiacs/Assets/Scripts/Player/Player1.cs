@@ -11,6 +11,7 @@ public class Player1 : HumanBase
 
     void Start()
     {
+        /*
         weaponHandling = GetComponent<WeaponHandling>();
         Debug.Log(weaponHandling);
         comp.spriteRend = GetComponent<SpriteRenderer>();
@@ -43,15 +44,27 @@ public class Player1 : HumanBase
 
         setUpHB(comp, playInfo);
         setUpPB(comp, playInfo);
+        */
+        Debug.Log("start");
     }
 
     public void SetUpPlayer(PlayerInfo pi, ControlKeys ck)
     {
+
+        base.playerNumber = 1;
+        base.speed = 2f;
+        base.direction = base.right;
+
         playInfo = pi;
         SetControlKeys(ck.keyUp, ck.keyLeft, ck.keyDown, ck.keyRight, ck.keyFire, ck.keySwitchWeapon);
         setUpWeapons(pi);
+        comp.spriteRend = GetComponent<SpriteRenderer>();
+        comp.rb2d = gameObject.GetComponent<Rigidbody2D>();
+
         setUpHB(comp, playInfo);
         setUpPB(comp, playInfo);
+
+
     }
 
     public void setUpWeapons(PlayerInfo pi)
@@ -70,7 +83,7 @@ public class Player1 : HumanBase
         void Update()
     {
         base.Movement();
-
+        Debug.Log("update");
         //base.SwitchWeapon();
     }
 
