@@ -41,11 +41,11 @@ public class Player1 : HumanBase
         
         /////////////////////////////////////////////////////////// END WH ///////////////////////////////////////////////////
         
-
+        S
         setUpHB(comp, playInfo);
         setUpPB(comp, playInfo);
         */
-        Debug.Log("start");
+        //Debug.Log("start");
     }
 
     public void SetUpPlayer(PlayerInfo pi, ControlKeys ck)
@@ -83,7 +83,7 @@ public class Player1 : HumanBase
         void Update()
     {
         base.Movement();
-        Debug.Log("update");
+        //Debug.Log("update");
         //base.SwitchWeapon();
     }
 

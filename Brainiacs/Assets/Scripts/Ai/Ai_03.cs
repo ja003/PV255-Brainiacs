@@ -3,7 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Ai_03 : AiBase {
-    
+
+    Components comp = new Components();
+    PlayerInfo playInfo = new PlayerInfo();
+    WeaponHandling weaponHandling;
+
     void Start()
     {
         playerNumber = 3;
@@ -29,9 +33,40 @@ public class Ai_03 : AiBase {
 
         //InitializeBullets();
     }
-    
+
+    public void SetUpPlayer(PlayerInfo pi)
+    {
+
+        base.playerNumber = 3;
+        base.speed = 2f;
+        base.direction = base.right;
+
+        playInfo = pi;
+        setUpWeapons(pi);
+        comp.spriteRend = GetComponent<SpriteRenderer>();
+        comp.rb2d = gameObject.GetComponent<Rigidbody2D>();
+
+        setUpAiB(comp, playInfo);
+        setUpPB(comp, playInfo);
+
+
+    }
+
+    public void setUpWeapons(PlayerInfo pi)
+    {
+        weaponHandling = GetComponent<WeaponHandling>();
+        WeaponPistol pistol = new WeaponPistol(CharacterEnum.Tesla);
+        weaponHandling.inventory.Add(pistol);
+        weaponHandling.activeWeapon = weaponHandling.inventory[0];
+        weaponHandling.weaponRenderer = transform.Find("weapon").GetComponent<SpriteRenderer>();
+        weaponHandling.weaponRenderer.sprite = Resources.Load<Sprite>(pistol.sprite);
+        //TRY
+        WeaponBase skvrna = new Skvrna();
+        weaponHandling.inventory.Add(skvrna);
+    }
 
 
 
-   
+
+
 }

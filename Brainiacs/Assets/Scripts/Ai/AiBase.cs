@@ -9,6 +9,10 @@ public class AiBase : PlayerBase {
     public PlayerBase player3;
     public PlayerBase player4;
 
+    Components comp;
+    PlayerInfo playInfo;
+    WeaponHandling weaponHandling;
+
     public int killPlayer1Priority { get; set; }
     public int killPlayer2Priority { get; set; }
     public int killPlayer3Priority { get; set; }
@@ -16,9 +20,17 @@ public class AiBase : PlayerBase {
 
     public AiActionEnum currentAction { get; set; }
 
-   
-	// Update is called once per frame
-	void Update () {
+    public void setUpAiB(Components c, PlayerInfo p)
+    {
+        comp = c;
+        playInfo = p;
+        weaponHandling = GetComponent<WeaponHandling>();
+        rb2d = gameObject.GetComponent<Rigidbody2D>();
+        //Debug.Log(rb2d);
+    }
+
+    // Update is called once per frame
+    void Update () {
         if(Time.frameCount == 5)
         {
             SetPlayers();
@@ -28,7 +40,7 @@ public class AiBase : PlayerBase {
         
 
         //check only once per second
-        if (Time.frameCount % 30 == 0)
+        if (Time.frameCount % 30 == 6)
         {
             CheckPriorities();
             /*
@@ -288,6 +300,7 @@ public class AiBase : PlayerBase {
         }
         return allPlayersBase;
     }
+
     public void SetPlayers()
     {
         List<PlayerBase> allPlayers = new List<PlayerBase>();
@@ -312,7 +325,7 @@ public class AiBase : PlayerBase {
                     Debug.Log(player.ToString() + " has no player number!");
                     break;
             }
-            Debug.Log("setting player: " + player.gameObject.name + ", number-" + player.playerNumber);
+            Debug.Log("setting player: " + player.gameObject.name + ", number: " + player.playerNumber);
         }
     }
 

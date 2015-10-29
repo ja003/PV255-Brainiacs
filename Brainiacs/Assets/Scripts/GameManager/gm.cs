@@ -4,6 +4,7 @@ using System.Collections;
 public class gm : MonoBehaviour {
 
     GameObject prefab;
+    GameObject aiPrefab;
 
     GameObject player1;
     GameObject player2;
@@ -17,7 +18,8 @@ public class gm : MonoBehaviour {
 
     Player1 player1Comp;
     Player1 player2Comp;
-    Player1 player3Comp;
+
+    Ai_03 player3Comp;
     Player1 player4Comp;
 
     PlayerInfo player1Info = new PlayerInfo();
@@ -25,7 +27,7 @@ public class gm : MonoBehaviour {
     PlayerInfo player3Info = new PlayerInfo();
     PlayerInfo player4Info = new PlayerInfo();
 
-    public bool srated;
+    public bool started;
 
     void Start()
     {
@@ -33,19 +35,26 @@ public class gm : MonoBehaviour {
 
         player1 = Instantiate(prefab); player1.SetActive(false);
         player2 = Instantiate(prefab); player2.SetActive(false);
-        player3 = Instantiate(prefab); player3.SetActive(false);
-        player4 = Instantiate(prefab); player4.SetActive(false);
+        //player3 = Instantiate(prefab); player3.SetActive(false);
+        //player4 = Instantiate(prefab); player4.SetActive(false);
 
-        Debug.Log(player1);
+        aiPrefab = (GameObject)Resources.Load("Prefabs/AiManagement"); 
+        player3 = Instantiate(aiPrefab); player3.SetActive(false);
+
+        //!!!!!!!!!!!!!player3 is reserved for ai
 
         player1Comp = player1.transform.GetChild(0).GetComponent<Player1>();
         player2Comp = player2.transform.GetChild(0).GetComponent<Player1>();
-        player3Comp = player3.transform.GetChild(0).GetComponent<Player1>();
-        player4Comp = player4.transform.GetChild(0).GetComponent<Player1>();
+        //player3Comp = player3.transform.GetChild(0).GetComponent<Player1>();
+        //player4Comp = player4.transform.GetChild(0).GetComponent<Player1>();
+
+        player3Comp = player3.transform.GetChild(0).GetComponent<Ai_03>(); //zatim 03...
 
         SetUpPlayer(1, CharacterEnum.Einstein);
         SetUpPlayer(2, CharacterEnum.Nobel);
         SetUpPlayer(3, CharacterEnum.Tesla);
+        
+
         Run();
     }
 
@@ -65,14 +74,14 @@ public class gm : MonoBehaviour {
                 player2Info.playerNumber = 2;
                 player2Info.charEnum = charEnum;
                 player2Info.playerColor = "Green";
-                player2Comp.SetUpPlayer(player2Info, new ControlKeys());
+                player2Comp.SetUpPlayer(player2Info, new ControlKeysP2());
                 player2Active = true;
                 break;
             case 3:
                 player3Info.playerNumber = 3;
                 player3Info.charEnum = charEnum;
                 player3Info.playerColor = "Blue";
-                player3Comp.SetUpPlayer(player3Info, new ControlKeys());
+                player3Comp.SetUpPlayer(player3Info);
                 player3Active = true;
                 break;
             case 4:
@@ -88,7 +97,7 @@ public class gm : MonoBehaviour {
     public void Run()
     {
         if (player1Active) player1.SetActive(true);
-        srated = player1Active;
+        started = player1Active;
         if (player2Active) player2.SetActive(true);
         if (player3Active) player3.SetActive(true);
         if (player4Active) player4.SetActive(true);

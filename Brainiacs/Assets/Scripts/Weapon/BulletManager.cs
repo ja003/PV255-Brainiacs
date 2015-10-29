@@ -11,7 +11,7 @@ public class BulletManager : MonoBehaviour {
 
     public void createBullets()
     {
-        Debug.Log("created");
+        //Debug.Log("created");
         bullet = (GameObject)Resources.Load("Prefabs/Projectile");
 
         for (int i = 0; i < 20; i++)
@@ -22,8 +22,8 @@ public class BulletManager : MonoBehaviour {
             obj.SetActive(false);
 
         }
-        Debug.Log(prefabBullets.Count);
-        Debug.Log(prefabBullets[indexUsedBullet]);
+        //Debug.Log(prefabBullets.Count);
+        //Debug.Log(prefabBullets[indexUsedBullet]);
     }
 
     public void fire(Vector2 direction, Vector2 position, string sprite)

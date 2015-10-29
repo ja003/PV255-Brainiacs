@@ -70,6 +70,9 @@ public abstract class PlayerBase : MonoBehaviour
         setUpSprites();
         weaponHandling.buletManager = transform.parent.GetComponent<BulletManager>();
         weaponHandling.buletManager.createBullets();
+
+        //pičovina, pak to napojím na PLayerInfo a atribut playerNumber uplně smažu
+        playerNumber = p.playerNumber;
     }
 
     private void setUpSprites() {
@@ -77,8 +80,8 @@ public abstract class PlayerBase : MonoBehaviour
         sprite += playInfo.charEnum.ToString();
         sprite += playInfo.playerColor;
 
-        Debug.Log(playInfo.playerColor);
-        Debug.Log(comp.spriteRend);
+        //Debug.Log(playInfo.playerColor);
+        //Debug.Log(comp.spriteRend);
 
         comp.spriteRend.sprite = Resources.Load<Sprite>("Sprites/Players/" + sprite);
     }
