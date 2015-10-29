@@ -85,6 +85,7 @@ public class Player1 : HumanBase
         base.Movement();
         //Debug.Log("update");
         //base.SwitchWeapon();
+        //UpdateDirection();
     }
 
    

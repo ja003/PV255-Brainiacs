@@ -49,7 +49,6 @@ public class HumanBase : PlayerBase {
 
         if (Input.GetKeyDown(keySwitchWeapon))
         {
-            
             weaponHandling.SwitchWeapon();
         }
 
@@ -62,10 +61,6 @@ public class HumanBase : PlayerBase {
         {
             //Debug.Log(keyLeft);
             pressedKeys.Add(keyLeft);
-            if (direction != left)
-            {
-                comp.spriteRend.transform.localRotation = Quaternion.Euler(0, 180, 0);
-            }
            
         }
         else if (Input.GetKeyDown(keyDown) && !PressedKeysContains(keyDown))
@@ -78,10 +73,6 @@ public class HumanBase : PlayerBase {
         {
             //Debug.Log(keyRight);
             pressedKeys.Add(keyRight);
-            if (direction != right)
-            {
-                comp.spriteRend.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            }
         }
 
         if (GetLastPressed() == keyUp)
@@ -92,12 +83,6 @@ public class HumanBase : PlayerBase {
         else if (GetLastPressed() == keyLeft)
         {
             rb2d.velocity = left * speed;
-
-            if (direction != left)
-            {
-                comp.spriteRend.transform.localRotation = Quaternion.Euler(0, 180, 0);
-            }
-
             direction = left;
 
         }
@@ -108,15 +93,8 @@ public class HumanBase : PlayerBase {
         }
         else if (GetLastPressed() == keyRight)
         {
-            rb2d.velocity = right * speed;
-
-            if (direction != right)
-            {
-                comp.spriteRend.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            }
-
+            rb2d.velocity = right * speed;            
             direction = right;
-
         }
         else
         {
@@ -148,6 +126,7 @@ public class HumanBase : PlayerBase {
         CheckPressedKeys();
 
         SortLayers();
+        UpdateDirection();
     }
 
 

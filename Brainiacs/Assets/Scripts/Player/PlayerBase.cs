@@ -111,6 +111,21 @@ public abstract class PlayerBase : MonoBehaviour
         UpdatePosition();
     }
 
+    //zatím pouze doleva a doprava
+    public void UpdateDirection()
+    {
+        //Debug.Log("[" + playerNumber + "]:" + direction);
+
+        if (direction == left)
+        {
+            comp.spriteRend.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        }
+        else if (direction == right)
+        {
+            comp.spriteRend.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
+    }
+
     public void UpdatePosition()
     {
         posX = gameObject.transform.position.x;

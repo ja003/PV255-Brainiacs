@@ -34,7 +34,7 @@ public class AiBase : PlayerBase {
         if(Time.frameCount == 5)
         {
             SetPlayers();
-            Debug.Log("Other players set");
+            //Debug.Log("Other players set");
         }
 
         
@@ -71,18 +71,21 @@ public class AiBase : PlayerBase {
             }
 
             UpdateCurrentAction();
+            
+
 
             //Fire();
             //SwitchWeapon();
         }
 
-        if(Time.frameCount % 200 == 0)
+        if (Time.frameCount % 200 == 0)
         {
             PrintPriorities();
             PrintAction();
         }
 
         DoCurrentAction();
+        UpdateDirection();
 
 
     }
@@ -145,8 +148,11 @@ public class AiBase : PlayerBase {
         {
             MoveTo(posX, player.posY);
         }
-        //turn his direction
-        LookAt(player.gameObject);
+
+
+        //if you are on same axis -> turn his direction
+        if(posX == player.posX || posY == player.posY)
+            LookAt(player.gameObject);
 
         //shoot
         //Debug.Log("killing player: " + player);
@@ -325,7 +331,7 @@ public class AiBase : PlayerBase {
                     Debug.Log(player.ToString() + " has no player number!");
                     break;
             }
-            Debug.Log("setting player: " + player.gameObject.name + ", number: " + player.playerNumber);
+            //Debug.Log("setting player: " + player.gameObject.name + ", number: " + player.playerNumber);
         }
     }
 
@@ -409,18 +415,24 @@ public class AiBase : PlayerBase {
     public void MoveUp()
     {
         rb2d.velocity = Vector2.up * speed;
+        direction = up;
+        //Debug.Log("moving up");
+        //Debug.Log("new dir:" + direction);
     }
     public void MoveLeft()
     {
         rb2d.velocity = Vector2.left * speed;
+        direction = left;
     }
     public void MoveDown()
     {
         rb2d.velocity = Vector2.down * speed;
+        direction = down;
     }
     public void MoveRight()
     {
         rb2d.velocity = Vector2.right * speed;
+        direction = right;
     }
     public void Stop()
     {
