@@ -18,6 +18,20 @@ public class AiBase : PlayerBase {
     public int killPlayer3Priority { get; set; }
     public int killPlayer4Priority { get; set; }
 
+    public Vector2 lastPosition;
+    public Vector2 preLastPosition;
+
+    /// //////////////////////////////////// CHARACTER COORDINATES /////////////////////////////
+    Renderer renderer;
+    Collider2D collider;
+
+    public Vector2 botLeft;
+    public Vector2 botRight;
+    public Vector2 topLeft;
+    public Vector2 topRight;
+
+    public Vector2 currentTargetDestination;
+
     public AiActionEnum currentAction { get; set; }
 
     public void setUpAiB(Components c, PlayerInfo p)
@@ -27,6 +41,9 @@ public class AiBase : PlayerBase {
         weaponHandling = GetComponent<WeaponHandling>();
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         //Debug.Log(rb2d);
+        renderer = GetComponent<Renderer>();
+        currentTargetDestination = new Vector2(0, 0);
+        collider = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -35,6 +52,8 @@ public class AiBase : PlayerBase {
         {
             SetPlayers();
             //Debug.Log("Other players set");
+            lastPosition = new Vector2(0, 0);
+            lastPosition = new Vector2(0, 1);
         }
 
         
@@ -71,6 +90,7 @@ public class AiBase : PlayerBase {
             }
 
             UpdateCurrentAction();
+            UpdateLastPosition();
             
 
 
@@ -89,7 +109,13 @@ public class AiBase : PlayerBase {
 
 
     }
+    
 
+    public void UpdateLastPosition()
+    {
+        preLastPosition = lastPosition;
+        lastPosition = gameObject.transform.position;
+    }
 
     public void PrintAction()
     {
@@ -133,29 +159,61 @@ public class AiBase : PlayerBase {
     }
 
 
-
+    /// <summary>
+    /// TODO: nastavení destinace - aby se nekrylo s barrierou
+    /// započítat dráhu kulky (teď střílí do zdi)
+    /// </summary>
+    /// <param name="player"></param>
     public void KillPlayer(PlayerBase player)
     {
         Vector2 targetPlayerPosition = player.transform.position;
         //move to same axis 
-        
+        float targetX;
+        float targetY;
+
+
         //horizontal way is better
-        if(Mathf.Abs(posX - player.posX) < Mathf.Abs(posY - player.posY))
+        if (Mathf.Abs(posX - player.posX) < Mathf.Abs(posY - player.posY))
         {
-            MoveTo(player.posX, posY);
-        }//vertical is better
+            targetX = player.posX;
+            targetY = posY;
+            while(Collides(new Vector2(targetX, targetY), 0.5f, 0.1f, barrierMask))
+            {
+                targetY += 0.1f;
+            }
+
+            MoveTo(targetX, targetY);
+        }
+        //vertical is better
         else
         {
-            MoveTo(posX, player.posY);
+            targetY = player.posY;
+            targetX = posX;
+            while (Collides(new Vector2(targetX, targetY), 0.5f, 0.1f, barrierMask))
+            {
+                targetX += 0.1f;
+            }
+
+            MoveTo(targetX, targetY);
         }
+
+        
 
 
         //if you are on same axis -> turn his direction
-        if(posX == player.posX || posY == player.posY)
+        if (AlmostEqual(posX,player.posX,0.1)||AlmostEqual(posY,player.posY,0.1))
+        {
             LookAt(player.gameObject);
+            weaponHandling.fire(direction);
+        }
 
         //shoot
         //Debug.Log("killing player: " + player);
+    }
+
+    public bool AlmostEqual(float pos1, float pos2, double e)
+    {
+        return pos2 - e < pos1 && pos1 < pos2 + e;
     }
 
     public void LookAt(GameObject obj)
@@ -191,6 +249,8 @@ public class AiBase : PlayerBase {
         }
         
     }
+
+
     /*
     /// <summary>
     /// nefachá se současným BulletShooterem
@@ -222,6 +282,8 @@ public class AiBase : PlayerBase {
         
     }
     */
+
+
     public void Stand()
     {
 
@@ -296,6 +358,11 @@ public class AiBase : PlayerBase {
         return (object1.transform.position - object2.transform.position).sqrMagnitude;
     }
 
+    public float GetDistance(Vector2 pos1, Vector2 pos2)
+    {
+        return (pos1 - pos2).sqrMagnitude;
+    }
+
     public List<PlayerBase> GetPlayers()
     {
         GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
@@ -355,36 +422,422 @@ public class AiBase : PlayerBase {
 
 
 
-
+    /// <summary>
+    /// řeší stav po skončení kolize
+    /// bez toho by se zaseknul na jednom místě
+    /// </summary>
+    public void AfterCollision()
+    {
+        if (lastDirection == down || lastDirection == up)
+        {
+            if (!Collides(right))
+            {
+                MoveRight();
+            }
+            else if (!Collides(left))
+            {
+                MoveLeft();
+            }
+        }
+        else if (lastDirection == left || lastDirection == right)
+        {
+            if (!Collides(up))
+            {
+                MoveUp();
+            }
+            else if (!Collides(down))
+            {
+                MoveDown();
+            }
+        }
+    }
 
     /// <summary>
     /// gives copmmands to unit in order to get to the given coordinates
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>
-    public void MoveTo(double x, double y)
+    public void MoveTo(float x, float y)
     {
         if (ValueEquals(gameObject.transform.position.y, y) && ValueEquals(gameObject.transform.position.x, x))
         {
             //Debug.Log("You there");
             Stop();
         }
-        else
+        else if(AvoidBariers())
         {
             if (Time.frameCount % 30 < 15)
             {
-                PreferX(x,y);                
+                AfterCollision();
+                PreferX(x, y);
             }
             else
             {
-                PreferY(x,y);
+                AfterCollision();
+                PreferY(x, y);
             }
         }
+        currentTargetDestination = new Vector2(x, y);
         //Debug.Log("moving to: " + x + "," + y);
     }
 
+    public bool Collides(Vector2 direction, float distance)
+    {
+        LayerMask layerMask = barrierMask;
+
+        botLeft = new Vector2(collider.bounds.min.x, collider.bounds.min.y);
+        botRight = new Vector2(collider.bounds.max.x, collider.bounds.min.y);
+        topLeft = new Vector2(collider.bounds.min.x, collider.bounds.max.y);
+        topRight = new Vector2(collider.bounds.max.x, collider.bounds.max.y);
+
+        RaycastHit2D hitBotLeft;
+        Ray rayBotLeft = new Ray(botLeft, direction);
+        RaycastHit2D hitBotRight;
+        Ray rayBotRight = new Ray(botRight, direction);
+        RaycastHit2D hitTopLeft;
+        Ray rayTopLeft = new Ray(topLeft, direction);
+        RaycastHit2D hitTopRight;
+        Ray rayTopRight = new Ray(topRight, direction);
+
+
+        hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, direction, distance, layerMask);
+        hitBotRight = Physics2D.Raycast(rayBotRight.origin, direction, distance, layerMask);
+        hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, direction, distance, layerMask);
+        hitTopRight = Physics2D.Raycast(rayTopRight.origin, direction, distance, layerMask);
+
+        Debug.DrawRay(currentTargetDestination, left, Color.red);
+        Debug.DrawRay(currentTargetDestination, up, Color.blue);
+
+        //Debug.DrawRay(botLeft, direction, Color.cyan);
+        //Debug.DrawRay(botRight, direction, Color.green);
+        //Debug.DrawRay(topLeft, direction, Color.yellow);
+        //Debug.DrawRay(topRight, direction, Color.red);
+
+        //if(hitTopRight.rigidbody != null)
+            //Debug.Log(hitTopRight.rigidbody.transform.name);
+
+        if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
+            return true;
+
+        return false;
+    }
+
+    public bool Collides(Vector2 direction)
+    {
+        return Collides(direction, 0.1f);
+    }
+
+    public bool Collides(float distance)
+    {
+        return Collides(left, distance) || Collides(up, distance)|| Collides(right, distance)|| Collides(down, distance);
+    }
+
+    //old
+    public bool Collides(Vector2 center, float extens, float width, LayerMask layermask, Vector2 direction)
+    {
+        botLeft = new Vector2(center.x - extens+width, center.y - extens+ width);
+        botRight = new Vector2(center.x + extens- width, center.y - extens+ width);
+        topLeft = new Vector2(center.x - extens+ width, center.y + extens- width);
+        topRight = new Vector2(center.x + extens- width, center.y + extens- width);
+
+        RaycastHit2D hitBotLeft;
+        Ray rayBotLeft = new Ray(botLeft, direction);
+        RaycastHit2D hitBotRight;
+        Ray rayBotRight = new Ray(botRight, direction);
+        RaycastHit2D hitTopLeft;
+        Ray rayTopLeft = new Ray(topLeft, direction);
+        RaycastHit2D hitTopRight;
+        Ray rayTopRight = new Ray(topRight, direction);
+        
+
+        hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, direction, width, layermask);
+        hitBotRight = Physics2D.Raycast(rayBotRight.origin, direction, width, layermask);
+        hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, direction, width, layermask);
+        hitTopRight = Physics2D.Raycast(rayTopRight.origin, direction, width, layermask);
+
+        Debug.DrawRay(currentTargetDestination, left,Color.red);
+        Debug.DrawRay(currentTargetDestination, up,Color.blue);
+
+        Debug.DrawRay(botLeft, direction, Color.cyan);
+        //Debug.DrawRay(botRight, direction, Color.green);
+        //Debug.DrawRay(topLeft, direction, Color.yellow);
+        //Debug.DrawRay(topRight, direction, Color.red);
+
+        if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
+            return true;
+        
+        return false;
+    }
+    //old
+    public bool Collides(Vector2 center, float extens, float width, LayerMask layermask)
+    {
+        botLeft = new Vector2(center.x - extens + width, center.y - extens + width);
+        botRight = new Vector2(center.x + extens - width, center.y - extens + width);
+        topLeft = new Vector2(center.x - extens + width, center.y + extens - width);
+        topRight = new Vector2(center.x + extens - width, center.y + extens - width);
+
+        RaycastHit2D hitBotLeft;
+        Ray rayBotLeft = new Ray(botLeft, direction);
+        RaycastHit2D hitBotRight;
+        Ray rayBotRight = new Ray(botRight, direction);
+        RaycastHit2D hitTopLeft;
+        Ray rayTopLeft = new Ray(topLeft, direction);
+        RaycastHit2D hitTopRight;
+        Ray rayTopRight = new Ray(topRight, direction);
+
+        Vector2 allDirection = new Vector2(0, 0);
+
+        allDirection = left;
+        
+        hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, allDirection, width, layermask);
+        hitBotRight = Physics2D.Raycast(rayBotRight.origin, allDirection, width, layermask);
+        hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, allDirection, width, layermask);
+        hitTopRight = Physics2D.Raycast(rayTopRight.origin, allDirection, width, layermask);
+
+        if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
+            return true;
+
+        allDirection = up;
+
+        hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, allDirection, width, layermask);
+        hitBotRight = Physics2D.Raycast(rayBotRight.origin, allDirection, width, layermask);
+        hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, allDirection, width, layermask);
+        hitTopRight = Physics2D.Raycast(rayTopRight.origin, allDirection, width, layermask);
+
+        if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
+            return true;
+
+        allDirection = right;
+
+        hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, allDirection, width, layermask);
+        hitBotRight = Physics2D.Raycast(rayBotRight.origin, allDirection, width, layermask);
+        hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, allDirection, width, layermask);
+        hitTopRight = Physics2D.Raycast(rayTopRight.origin, allDirection, width, layermask);
+
+        if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
+            return true;
+
+        allDirection = down;
+
+        hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, allDirection, width, layermask);
+        hitBotRight = Physics2D.Raycast(rayBotRight.origin, allDirection, width, layermask);
+        hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, allDirection, width, layermask);
+        hitTopRight = Physics2D.Raycast(rayTopRight.origin, allDirection, width, layermask);
+
+        if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
+            return true;
+        
+        return false;
+    }
+    //old
+    public bool Collides(Vector2 center, Vector2 direction)
+    {
+        return Collides(center, 0.5f, 0.3f, barrierMask, direction);
+    }
+
+
+    public float characterWidth = 0.5f;
+
     /// <summary>
-    /// moves preferably on x axis
+    /// bacha, dělá to skoky po 1, přitom charWidth = 0.5..uvidí se, jak to pofachá
+    /// </summary>
+    /// <param name="node"></param>
+    /// <param name="visited"></param>
+    /// <returns></returns>
+    public List<Vector2> GetPossibleDirections(Vector2 node, List<Vector2> visited)
+    {
+        List<Vector2> possibleDirections = new List<Vector2>();
+
+        if (!Collides(node + left, left) && !visited.Contains(node + left))
+        {
+            Debug.Log("L");
+            possibleDirections.Add(node + left);
+        }
+        if (!Collides(node + up, up) && !visited.Contains(node + up))
+        {
+            Debug.Log("U");
+            possibleDirections.Add(node + up);
+        }
+        if (!Collides(node + right,right) && !visited.Contains(node + right))
+        {
+            Debug.Log("R");
+            possibleDirections.Add(node + right);
+        }
+        if (!Collides(node + down,down) && !visited.Contains(node + down))
+        {
+            Debug.Log("D");
+            possibleDirections.Add(node + down);
+        }
+        Debug.Log("found directions:");
+        Debug.Log(PrintNodeList(possibleDirections));
+
+        return possibleDirections;
+    }
+
+    public string PrintNodeList(List<Vector2> list)
+    {
+        string result = "";
+        foreach(Vector2 node in list)
+        {
+            result += "[" + node.x + "," + node.y + "],";
+        }
+        return result;
+    }
+
+    private Vector2 lastDirection;
+
+    public bool FindPath()
+    {
+        //Vector2 currentPosition = transform.position;
+
+        if(Collides(up))
+        {
+            //Debug.Log("col-U");
+            if (!Collides(right) && lastDirection != left)
+            {
+                MoveRight();
+                lastDirection = right;
+            }
+            else if (!Collides(left) && lastDirection != right)
+            {
+                MoveLeft();
+                lastDirection = left;
+            }
+
+            else if(lastDirection!=up)
+            {
+                MoveDown();
+                lastDirection = down;
+            }
+            //Debug.Log(lastDirection);
+            return false;
+        }
+        if (Collides(right))
+        {
+            //Debug.Log("col-R");
+            if (!Collides(up) && lastDirection != down)
+            {
+                MoveUp();
+                lastDirection = up;
+                //Debug.Log("goUp");
+            }
+            else if (!Collides(down) && lastDirection != up)
+            {
+                MoveDown();
+                lastDirection = down;
+                //Debug.Log("goDown");
+                
+            }
+
+            else if (lastDirection != right)
+            {
+                MoveLeft();
+                lastDirection = left;
+                //Debug.Log("goLeft");
+            }
+            //Debug.Log(lastDirection);
+            return false;
+        }
+        if (Collides(down))
+        {
+            //Debug.Log("col-D");
+
+            if (!Collides(left) && lastDirection != right)
+            {
+                MoveLeft();
+                lastDirection = left;
+            }
+            else if (!Collides(right) && lastDirection != left)
+            {
+                MoveRight();
+                lastDirection = right;
+            }
+
+            else if (lastDirection != down)
+            {
+                MoveUp();
+                lastDirection = up;
+            }
+            //Debug.Log(lastDirection);
+            return false;
+        }
+        if (Collides(left))
+        {
+            //Debug.Log("col-L");
+            if (!Collides(up) && lastDirection != down)
+            {
+                MoveUp();
+                lastDirection = up;
+            }
+            else if (!Collides(down) && lastDirection != up)
+            {
+                MoveDown();
+                lastDirection = down;
+            }
+
+            else if (lastDirection != left)
+            {
+                MoveRight();
+                lastDirection = right;
+            }
+            //Debug.Log(lastDirection);
+            return false;
+        }
+
+        //Debug.Log("---");
+        return true;
+    }
+
+    //s tímto návrhem pohybu k ničemu
+    /*
+        for (int i=0;i<visited.Count;i++)
+        {
+            Vector2 node = visited[i];
+            Debug.Log("visited:");
+            Debug.Log(PrintNodeList(visited));
+            if (GetDistance(node, currentTargetDestination) < characterWidth)
+            {
+                return true;
+            }
+            possibleDirections = GetPossibleDirections(node, visited);
+            Debug.Log("possible:");
+            foreach(Vector2 newNode in possibleDirections)
+            {
+                visited.Add(newNode);
+            }
+            possibleDirections.Clear();
+
+        }
+        */
+
+
+
+    //detect only collision with barriers (assigned manually to prefab)
+    public LayerMask barrierMask;
+    public bool decided = false;
+
+    /// <summary>
+    /// returns false while there is still some collision with barrier
+    /// </summary>
+    /// <returns>state of avoiding barrier</returns>
+    public bool AvoidBariers()
+    {
+        if (Collides(0.1f))
+        {
+            //Debug.Log("COL");
+            return FindPath();
+        }
+        else
+        {
+            //Debug.Log("avoided");
+            return true;
+        }
+    }
+
+
+
+    /// <summary>
+    /// moves to [x,y] preferably on x axis
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>
@@ -393,12 +846,13 @@ public class AiBase : PlayerBase {
         if (ValueEquals(gameObject.transform.position.y, y)) { }
         else if (ValueSmaller(gameObject.transform.position.y, y)) { MoveUp(); }
         else { MoveDown(); }
+
         if (ValueEquals(gameObject.transform.position.x, x)) { }
         else if (ValueSmaller(gameObject.transform.position.x, x)) { MoveRight(); }
         else { MoveLeft(); }
     }
     /// <summary>
-    /// moves preferably on y axis
+    /// moves  to [x,y] preferably on y axis
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>
@@ -412,6 +866,17 @@ public class AiBase : PlayerBase {
         else { MoveDown(); }        
     }
 
+    public void Move(Vector2 direction)
+    {
+        if (direction == left)
+            MoveLeft();
+        else if (direction == right)
+            MoveRight();
+        else if (direction == up)
+            MoveUp();
+        else if (direction == down)
+            MoveDown();
+    }
     public void MoveUp()
     {
         rb2d.velocity = Vector2.up * speed;

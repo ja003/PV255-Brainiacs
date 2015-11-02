@@ -19,6 +19,9 @@ public abstract class PlayerBase : MonoBehaviour
 
     public float speed { get; set; }
 
+    
+
+
     /// //////////////////////////////////// WEAPON HANDLING ///////////////////////////////////
     WeaponHandling weaponHandling;
 
@@ -73,6 +76,10 @@ public abstract class PlayerBase : MonoBehaviour
 
         //pičovina, pak to napojím na PLayerInfo a atribut playerNumber uplně smažu
         playerNumber = p.playerNumber;
+
+        
+        
+
     }
 
     private void setUpSprites() {
