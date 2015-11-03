@@ -19,11 +19,16 @@ public abstract class PlayerBase : MonoBehaviour
 
     public float speed { get; set; }
 
-    
+    //rozměry mapy
+    public float mapMinX = -4.75f;
+    public float mapMinY = 4.13f;
+    public float mapMaxX = 8.6f;
+    public float mapMaxY = -4.75f;
+
 
 
     /// //////////////////////////////////// WEAPON HANDLING ///////////////////////////////////
-    WeaponHandling weaponHandling;
+    public WeaponHandling weaponHandling;
 
     public List<WeaponBase> inventory { get; set; }
     public WeaponBase activeWeapon { get; set; }

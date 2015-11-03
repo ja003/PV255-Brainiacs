@@ -7,7 +7,6 @@ public class Player1 : HumanBase
 
     Components comp = new Components();
     PlayerInfo playInfo = new PlayerInfo();
-    WeaponHandling weaponHandling; 
 
     void Start()
     {
@@ -57,19 +56,20 @@ public class Player1 : HumanBase
 
         playInfo = pi;
         SetControlKeys(ck.keyUp, ck.keyLeft, ck.keyDown, ck.keyRight, ck.keyFire, ck.keySwitchWeapon);
-        setUpWeapons(pi);
+       
         comp.spriteRend = GetComponent<SpriteRenderer>();
         comp.rb2d = gameObject.GetComponent<Rigidbody2D>();
 
         setUpHB(comp, playInfo);
         setUpPB(comp, playInfo);
 
+        setUpWeapons(pi);
+
 
     }
 
     public void setUpWeapons(PlayerInfo pi)
     {
-        weaponHandling = GetComponent<WeaponHandling>();
         WeaponPistol pistol = new WeaponPistol(CharacterEnum.Tesla);
         weaponHandling.inventory.Add(pistol);
         weaponHandling.activeWeapon = weaponHandling.inventory[0];

@@ -11,7 +11,6 @@ public class AiBase : PlayerBase {
 
     Components comp;
     PlayerInfo playInfo;
-    WeaponHandling weaponHandling;
 
     public int killPlayer1Priority { get; set; }
     public int killPlayer2Priority { get; set; }
@@ -38,7 +37,7 @@ public class AiBase : PlayerBase {
     {
         comp = c;
         playInfo = p;
-        weaponHandling = GetComponent<WeaponHandling>();
+        //weaponHandling = GetComponent<WeaponHandling>();
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         //Debug.Log(rb2d);
         renderer = GetComponent<Renderer>();
@@ -133,7 +132,7 @@ public class AiBase : PlayerBase {
         message += ",KillPlayer3=" + killPlayer3Priority;
         message += ",KillPlayer4=" + killPlayer4Priority;
 
-        Debug.Log(message);
+        //Debug.Log(message);
     }
 
     public void DoCurrentAction()
@@ -158,57 +157,109 @@ public class AiBase : PlayerBase {
         //Debug.Log("processing action: " + currentAction);
     }
 
+    public bool CanShoot(Vector2 center, Vector2 direction)
+    {
+        
+        Ray rayGun = new Ray(center, direction);
+
+        float mapLenght = 15;
+        RaycastHit2D[] hitGun = Physics2D.RaycastAll(rayGun.origin, direction, mapLenght);
+
+        Debug.DrawRay(rayGun.origin, direction, Color.cyan);
+        //Debug.DrawRay(rayGun.origin, direction*-1, Color.red);
+
+        if (hitGun.Length != 0)
+        {
+            //for (int i = 0; i < hitGun.Length; i++)
+            //{
+            //    Debug.Log("hit from " + center + " to " + hitGun[i].transform.name + " in dir:" + direction);
+            //}
+            //Debug.Log("---");
+            if (hitGun[0].transform.tag == "Barrier")
+            {
+                //Debug.Log("cant shoot");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public bool IsInPlayground(Vector2 point)
+    {
+        return mapMinX < point.x && point.x < mapMaxX && mapMinY < point.y && point.y < mapMaxY;
+    }
 
     /// <summary>
     /// TODO: nastavení destinace - aby se nekrylo s barrierou
-    /// započítat dráhu kulky (teď střílí do zdi)
     /// </summary>
     /// <param name="player"></param>
     public void KillPlayer(PlayerBase player)
     {
         Vector2 targetPlayerPosition = player.transform.position;
+
         //move to same axis 
         float targetX;
         float targetY;
 
+        Vector2 bestHorizontal = new Vector2(player.posX, player.posY);
+        Vector2 bestVertical = new Vector2(player.posX, player.posY);
 
-        //horizontal way is better
-        if (Mathf.Abs(posX - player.posX) < Mathf.Abs(posY - player.posY))
-        {
-            targetX = player.posX;
-            targetY = posY;
-            while(Collides(new Vector2(targetX, targetY), 0.5f, 0.1f, barrierMask))
-            {
-                targetY += 0.1f;
-            }
+        Vector2 bestHorizontalUp = bestHorizontal;
+        Vector2 bestHorizontalDown = bestHorizontal;
 
-            MoveTo(targetX, targetY);
-        }
-        //vertical is better
-        else
-        {
-            targetY = player.posY;
-            targetX = posX;
-            while (Collides(new Vector2(targetX, targetY), 0.5f, 0.1f, barrierMask))
-            {
-                targetX += 0.1f;
-            }
-
-            MoveTo(targetX, targetY);
-        }
-
+        Vector2 bestVerticalLeft = bestVertical;
+        Vector2 bestVerticalRight = bestVertical;
         
 
+        //CanShoot volá špatně, nebo blbě funguje
 
-        //if you are on same axis -> turn his direction
+        while (bestHorizontalDown.y > mapMinY && !ObjectCollides(bestHorizontalDown) && bestHorizontalDown.y > posY)
+        {
+            bestHorizontalDown.y -= 0.1f;
+        }
+        while (bestHorizontalUp.y < mapMaxY && !ObjectCollides(bestHorizontalUp) && bestHorizontalUp.y < posY)
+        {
+            bestHorizontalUp.y += 0.1f;
+        }
+        while (bestVerticalLeft.x > mapMinX && !ObjectCollides(bestVerticalLeft) && bestVerticalLeft.x > posX)
+        {
+            bestVerticalLeft.x -= 0.1f;
+        }
+        while (bestVerticalRight.x < mapMaxX && !ObjectCollides(bestVerticalRight) && bestVerticalRight.x < posX)
+        {
+            bestVerticalRight.x += 0.1f;
+        }
+
+        List<Vector2> possibleShootSpots = new List<Vector2>();
+        possibleShootSpots.Add(bestHorizontalDown);
+        possibleShootSpots.Add(bestHorizontalUp);
+        possibleShootSpots.Add(bestVerticalLeft);
+        possibleShootSpots.Add(bestVerticalRight);
+        
+        int spotIndex = 0;
+        float distanceFromMe = 100;
+        for(int i = 0; i < possibleShootSpots.Count;i++)
+        {
+            if(distanceFromMe > GetDistance(gameObject.transform.position, possibleShootSpots[i]))
+            {
+                spotIndex = i;
+                distanceFromMe = GetDistance(gameObject.transform.position, possibleShootSpots[i]);
+            }
+        }
+        
+        MoveTo(possibleShootSpots[spotIndex]);
+        
+        //if you are on same axis -> turn his direction and shoot
         if (AlmostEqual(posX,player.posX,0.1)||AlmostEqual(posY,player.posY,0.1))
         {
             LookAt(player.gameObject);
-            weaponHandling.fire(direction);
+            if (CanShoot(transform.position, direction))
+            {
+                //Debug.Log("I can shoot form:" + transform.position + " to: " + direction);
+                weaponHandling.fire(direction);
+            }
         }
-
-        //shoot
-        //Debug.Log("killing player: " + player);
+        
     }
 
     public bool AlmostEqual(float pos1, float pos2, double e)
@@ -402,7 +453,7 @@ public class AiBase : PlayerBase {
         }
     }
 
-
+    
 
     /// <summary>
     /// funguje jen když je barrier trigger....asi vymyslím jinak
@@ -428,6 +479,7 @@ public class AiBase : PlayerBase {
     /// </summary>
     public void AfterCollision()
     {
+
         if (lastDirection == down || lastDirection == up)
         {
             if (!Collides(right))
@@ -452,8 +504,14 @@ public class AiBase : PlayerBase {
         }
     }
 
+
+    public void MoveTo(Vector2 position)
+    {
+        MoveTo(position.x, position.y);
+    }
+
     /// <summary>
-    /// gives copmmands to unit in order to get to the given coordinates
+    /// gives commands to unit in order to get to the given coordinates
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>
@@ -479,6 +537,45 @@ public class AiBase : PlayerBase {
         }
         currentTargetDestination = new Vector2(x, y);
         //Debug.Log("moving to: " + x + "," + y);
+    }
+
+    public bool ObjectCollides(Vector2 center)
+    {
+        return ObjectCollides(center, 0.5f, right, 0.1f);
+    }
+
+    public bool ObjectCollides(Vector2 center, float width, Vector2 direction, float distance)
+    {
+        LayerMask layerMask = barrierMask;
+
+        botLeft = new Vector2(center.x - width/2, center.y - width / 2);
+        botRight = new Vector2(center.x + width / 2, center.y - width / 2);
+        topLeft = new Vector2(center.x - width / 2, center.y + width / 2);
+        topRight = new Vector2(center.x + width / 2, center.y + width / 2);
+
+        RaycastHit2D hitBotLeft;
+        Ray rayBotLeft = new Ray(botLeft, direction);
+        RaycastHit2D hitBotRight;
+        Ray rayBotRight = new Ray(botRight, direction);
+        RaycastHit2D hitTopLeft;
+        Ray rayTopLeft = new Ray(topLeft, direction);
+        RaycastHit2D hitTopRight;
+        Ray rayTopRight = new Ray(topRight, direction);
+
+
+        hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, direction, distance, layerMask);
+        hitBotRight = Physics2D.Raycast(rayBotRight.origin, direction, distance, layerMask);
+        hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, direction, distance, layerMask);
+        hitTopRight = Physics2D.Raycast(rayTopRight.origin, direction, distance, layerMask);
+
+        Debug.DrawRay(currentTargetDestination, left, Color.red);
+        Debug.DrawRay(currentTargetDestination, up, Color.blue);
+        
+
+        if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
+            return true;
+
+        return false;
     }
 
     public bool Collides(Vector2 direction, float distance)

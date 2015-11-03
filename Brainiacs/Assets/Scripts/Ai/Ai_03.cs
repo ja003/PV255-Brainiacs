@@ -6,7 +6,6 @@ public class Ai_03 : AiBase {
 
     Components comp = new Components();
     PlayerInfo playInfo = new PlayerInfo();
-    WeaponHandling weaponHandling;
 
     void Start()
     {
@@ -42,19 +41,18 @@ public class Ai_03 : AiBase {
         base.direction = base.right;
 
         playInfo = pi;
-        setUpWeapons(pi);
+        
         comp.spriteRend = GetComponent<SpriteRenderer>();
         comp.rb2d = gameObject.GetComponent<Rigidbody2D>();
 
         setUpAiB(comp, playInfo);
         setUpPB(comp, playInfo);
 
-
+        setUpWeapons(pi);
     }
 
     public void setUpWeapons(PlayerInfo pi)
     {
-        weaponHandling = GetComponent<WeaponHandling>();
         WeaponPistol pistol = new WeaponPistol(CharacterEnum.Tesla);
         weaponHandling.inventory.Add(pistol);
         weaponHandling.activeWeapon = weaponHandling.inventory[0];

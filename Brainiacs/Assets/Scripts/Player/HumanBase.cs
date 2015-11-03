@@ -16,7 +16,6 @@ public class HumanBase : PlayerBase {
 
     Components comp;
     PlayerInfo playInfo;
-    WeaponHandling weaponHandling;
 
     // JP - pre alternatibny movement
     //public Stack<KeyCode> pressed_keys = new Stack<KeyCode>();
@@ -25,7 +24,7 @@ public class HumanBase : PlayerBase {
     public void setUpHB(Components c, PlayerInfo p) {
         comp = c;
         playInfo = p;
-        weaponHandling = GetComponent<WeaponHandling>();
+        //weaponHandling = GetComponent<WeaponHandling>();
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         //Debug.Log(rb2d);
     }
