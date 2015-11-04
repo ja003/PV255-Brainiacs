@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class AiBase : PlayerBase {
+public class AiBase : PlayerBase
+{
 
     public PlayerBase player1;
     public PlayerBase player2;
@@ -24,10 +25,15 @@ public class AiBase : PlayerBase {
     Renderer renderer;
     Collider2D collider;
 
-    public Vector2 botLeft;
-    public Vector2 botRight;
-    public Vector2 topLeft;
-    public Vector2 topRight;
+    public Vector2 charBotLeft;
+    public Vector2 charBotRight;
+    public Vector2 charTopLeft;
+    public Vector2 charTopRight;
+
+    public Vector2 charBot;
+    public Vector2 charTop;
+    public Vector2 charLeft;
+    public Vector2 charRight;
 
     public Vector2 currentTargetDestination;
 
@@ -43,11 +49,14 @@ public class AiBase : PlayerBase {
         renderer = GetComponent<Renderer>();
         currentTargetDestination = new Vector2(0, 0);
         collider = GetComponent<Collider2D>();
+
+        walkingFront = new List<Vector2>();
     }
 
     // Update is called once per frame
-    void Update () {
-        if(Time.frameCount == 5)
+    void Update()
+    {
+        if (Time.frameCount == 5)
         {
             SetPlayers();
             //Debug.Log("Other players set");
@@ -55,7 +64,7 @@ public class AiBase : PlayerBase {
             lastPosition = new Vector2(0, 1);
         }
 
-        
+
 
         //check only once per second
         if (Time.frameCount % 30 == 6)
@@ -90,7 +99,7 @@ public class AiBase : PlayerBase {
 
             UpdateCurrentAction();
             UpdateLastPosition();
-            
+
 
 
             //Fire();
@@ -108,7 +117,7 @@ public class AiBase : PlayerBase {
 
 
     }
-    
+
 
     public void UpdateLastPosition()
     {
@@ -151,7 +160,8 @@ public class AiBase : PlayerBase {
             case AiActionEnum.killPlayer4:
                 KillPlayer(player4);
                 break;
-            default: Stand();
+            default:
+                Stand();
                 break;
         }
         //Debug.Log("processing action: " + currentAction);
@@ -159,13 +169,13 @@ public class AiBase : PlayerBase {
 
     public bool CanShoot(Vector2 center, Vector2 direction)
     {
-        
+
         Ray rayGun = new Ray(center, direction);
 
         float mapLenght = 15;
         RaycastHit2D[] hitGun = Physics2D.RaycastAll(rayGun.origin, direction, mapLenght);
 
-        Debug.DrawRay(rayGun.origin, direction, Color.cyan);
+        //Debug.DrawRay(rayGun.origin, direction, Color.cyan);
         //Debug.DrawRay(rayGun.origin, direction*-1, Color.red);
 
         if (hitGun.Length != 0)
@@ -209,7 +219,7 @@ public class AiBase : PlayerBase {
 
         Vector2 bestVerticalLeft = bestVertical;
         Vector2 bestVerticalRight = bestVertical;
-        
+
 
         //CanShoot volá špatně, nebo blbě funguje
 
@@ -235,21 +245,25 @@ public class AiBase : PlayerBase {
         possibleShootSpots.Add(bestHorizontalUp);
         possibleShootSpots.Add(bestVerticalLeft);
         possibleShootSpots.Add(bestVerticalRight);
-        
+
         int spotIndex = 0;
         float distanceFromMe = 100;
-        for(int i = 0; i < possibleShootSpots.Count;i++)
+        for (int i = 0; i < possibleShootSpots.Count; i++)
         {
-            if(distanceFromMe > GetDistance(gameObject.transform.position, possibleShootSpots[i]))
+            if (distanceFromMe > GetDistance(gameObject.transform.position, possibleShootSpots[i]))
             {
                 spotIndex = i;
                 distanceFromMe = GetDistance(gameObject.transform.position, possibleShootSpots[i]);
             }
         }
-        
+
+        //Debug.Log("move to: " + possibleShootSpots[spotIndex]);
+        Debug.DrawRay(possibleShootSpots[spotIndex], up, Color.cyan);
         MoveTo(possibleShootSpots[spotIndex]);
-        
+
+
         //if you are on same axis -> turn his direction and shoot
+        
         if (AlmostEqual(posX,player.posX,0.1)||AlmostEqual(posY,player.posY,0.1))
         {
             LookAt(player.gameObject);
@@ -260,6 +274,7 @@ public class AiBase : PlayerBase {
             }
         }
         
+
     }
 
     public bool AlmostEqual(float pos1, float pos2, double e)
@@ -269,12 +284,12 @@ public class AiBase : PlayerBase {
 
     public void LookAt(GameObject obj)
     {
-        
+
         double distanceX = Mathf.Abs(posX - obj.transform.position.x);
         double distanceY = Mathf.Abs(posY - obj.transform.position.y);
 
         //prefer more dominant axis
-        if(distanceX > distanceY)
+        if (distanceX > distanceY)
         {
             //it is on my left
             if (obj.transform.position.x < posX)
@@ -298,7 +313,7 @@ public class AiBase : PlayerBase {
                 direction = up;
             }
         }
-        
+
     }
 
 
@@ -337,22 +352,20 @@ public class AiBase : PlayerBase {
 
     public void Stand()
     {
-
+        Stop();
     }
-    
 
-
-    // <<...COMANDS>>
+    // <<...COMMANDS>>
 
     public void CheckPriorities()
     {
         SetKillPriorities();
-       
+
         //....
     }
     public void UpdateCurrentAction()
     {
-        if(killPlayer1Priority >= GetCurrentHighestPriority())
+        if (killPlayer1Priority >= GetCurrentHighestPriority())
         {
             currentAction = AiActionEnum.killPlayer1;
         }
@@ -395,8 +408,8 @@ public class AiBase : PlayerBase {
         killPlayer2Priority = 200 - (int)(GetDistance(gameObject, player2.gameObject));
         killPlayer3Priority = 200 - (int)(GetDistance(gameObject, player3.gameObject));
         //killPlayer4Priority = 200 - (int)(GetDistance(gameObject, player4.gameObject));
-            
-        
+
+
     }
 
     public Vector3 GetMyPosition()
@@ -418,7 +431,7 @@ public class AiBase : PlayerBase {
     {
         GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
         List<PlayerBase> allPlayersBase = new List<PlayerBase>();
-        foreach(GameObject obj in allPlayers)
+        foreach (GameObject obj in allPlayers)
         {
             allPlayersBase.Add(obj.GetComponent<PlayerBase>());
         }
@@ -429,7 +442,7 @@ public class AiBase : PlayerBase {
     {
         List<PlayerBase> allPlayers = new List<PlayerBase>();
         allPlayers = GetPlayers();
-        foreach(PlayerBase player in allPlayers)
+        foreach (PlayerBase player in allPlayers)
         {
             switch (player.playerNumber)
             {
@@ -453,7 +466,7 @@ public class AiBase : PlayerBase {
         }
     }
 
-    
+
 
     /// <summary>
     /// funguje jen když je barrier trigger....asi vymyslím jinak
@@ -510,6 +523,111 @@ public class AiBase : PlayerBase {
         MoveTo(position.x, position.y);
     }
 
+    public List<Vector2> walkingFront;
+
+    public List<Vector2> GetNodes()
+    {
+        List<Vector2> nodes = new List<Vector2>();
+        nodes.Add(new Vector2(0, 0));
+        nodes.Add(new Vector2(1, 0));
+        nodes.Add(new Vector2(1, 1));
+        nodes.Add(new Vector2(2, 1));
+        return nodes;
+    }
+
+    /// <summary>
+    /// node for pathfinding algorithm
+    /// </summary>
+    public class PathNode
+    {
+        public Vector2 node;
+        public int index;
+        public int parentIndex;
+
+        public PathNode(Vector2 node, int parentIndex)
+        {
+            this.node = node;
+            this.parentIndex = parentIndex;
+
+        }
+
+        public override bool Equals(object obj)
+        {
+            // If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+
+            // If parameter cannot be cast to Point return false.
+            PathNode p = obj as PathNode;
+            if ((System.Object)p == null)
+            {
+                return false;
+            }
+
+            // Return true if the fields match:
+            return node == p.node;
+        }
+    }
+
+    public List<Vector2> GetPathTo(Vector2 target)
+    {
+        float step = 0.5f;
+        List<Vector2> path = new List<Vector2>();
+        PathNode startNode = new PathNode(transform.position, 0);
+        List<PathNode> visitedNodes = new List<PathNode>();
+        visitedNodes.Add(startNode);
+        //Debug.Log("start: " + startNode.node);
+
+        int finalNodeIndex = 0;
+        for (int i = 0; i < visitedNodes.Count; i++)
+        {
+            PathNode currentNode = visitedNodes[i];
+            //end process when current node is close to target
+            if (GetDistance(currentNode.node, target) < 2*step)
+            {
+                //Debug.Log("final = " + currentNode.node);
+                finalNodeIndex = i;
+                break;
+            }
+            if(i > 500)
+            {
+                Debug.Log("FAIL");
+                finalNodeIndex = 100;
+                break;
+            }
+            //set neighbouring nodes
+            PathNode nodeLeft = new PathNode(new Vector2(currentNode.node.x - step, currentNode.node.y), i);
+            PathNode nodeUp = new PathNode(new Vector2(currentNode.node.x, currentNode.node.y + step), i);
+            PathNode nodeRight = new PathNode(new Vector2(currentNode.node.x + step, currentNode.node.y), i);
+            PathNode nodeDown = new PathNode(new Vector2(currentNode.node.x, currentNode.node.y - step), i);
+            //add to list if there is no collision and they are not already in list
+            if (!ObjectCollides(nodeLeft.node) && !visitedNodes.Contains(nodeLeft))
+            { visitedNodes.Add(nodeLeft); }
+            if (!ObjectCollides(nodeUp.node) && !visitedNodes.Contains(nodeUp))
+            { visitedNodes.Add(nodeUp); }
+            if (!ObjectCollides(nodeRight.node) && !visitedNodes.Contains(nodeRight))
+            { visitedNodes.Add(nodeRight); }
+            if (!ObjectCollides(nodeDown.node) && !visitedNodes.Contains(nodeDown))
+            { visitedNodes.Add(nodeDown); }
+        }
+
+        //reversly find the way back to starting node
+        int index = finalNodeIndex;
+        while (index != 0)
+        {
+            path.Add(visitedNodes[index].node);
+            index = visitedNodes[index].parentIndex;
+            //Debug.Log(visitedNodes[index].node);
+        }
+        //reverse path
+        path.Reverse();
+        
+
+        return path;
+    }
+
     /// <summary>
     /// gives commands to unit in order to get to the given coordinates
     /// </summary>
@@ -517,6 +635,61 @@ public class AiBase : PlayerBase {
     /// <param name="y"></param>
     public void MoveTo(float x, float y)
     {
+        if(ValueEquals(posX, x) && ValueEquals(posY, y))
+        {
+            Stand();
+            Debug.Log("you there");
+            return;
+        }
+
+        //refresh path only when target moves
+        if (currentTargetDestination.x != x && currentTargetDestination.y != y)
+        {
+            Debug.Log("recalculating");
+            walkingFront = GetPathTo(new Vector2(x, y));
+            currentTargetDestination = new Vector2(x, y);
+        }
+
+        Debug.Log("walkFront:" + walkingFront.Count);
+        if (walkingFront.Count == 0)
+        {
+            if (Time.frameCount % 30 < 15)
+            {
+                PreferX(x, y);
+            }
+            else
+            {
+                PreferY(x, y);
+            }
+        }
+        else
+        {
+            //draw path
+            for(int i = 0; i< walkingFront.Count; i++)
+            {
+                if(i+1 != walkingFront.Count)
+                    Debug.DrawLine(walkingFront[i], walkingFront[i + 1], Color.blue);
+            }
+            
+            Vector2 currentNode = walkingFront[0];
+            if (ValueEquals(gameObject.transform.position.y, currentNode.y) && ValueEquals(gameObject.transform.position.x, currentNode.x))
+            {
+                walkingFront.RemoveAt(0);
+            }
+            else
+            {
+                if (Time.frameCount % 30 < 15)
+                {
+                    PreferX(currentNode.x, currentNode.y);
+                }
+                else
+                {
+                    PreferY(currentNode.x, currentNode.y);
+                }
+            }
+        }
+
+        /*
         if (ValueEquals(gameObject.transform.position.y, y) && ValueEquals(gameObject.transform.position.x, x))
         {
             //Debug.Log("You there");
@@ -537,30 +710,55 @@ public class AiBase : PlayerBase {
         }
         currentTargetDestination = new Vector2(x, y);
         //Debug.Log("moving to: " + x + "," + y);
+        */
     }
 
+    /// <summary>
+    /// all direction doesnt seem to help...
+    /// </summary>
+    /// <param name="center"></param>
+    /// <returns></returns>
     public bool ObjectCollides(Vector2 center)
     {
-        return ObjectCollides(center, 0.5f, right, 0.1f);
+        bool colRight = ObjectCollides(center, characterWidth, right, 0.1f);
+        //bool colLeft = ObjectCollides(center, characterWidth, left, 0.1f);
+        //bool colUp = ObjectCollides(center, characterWidth, up, 0.1f);
+        //bool colDown = ObjectCollides(center, characterWidth, down, 0.1f);
+        //return colRight || colLeft || colUp || colDown;
+        return colRight;
     }
 
     public bool ObjectCollides(Vector2 center, float width, Vector2 direction, float distance)
     {
         LayerMask layerMask = barrierMask;
 
-        botLeft = new Vector2(center.x - width/2, center.y - width / 2);
-        botRight = new Vector2(center.x + width / 2, center.y - width / 2);
-        topLeft = new Vector2(center.x - width / 2, center.y + width / 2);
-        topRight = new Vector2(center.x + width / 2, center.y + width / 2);
+        charBotLeft = new Vector2(center.x - width / 2, center.y - width / 2);
+        charBotRight = new Vector2(center.x + width / 2, center.y - width / 2);
+        charTopLeft = new Vector2(center.x - width / 2, center.y + width / 2);
+        charTopRight = new Vector2(center.x + width / 2, center.y + width / 2);
+
+        charBot = new Vector2(center.x - width / 2, center.y - width / 2);
+        charTop = new Vector2(center.x + width / 2, center.y - width / 2);
+        charLeft = new Vector2(center.x - width / 2, center.y + width / 2);
+        charRight = new Vector2(center.x + width / 2, center.y + width / 2);
 
         RaycastHit2D hitBotLeft;
-        Ray rayBotLeft = new Ray(botLeft, direction);
+        Ray rayBotLeft = new Ray(charBotLeft, direction);
         RaycastHit2D hitBotRight;
-        Ray rayBotRight = new Ray(botRight, direction);
+        Ray rayBotRight = new Ray(charBotRight, direction);
         RaycastHit2D hitTopLeft;
-        Ray rayTopLeft = new Ray(topLeft, direction);
+        Ray rayTopLeft = new Ray(charTopLeft, direction);
         RaycastHit2D hitTopRight;
-        Ray rayTopRight = new Ray(topRight, direction);
+        Ray rayTopRight = new Ray(charTopRight, direction);
+
+        RaycastHit2D hitTop;
+        Ray rayBot= new Ray(charBot, direction);
+        RaycastHit2D hitBot;
+        Ray rayTop = new Ray(charTop, direction);
+        RaycastHit2D hitLeft;
+        Ray rayLeft = new Ray(charLeft, direction);
+        RaycastHit2D hitRight;
+        Ray rayRight = new Ray(charRight, direction);
 
 
         hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, direction, distance, layerMask);
@@ -568,11 +766,19 @@ public class AiBase : PlayerBase {
         hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, direction, distance, layerMask);
         hitTopRight = Physics2D.Raycast(rayTopRight.origin, direction, distance, layerMask);
 
-        Debug.DrawRay(currentTargetDestination, left, Color.red);
-        Debug.DrawRay(currentTargetDestination, up, Color.blue);
-        
+        hitTop = Physics2D.Raycast(rayTop.origin, direction, distance, layerMask);
+        hitBot = Physics2D.Raycast(rayBot.origin, direction, distance, layerMask);        
+        hitLeft = Physics2D.Raycast(rayLeft.origin, direction, distance, layerMask);
+        hitRight = Physics2D.Raycast(rayRight.origin, direction, distance, layerMask);
 
-        if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
+        //Debug.DrawRay(currentTargetDestination, left, Color.red);
+        //Debug.DrawRay(currentTargetDestination, up, Color.blue);
+
+        //Debug.DrawRay(rayRight.origin , right, Color.blue);
+        //Debug.DrawRay(rayLeft.origin , left, Color.red);
+
+
+        if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight || hitTop|| hitBot|| hitLeft ||hitRight)
             return true;
 
         return false;
@@ -582,19 +788,19 @@ public class AiBase : PlayerBase {
     {
         LayerMask layerMask = barrierMask;
 
-        botLeft = new Vector2(collider.bounds.min.x, collider.bounds.min.y);
-        botRight = new Vector2(collider.bounds.max.x, collider.bounds.min.y);
-        topLeft = new Vector2(collider.bounds.min.x, collider.bounds.max.y);
-        topRight = new Vector2(collider.bounds.max.x, collider.bounds.max.y);
+        charBotLeft = new Vector2(collider.bounds.min.x, collider.bounds.min.y);
+        charBotRight = new Vector2(collider.bounds.max.x, collider.bounds.min.y);
+        charTopLeft = new Vector2(collider.bounds.min.x, collider.bounds.max.y);
+        charTopRight = new Vector2(collider.bounds.max.x, collider.bounds.max.y);
 
         RaycastHit2D hitBotLeft;
-        Ray rayBotLeft = new Ray(botLeft, direction);
+        Ray rayBotLeft = new Ray(charBotLeft, direction);
         RaycastHit2D hitBotRight;
-        Ray rayBotRight = new Ray(botRight, direction);
+        Ray rayBotRight = new Ray(charBotRight, direction);
         RaycastHit2D hitTopLeft;
-        Ray rayTopLeft = new Ray(topLeft, direction);
+        Ray rayTopLeft = new Ray(charTopLeft, direction);
         RaycastHit2D hitTopRight;
-        Ray rayTopRight = new Ray(topRight, direction);
+        Ray rayTopRight = new Ray(charTopRight, direction);
 
 
         hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, direction, distance, layerMask);
@@ -602,8 +808,8 @@ public class AiBase : PlayerBase {
         hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, direction, distance, layerMask);
         hitTopRight = Physics2D.Raycast(rayTopRight.origin, direction, distance, layerMask);
 
-        Debug.DrawRay(currentTargetDestination, left, Color.red);
-        Debug.DrawRay(currentTargetDestination, up, Color.blue);
+        //Debug.DrawRay(currentTargetDestination, left, Color.red);
+        //Debug.DrawRay(currentTargetDestination, up, Color.blue);
 
         //Debug.DrawRay(botLeft, direction, Color.cyan);
         //Debug.DrawRay(botRight, direction, Color.green);
@@ -611,7 +817,7 @@ public class AiBase : PlayerBase {
         //Debug.DrawRay(topRight, direction, Color.red);
 
         //if(hitTopRight.rigidbody != null)
-            //Debug.Log(hitTopRight.rigidbody.transform.name);
+        //Debug.Log(hitTopRight.rigidbody.transform.name);
 
         if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
             return true;
@@ -626,66 +832,66 @@ public class AiBase : PlayerBase {
 
     public bool Collides(float distance)
     {
-        return Collides(left, distance) || Collides(up, distance)|| Collides(right, distance)|| Collides(down, distance);
+        return Collides(left, distance) || Collides(up, distance) || Collides(right, distance) || Collides(down, distance);
     }
 
     //old
     public bool Collides(Vector2 center, float extens, float width, LayerMask layermask, Vector2 direction)
     {
-        botLeft = new Vector2(center.x - extens+width, center.y - extens+ width);
-        botRight = new Vector2(center.x + extens- width, center.y - extens+ width);
-        topLeft = new Vector2(center.x - extens+ width, center.y + extens- width);
-        topRight = new Vector2(center.x + extens- width, center.y + extens- width);
+        charBotLeft = new Vector2(center.x - extens + width, center.y - extens + width);
+        charBotRight = new Vector2(center.x + extens - width, center.y - extens + width);
+        charTopLeft = new Vector2(center.x - extens + width, center.y + extens - width);
+        charTopRight = new Vector2(center.x + extens - width, center.y + extens - width);
 
         RaycastHit2D hitBotLeft;
-        Ray rayBotLeft = new Ray(botLeft, direction);
+        Ray rayBotLeft = new Ray(charBotLeft, direction);
         RaycastHit2D hitBotRight;
-        Ray rayBotRight = new Ray(botRight, direction);
+        Ray rayBotRight = new Ray(charBotRight, direction);
         RaycastHit2D hitTopLeft;
-        Ray rayTopLeft = new Ray(topLeft, direction);
+        Ray rayTopLeft = new Ray(charTopLeft, direction);
         RaycastHit2D hitTopRight;
-        Ray rayTopRight = new Ray(topRight, direction);
-        
+        Ray rayTopRight = new Ray(charTopRight, direction);
+
 
         hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, direction, width, layermask);
         hitBotRight = Physics2D.Raycast(rayBotRight.origin, direction, width, layermask);
         hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, direction, width, layermask);
         hitTopRight = Physics2D.Raycast(rayTopRight.origin, direction, width, layermask);
 
-        Debug.DrawRay(currentTargetDestination, left,Color.red);
-        Debug.DrawRay(currentTargetDestination, up,Color.blue);
+        //Debug.DrawRay(currentTargetDestination, left, Color.red);
+        //Debug.DrawRay(currentTargetDestination, up, Color.blue);
 
-        Debug.DrawRay(botLeft, direction, Color.cyan);
+       // Debug.DrawRay(botLeft, direction, Color.cyan);
         //Debug.DrawRay(botRight, direction, Color.green);
         //Debug.DrawRay(topLeft, direction, Color.yellow);
         //Debug.DrawRay(topRight, direction, Color.red);
 
         if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
             return true;
-        
+
         return false;
     }
     //old
     public bool Collides(Vector2 center, float extens, float width, LayerMask layermask)
     {
-        botLeft = new Vector2(center.x - extens + width, center.y - extens + width);
-        botRight = new Vector2(center.x + extens - width, center.y - extens + width);
-        topLeft = new Vector2(center.x - extens + width, center.y + extens - width);
-        topRight = new Vector2(center.x + extens - width, center.y + extens - width);
+        charBotLeft = new Vector2(center.x - extens + width, center.y - extens + width);
+        charBotRight = new Vector2(center.x + extens - width, center.y - extens + width);
+        charTopLeft = new Vector2(center.x - extens + width, center.y + extens - width);
+        charTopRight = new Vector2(center.x + extens - width, center.y + extens - width);
 
         RaycastHit2D hitBotLeft;
-        Ray rayBotLeft = new Ray(botLeft, direction);
+        Ray rayBotLeft = new Ray(charBotLeft, direction);
         RaycastHit2D hitBotRight;
-        Ray rayBotRight = new Ray(botRight, direction);
+        Ray rayBotRight = new Ray(charBotRight, direction);
         RaycastHit2D hitTopLeft;
-        Ray rayTopLeft = new Ray(topLeft, direction);
+        Ray rayTopLeft = new Ray(charTopLeft, direction);
         RaycastHit2D hitTopRight;
-        Ray rayTopRight = new Ray(topRight, direction);
+        Ray rayTopRight = new Ray(charTopRight, direction);
 
         Vector2 allDirection = new Vector2(0, 0);
 
         allDirection = left;
-        
+
         hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, allDirection, width, layermask);
         hitBotRight = Physics2D.Raycast(rayBotRight.origin, allDirection, width, layermask);
         hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, allDirection, width, layermask);
@@ -723,7 +929,7 @@ public class AiBase : PlayerBase {
 
         if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
             return true;
-        
+
         return false;
     }
     //old
@@ -733,7 +939,7 @@ public class AiBase : PlayerBase {
     }
 
 
-    public float characterWidth = 0.5f;
+    public float characterWidth = 1f;
 
     /// <summary>
     /// bacha, dělá to skoky po 1, přitom charWidth = 0.5..uvidí se, jak to pofachá
@@ -755,12 +961,12 @@ public class AiBase : PlayerBase {
             Debug.Log("U");
             possibleDirections.Add(node + up);
         }
-        if (!Collides(node + right,right) && !visited.Contains(node + right))
+        if (!Collides(node + right, right) && !visited.Contains(node + right))
         {
             Debug.Log("R");
             possibleDirections.Add(node + right);
         }
-        if (!Collides(node + down,down) && !visited.Contains(node + down))
+        if (!Collides(node + down, down) && !visited.Contains(node + down))
         {
             Debug.Log("D");
             possibleDirections.Add(node + down);
@@ -774,7 +980,7 @@ public class AiBase : PlayerBase {
     public string PrintNodeList(List<Vector2> list)
     {
         string result = "";
-        foreach(Vector2 node in list)
+        foreach (Vector2 node in list)
         {
             result += "[" + node.x + "," + node.y + "],";
         }
@@ -787,7 +993,7 @@ public class AiBase : PlayerBase {
     {
         //Vector2 currentPosition = transform.position;
 
-        if(Collides(up))
+        if (Collides(up))
         {
             //Debug.Log("col-U");
             if (!Collides(right) && lastDirection != left)
@@ -801,7 +1007,7 @@ public class AiBase : PlayerBase {
                 lastDirection = left;
             }
 
-            else if(lastDirection!=up)
+            else if (lastDirection != up)
             {
                 MoveDown();
                 lastDirection = down;
@@ -823,7 +1029,7 @@ public class AiBase : PlayerBase {
                 MoveDown();
                 lastDirection = down;
                 //Debug.Log("goDown");
-                
+
             }
 
             else if (lastDirection != right)
@@ -944,7 +1150,7 @@ public class AiBase : PlayerBase {
         else if (ValueSmaller(gameObject.transform.position.y, y)) { MoveUp(); }
         else { MoveDown(); }
 
-        if (ValueEquals(gameObject.transform.position.x, x)) { }
+        if (ValueEquals(gameObject.transform.position.x, x)) {  }
         else if (ValueSmaller(gameObject.transform.position.x, x)) { MoveRight(); }
         else { MoveLeft(); }
     }
@@ -955,13 +1161,16 @@ public class AiBase : PlayerBase {
     /// <param name="y"></param>
     public void PreferY(double x, double y)
     {
-        if (ValueEquals(gameObject.transform.position.x, x)) { }
+        if (ValueEquals(gameObject.transform.position.x, x)) {  }
         else if (ValueSmaller(gameObject.transform.position.x, x)) { MoveRight(); }
         else { MoveLeft(); }
         if (ValueEquals(gameObject.transform.position.y, y)) { }
         else if (ValueSmaller(gameObject.transform.position.y, y)) { MoveUp(); }
-        else { MoveDown(); }        
+        else { MoveDown(); }
     }
+
+
+
 
     public void Move(Vector2 direction)
     {
@@ -1015,7 +1224,7 @@ public class AiBase : PlayerBase {
         else
             return false;
     }
-    
+
     public bool ValueEquals(double value1, double value2)
     {
         if (value2 - e <= value1 && value1 <= value2 + e)
