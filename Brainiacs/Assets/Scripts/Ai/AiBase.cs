@@ -21,6 +21,10 @@ public class AiBase : PlayerBase
     public Vector2 lastPosition;
     public Vector2 preLastPosition;
 
+    ////MAP shit
+    public GameObject[] barriers;
+
+
     /// //////////////////////////////////// CHARACTER COORDINATES /////////////////////////////
     Renderer renderer;
     Collider2D collider;
@@ -51,6 +55,12 @@ public class AiBase : PlayerBase
         collider = GetComponent<Collider2D>();
 
         walkingFront = new List<Vector2>();
+
+        barriers = GameObject.FindGameObjectsWithTag("Barrier");
+        //Debug.Log(barriers[0].name);
+        //Debug.Log(barriers[1].name);
+        //Debug.Log(barriers[2].name);
+        //Debug.Log(barriers[3].name);
     }
 
     // Update is called once per frame
@@ -220,22 +230,20 @@ public class AiBase : PlayerBase
         Vector2 bestVerticalLeft = bestVertical;
         Vector2 bestVerticalRight = bestVertical;
 
-
-        //CanShoot volá špatně, nebo blbě funguje
-
-        while (bestHorizontalDown.y > mapMinY && !ObjectCollides(bestHorizontalDown) && bestHorizontalDown.y > posY)
+        
+        while (bestHorizontalDown.y > mapMinY && !CharacterCollides(bestHorizontalDown) && bestHorizontalDown.y > posY)
         {
             bestHorizontalDown.y -= 0.1f;
         }
-        while (bestHorizontalUp.y < mapMaxY && !ObjectCollides(bestHorizontalUp) && bestHorizontalUp.y < posY)
+        while (bestHorizontalUp.y < mapMaxY && !CharacterCollides(bestHorizontalUp) && bestHorizontalUp.y < posY)
         {
             bestHorizontalUp.y += 0.1f;
         }
-        while (bestVerticalLeft.x > mapMinX && !ObjectCollides(bestVerticalLeft) && bestVerticalLeft.x > posX)
+        while (bestVerticalLeft.x > mapMinX && !CharacterCollides(bestVerticalLeft) && bestVerticalLeft.x > posX)
         {
             bestVerticalLeft.x -= 0.1f;
         }
-        while (bestVerticalRight.x < mapMaxX && !ObjectCollides(bestVerticalRight) && bestVerticalRight.x < posX)
+        while (bestVerticalRight.x < mapMaxX && !CharacterCollides(bestVerticalRight) && bestVerticalRight.x < posX)
         {
             bestVerticalRight.x += 0.1f;
         }
@@ -247,7 +255,7 @@ public class AiBase : PlayerBase
         possibleShootSpots.Add(bestVerticalRight);
 
         int spotIndex = 0;
-        float distanceFromMe = 100;
+        float distanceFromMe = 100; //big enough
         for (int i = 0; i < possibleShootSpots.Count; i++)
         {
             if (distanceFromMe > GetDistance(gameObject.transform.position, possibleShootSpots[i]))
@@ -541,7 +549,6 @@ public class AiBase : PlayerBase
     public class PathNode
     {
         public Vector2 node;
-        public int index;
         public int parentIndex;
 
         public PathNode(Vector2 node, int parentIndex)
@@ -569,48 +576,119 @@ public class AiBase : PlayerBase
             // Return true if the fields match:
             return node == p.node;
         }
+
+        public override string ToString()
+        {
+            return node.ToString();
+        }
     }
 
     public List<Vector2> GetPathTo(Vector2 target)
     {
-        float step = 0.5f;
+        float step = 0.3f;
+        //float step = characterWidth/2;
+        //Debug.Log(characterWidth);
+        //um....wtf, proč když nenapíšu ručně 0.5f tak to nejde?
+
         List<Vector2> path = new List<Vector2>();
-        PathNode startNode = new PathNode(transform.position, 0);
+        PathNode startNode = new PathNode(new Vector2(posX, posY), 0);
         List<PathNode> visitedNodes = new List<PathNode>();
-        visitedNodes.Add(startNode);
         //Debug.Log("start: " + startNode.node);
 
+        bool found = false;
         int finalNodeIndex = 0;
-        for (int i = 0; i < visitedNodes.Count; i++)
-        {
-            PathNode currentNode = visitedNodes[i];
-            //end process when current node is close to target
-            if (GetDistance(currentNode.node, target) < 2*step)
+        //5!!!!!!!!!!!!!!!
+        for(int start = 0; start < 5; start++){
+            Debug.Log("start:"+start);
+            visitedNodes.Clear();
+            switch (start)
             {
-                //Debug.Log("final = " + currentNode.node);
-                finalNodeIndex = i;
-                break;
-            }
-            if(i > 500)
+                case 0://center
+                    startNode = new PathNode(new Vector2(posX, posY), 0);
+                    break;
+                case 1://left
+                    startNode = new PathNode(new Vector2(posX-step/2, posY), 0);
+                    break;
+                case 2://up
+                    startNode = new PathNode(new Vector2(posX, posY+ step / 2), 0);
+                    break;
+                case 3://right
+                    startNode = new PathNode(new Vector2(posX+ step / 2, posY), 0);
+                    break;
+                case 4://down
+                    startNode = new PathNode(new Vector2(posX, posY- step / 2), 0);
+                    break;
+                default:
+                    break;
+            }   
+            //Debug.Log("startNode:"+ startNode);
+
+            visitedNodes.Add(startNode);
+
+            for (int i = 0; i < visitedNodes.Count; i++)
             {
-                Debug.Log("FAIL");
-                finalNodeIndex = 100;
-                break;
+                //Debug.Log(i);
+                PathNode currentNode = visitedNodes[i];
+                //end process when current node is close to target
+                if (GetDistance(currentNode.node, target) < 2 * step)
+                {
+                    Debug.Log("final = " + currentNode.node);
+                    finalNodeIndex = i;
+                    found = true;
+                    break;                    
+                }
+                if (i > 500)
+                {
+                    Debug.Log("FAIL");
+                    finalNodeIndex = 100;
+                    break;
+                }
+
+                if (ValueEquals(currentNode.node.x, 2.4) && ValueEquals(currentNode.node.y, -1.7))
+                {
+                    Debug.Log("!");
+                }
+
+                //set neighbouring nodes
+                PathNode nodeLeft = new PathNode(new Vector2(currentNode.node.x - step, currentNode.node.y), i);
+                PathNode nodeUp = new PathNode(new Vector2(currentNode.node.x, currentNode.node.y + step), i);
+                PathNode nodeRight = new PathNode(new Vector2(currentNode.node.x + step, currentNode.node.y), i);
+                PathNode nodeDown = new PathNode(new Vector2(currentNode.node.x, currentNode.node.y - step), i);
+                //add to list if there is no collision and they are not already in list
+                if (!CharacterCollides(nodeLeft.node) && !visitedNodes.Contains(nodeLeft))
+                { visitedNodes.Add(nodeLeft); }
+                if (!CharacterCollides(nodeUp.node) && !visitedNodes.Contains(nodeUp))
+                { visitedNodes.Add(nodeUp); }
+                if (!CharacterCollides(nodeRight.node) && !visitedNodes.Contains(nodeRight))
+                { visitedNodes.Add(nodeRight); }
+                if (!CharacterCollides(nodeDown.node) && !visitedNodes.Contains(nodeDown))
+                { visitedNodes.Add(nodeDown); }
+
+                if (ValueEquals(currentNode.node.x, 2.4) && ValueEquals(currentNode.node.y, -1.7))
+                {
+                    Debug.Log("!-------------------------------------------------------------------------");
+                    Debug.Log("current:" + currentNode);
+                    Debug.Log("index:" + i);
+                    Debug.Log("CharacterCollides-right: " + CharacterCollides(nodeRight.node));
+                    Debug.Log("visitedNodes.Contains-right: " + visitedNodes.Contains(nodeRight));
+                    Debug.Log("!CharacterCollides(nodeRight.node) && !visitedNodes.Contains(nodeRight)");
+                    Debug.Log(!CharacterCollides(nodeRight.node) && !visitedNodes.Contains(nodeRight));
+
+                    Debug.Log("right:" + nodeRight);
+                }
+                if (ValueEquals(currentNode.node.x, 2.7) && ValueEquals(currentNode.node.y, -1.7))
+                {
+                    Debug.Log("!-------------------------------------------------------------------------");
+                    Debug.Log("current:" + currentNode);
+                    Debug.Log("index:" + i);
+                    Debug.Log("parentIndex:" + currentNode.parentIndex);
+                    Debug.Log("parent:" + visitedNodes[currentNode.parentIndex]);
+                }
+
             }
-            //set neighbouring nodes
-            PathNode nodeLeft = new PathNode(new Vector2(currentNode.node.x - step, currentNode.node.y), i);
-            PathNode nodeUp = new PathNode(new Vector2(currentNode.node.x, currentNode.node.y + step), i);
-            PathNode nodeRight = new PathNode(new Vector2(currentNode.node.x + step, currentNode.node.y), i);
-            PathNode nodeDown = new PathNode(new Vector2(currentNode.node.x, currentNode.node.y - step), i);
-            //add to list if there is no collision and they are not already in list
-            if (!ObjectCollides(nodeLeft.node) && !visitedNodes.Contains(nodeLeft))
-            { visitedNodes.Add(nodeLeft); }
-            if (!ObjectCollides(nodeUp.node) && !visitedNodes.Contains(nodeUp))
-            { visitedNodes.Add(nodeUp); }
-            if (!ObjectCollides(nodeRight.node) && !visitedNodes.Contains(nodeRight))
-            { visitedNodes.Add(nodeRight); }
-            if (!ObjectCollides(nodeDown.node) && !visitedNodes.Contains(nodeDown))
-            { visitedNodes.Add(nodeDown); }
+
+            if (found)
+                break;
         }
 
         //reversly find the way back to starting node
@@ -620,9 +698,12 @@ public class AiBase : PlayerBase
             path.Add(visitedNodes[index].node);
             index = visitedNodes[index].parentIndex;
             //Debug.Log(visitedNodes[index].node);
+            
         }
         //reverse path
         path.Reverse();
+
+        
         
 
         return path;
@@ -643,14 +724,23 @@ public class AiBase : PlayerBase
         }
 
         //refresh path only when target moves
-        if (currentTargetDestination.x != x && currentTargetDestination.y != y)
+        if (!ValueEquals(currentTargetDestination.x, x) || !ValueEquals(currentTargetDestination.y, y))
         {
+            Debug.Log("oldTarget:" + currentTargetDestination);
+            Debug.Log("newTarget:" + x + "," +y);
             Debug.Log("recalculating");
             walkingFront = GetPathTo(new Vector2(x, y));
             currentTargetDestination = new Vector2(x, y);
         }
 
-        Debug.Log("walkFront:" + walkingFront.Count);
+        if (Time.frameCount % 30 == 0)
+        {
+            Debug.Log("walkFront:" + walkingFront.Count);
+            foreach(Vector2 v in walkingFront)
+            {
+                //Debug.Log(v);
+            }
+        }
         if (walkingFront.Count == 0)
         {
             if (Time.frameCount % 30 < 15)
@@ -688,60 +778,66 @@ public class AiBase : PlayerBase
                 }
             }
         }
-
-        /*
-        if (ValueEquals(gameObject.transform.position.y, y) && ValueEquals(gameObject.transform.position.x, x))
-        {
-            //Debug.Log("You there");
-            Stop();
-        }
-        else if(AvoidBariers())
-        {
-            if (Time.frameCount % 30 < 15)
-            {
-                AfterCollision();
-                PreferX(x, y);
-            }
-            else
-            {
-                AfterCollision();
-                PreferY(x, y);
-            }
-        }
-        currentTargetDestination = new Vector2(x, y);
-        //Debug.Log("moving to: " + x + "," + y);
-        */
     }
 
     /// <summary>
-    /// all direction doesnt seem to help...
+    /// chekovat pouze jeden směr nestačí
     /// </summary>
     /// <param name="center"></param>
     /// <returns></returns>
-    public bool ObjectCollides(Vector2 center)
+    public bool CharacterCollides(Vector2 center)
     {
-        bool colRight = ObjectCollides(center, characterWidth, right, 0.1f);
-        //bool colLeft = ObjectCollides(center, characterWidth, left, 0.1f);
-        //bool colUp = ObjectCollides(center, characterWidth, up, 0.1f);
-        //bool colDown = ObjectCollides(center, characterWidth, down, 0.1f);
-        //return colRight || colLeft || colUp || colDown;
-        return colRight;
-    }
+        Vector2 colliderOffset = GetComponent<Collider2D>().offset;
+        float colliderWidth = GetComponent<Collider2D>().bounds.size.x;
+        float distance = 0.1f;
 
+        bool colRight = ObjectCollides(center + colliderOffset, colliderWidth, right, distance);
+        //bool colLeft = ObjectCollides(center + colliderOffset, colliderWidth, left, distance);
+        bool colUp = ObjectCollides(center + colliderOffset/2, colliderWidth, up, distance);
+        //bool colDown = ObjectCollides(center + colliderOffset, colliderWidth, down, distance);
+
+        //return colRight || colLeft || colUp || colDown;
+        //return colRight || colLeft;
+        //return colRight;
+        return  colUp;
+    }
+    
+
+    /// <summary>
+    /// bot, top, left, right might be obsolete
+    /// </summary>
+    /// <returns></returns>
     public bool ObjectCollides(Vector2 center, float width, Vector2 direction, float distance)
     {
+        //Debug.Log("width:" + width);
         LayerMask layerMask = barrierMask;
-
         charBotLeft = new Vector2(center.x - width / 2, center.y - width / 2);
         charBotRight = new Vector2(center.x + width / 2, center.y - width / 2);
         charTopLeft = new Vector2(center.x - width / 2, center.y + width / 2);
         charTopRight = new Vector2(center.x + width / 2, center.y + width / 2);
+        
 
-        charBot = new Vector2(center.x - width / 2, center.y - width / 2);
-        charTop = new Vector2(center.x + width / 2, center.y - width / 2);
-        charLeft = new Vector2(center.x - width / 2, center.y + width / 2);
-        charRight = new Vector2(center.x + width / 2, center.y + width / 2);
+        //charBot = new Vector2(center.x - width / 2, center.y - width / 2);
+        //charTop = new Vector2(center.x + width / 2, center.y - width / 2);
+        //charLeft = new Vector2(center.x - width / 2, center.y + width / 2);
+        //charRight = new Vector2(center.x + width / 2, center.y + width / 2);
 
+        
+        /*
+        for(int i = 0; i < barriers.Length; i++)
+        {
+            if (barriers[i].GetComponent<BoxCollider2D>().bounds.Contains(charBotLeft))
+                return true;
+            if (barriers[i].GetComponent<BoxCollider2D>().bounds.Contains(charBotRight))
+                return true;
+            if (barriers[i].GetComponent<BoxCollider2D>().bounds.Contains(charTopLeft))
+                return true;
+            if (barriers[i].GetComponent<BoxCollider2D>().bounds.Contains(charTopRight))
+                return true;
+        }
+        */
+        
+        
         RaycastHit2D hitBotLeft;
         Ray rayBotLeft = new Ray(charBotLeft, direction);
         RaycastHit2D hitBotRight;
@@ -751,14 +847,14 @@ public class AiBase : PlayerBase
         RaycastHit2D hitTopRight;
         Ray rayTopRight = new Ray(charTopRight, direction);
 
-        RaycastHit2D hitTop;
-        Ray rayBot= new Ray(charBot, direction);
-        RaycastHit2D hitBot;
-        Ray rayTop = new Ray(charTop, direction);
-        RaycastHit2D hitLeft;
-        Ray rayLeft = new Ray(charLeft, direction);
-        RaycastHit2D hitRight;
-        Ray rayRight = new Ray(charRight, direction);
+        //RaycastHit2D hitTop;
+        //Ray rayBot= new Ray(charBot, direction);
+        //RaycastHit2D hitBot;
+        //Ray rayTop = new Ray(charTop, direction);
+        //RaycastHit2D hitLeft;
+        //Ray rayLeft = new Ray(charLeft, direction);
+        //RaycastHit2D hitRight;
+        //Ray rayRight = new Ray(charRight, direction);
 
 
         hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, direction, distance, layerMask);
@@ -766,21 +862,34 @@ public class AiBase : PlayerBase
         hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, direction, distance, layerMask);
         hitTopRight = Physics2D.Raycast(rayTopRight.origin, direction, distance, layerMask);
 
-        hitTop = Physics2D.Raycast(rayTop.origin, direction, distance, layerMask);
-        hitBot = Physics2D.Raycast(rayBot.origin, direction, distance, layerMask);        
-        hitLeft = Physics2D.Raycast(rayLeft.origin, direction, distance, layerMask);
-        hitRight = Physics2D.Raycast(rayRight.origin, direction, distance, layerMask);
+        //hitTop = Physics2D.Raycast(rayTop.origin, direction, distance, layerMask);
+        //hitBot = Physics2D.Raycast(rayBot.origin, direction, distance, layerMask);        
+        //hitLeft = Physics2D.Raycast(rayLeft.origin, direction, distance, layerMask);
+        //hitRight = Physics2D.Raycast(rayRight.origin, direction, distance, layerMask);
 
         //Debug.DrawRay(currentTargetDestination, left, Color.red);
         //Debug.DrawRay(currentTargetDestination, up, Color.blue);
 
-        //Debug.DrawRay(rayRight.origin , right, Color.blue);
-        //Debug.DrawRay(rayLeft.origin , left, Color.red);
+        //Debug.DrawRay(rayBotLeft.origin , direction, Color.blue);
+        //Debug.DrawRay(rayBotRight.origin , direction, Color.red);
 
 
-        if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight || hitTop|| hitBot|| hitLeft ||hitRight)
+        if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
+        {
+            //Debug.DrawLine(charBotLeft, charBotRight, Color.red, 2f);
+            //Debug.DrawLine(charBotLeft, charTopLeft, Color.red, 2f);
+            //Debug.DrawLine(charBotRight, charTopRight, Color.red, 2f);
+            //Debug.DrawLine(charTopLeft, charTopRight, Color.red, 2f);
             return true;
-
+        }
+        else
+        {
+            //Debug.DrawLine(charBotLeft, charBotRight, Color.green, 1f);
+            //Debug.DrawLine(charBotLeft, charTopLeft, Color.green, 1f);
+            //Debug.DrawLine(charBotRight, charTopRight, Color.green, 1f);
+            //Debug.DrawLine(charTopLeft, charTopRight, Color.green, 1f);
+        }
+        
         return false;
     }
 
@@ -938,8 +1047,7 @@ public class AiBase : PlayerBase
         return Collides(center, 0.5f, 0.3f, barrierMask, direction);
     }
 
-
-    public float characterWidth = 1f;
+    
 
     /// <summary>
     /// bacha, dělá to skoky po 1, přitom charWidth = 0.5..uvidí se, jak to pofachá
@@ -951,28 +1059,28 @@ public class AiBase : PlayerBase
     {
         List<Vector2> possibleDirections = new List<Vector2>();
 
-        if (!Collides(node + left, left) && !visited.Contains(node + left))
+        if (!CharacterCollides(node + left) && !visited.Contains(node + left))
         {
             Debug.Log("L");
             possibleDirections.Add(node + left);
         }
-        if (!Collides(node + up, up) && !visited.Contains(node + up))
+        if (!CharacterCollides(node + up) && !visited.Contains(node + up))
         {
             Debug.Log("U");
             possibleDirections.Add(node + up);
         }
-        if (!Collides(node + right, right) && !visited.Contains(node + right))
+        if (!CharacterCollides(node + right) && !visited.Contains(node + right))
         {
             Debug.Log("R");
             possibleDirections.Add(node + right);
         }
-        if (!Collides(node + down, down) && !visited.Contains(node + down))
+        if (!CharacterCollides(node + down) && !visited.Contains(node + down))
         {
             Debug.Log("D");
             possibleDirections.Add(node + down);
         }
-        Debug.Log("found directions:");
-        Debug.Log(PrintNodeList(possibleDirections));
+        //Debug.Log("found directions:");
+        //Debug.Log(PrintNodeList(possibleDirections));
 
         return possibleDirections;
     }
@@ -1164,6 +1272,7 @@ public class AiBase : PlayerBase
         if (ValueEquals(gameObject.transform.position.x, x)) {  }
         else if (ValueSmaller(gameObject.transform.position.x, x)) { MoveRight(); }
         else { MoveLeft(); }
+
         if (ValueEquals(gameObject.transform.position.y, y)) { }
         else if (ValueSmaller(gameObject.transform.position.y, y)) { MoveUp(); }
         else { MoveDown(); }

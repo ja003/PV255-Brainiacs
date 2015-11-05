@@ -25,6 +25,7 @@ public abstract class PlayerBase : MonoBehaviour
     public float mapMaxX = 8.6f;
     public float mapMaxY = 4f;
 
+    public float characterWidth = 1f;
 
 
     /// //////////////////////////////////// WEAPON HANDLING ///////////////////////////////////
