@@ -637,7 +637,7 @@ public class AiBase : PlayerBase
                     found = true;
                     break;                    
                 }
-                if (i > 500)
+                if (i > 5000)
                 {
                     Debug.Log("FAIL");
                     finalNodeIndex = 100;
@@ -655,13 +655,13 @@ public class AiBase : PlayerBase
                 PathNode nodeRight = new PathNode(new Vector2(currentNode.node.x + step, currentNode.node.y), i);
                 PathNode nodeDown = new PathNode(new Vector2(currentNode.node.x, currentNode.node.y - step), i);
                 //add to list if there is no collision and they are not already in list
-                if (!CharacterCollides(nodeLeft.node) && !visitedNodes.Contains(nodeLeft))
+                if (!CharacterCollidesBarrier(nodeLeft.node) && !visitedNodes.Contains(nodeLeft))
                 { visitedNodes.Add(nodeLeft); }
-                if (!CharacterCollides(nodeUp.node) && !visitedNodes.Contains(nodeUp))
+                if (!CharacterCollidesBarrier(nodeUp.node) && !visitedNodes.Contains(nodeUp))
                 { visitedNodes.Add(nodeUp); }
-                if (!CharacterCollides(nodeRight.node) && !visitedNodes.Contains(nodeRight))
+                if (!CharacterCollidesBarrier(nodeRight.node) && !visitedNodes.Contains(nodeRight))
                 { visitedNodes.Add(nodeRight); }
-                if (!CharacterCollides(nodeDown.node) && !visitedNodes.Contains(nodeDown))
+                if (!CharacterCollidesBarrier(nodeDown.node) && !visitedNodes.Contains(nodeDown))
                 { visitedNodes.Add(nodeDown); }
 
                 if (ValueEquals(currentNode.node.x, 2.4) && ValueEquals(currentNode.node.y, -1.7))
@@ -780,6 +780,7 @@ public class AiBase : PlayerBase
         }
     }
 
+    
     /// <summary>
     /// chekovat pouze jeden směr nestačí
     /// </summary>
@@ -802,6 +803,45 @@ public class AiBase : PlayerBase
         return  colUp;
     }
     
+
+    /// <summary>
+    /// new collisioncheck using box collider bounds
+    /// </summary>
+    /// <returns></returns>
+    public bool CharacterCollidesBarrier(Vector2 center)
+    {
+        //Debug.Log("colCheck");
+        float width = gameObject.GetComponent<BoxCollider2D>().bounds.size.x / 2;
+        Vector2 colliderOffset = GetComponent<Collider2D>().offset / 2;
+        float offset = 0.1f;
+
+        Vector2 botLeft = new Vector2(center.x - width - offset, center.y - width - offset);
+        Vector2 botRight = new Vector2(center.x + width + offset, center.y - width - offset);
+        Vector2 topLeft = new Vector2(center.x - width - offset, center.y + width + offset);
+        Vector2 topRight = new Vector2(center.x + width + offset, center.y + width + offset);
+
+        
+
+        for (int i = 0; i < barriers.Length; i++)
+        {
+            if (barriers[i].GetComponent<BoxCollider2D>().bounds.Contains(botLeft + colliderOffset))
+                return true;
+            if (barriers[i].GetComponent<BoxCollider2D>().bounds.Contains(botRight + colliderOffset))
+                return true;
+            if (barriers[i].GetComponent<BoxCollider2D>().bounds.Contains(topLeft + colliderOffset))
+                return true;
+            if (barriers[i].GetComponent<BoxCollider2D>().bounds.Contains(topRight + colliderOffset))
+                return true;
+        }
+
+        //Debug.DrawLine(botLeft, botRight, Color.green, 2f);
+        //Debug.DrawLine(botLeft, topLeft, Color.green, 2f);
+        //Debug.DrawLine(topLeft, topRight, Color.green, 2f);
+        //Debug.DrawLine(topRight, botRight, Color.green, 2f);
+
+        return false;
+    }
+
 
     /// <summary>
     /// bot, top, left, right might be obsolete
