@@ -20,10 +20,10 @@ public abstract class PlayerBase : MonoBehaviour
     public float speed { get; set; }
 
     //rozměry mapy
-    public float mapMinX = -4.75f;
-    public float mapMinY = -4.75f;
-    public float mapMaxX = 8.6f;
-    public float mapMaxY = 4f;
+    public float mapMinX;
+    public float mapMinY;
+    public float mapMaxX;
+    public float mapMaxY;
 
     public float characterWidth = 1f;
 
@@ -83,10 +83,13 @@ public abstract class PlayerBase : MonoBehaviour
         //pičovina, pak to napojím na PLayerInfo a atribut playerNumber uplně smažu
         playerNumber = p.playerNumber;
 
-        
-        
+        mapMinX = -4.75f;
+        mapMinY = -4.75f;
+        mapMaxX = 8.6f;
+        mapMaxY = 4f;
 
-    }
+
+}
 
     private void setUpSprites() {
         string sprite = "";

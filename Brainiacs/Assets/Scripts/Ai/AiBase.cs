@@ -185,8 +185,8 @@ public class AiBase : PlayerBase
         float mapLenght = 15;
         RaycastHit2D[] hitGun = Physics2D.RaycastAll(rayGun.origin, direction, mapLenght);
 
-        //Debug.DrawRay(rayGun.origin, direction, Color.cyan);
-        //Debug.DrawRay(rayGun.origin, direction*-1, Color.red);
+        Debug.DrawRay(rayGun.origin, direction, Color.cyan);
+        Debug.DrawRay(rayGun.origin, direction*-1, Color.red);
 
         if (hitGun.Length != 0)
         {
@@ -195,7 +195,9 @@ public class AiBase : PlayerBase
             //    Debug.Log("hit from " + center + " to " + hitGun[i].transform.name + " in dir:" + direction);
             //}
             //Debug.Log("---");
-            if (hitGun[0].transform.tag == "Barrier")
+            //Borders have tag "Barrier" and it sometimes doesnt hit player first, but the border
+            if (hitGun[0].transform.tag == "Barrier" 
+                && hitGun[0].transform.gameObject.layer != LayerMask.NameToLayer("Border"))
             {
                 //Debug.Log("cant shoot");
                 return false;
@@ -231,19 +233,28 @@ public class AiBase : PlayerBase
         Vector2 bestVerticalRight = bestVertical;
 
         
-        while (bestHorizontalDown.y > mapMinY && !CharacterCollides(bestHorizontalDown) && bestHorizontalDown.y > posY)
+        while (bestHorizontalDown.y > mapMinY && !CharacterCollidesBarrier(bestHorizontalDown) && bestHorizontalDown.y > posY)
         {
             bestHorizontalDown.y -= 0.1f;
         }
-        while (bestHorizontalUp.y < mapMaxY && !CharacterCollides(bestHorizontalUp) && bestHorizontalUp.y < posY)
+
+        //mapMaxY = 4f;
+
+        
+
+
+
+
+
+        while (bestHorizontalUp.y < mapMaxY && !CharacterCollidesBarrier(bestHorizontalUp) && bestHorizontalUp.y < posY)
         {
             bestHorizontalUp.y += 0.1f;
         }
-        while (bestVerticalLeft.x > mapMinX && !CharacterCollides(bestVerticalLeft) && bestVerticalLeft.x > posX)
+        while (bestVerticalLeft.x > mapMinX && !CharacterCollidesBarrier(bestVerticalLeft) && bestVerticalLeft.x > posX)
         {
             bestVerticalLeft.x -= 0.1f;
         }
-        while (bestVerticalRight.x < mapMaxX && !CharacterCollides(bestVerticalRight) && bestVerticalRight.x < posX)
+        while (bestVerticalRight.x < mapMaxX && !CharacterCollidesBarrier(bestVerticalRight) && bestVerticalRight.x < posX)
         {
             bestVerticalRight.x += 0.1f;
         }
@@ -258,6 +269,8 @@ public class AiBase : PlayerBase
         float distanceFromMe = 100; //big enough
         for (int i = 0; i < possibleShootSpots.Count; i++)
         {
+            
+            //Debug.Log(possibleShootSpots[i]);
             if (distanceFromMe > GetDistance(gameObject.transform.position, possibleShootSpots[i]))
             {
                 spotIndex = i;
@@ -274,11 +287,14 @@ public class AiBase : PlayerBase
         
         if (AlmostEqual(posX,player.posX,0.1)||AlmostEqual(posY,player.posY,0.1))
         {
+            //Debug.Log("i can shoot");
             LookAt(player.gameObject);
             if (CanShoot(transform.position, direction))
             {
-                //Debug.Log("I can shoot form:" + transform.position + " to: " + direction);
-                weaponHandling.fire(direction);
+                //Debug.Log("I can shoot from:" + transform.position + " to: " + direction);
+                //chybí implementace kadence zbraně
+                if (Time.frameCount % 10 == 0)
+                    weaponHandling.fire(direction);
             }
         }
         
@@ -415,7 +431,7 @@ public class AiBase : PlayerBase
         killPlayer1Priority = 200 - (int)(GetDistance(gameObject, player1.gameObject));
         killPlayer2Priority = 200 - (int)(GetDistance(gameObject, player2.gameObject));
         killPlayer3Priority = 200 - (int)(GetDistance(gameObject, player3.gameObject));
-        //killPlayer4Priority = 200 - (int)(GetDistance(gameObject, player4.gameObject));
+        killPlayer4Priority = 200 - (int)(GetDistance(gameObject, player4.gameObject));
 
 
     }
@@ -719,7 +735,7 @@ public class AiBase : PlayerBase
         if(ValueEquals(posX, x) && ValueEquals(posY, y))
         {
             Stand();
-            Debug.Log("you there");
+            //Debug.Log("you there");
             return;
         }
 

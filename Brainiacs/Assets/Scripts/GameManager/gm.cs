@@ -27,6 +27,11 @@ public class gm : MonoBehaviour {
     PlayerInfo player3Info = new PlayerInfo();
     PlayerInfo player4Info = new PlayerInfo();
 
+    public float mapMinX = -4.75f;
+    public float mapMinY = -4.75f;
+    public float mapMaxX = 8.6f;
+    public float mapMaxY = 4f;
+
     public bool started;
 
     void Start()
@@ -36,24 +41,64 @@ public class gm : MonoBehaviour {
         player1 = Instantiate(prefab); player1.SetActive(false);
         player2 = Instantiate(prefab); player2.SetActive(false);
         //player3 = Instantiate(prefab); player3.SetActive(false);
-        //player4 = Instantiate(prefab); player4.SetActive(false);
-
-        aiPrefab = (GameObject)Resources.Load("Prefabs/AiManagement"); 
-        player3 = Instantiate(aiPrefab); player3.SetActive(false);
+        player4 = Instantiate(prefab); player4.SetActive(false);
 
         //!!!!!!!!!!!!!player3 is reserved for ai
+        aiPrefab = (GameObject)Resources.Load("Prefabs/AiManagement"); 
+        player3 = Instantiate(aiPrefab); player3.SetActive(false);
+        
+
+        //set random positions for players
+        for(int i = 1; i < 4; i++)
+        {
+            float initX = Random.Range(mapMinX, mapMaxX);
+            float initY = Random.Range(mapMinY, mapMaxY);
+            Vector2 initPosition = new Vector2(initX, initY);
+            switch (i)
+            {
+                case 1:
+                    player1.transform.position = initPosition;
+                    break;
+                case 2:
+                    player2.transform.position = initPosition;
+                    break;
+                case 3:
+                    player3.transform.position = initPosition;
+                    break;
+                case 4:
+                    player4.transform.position = initPosition;
+                    break;
+
+                default: break;
+            }
+        }
+        //manualni přiřazení
+        Vector2 pl1pos = new Vector2(2, -1.5f);
+        player1.transform.position = pl1pos;
+
+        Vector2 pl2pos = new Vector2(5, 3);
+        player2.transform.position = pl2pos;
+
+        Vector2 pl3pos = new Vector2(-4, 0);
+        player3.transform.position = pl3pos;
+
+        Vector2 pl4pos = new Vector2(5, 2);
+        player4.transform.position = pl4pos;
+
+        //----------------
 
         player1Comp = player1.transform.GetChild(0).GetComponent<Player1>();
         player2Comp = player2.transform.GetChild(0).GetComponent<Player1>();
         //player3Comp = player3.transform.GetChild(0).GetComponent<Player1>();
-        //player4Comp = player4.transform.GetChild(0).GetComponent<Player1>();
+        player4Comp = player4.transform.GetChild(0).GetComponent<Player1>();
 
         player3Comp = player3.transform.GetChild(0).GetComponent<Ai_03>(); //zatim 03...
 
         SetUpPlayer(1, CharacterEnum.Einstein);
         SetUpPlayer(2, CharacterEnum.Nobel);
         SetUpPlayer(3, CharacterEnum.Tesla);
-        
+        SetUpPlayer(4, CharacterEnum.Tesla);
+
 
         Run();
     }
