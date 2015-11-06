@@ -5,16 +5,22 @@ public class WeaponPistol : WeaponBase {
     
     public WeaponPistol()
     {
-        base.damage = 10;
-        base.weaponType = WeaponEnum.pistol;
-
-        base.ammo = int.MaxValue;
-        base.maxAmmo = int.MaxValue;
-
+       
     }
 
     public WeaponPistol(CharacterEnum type)
     {
+        base.damage = 10;
+        base.weaponType = WeaponEnum.pistol;
+
+        base.ammo = 5;
+        base.maxAmmo = 5;
+
+        base.clip = 5;
+        base.maxClip = 5;
+
+        base.reloadTime = 5f;
+        base.ready = true;
         switch (type)
         {
             //ten bulletSprite se ještě nikde nevyužívá? -AJ

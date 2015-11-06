@@ -10,7 +10,21 @@ public class WeaponHandling : MonoBehaviour {
     public SpriteRenderer weaponRenderer;
     public BulletManager buletManager;
 
-    
+
+    public void FixedUpdate() {
+        foreach (var weap in inventory){
+            if (!weap.ready) {
+                if (weap.time >= weap.reloadTime)
+                {
+                    weap.ready = true;
+                }
+                else
+                {
+                    weap.time += Time.deltaTime;
+                }
+            }
+        }
+    }
 
     public void SwitchWeapon()
     {
@@ -24,18 +38,31 @@ public class WeaponHandling : MonoBehaviour {
 
     }
 
+    public void reload() {
+
+    }
+
     public void fire(Vector2 direction)
     {
-        
+        if (!activeWeapon.ready) return; 
         int bulletsLeft = activeWeapon.fire();
-
+        Debug.Log(bulletsLeft);
         buletManager.fire(new Vector2(direction.x, direction.y), transform.position, activeWeapon.bulletSprite);
 
         if (bulletsLeft == 0)
         {
-            WeaponBase toDel = activeWeapon;
-            SwitchWeapon();
-            inventory.Remove(toDel);
+            if (activeWeapon.weaponType == WeaponEnum.pistol)
+            {
+                activeWeapon.reload();
+                activeWeapon.ready = false;
+                Debug.Log(activeWeapon.ready);
+            }
+            else
+            {
+                WeaponBase toDel = activeWeapon;
+                SwitchWeapon();
+                inventory.Remove(toDel);
+            }
         }
 
     }
