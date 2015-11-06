@@ -167,8 +167,7 @@ public abstract class PlayerBase : MonoBehaviour
                 //TODO delay nejake 2s
 
                 //presun na novu poziciu
-                var generator = new PositionGenerator();
-                Vector3 newRandomPosition = generator.GenerateRandomPosition();
+                Vector3 newRandomPosition = PositionGenerator.GenerateRandomPosition();
                 posX = newRandomPosition.x;
                 posY = newRandomPosition.y;
                 transform.position = newRandomPosition;

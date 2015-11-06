@@ -7,12 +7,12 @@ namespace Brainiacs.Generate
 {
     public class PositionGenerator {
 
-        private float mapStartX = -4.0f;
-        private float mapStartY = -4.0f;
-        private float mapHeight = 6.75f;
-        private float mapWidth = 11.0f;
+        private static float mapStartX = -4.0f;
+        private static float mapStartY = -4.0f;
+        private static float mapHeight = 6.75f;
+        private static float mapWidth = 11.0f;
 
-        public Vector3 GenerateRandomPosition()
+        public static Vector3 GenerateRandomPosition()
         {
             Vector3 vec = new Vector3();
             System.Random rnd = new System.Random();
