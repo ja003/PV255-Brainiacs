@@ -2,10 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
-//--MG
-public class PowerUpManager : MonoBehaviour
+class WeaponManager : MonoBehaviour
 {
-    private PowerUpEnum type;
+    private WeaponEnum type;
     private bool assignedType = false;
 
     private float floatingSpeed = 0.2f;
@@ -15,7 +14,7 @@ public class PowerUpManager : MonoBehaviour
     {
         if (!assignedType)
         {
-            type = gameObject.transform.parent.gameObject.GetComponent<PowerUpGenerator>().powerUpType;
+            type = gameObject.transform.parent.gameObject.GetComponent<WeaponGenerator>().weaponType;
             assignedType = true;
         }
     }
@@ -26,10 +25,10 @@ public class PowerUpManager : MonoBehaviour
         {
             if (!assignedType)
             {
-                type = gameObject.transform.parent.gameObject.GetComponent<PowerUpGenerator>().powerUpType;
+                type = gameObject.transform.parent.gameObject.GetComponent<WeaponGenerator>().weaponType;
                 assignedType = true;
             }
-            coll.gameObject.SendMessage("AddPowerUp", type);
+            coll.gameObject.SendMessage("AddWeapon", type);
             assignedType = false;
             gameObject.SetActive(false);
         }
