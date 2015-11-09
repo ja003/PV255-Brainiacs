@@ -62,9 +62,11 @@
      <Compile Include="Assets\Scripts\Player\PlayerBase.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerInfo.cs" />
      <Compile Include="Assets\Scripts\PositionGenerator\PositionGenerator.cs" />
-     <Compile Include="Assets\Scripts\SpawnItems\PowerUp.cs" />
      <Compile Include="Assets\Scripts\SpawnItems\PowerUpEnum.cs" />
+     <Compile Include="Assets\Scripts\SpawnItems\PowerUpGenerator.cs" />
      <Compile Include="Assets\Scripts\SpawnItems\PowerUpManager.cs" />
+     <Compile Include="Assets\Scripts\SpawnItems\WeaponGenerator.cs" />
+     <Compile Include="Assets\Scripts\SpawnItems\WeaponManager.cs" />
      <Compile Include="Assets\Scripts\Weapon\Bullet.cs" />
      <Compile Include="Assets\Scripts\Weapon\BulletManager.cs" />
      <Compile Include="Assets\Scripts\Weapon\Skvrna.cs" />
@@ -75,17 +77,11 @@
      <Compile Include="Assets\Scripts\Weapon\WeaponTeslaSpecial.cs" />
      <Compile Include="Assets\Scripts\unused\BulletManager2.cs" />
      <Compile Include="Assets\Scripts\unused\BulletShooter.cs" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
