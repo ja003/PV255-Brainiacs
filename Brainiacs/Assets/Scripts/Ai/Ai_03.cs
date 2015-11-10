@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
 public class Ai_03 : AiBase {
 
     Components comp = new Components();

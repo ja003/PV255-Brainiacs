@@ -46,7 +46,7 @@ public class WeaponHandling : MonoBehaviour {
     {
         if (!activeWeapon.ready) return; 
         int bulletsLeft = activeWeapon.fire();
-        Debug.Log(bulletsLeft);
+        //Debug.Log(bulletsLeft);
         buletManager.fire(new Vector2(direction.x, direction.y), transform.position, activeWeapon.bulletSprite);
 
         if (bulletsLeft == 0)

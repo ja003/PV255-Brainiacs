@@ -10,7 +10,7 @@ public abstract class PlayerBase : MonoBehaviour
     public int playerNumber { get; set; }
 
     // JP - farba spritu
- //   public string color { get; set; }
+    //   public string color { get; set; }
 
     public float posX;
     public float posY;
@@ -26,6 +26,14 @@ public abstract class PlayerBase : MonoBehaviour
     public float mapMaxY;
 
     public float characterWidth = 1f;
+
+    //////////////////////ANIMATOR VARIABLES/////////////////////////
+    public Animator characterAnimator;
+    public bool walkUp = false;
+    public bool walkRight = false;
+    public bool walkDown = true;
+    public bool walkLeft = false;
+    public bool dead = false;
 
 
     /// //////////////////////////////////// WEAPON HANDLING ///////////////////////////////////
@@ -80,6 +88,8 @@ public abstract class PlayerBase : MonoBehaviour
         weaponHandling.buletManager = transform.parent.GetComponent<BulletManager>();
         weaponHandling.buletManager.createBullets();
 
+        characterAnimator = GetComponent<Animator>();
+
         //pičovina, pak to napojím na PLayerInfo a atribut playerNumber uplně smažu
         playerNumber = p.playerNumber;
 
@@ -100,6 +110,7 @@ public abstract class PlayerBase : MonoBehaviour
         //Debug.Log(comp.spriteRend);
 
         comp.spriteRend.sprite = Resources.Load<Sprite>("Sprites/Players/" + sprite);
+        Debug.Log("setting sprite: " + sprite);
     }
 
     //TODO: transform.GetChild(1).GetComponent<SpriteRenderer>().sortingLayerName = "Hand_back";
@@ -125,6 +136,67 @@ public abstract class PlayerBase : MonoBehaviour
     {
         SpeedBuffChecker();
         UpdatePosition();
+    }
+
+
+
+    public void UpdateAnimatorState(AnimatorStateEnum state)
+    {
+        switch (state)
+        {
+            case AnimatorStateEnum.walkUp:
+                walkUp = true;
+                walkRight = false;
+                walkDown = false;
+                walkLeft= false;
+                break;
+            case AnimatorStateEnum.walkRight:
+                walkUp = false;
+                walkRight = true;
+                walkDown = false;
+                walkLeft = false;
+                break;
+            case AnimatorStateEnum.walkDown:
+                walkUp = false;
+                walkRight = false;
+                walkDown = true;
+                walkLeft = false;
+                break;
+            case AnimatorStateEnum.walkLeft:
+                walkUp = false;
+                walkRight = false;
+                walkDown = false;
+                walkLeft = true;
+                break;
+            case AnimatorStateEnum.stop:
+                walkUp = false;
+                walkRight = false;
+                walkDown = false;
+                walkLeft = false;
+                break;
+            case AnimatorStateEnum.dead:
+                walkUp = false;
+                walkRight = false;
+                walkDown = false;
+                walkLeft = false;
+                dead = true;
+                break;
+        }
+        characterAnimator.SetBool("walkUp", walkUp);
+        characterAnimator.SetBool("walkDown", walkDown);
+        characterAnimator.SetBool("walkRight", walkRight);
+        characterAnimator.SetBool("walkLeft", walkLeft);
+        characterAnimator.SetBool("dead", dead);
+
+        /*Debug.Log(
+            "walkUp:" + walkUp +
+            ",walkDown:" + walkDown +
+            ",walkRight:" + walkDown +
+            ",walkLeft:" + walkLeft +
+            ",dead:" + dead
+            );
+            */
+
     }
 
     //zatím pouze doleva a doprava
@@ -161,6 +233,7 @@ public abstract class PlayerBase : MonoBehaviour
         {
             if ((hitPoints - dmg) <= 0) 
             {
+                UpdateAnimatorState(AnimatorStateEnum.dead);
                 hitPoints = 0;
                 //TODO sputenie animacie smrti
                 comp.rb2d.velocity = stop;
@@ -180,7 +253,7 @@ public abstract class PlayerBase : MonoBehaviour
                 hitPoints -= dmg;
             }
         }
-        Debug.Log(hitPoints);
+        //Debug.Log(hitPoints);
     }
 
     /// ////////////////////////////////////// POWER UPS ///////////////////////////////////////////
@@ -304,4 +377,22 @@ public abstract class PlayerBase : MonoBehaviour
 
     
     
+}
+
+//namespace Assets.Scripts.Player
+//{
+//    public enum AnimatorStateEnum
+//    {
+//    }
+//}
+
+//proč mi to v Enums nefunguje?
+public enum AnimatorStateEnum
+{
+    walkUp,
+    walkDown,
+    walkLeft,
+    walkRight,
+    stop,
+    dead
 }

@@ -74,30 +74,38 @@ public class HumanBase : PlayerBase {
             pressedKeys.Add(keyRight);
         }
 
+        //actualy moving
         if (GetLastPressed() == keyUp)
         {
             rb2d.velocity = up * speed;
-            direction = up; 
+            direction = up;
+            UpdateAnimatorState(AnimatorStateEnum.walkUp);
         }
         else if (GetLastPressed() == keyLeft)
         {
             rb2d.velocity = left * speed;
             direction = left;
+            UpdateAnimatorState(AnimatorStateEnum.walkLeft);
 
         }
         else if (GetLastPressed() == keyDown)
         {
             rb2d.velocity = down * speed;
             direction = down;
+            UpdateAnimatorState(AnimatorStateEnum.walkDown);
+
         }
         else if (GetLastPressed() == keyRight)
         {
             rb2d.velocity = right * speed;            
             direction = right;
+            UpdateAnimatorState(AnimatorStateEnum.walkRight);
+
         }
         else
         {
             rb2d.velocity = stop;
+            UpdateAnimatorState(AnimatorStateEnum.stop);
         }
 
         if (Input.GetKeyUp(keyUp) || Input.GetKeyUp(keyLeft) ||

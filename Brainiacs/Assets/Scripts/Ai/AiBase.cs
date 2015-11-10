@@ -486,7 +486,7 @@ public class AiBase : PlayerBase
                     Debug.Log(player.ToString() + " has no player number!");
                     break;
             }
-            //Debug.Log("setting player: " + player.gameObject.name + ", number: " + player.playerNumber);
+            Debug.Log("setting player: " + player.gameObject.name + ", number: " + player.playerNumber);
         }
     }
 
@@ -615,7 +615,7 @@ public class AiBase : PlayerBase
         int finalNodeIndex = 0;
         //5!!!!!!!!!!!!!!!
         for(int start = 0; start < 5; start++){
-            Debug.Log("start:"+start);
+            //Debug.Log("start:"+start);
             visitedNodes.Clear();
             switch (start)
             {
@@ -648,7 +648,7 @@ public class AiBase : PlayerBase
                 //end process when current node is close to target
                 if (GetDistance(currentNode.node, target) < 2 * step)
                 {
-                    Debug.Log("final = " + currentNode.node);
+                    //Debug.Log("final = " + currentNode.node);
                     finalNodeIndex = i;
                     found = true;
                     break;                    
@@ -742,16 +742,16 @@ public class AiBase : PlayerBase
         //refresh path only when target moves
         if (!ValueEquals(currentTargetDestination.x, x) || !ValueEquals(currentTargetDestination.y, y))
         {
-            Debug.Log("oldTarget:" + currentTargetDestination);
-            Debug.Log("newTarget:" + x + "," +y);
-            Debug.Log("recalculating");
+            //Debug.Log("oldTarget:" + currentTargetDestination);
+            //Debug.Log("newTarget:" + x + "," +y);
+            //Debug.Log("recalculating");
             walkingFront = GetPathTo(new Vector2(x, y));
             currentTargetDestination = new Vector2(x, y);
         }
 
         if (Time.frameCount % 30 == 0)
         {
-            Debug.Log("walkFront:" + walkingFront.Count);
+            //Debug.Log("walkFront:" + walkingFront.Count);
             foreach(Vector2 v in walkingFront)
             {
                 //Debug.Log(v);
@@ -1354,25 +1354,30 @@ public class AiBase : PlayerBase
         direction = up;
         //Debug.Log("moving up");
         //Debug.Log("new dir:" + direction);
+        UpdateAnimatorState(AnimatorStateEnum.walkUp);
     }
     public void MoveLeft()
     {
         rb2d.velocity = Vector2.left * speed;
         direction = left;
+        UpdateAnimatorState(AnimatorStateEnum.walkLeft);
     }
     public void MoveDown()
     {
         rb2d.velocity = Vector2.down * speed;
         direction = down;
+        UpdateAnimatorState(AnimatorStateEnum.walkDown);
     }
     public void MoveRight()
     {
         rb2d.velocity = Vector2.right * speed;
         direction = right;
+        UpdateAnimatorState(AnimatorStateEnum.walkRight);
     }
     public void Stop()
     {
         rb2d.velocity = Vector2.zero;
+        UpdateAnimatorState(AnimatorStateEnum.stop);
     }
 
     private double e = 0.1; //odchylka
