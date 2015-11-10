@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: 1362b7ae01b66a94ca4529fc7767f035
+timeCreated: 1447071793
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: bullets_0
+    21300002: bullets_1
+    21300004: bullets_2
+    21300006: bullets_3
+    21300008: bullets_4
+    21300010: bullets_5
+    21300012: bullets_6
+    21300014: bullets_7
+    21300016: bullets_8
+    21300018: bullets_9
+    21300020: bullets_10
+    21300022: bullets_11
+    21300024: bullets_12
+    21300026: bullets_13
+    21300028: bullets_14
+    21300030: bullets_15
+    21300032: bullets_16
+    21300034: bullets_17
+    21300036: bullets_18
+    21300038: bullets_19
+    21300040: bullets_20
+    21300042: bullets_21
+    21300044: bullets_22
+    21300046: bullets_23
+    21300048: bullets_24
+    21300050: bullets_25
+    21300052: bullets_26
+    21300054: bullets_27
+    21300056: bullets_28
+    21300058: bullets_29
+    21300060: bullets_30
+    21300062: bullets_31
+    21300064: bullets_32
+    21300066: bullets_33
+    21300068: bullets_34
+    21300070: bullets_35
+    21300072: bullets_36
+    21300074: bullets_37
+    21300076: bullets_38
+    21300078: bullets_39
+    21300080: bullets_40
+    21300082: bullets_41
+    21300084: bullets_42
+    21300086: bullets_43
+    21300088: bullets_44
+    21300090: bullets_45
+    21300092: bullets_46
+    21300094: bullets_47
+    21300096: bullet_MP40
+    21300098: bullet_biogun
+    21300100: bullet_davinci_pistol
+    21300102: bullet_einstein_pistol
+    21300104: bullet_sniper
+    21300106: bullet_5
+    21300108: bullet_6
+    21300110: bullet_7
+    21300112: bullet_8
+    21300114: bullet_9
+    21300116: bullet_10
+    21300118: bullet_11
+    21300120: bullet_12
+    21300122: bullet_13
+    21300124: bullet_14
+    21300126: bullet_15
+    21300128: bullet_16
+    21300130: bullet_17
+    21300132: bullet_18
+    21300134: bullet_19
+    21300136: bullet_20
+    21300138: bullet_21
+    21300140: bullet_22
+    21300142: bullet_23
+    21300144: bullet_24
+    21300146: bullet_25
+    21300148: bullet_26
+    21300150: bullet_27
+    21300152: bullet_28
+    21300154: bullet_29
+    21300156: bullet_30
+    21300158: bullet_31
+    21300160: bullet_32
+    21300162: bullet_33
+    21300164: bullet_34
+    21300166: bullet_35
+    21300168: bullet_36
+    21300170: bullet_37
+    21300172: bullet_38
+    21300174: bullet_39
+    21300176: bullet_40
+    21300178: bullet_41
+    21300180: bullet_42
+    21300182: bullet_43
+    21300184: bullet_44
+    21300186: bullet_45
+    21300188: bullet_46
+    21300190: bullet_47
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -3
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    sprites:
+    - name: bullet_MP40
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 205
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_biogun
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 205
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_davinci_pistol
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 205
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_einstein_pistol
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 205
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_sniper
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 205
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 205
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_6
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 205
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_7
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 205
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_8
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 205
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_9
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 205
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 154
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_11
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 154
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_12
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 154
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_13
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 154
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_14
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 154
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_15
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 154
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_16
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 154
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_17
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 154
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_18
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 154
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_19
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 154
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_20
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 103
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_21
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 103
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_22
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 103
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_23
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 103
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_24
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 103
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_25
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 103
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_26
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 103
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_27
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 103
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_28
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 103
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_29
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 103
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_30
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 52
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_31
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 52
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_32
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 52
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_33
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 52
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_34
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 52
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_35
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 52
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_36
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 52
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_37
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 52
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_38
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 52
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_39
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 52
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_40
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_41
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 1
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_42
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 1
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_43
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 1
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_44
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 1
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_45
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_46
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 1
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_47
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 1
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

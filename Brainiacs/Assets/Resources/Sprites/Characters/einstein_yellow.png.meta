@@ -1,0 +1,1480 @@
+fileFormatVersion: 2
+guid: 5d560481baebef541895c8ee675c16c7
+timeCreated: 1447026645
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: einstein_yellow_0
+    21300002: einstein_yellow_1
+    21300004: einstein_yellow_2
+    21300006: einstein_yellow_3
+    21300008: einstein_yellow_4
+    21300010: einstein_yellow_5
+    21300012: einstein_yellow_6
+    21300014: einstein_yellow_7
+    21300016: einstein_yellow_8
+    21300018: einstein_yellow_9
+    21300020: einstein_yellow_10
+    21300022: einstein_yellow_11
+    21300024: einstein_yellow_12
+    21300026: einstein_yellow_13
+    21300028: einstein_yellow_14
+    21300030: einstein_yellow_15
+    21300032: einstein_yellow_16
+    21300034: einstein_yellow_17
+    21300036: einstein_yellow_18
+    21300038: einstein_yellow_19
+    21300040: einstein_yellow_20
+    21300042: einstein_yellow_21
+    21300044: einstein_yellow_22
+    21300046: einstein_yellow_23
+    21300048: einstein_yellow_24
+    21300050: einstein_yellow_25
+    21300052: einstein_yellow_26
+    21300054: einstein_yellow_27
+    21300056: einstein_yellow_28
+    21300058: einstein_yellow_29
+    21300060: einstein_yellow_30
+    21300062: einstein_yellow_31
+    21300064: einstein_yellow_32
+    21300066: einstein_yellow_33
+    21300068: einstein_yellow_34
+    21300070: einstein_yellow_35
+    21300072: einstein_yellow_36
+    21300074: einstein_yellow_37
+    21300076: einstein_yellow_38
+    21300078: einstein_yellow_39
+    21300080: einstein_yellow_40
+    21300082: einstein_yellow_41
+    21300084: einstein_yellow_42
+    21300086: einstein_yellow_43
+    21300088: einstein_yellow_44
+    21300090: einstein_yellow_45
+    21300092: einstein_yellow_46
+    21300094: einstein_yellow_47
+    21300096: einstein_yellow_48
+    21300098: einstein_yellow_49
+    21300100: einstein_yellow_50
+    21300102: einstein_yellow_51
+    21300104: einstein_yellow_52
+    21300106: einstein_yellow_53
+    21300108: einstein_yellow_54
+    21300110: einstein_yellow_55
+    21300112: einstein_yellow_56
+    21300114: einstein_yellow_57
+    21300116: einstein_yellow_58
+    21300118: einstein_yellow_59
+    21300120: einstein_yellow_60
+    21300122: einstein_yellow_61
+    21300124: einstein_yellow_62
+    21300126: einstein_yellow_63
+    21300128: einstein_yellow_64
+    21300130: einstein_yellow_65
+    21300132: einstein_yellow_66
+    21300134: einstein_yellow_67
+    21300136: einstein_yellow_68
+    21300138: einstein_yellow_69
+    21300140: einstein_yellow_70
+    21300142: einstein_yellow_71
+    21300144: einstein_yellow_72
+    21300146: einstein_yellow_73
+    21300148: einstein_yellow_74
+    21300150: einstein_yellow_75
+    21300152: einstein_yellow_76
+    21300154: einstein_yellow_77
+    21300156: einstein_yellow_78
+    21300158: einstein_yellow_79
+    21300160: einstein_yellow_80
+    21300162: einstein_yellow_81
+    21300164: einstein_yellow_82
+    21300166: einstein_yellow_83
+    21300168: einstein_yellow_84
+    21300170: einstein_yellow_85
+    21300172: einstein_yellow_86
+    21300174: einstein_yellow_87
+    21300176: einstein_yellow_88
+    21300178: einstein_yellow_89
+    21300180: einstein_yellow_90
+    21300182: einstein_yellow_91
+    21300184: einstein_yellow_92
+    21300186: einstein_yellow_93
+    21300188: einstein_yellow_94
+    21300190: einstein_yellow_95
+    21300192: einstein_yellow_96
+    21300194: einstein_yellow_97
+    21300196: einstein_yellow_98
+    21300198: einstein_yellow_99
+    21300200: einstein_yellow_100
+    21300202: einstein_yellow_101
+    21300204: einstein_yellow_102
+    21300206: einstein_yellow_103
+    21300208: einstein_yellow_104
+    21300210: einstein_yellow_105
+    21300212: einstein_yellow_106
+    21300214: einstein_yellow_107
+    21300216: einstein_yellow_108
+    21300218: einstein_yellow_109
+    21300220: einstein_yellow_110
+    21300222: einstein_yellow_111
+    21300224: einstein_yellow_112
+    21300226: einstein_yellow_113
+    21300228: einstein_yellow_114
+    21300230: einstein_yellow_115
+    21300232: einstein_yellow_116
+    21300234: einstein_yellow_117
+    21300236: einstein_yellow_118
+    21300238: einstein_yellow_119
+    21300240: einstein_yellow_120
+    21300242: einstein_yellow_121
+    21300244: einstein_yellow_122
+    21300246: einstein_yellow_123
+    21300248: einstein_yellow_124
+    21300250: einstein_yellow_125
+    21300252: einstein_yellow_126
+    21300254: einstein_yellow_127
+    21300256: einstein_yellow_128
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -3
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    sprites:
+    - name: einstein_yellow_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_1
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_2
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_3
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_4
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_5
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_6
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_7
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_8
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_9
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_11
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_12
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_13
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_14
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_15
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_16
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_17
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_18
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_19
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_20
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_21
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_22
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_23
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_24
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_25
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_26
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_27
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_28
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_29
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_30
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_31
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_32
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_33
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_34
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_35
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_36
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_37
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_38
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_39
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_40
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_41
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_42
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_43
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_44
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_45
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_46
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_47
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_48
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_49
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_50
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_51
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_52
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_53
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_54
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_55
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_56
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_57
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_58
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_59
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_60
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_61
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_62
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_63
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_64
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_65
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_66
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_67
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_68
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_69
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_70
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_71
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_72
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_73
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_74
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_75
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_76
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_77
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_78
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_79
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_80
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_81
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_82
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_83
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_84
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_85
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_86
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_87
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_88
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_89
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_90
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_91
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_92
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_93
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_94
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_95
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_96
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_97
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_98
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_99
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_100
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_101
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_102
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_103
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_104
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_105
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_106
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_107
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_108
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_109
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_110
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_111
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_112
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_113
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_114
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_115
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_116
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_117
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_118
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_119
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_120
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_121
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_122
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_123
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_124
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_125
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_126
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_127
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_yellow_128
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

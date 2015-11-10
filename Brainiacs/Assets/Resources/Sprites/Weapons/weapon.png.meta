@@ -1,0 +1,493 @@
+fileFormatVersion: 2
+guid: c521498b9ab83914bbe7918e87186712
+timeCreated: 1447070964
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: weapons_0
+    21300002: weapons_1
+    21300004: weapons_2
+    21300006: weapons_3
+    21300008: weapons_4
+    21300010: weapons_5
+    21300012: weapons_6
+    21300014: weapons_7
+    21300016: weapons_8
+    21300018: weapons_9
+    21300020: weapons_10
+    21300022: weapons_11
+    21300024: weapons_12
+    21300026: weapons_13
+    21300028: weapons_14
+    21300030: weapons_15
+    21300032: weapons_16
+    21300034: weapons_17
+    21300036: weapons_18
+    21300038: weapons_19
+    21300040: weapons_20
+    21300042: weapons_21
+    21300044: weapons_22
+    21300046: weapons_23
+    21300048: weapons_24
+    21300050: weapons_25
+    21300052: weapons_26
+    21300054: weapons_27
+    21300056: weapons_28
+    21300058: weapons_29
+    21300060: weapons_30
+    21300062: weapons_31
+    21300064: weapons_32
+    21300066: weapons_33
+    21300068: weapons_34
+    21300070: weapons_35
+    21300072: weapon_MP40_down
+    21300074: weapon_MP40_left
+    21300076: weapon_MP40_right
+    21300078: weapon_MP40_up
+    21300080: weapon_biogun_down
+    21300082: weapon_biogun_left
+    21300084: weapon_biogun_right
+    21300086: weapon_biogun_up
+    21300088: weapon_curie_pistol_down
+    21300090: weapon_curie_pistol_left
+    21300092: weapon_curie_pistol_right
+    21300094: weapon_curie_pistol_up
+    21300096: weapon_davinci_pistol_right
+    21300098: weapon_davinci_pistol_down
+    21300100: weapon_davinci_pistol_left
+    21300102: weapon_davinci_pistol_up
+    21300104: weapon_einstein_pistol_down
+    21300106: weapon_einstein_pistol_left
+    21300108: weapon_einstein_pistol_right
+    21300110: weapon_einstein_pistol_up
+    21300112: weapon_flamethrower_down
+    21300114: weapon_flamethrower_left
+    21300116: weapon_flamethrower_right
+    21300118: weapon_flamethrower_up
+    21300120: weapon_nobel_pistol_down
+    21300122: weapon_nobel_pistol_left
+    21300124: weapon_nobel_pistol_right
+    21300126: weapon_nobel_pistol_up
+    21300128: weapon_sniper_down
+    21300130: weapon_sniper_left
+    21300132: weapon_sniper_right
+    21300134: weapon_sniper_up
+    21300136: weapon_tesla_pistol_down
+    21300138: weapon_tesla_pistol_left
+    21300140: weapon_tesla_pistol_right
+    21300142: weapon_tesla_pistol_up
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -3
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    sprites:
+    - name: weapon_MP40_down
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_MP40_left
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_MP40_right
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_MP40_up
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_biogun_down
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_biogun_left
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_biogun_right
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_biogun_up
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_curie_pistol_down
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_curie_pistol_left
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_curie_pistol_right
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_curie_pistol_up
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_davinci_pistol_right
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_davinci_pistol_down
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_davinci_pistol_left
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_davinci_pistol_up
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_einstein_pistol_down
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_einstein_pistol_left
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_einstein_pistol_right
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_einstein_pistol_up
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_flamethrower_down
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_flamethrower_left
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_flamethrower_right
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_flamethrower_up
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_nobel_pistol_down
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_nobel_pistol_left
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_nobel_pistol_right
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_nobel_pistol_up
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_sniper_down
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_sniper_left
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_sniper_right
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_sniper_up
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_tesla_pistol_down
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_tesla_pistol_left
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_tesla_pistol_right
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: weapon_tesla_pistol_up
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

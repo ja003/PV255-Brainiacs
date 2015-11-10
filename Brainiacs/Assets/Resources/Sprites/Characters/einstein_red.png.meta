@@ -1,0 +1,1480 @@
+fileFormatVersion: 2
+guid: db9ba844c72f43b4492065deceaf07b8
+timeCreated: 1447026640
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: einstein_red_0
+    21300002: einstein_red_1
+    21300004: einstein_red_2
+    21300006: einstein_red_3
+    21300008: einstein_red_4
+    21300010: einstein_red_5
+    21300012: einstein_red_6
+    21300014: einstein_red_7
+    21300016: einstein_red_8
+    21300018: einstein_red_9
+    21300020: einstein_red_10
+    21300022: einstein_red_11
+    21300024: einstein_red_12
+    21300026: einstein_red_13
+    21300028: einstein_red_14
+    21300030: einstein_red_15
+    21300032: einstein_red_16
+    21300034: einstein_red_17
+    21300036: einstein_red_18
+    21300038: einstein_red_19
+    21300040: einstein_red_20
+    21300042: einstein_red_21
+    21300044: einstein_red_22
+    21300046: einstein_red_23
+    21300048: einstein_red_24
+    21300050: einstein_red_25
+    21300052: einstein_red_26
+    21300054: einstein_red_27
+    21300056: einstein_red_28
+    21300058: einstein_red_29
+    21300060: einstein_red_30
+    21300062: einstein_red_31
+    21300064: einstein_red_32
+    21300066: einstein_red_33
+    21300068: einstein_red_34
+    21300070: einstein_red_35
+    21300072: einstein_red_36
+    21300074: einstein_red_37
+    21300076: einstein_red_38
+    21300078: einstein_red_39
+    21300080: einstein_red_40
+    21300082: einstein_red_41
+    21300084: einstein_red_42
+    21300086: einstein_red_43
+    21300088: einstein_red_44
+    21300090: einstein_red_45
+    21300092: einstein_red_46
+    21300094: einstein_red_47
+    21300096: einstein_red_48
+    21300098: einstein_red_49
+    21300100: einstein_red_50
+    21300102: einstein_red_51
+    21300104: einstein_red_52
+    21300106: einstein_red_53
+    21300108: einstein_red_54
+    21300110: einstein_red_55
+    21300112: einstein_red_56
+    21300114: einstein_red_57
+    21300116: einstein_red_58
+    21300118: einstein_red_59
+    21300120: einstein_red_60
+    21300122: einstein_red_61
+    21300124: einstein_red_62
+    21300126: einstein_red_63
+    21300128: einstein_red_64
+    21300130: einstein_red_65
+    21300132: einstein_red_66
+    21300134: einstein_red_67
+    21300136: einstein_red_68
+    21300138: einstein_red_69
+    21300140: einstein_red_70
+    21300142: einstein_red_71
+    21300144: einstein_red_72
+    21300146: einstein_red_73
+    21300148: einstein_red_74
+    21300150: einstein_red_75
+    21300152: einstein_red_76
+    21300154: einstein_red_77
+    21300156: einstein_red_78
+    21300158: einstein_red_79
+    21300160: einstein_red_80
+    21300162: einstein_red_81
+    21300164: einstein_red_82
+    21300166: einstein_red_83
+    21300168: einstein_red_84
+    21300170: einstein_red_85
+    21300172: einstein_red_86
+    21300174: einstein_red_87
+    21300176: einstein_red_88
+    21300178: einstein_red_89
+    21300180: einstein_red_90
+    21300182: einstein_red_91
+    21300184: einstein_red_92
+    21300186: einstein_red_93
+    21300188: einstein_red_94
+    21300190: einstein_red_95
+    21300192: einstein_red_96
+    21300194: einstein_red_97
+    21300196: einstein_red_98
+    21300198: einstein_red_99
+    21300200: einstein_red_100
+    21300202: einstein_red_101
+    21300204: einstein_red_102
+    21300206: einstein_red_103
+    21300208: einstein_red_104
+    21300210: einstein_red_105
+    21300212: einstein_red_106
+    21300214: einstein_red_107
+    21300216: einstein_red_108
+    21300218: einstein_red_109
+    21300220: einstein_red_110
+    21300222: einstein_red_111
+    21300224: einstein_red_112
+    21300226: einstein_red_113
+    21300228: einstein_red_114
+    21300230: einstein_red_115
+    21300232: einstein_red_116
+    21300234: einstein_red_117
+    21300236: einstein_red_118
+    21300238: einstein_red_119
+    21300240: einstein_red_120
+    21300242: einstein_red_121
+    21300244: einstein_red_122
+    21300246: einstein_red_123
+    21300248: einstein_red_124
+    21300250: einstein_red_125
+    21300252: einstein_red_126
+    21300254: einstein_red_127
+    21300256: einstein_red_128
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -3
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    sprites:
+    - name: einstein_red_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_1
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_2
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_3
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_4
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_5
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_6
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_7
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_8
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_9
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_11
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_12
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_13
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_14
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_15
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_16
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_17
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_18
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_19
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_20
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_21
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_22
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_23
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_24
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_25
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_26
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_27
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_28
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_29
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_30
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_31
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_32
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_33
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_34
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_35
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_36
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_37
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_38
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_39
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_40
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_41
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_42
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_43
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_44
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_45
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_46
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_47
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_48
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_49
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_50
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_51
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_52
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_53
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_54
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_55
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_56
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_57
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_58
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_59
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_60
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_61
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_62
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_63
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_64
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_65
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_66
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_67
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_68
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_69
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_70
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_71
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_72
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_73
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_74
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_75
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_76
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_77
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_78
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_79
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_80
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_81
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_82
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_83
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_84
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_85
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_86
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_87
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_88
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_89
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_90
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_91
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_92
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_93
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_94
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_95
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_96
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_97
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_98
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_99
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_100
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_101
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_102
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_103
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_104
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_105
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_106
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_107
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_108
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_109
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_110
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_111
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_112
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_113
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_114
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_115
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_116
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_117
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_118
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_119
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_120
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_121
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_122
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_123
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_124
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_125
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_126
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_127
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: einstein_red_128
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

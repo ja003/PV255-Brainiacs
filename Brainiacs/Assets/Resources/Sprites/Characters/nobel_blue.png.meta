@@ -1,0 +1,1480 @@
+fileFormatVersion: 2
+guid: 2578deaad6472ef47ace23f0c5d3c020
+timeCreated: 1447026652
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: nobel_blue_0
+    21300002: nobel_blue_1
+    21300004: nobel_blue_2
+    21300006: nobel_blue_3
+    21300008: nobel_blue_4
+    21300010: nobel_blue_5
+    21300012: nobel_blue_6
+    21300014: nobel_blue_7
+    21300016: nobel_blue_8
+    21300018: nobel_blue_9
+    21300020: nobel_blue_10
+    21300022: nobel_blue_11
+    21300024: nobel_blue_12
+    21300026: nobel_blue_13
+    21300028: nobel_blue_14
+    21300030: nobel_blue_15
+    21300032: nobel_blue_16
+    21300034: nobel_blue_17
+    21300036: nobel_blue_18
+    21300038: nobel_blue_19
+    21300040: nobel_blue_20
+    21300042: nobel_blue_21
+    21300044: nobel_blue_22
+    21300046: nobel_blue_23
+    21300048: nobel_blue_24
+    21300050: nobel_blue_25
+    21300052: nobel_blue_26
+    21300054: nobel_blue_27
+    21300056: nobel_blue_28
+    21300058: nobel_blue_29
+    21300060: nobel_blue_30
+    21300062: nobel_blue_31
+    21300064: nobel_blue_32
+    21300066: nobel_blue_33
+    21300068: nobel_blue_34
+    21300070: nobel_blue_35
+    21300072: nobel_blue_36
+    21300074: nobel_blue_37
+    21300076: nobel_blue_38
+    21300078: nobel_blue_39
+    21300080: nobel_blue_40
+    21300082: nobel_blue_41
+    21300084: nobel_blue_42
+    21300086: nobel_blue_43
+    21300088: nobel_blue_44
+    21300090: nobel_blue_45
+    21300092: nobel_blue_46
+    21300094: nobel_blue_47
+    21300096: nobel_blue_48
+    21300098: nobel_blue_49
+    21300100: nobel_blue_50
+    21300102: nobel_blue_51
+    21300104: nobel_blue_52
+    21300106: nobel_blue_53
+    21300108: nobel_blue_54
+    21300110: nobel_blue_55
+    21300112: nobel_blue_56
+    21300114: nobel_blue_57
+    21300116: nobel_blue_58
+    21300118: nobel_blue_59
+    21300120: nobel_blue_60
+    21300122: nobel_blue_61
+    21300124: nobel_blue_62
+    21300126: nobel_blue_63
+    21300128: nobel_blue_64
+    21300130: nobel_blue_65
+    21300132: nobel_blue_66
+    21300134: nobel_blue_67
+    21300136: nobel_blue_68
+    21300138: nobel_blue_69
+    21300140: nobel_blue_70
+    21300142: nobel_blue_71
+    21300144: nobel_blue_72
+    21300146: nobel_blue_73
+    21300148: nobel_blue_74
+    21300150: nobel_blue_75
+    21300152: nobel_blue_76
+    21300154: nobel_blue_77
+    21300156: nobel_blue_78
+    21300158: nobel_blue_79
+    21300160: nobel_blue_80
+    21300162: nobel_blue_81
+    21300164: nobel_blue_82
+    21300166: nobel_blue_83
+    21300168: nobel_blue_84
+    21300170: nobel_blue_85
+    21300172: nobel_blue_86
+    21300174: nobel_blue_87
+    21300176: nobel_blue_88
+    21300178: nobel_blue_89
+    21300180: nobel_blue_90
+    21300182: nobel_blue_91
+    21300184: nobel_blue_92
+    21300186: nobel_blue_93
+    21300188: nobel_blue_94
+    21300190: nobel_blue_95
+    21300192: nobel_blue_96
+    21300194: nobel_blue_97
+    21300196: nobel_blue_98
+    21300198: nobel_blue_99
+    21300200: nobel_blue_100
+    21300202: nobel_blue_101
+    21300204: nobel_blue_102
+    21300206: nobel_blue_103
+    21300208: nobel_blue_104
+    21300210: nobel_blue_105
+    21300212: nobel_blue_106
+    21300214: nobel_blue_107
+    21300216: nobel_blue_108
+    21300218: nobel_blue_109
+    21300220: nobel_blue_110
+    21300222: nobel_blue_111
+    21300224: nobel_blue_112
+    21300226: nobel_blue_113
+    21300228: nobel_blue_114
+    21300230: nobel_blue_115
+    21300232: nobel_blue_116
+    21300234: nobel_blue_117
+    21300236: nobel_blue_118
+    21300238: nobel_blue_119
+    21300240: nobel_blue_120
+    21300242: nobel_blue_121
+    21300244: nobel_blue_122
+    21300246: nobel_blue_123
+    21300248: nobel_blue_124
+    21300250: nobel_blue_125
+    21300252: nobel_blue_126
+    21300254: nobel_blue_127
+    21300256: nobel_blue_128
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -3
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    sprites:
+    - name: nobel_blue_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_1
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_2
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_3
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_4
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_5
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_6
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_7
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_8
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_9
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_11
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_12
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_13
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_14
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_15
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_16
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_17
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_18
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_19
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_20
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_21
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_22
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_23
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_24
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_25
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_26
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_27
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_28
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_29
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_30
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_31
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_32
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_33
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_34
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_35
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_36
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_37
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_38
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_39
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_40
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_41
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_42
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_43
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_44
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_45
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_46
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_47
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_48
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_49
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_50
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_51
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_52
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_53
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_54
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_55
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_56
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_57
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_58
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_59
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_60
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_61
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_62
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_63
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_64
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_65
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_66
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_67
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_68
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_69
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_70
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_71
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_72
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_73
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_74
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_75
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_76
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_77
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_78
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_79
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_80
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_81
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_82
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_83
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_84
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_85
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_86
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_87
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_88
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_89
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_90
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_91
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_92
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_93
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_94
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_95
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_96
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_97
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_98
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_99
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_100
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_101
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_102
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_103
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_104
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_105
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_106
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_107
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_108
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_109
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_110
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_111
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_112
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_113
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_114
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_115
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_116
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_117
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_118
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_119
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_120
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_121
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_122
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_123
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_124
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_125
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_126
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_127
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: nobel_blue_128
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

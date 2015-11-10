@@ -1,0 +1,1458 @@
+fileFormatVersion: 2
+guid: b854ef91defef854eb8995a56f61f2f2
+timeCreated: 1447026843
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: tesla_red_0
+    21300002: tesla_red_1
+    21300004: tesla_red_2
+    21300006: tesla_red_3
+    21300008: tesla_red_4
+    21300010: tesla_red_5
+    21300012: tesla_red_6
+    21300014: tesla_red_7
+    21300016: tesla_red_8
+    21300018: tesla_red_9
+    21300020: tesla_red_10
+    21300022: tesla_red_11
+    21300024: tesla_red_12
+    21300026: tesla_red_13
+    21300028: tesla_red_14
+    21300030: tesla_red_15
+    21300032: tesla_red_16
+    21300034: tesla_red_17
+    21300036: tesla_red_18
+    21300038: tesla_red_19
+    21300040: tesla_red_20
+    21300042: tesla_red_21
+    21300044: tesla_red_22
+    21300046: tesla_red_23
+    21300048: tesla_red_24
+    21300050: tesla_red_25
+    21300052: tesla_red_26
+    21300054: tesla_red_27
+    21300056: tesla_red_28
+    21300058: tesla_red_29
+    21300060: tesla_red_30
+    21300062: tesla_red_31
+    21300064: tesla_red_32
+    21300066: tesla_red_33
+    21300068: tesla_red_34
+    21300070: tesla_red_35
+    21300072: tesla_red_36
+    21300074: tesla_red_37
+    21300076: tesla_red_38
+    21300078: tesla_red_39
+    21300080: tesla_red_40
+    21300082: tesla_red_41
+    21300084: tesla_red_42
+    21300086: tesla_red_43
+    21300088: tesla_red_44
+    21300090: tesla_red_45
+    21300092: tesla_red_46
+    21300094: tesla_red_47
+    21300096: tesla_red_48
+    21300098: tesla_red_49
+    21300100: tesla_red_50
+    21300102: tesla_red_51
+    21300104: tesla_red_52
+    21300106: tesla_red_53
+    21300108: tesla_red_54
+    21300110: tesla_red_55
+    21300112: tesla_red_56
+    21300114: tesla_red_57
+    21300116: tesla_red_58
+    21300118: tesla_red_59
+    21300120: tesla_red_60
+    21300122: tesla_red_61
+    21300124: tesla_red_62
+    21300126: tesla_red_63
+    21300128: tesla_red_64
+    21300130: tesla_red_65
+    21300132: tesla_red_66
+    21300134: tesla_red_67
+    21300136: tesla_red_68
+    21300138: tesla_red_69
+    21300140: tesla_red_70
+    21300142: tesla_red_71
+    21300144: tesla_red_72
+    21300146: tesla_red_73
+    21300148: tesla_red_74
+    21300150: tesla_red_75
+    21300152: tesla_red_76
+    21300154: tesla_red_77
+    21300156: tesla_red_78
+    21300158: tesla_red_79
+    21300160: tesla_red_80
+    21300162: tesla_red_81
+    21300164: tesla_red_82
+    21300166: tesla_red_83
+    21300168: tesla_red_84
+    21300170: tesla_red_85
+    21300172: tesla_red_86
+    21300174: tesla_red_87
+    21300176: tesla_red_88
+    21300178: tesla_red_89
+    21300180: tesla_red_90
+    21300182: tesla_red_91
+    21300184: tesla_red_92
+    21300186: tesla_red_93
+    21300188: tesla_red_94
+    21300190: tesla_red_95
+    21300192: tesla_red_96
+    21300194: tesla_red_97
+    21300196: tesla_red_98
+    21300198: tesla_red_99
+    21300200: tesla_red_100
+    21300202: tesla_red_101
+    21300204: tesla_red_102
+    21300206: tesla_red_103
+    21300208: tesla_red_104
+    21300210: tesla_red_105
+    21300212: tesla_red_106
+    21300214: tesla_red_107
+    21300216: tesla_red_108
+    21300218: tesla_red_109
+    21300220: tesla_red_110
+    21300222: tesla_red_111
+    21300224: tesla_red_112
+    21300226: tesla_red_113
+    21300228: tesla_red_114
+    21300230: tesla_red_115
+    21300232: tesla_red_116
+    21300234: tesla_red_117
+    21300236: tesla_red_118
+    21300238: tesla_red_119
+    21300240: tesla_red_120
+    21300242: tesla_red_121
+    21300244: tesla_red_122
+    21300246: tesla_red_123
+    21300248: tesla_red_124
+    21300250: tesla_red_125
+    21300252: tesla_red_126
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -3
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    sprites:
+    - name: tesla_red_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_1
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_2
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_3
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_4
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_5
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_6
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_7
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_8
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_9
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 1213
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_11
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_12
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_13
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_14
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_15
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_16
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_17
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_18
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_19
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 1112
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_20
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_21
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_22
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_23
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_24
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_25
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_26
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_27
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_28
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_29
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 1011
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_30
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_31
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_32
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_33
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_34
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_35
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_36
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_37
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_38
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_39
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 910
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_40
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_41
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_42
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_43
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_44
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_45
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_46
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_47
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_48
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_49
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 809
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_50
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_51
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_52
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_53
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_54
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_55
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_56
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_57
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_58
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_59
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 708
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_60
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_61
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_62
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_63
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_64
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_65
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_66
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_67
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_68
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_69
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 607
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_70
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_71
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_72
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_73
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_74
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_75
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_76
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_77
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_78
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_79
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 506
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_80
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_81
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_82
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_83
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_84
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_85
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_86
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_87
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_88
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_89
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 405
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_90
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_91
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_92
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_93
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_94
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_95
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_96
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_97
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_98
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_99
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 304
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_100
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_101
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_102
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_103
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_104
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_105
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_106
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_107
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_108
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_109
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 203
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_110
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_111
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_112
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_113
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_114
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_115
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_116
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_117
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_118
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_119
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 102
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_120
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_121
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_122
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_123
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_124
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_125
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tesla_red_126
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 1
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
