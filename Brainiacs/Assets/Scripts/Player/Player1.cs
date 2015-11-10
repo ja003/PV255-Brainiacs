@@ -86,6 +86,18 @@ public class Player1 : HumanBase
         //Debug.Log("update");
         //base.SwitchWeapon();
         //UpdateDirection();
+
+        if(Time.frameCount%30 == 0)
+        {
+            //Debug.Log(
+            //"walkUp:" + walkUp +
+            //",walkDown:" + walkDown +
+            //",walkRight:" + walkDown +
+            //",walkLeft:" + walkLeft +
+            //",dead:" + dead
+            //);
+            
+        }
     }
 
    

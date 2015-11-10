@@ -144,7 +144,7 @@ public class gm : MonoBehaviour {
         if (player1Active) player1.SetActive(true);
         started = player1Active;
         if (player2Active) player2.SetActive(true);
-        if (player3Active) player3.SetActive(true);
+        //if (player3Active) player3.SetActive(true);
         if (player4Active) player4.SetActive(true);
     }
 

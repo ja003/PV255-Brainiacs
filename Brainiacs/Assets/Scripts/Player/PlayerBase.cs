@@ -206,11 +206,11 @@ public abstract class PlayerBase : MonoBehaviour
 
         if (direction == left)
         {
-            comp.spriteRend.transform.localRotation = Quaternion.Euler(0, 180, 0);
+            //comp.spriteRend.transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
         else if (direction == right)
         {
-            comp.spriteRend.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            //comp.spriteRend.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
     }
 
@@ -247,6 +247,8 @@ public abstract class PlayerBase : MonoBehaviour
                 Debug.Log("X " + newRandomPosition.x);
                 Debug.Log("Y " + newRandomPosition.y);
                 hitPoints = maxHP;
+                
+                dead = false;
             }
             else
             {
