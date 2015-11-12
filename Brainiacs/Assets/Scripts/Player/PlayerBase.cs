@@ -204,13 +204,24 @@ public abstract class PlayerBase : MonoBehaviour
     {
         //Debug.Log("[" + playerNumber + "]:" + direction);
 
-        if (direction == left)
+        if (direction == down)
         {
-            //comp.spriteRend.transform.localRotation = Quaternion.Euler(0, 180, 0);
+            weaponHandling.weaponRenderer.sprite = weaponHandling.weaponSprites[0];
+        }
+        else if (direction == left)
+        {
+            weaponHandling.weaponRenderer.sprite = weaponHandling.weaponSprites[1];
+
         }
         else if (direction == right)
         {
-            //comp.spriteRend.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            weaponHandling.weaponRenderer.sprite = weaponHandling.weaponSprites[2];
+
+        }
+        else if (direction == up)
+        {
+            weaponHandling.weaponRenderer.sprite = weaponHandling.weaponSprites[3];
+
         }
     }
 

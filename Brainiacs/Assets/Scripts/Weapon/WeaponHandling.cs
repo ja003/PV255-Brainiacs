@@ -9,6 +9,7 @@ public class WeaponHandling : MonoBehaviour {
     public float lastFired { get; set; }
     public SpriteRenderer weaponRenderer;
     public BulletManager buletManager;
+    public Sprite[] weaponSprites;
 
 
     public void FixedUpdate() {
@@ -29,9 +30,12 @@ public class WeaponHandling : MonoBehaviour {
     public void SwitchWeapon()
     {
 
-        if (inventory.Count == 1) return;
+        if (inventory.Count == 1)
+        {
+            //Debug.Log("1 weapon left");
+            return;
 
-
+        }
         activeWeapon = inventory[((inventory.IndexOf(activeWeapon) + 1) % inventory.Count)];
         //transform.Find("weapon").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(activeWeapon.sprite);
         tranActiveWeapon();

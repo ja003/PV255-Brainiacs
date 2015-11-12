@@ -15,6 +15,8 @@ public class WeaponBase
     public float time { get; set; }
 
     public string sprite { get; set; }
+
+
     public string bulletSprite { get; set; }
 
     public float reloadTime { get; set; }

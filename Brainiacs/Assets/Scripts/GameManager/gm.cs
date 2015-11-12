@@ -57,7 +57,9 @@ public class gm : MonoBehaviour {
             switch (i)
             {
                 case 1:
+                    //Debug.Log(player1.GetComponentInChildren<Transform>());
                     player1.transform.position = initPosition;
+                    //                    player1.GetComponentInChildren<Transform>().position = initPosition;
                     break;
                 case 2:
                     player2.transform.position = initPosition;
@@ -73,7 +75,7 @@ public class gm : MonoBehaviour {
             }
         }
         //manualni přiřazení
-        Vector2 pl1pos = new Vector2(2, -1.5f);
+        Vector2 pl1pos = new Vector2(0, 0);
         player1.transform.position = pl1pos;
 
         Vector2 pl2pos = new Vector2(5, 3);

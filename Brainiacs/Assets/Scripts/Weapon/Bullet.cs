@@ -18,8 +18,9 @@ public class Bullet : MonoBehaviour {
             transform.position = pos + new Vector2(direction.normalized.x, direction.normalized.y*0.75f);
         }
         else{
-            transform.position = pos + new Vector2(direction.normalized.x * 0.5f, direction.normalized.y - 0.25f);
-        }       
+            transform.position = pos + new Vector2(direction.normalized.x * 0.7f, direction.normalized.y - 0.25f);
+        } 
+        
         GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(sprt);
         gameObject.SetActive(true);
         isActive = true;

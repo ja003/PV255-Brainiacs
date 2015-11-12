@@ -8,6 +8,10 @@ public class BulletManager : MonoBehaviour {
     public GameObject bullet;
     public int maxBullets = 20;
     public int indexUsedBullet = 0;
+    protected Vector2 up = Vector2.up;
+    protected Vector2 down = Vector2.down;
+    protected Vector2 left = Vector2.left;
+    protected Vector2 right = Vector2.right;
 
     public void createBullets()
     {
@@ -28,6 +32,8 @@ public class BulletManager : MonoBehaviour {
 
     public void fire(Vector2 direction, Vector2 position, string sprite)
     {
+        
+
         prefabBullets[indexUsedBullet].GetComponent<Bullet>().iniciate(direction, position, sprite);
         indexUsedBullet = (indexUsedBullet + 1) % maxBullets;
     }

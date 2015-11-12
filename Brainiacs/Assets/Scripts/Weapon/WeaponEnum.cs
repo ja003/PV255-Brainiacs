@@ -5,5 +5,6 @@
     specialTesla,
     specialEinstein,
     shotgun,
-    flamethrower
+    flamethrower,
+    sniper
 }
