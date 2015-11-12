@@ -11,14 +11,18 @@ public class Bullet : MonoBehaviour {
     public void iniciate(Vector2 dir, Vector2 pos, string sprt) {
         direction = new Vector2(dir.x, dir.y);
         //transform.position = pos + direction.normalized;
+        
+
         if (dir == Vector2.up){
-            transform.position = pos + new Vector2(direction.normalized.x, direction.normalized.y * 0.25f);
+            transform.position = pos + new Vector2(0.2f, 0.3f);
         }
         else if (dir == Vector2.down) {
-            transform.position = pos + new Vector2(direction.normalized.x, direction.normalized.y*0.75f);
+            //Debug.Log("down");
+            //Debug.Log(pos + new Vector2(-0.07f, -0.5f));
+            transform.position = pos + new Vector2(-0.1f, -0.75f);
         }
         else{
-            transform.position = pos + new Vector2(direction.normalized.x * 0.7f, direction.normalized.y - 0.25f);
+            transform.position = pos + new Vector2(direction.normalized.x*0.5f, -0.17f);
         } 
         
         GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(sprt);
@@ -45,8 +49,10 @@ public class Bullet : MonoBehaviour {
         {
             if (coll.gameObject.tag == "Player")
             {
+                //Debug.Log(coll.name);
                 coll.gameObject.GetComponent<PlayerBase>().ApplyDamage(damage);
             }
+            //Debug.Log(coll.name);
             gameObject.SetActive(false);
             isActive = false;
         }
