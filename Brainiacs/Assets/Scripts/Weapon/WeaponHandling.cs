@@ -4,15 +4,22 @@ using System.Collections.Generic;
 
 public class WeaponHandling : MonoBehaviour {
 
+    public Player1 player;
+
     public List<WeaponBase> inventory = new List<WeaponBase>();
+    public Dictionary<WeaponEnum, WeaponBase> weapons = new Dictionary<WeaponEnum, WeaponBase>();
+
     public WeaponBase activeWeapon { get; set; }
     public float lastFired { get; set; }
     public SpriteRenderer weaponRenderer;
     public BulletManager buletManager;
-    public Sprite[] weaponSprites;
 
+    
 
     public void FixedUpdate() {
+
+        weaponRenderer.sprite = activeWeapon.weaponSprites[player.directionMapping[player.direction]];
+
         foreach (var weap in inventory){
             if (!weap.ready) {
                 if (weap.time >= weap.reloadTime)
@@ -24,6 +31,18 @@ public class WeaponHandling : MonoBehaviour {
                     weap.time += Time.deltaTime;
                 }
             }
+            if (!weap.kadReady)
+            {
+                if (weap.kadTime >= weap.kadency)
+                {
+                    weap.kadReady = true;
+                    weap.kadTime = 0f;
+                }
+                else
+                {
+                    weap.kadTime += Time.deltaTime;
+                }
+            }
         }
     }
 
@@ -32,12 +51,9 @@ public class WeaponHandling : MonoBehaviour {
 
         if (inventory.Count == 1)
         {
-            //Debug.Log("1 weapon left");
             return;
-
         }
         activeWeapon = inventory[((inventory.IndexOf(activeWeapon) + 1) % inventory.Count)];
-        //transform.Find("weapon").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(activeWeapon.sprite);
         tranActiveWeapon();
 
     }
@@ -48,18 +64,17 @@ public class WeaponHandling : MonoBehaviour {
 
     public void fire(Vector2 direction)
     {
-        if (!activeWeapon.ready) return; 
+        if (!activeWeapon.ready || !activeWeapon.kadReady) return;
+        activeWeapon.kadReady = false;
         int bulletsLeft = activeWeapon.fire();
-        //Debug.Log(bulletsLeft);
         buletManager.fire(new Vector2(direction.x, direction.y), transform.position, activeWeapon.bulletSprite);
 
         if (bulletsLeft == 0)
         {
-            if (activeWeapon.weaponType == WeaponEnum.pistol)
+            if (activeWeapon.weaponType == WeaponEnum.pistol || activeWeapon.weaponType == WeaponEnum.sniper)
             {
                 activeWeapon.reload();
                 activeWeapon.ready = false;
-                Debug.Log(activeWeapon.ready);
             }
             else
             {
@@ -73,7 +88,7 @@ public class WeaponHandling : MonoBehaviour {
 
     public void tranActiveWeapon()
     {
-        weaponRenderer.sprite = Resources.Load<Sprite>(activeWeapon.sprite);
+        weaponRenderer.sprite = activeWeapon.weaponSprites[player.directionMapping[player.direction]];
     }
 
 

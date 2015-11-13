@@ -17,6 +17,15 @@ public class WeaponSniper : WeaponBase
         base.ready = true;
         base.sprite = "Sprites/Weapons/sniper";
         base.bulletSprite = "Sprites/Bullets/bullet";
-            
+
+        kadency = 0.25f;
+        kadTime = 0f;
+        kadReady = true;
+
+        loadSprites(sprite, bulletSprite);
+    }
+
+    void loadSprites(string sprt, string bullSprt) {
+        weaponSprites = Resources.LoadAll<Sprite>(sprt);
     }
 }

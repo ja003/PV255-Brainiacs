@@ -35,19 +35,6 @@ public abstract class PlayerBase : MonoBehaviour
     public bool walkLeft = false;
     public bool dead = false;
 
-
-    /// //////////////////////////////////// WEAPON HANDLING ///////////////////////////////////
-    public WeaponHandling weaponHandling;
-
-    public List<WeaponBase> inventory { get; set; }
-    public WeaponBase activeWeapon { get; set; }
-    public float lastFired { get; set; }
-    public List<GameObject> prefabBullets = new List<GameObject>();
-    public GameObject bullet;
-    public int maxBullets = 20;
-    public int indexUsedBullet = 0;
-    /// //////////////////////////////////////// END ///////////////////////////////////////////
-   
     // //////////////////////////////////////// HP /////////////////////////////////////////////
     //<<MG.. added
     private static int maxHP = 100;
@@ -70,7 +57,17 @@ public abstract class PlayerBase : MonoBehaviour
     protected Vector2 right = Vector2.right;
     protected Vector2 stop = Vector2.zero;
     // ///////////////////////////////////////////////////////////////////////////////////////////
-   
+
+    /// //////////////////////////////////// WEAPON HANDLING ///////////////////////////////////
+    public WeaponHandling weaponHandling;
+
+    public List<WeaponBase> inventory { get; set; }
+    public WeaponBase activeWeapon { get; set; }
+    public Dictionary<Vector2, int> directionMapping = new Dictionary<Vector2, int>();
+
+    /// //////////////////////////////////////// END ///////////////////////////////////////////
+
+
     // //////////////////////////////////////  Components ///////////////////////////////////////
     //rigid body of controlled object
     public Rigidbody2D rb2d { get; set; }
@@ -98,16 +95,16 @@ public abstract class PlayerBase : MonoBehaviour
         mapMaxX = 8.6f;
         mapMaxY = 4f;
 
-
-}
+        directionMapping.Add(up, 3);
+        directionMapping.Add(down, 0);
+        directionMapping.Add(left, 1);
+        directionMapping.Add(right, 2);
+    }
 
     private void setUpSprites() {
         string sprite = "";
         sprite += playInfo.charEnum.ToString();
         sprite += playInfo.playerColor;
-
-        //Debug.Log(playInfo.playerColor);
-        //Debug.Log(comp.spriteRend);
 
         comp.spriteRend.sprite = Resources.Load<Sprite>("Sprites/Players/" + sprite);
         Debug.Log("setting sprite: " + sprite);
@@ -203,7 +200,7 @@ public abstract class PlayerBase : MonoBehaviour
     public void UpdateDirection()
     {
         //Debug.Log("[" + playerNumber + "]:" + direction);
-
+        /*
         if (direction == down)
         {
             weaponHandling.weaponRenderer.sprite = weaponHandling.weaponSprites[0];
@@ -222,7 +219,8 @@ public abstract class PlayerBase : MonoBehaviour
         {
             weaponHandling.weaponRenderer.sprite = weaponHandling.weaponSprites[3];
 
-        }
+        }*/
+        
     }
 
     public void UpdatePosition()

@@ -13,12 +13,16 @@ public class WeaponBase
     public int damage { get; set; }
     public bool ready { get; set; }
     public float time { get; set; }
+    public float kadTime { get; set; }
+    public bool kadReady { get; set; }
+    public float kadency { get; set; }
 
     public string sprite { get; set; }
 
+    public Sprite[] weaponSprites;
+
 
     public string bulletSprite { get; set; }
-
     public float reloadTime { get; set; }
 
     public void reload()
@@ -47,5 +51,10 @@ public class WeaponBase
         return ammo;
     }
 
+    public void recycle() {
+        reload();
+        ready = true;
+        time = 0.0f; 
+    }
 }
 
