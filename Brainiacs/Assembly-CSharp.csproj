@@ -75,6 +75,7 @@
      <Compile Include="Assets\Scripts\Weapon\WeaponEnum.cs" />
      <Compile Include="Assets\Scripts\Weapon\WeaponHandling.cs" />
      <Compile Include="Assets\Scripts\Weapon\WeaponPistol.cs" />
+     <Compile Include="Assets\Scripts\Weapon\WeaponSniper.cs" />
      <Compile Include="Assets\Scripts\Weapon\WeaponTeslaSpecial.cs" />
      <Compile Include="Assets\Scripts\unused\BulletManager2.cs" />
      <Compile Include="Assets\Scripts\unused\BulletShooter.cs" />
