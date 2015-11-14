@@ -73,7 +73,7 @@ public class Player1 : HumanBase
         WeaponPistol pistol = new WeaponPistol(pi.charEnum); //OLD
         WeaponSniper sniper = new WeaponSniper(); //just for now
 
-        weaponHandling.player = GetComponent<Player1>();
+        weaponHandling.player = GetComponent<PlayerBase>();
 
         // Tu sa vytvoria vsetky zbrane ktore sa priradia do weapon handling aby sa nemusel volat zbytocne load na sprajtoch
         weaponHandling.weapons.Add(WeaponEnum.sniper, sniper);

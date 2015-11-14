@@ -25,7 +25,4 @@ public class WeaponSniper : WeaponBase
         loadSprites(sprite, bulletSprite);
     }
 
-    void loadSprites(string sprt, string bullSprt) {
-        weaponSprites = Resources.LoadAll<Sprite>(sprt);
-    }
 }

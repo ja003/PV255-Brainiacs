@@ -56,5 +56,10 @@ public class WeaponBase
         ready = true;
         time = 0.0f; 
     }
+
+    protected void loadSprites(string sprt, string bullSprt)
+    {
+        weaponSprites = Resources.LoadAll<Sprite>(sprt);
+    }
 }
 

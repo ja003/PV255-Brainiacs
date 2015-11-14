@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class WeaponHandling : MonoBehaviour {
 
-    public Player1 player;
+    public PlayerBase player;
 
     public List<WeaponBase> inventory = new List<WeaponBase>();
     public Dictionary<WeaponEnum, WeaponBase> weapons = new Dictionary<WeaponEnum, WeaponBase>();
