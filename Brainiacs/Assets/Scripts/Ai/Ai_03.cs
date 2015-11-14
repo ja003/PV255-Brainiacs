@@ -54,14 +54,17 @@ public class Ai_03 : AiBase {
 
     public void setUpWeapons(PlayerInfo pi)
     {
-        WeaponPistol pistol = new WeaponPistol(CharacterEnum.Tesla);
-        weaponHandling.inventory.Add(pistol);
+        WeaponPistol pistol = new WeaponPistol(pi.charEnum); //OLD
+        WeaponSniper sniper = new WeaponSniper(); //just for now
+
+        weaponHandling.player = GetComponent<PlayerBase>();
+
+        // Tu sa vytvoria vsetky zbrane ktore sa priradia do weapon handling aby sa nemusel volat zbytocne load na sprajtoch
+        weaponHandling.weapons.Add(WeaponEnum.sniper, sniper);
+
+        weaponHandling.inventory.Add(sniper);
         weaponHandling.activeWeapon = weaponHandling.inventory[0];
         weaponHandling.weaponRenderer = transform.Find("weapon").GetComponent<SpriteRenderer>();
-        weaponHandling.weaponRenderer.sprite = Resources.Load<Sprite>(pistol.sprite);
-        //TRY
-        WeaponBase skvrna = new Skvrna();
-        weaponHandling.inventory.Add(skvrna);
     }
 
 

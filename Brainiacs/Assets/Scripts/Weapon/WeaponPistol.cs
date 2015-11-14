@@ -13,13 +13,13 @@ public class WeaponPistol : WeaponBase {
         base.damage = 10;
         base.weaponType = WeaponEnum.pistol;
 
-        base.ammo = 5;
-        base.maxAmmo = 5;
+        base.ammo = 10;
+        base.maxAmmo = 10;
 
         base.clip = 5;
         base.maxClip = 5;
 
-        base.reloadTime = 5f;
+        base.reloadTime = 0.5f;
         base.ready = true;
         switch (type)
         {

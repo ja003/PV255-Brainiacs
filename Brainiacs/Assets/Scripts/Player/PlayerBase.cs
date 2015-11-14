@@ -24,6 +24,8 @@ public abstract class PlayerBase : MonoBehaviour
     public float mapMinY;
     public float mapMaxX;
     public float mapMaxY;
+    public float mapWidth;
+    public float mapHeight;
 
     public float characterWidth = 1f;
 
@@ -94,6 +96,8 @@ public abstract class PlayerBase : MonoBehaviour
         mapMinY = -4.75f;
         mapMaxX = 8.6f;
         mapMaxY = 4f;
+        mapHeight = Math.Abs(mapMaxY - mapMinY);
+        mapWidth = Math.Abs(mapMaxX - mapMinX);
 
         directionMapping.Add(up, 3);
         directionMapping.Add(down, 0);
@@ -107,7 +111,7 @@ public abstract class PlayerBase : MonoBehaviour
         sprite += playInfo.playerColor;
 
         comp.spriteRend.sprite = Resources.Load<Sprite>("Sprites/Players/" + sprite);
-        Debug.Log("setting sprite: " + sprite);
+        //Debug.Log("setting sprite: " + sprite);
     }
 
     //TODO: transform.GetChild(1).GetComponent<SpriteRenderer>().sortingLayerName = "Hand_back";

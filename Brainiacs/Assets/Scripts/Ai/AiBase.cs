@@ -13,10 +13,17 @@ public class AiBase : PlayerBase
     Components comp;
     PlayerInfo playInfo;
 
-    public int killPlayer1Priority { get; set; }
-    public int killPlayer2Priority { get; set; }
-    public int killPlayer3Priority { get; set; }
-    public int killPlayer4Priority { get; set; }
+    public static int zeroPriority = 0;
+    public static int lowPriority = 10;
+    public static int mediumPriority = 50;
+    public static int highPriority = 100;
+
+    public int killPlayer1Priority;
+    public int killPlayer2Priority;
+    public int killPlayer3Priority;
+    public int killPlayer4Priority;
+
+    public int avoidBulletPriority;
 
     public Vector2 lastPosition;
     public Vector2 preLastPosition;
@@ -24,9 +31,11 @@ public class AiBase : PlayerBase
     ////MAP shit
     public GameObject[] barriers;
 
+    public bool bulletIncoming;
+    public Vector2 bulletFrom;
 
     /// //////////////////////////////////// CHARACTER COORDINATES /////////////////////////////
-    Renderer renderer;
+    Renderer aiRenderer;
     Collider2D collider;
 
     public Vector2 charBotLeft;
@@ -50,7 +59,7 @@ public class AiBase : PlayerBase
         //weaponHandling = GetComponent<WeaponHandling>();
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         //Debug.Log(rb2d);
-        renderer = GetComponent<Renderer>();
+        aiRenderer = GetComponent<Renderer>();
         currentTargetDestination = new Vector2(0, 0);
         collider = GetComponent<Collider2D>();
 
@@ -61,6 +70,11 @@ public class AiBase : PlayerBase
         //Debug.Log(barriers[1].name);
         //Debug.Log(barriers[2].name);
         //Debug.Log(barriers[3].name);
+        bulletIncoming = false;
+        bulletFrom = new Vector2(0, 0);
+
+        characterColliderHeight = gameObject.GetComponent<BoxCollider2D>().size.y;
+        characterColliderWidth = gameObject.GetComponent<BoxCollider2D>().size.x;
     }
 
     // Update is called once per frame
@@ -74,9 +88,11 @@ public class AiBase : PlayerBase
             lastPosition = new Vector2(0, 1);
         }
 
+        //////////CHEK EVERY FRAME
+        
+        
 
-
-        //check only once per second
+        //////////CHEK ONCE PER SECOND
         if (Time.frameCount % 30 == 6)
         {
             CheckPriorities();
@@ -150,8 +166,9 @@ public class AiBase : PlayerBase
         message += ",KillPlayer2=" + killPlayer2Priority;
         message += ",KillPlayer3=" + killPlayer3Priority;
         message += ",KillPlayer4=" + killPlayer4Priority;
+        message += ",avoidBulletPriority=" + avoidBulletPriority;
 
-        //Debug.Log(message);
+        Debug.Log(message);
     }
 
     public void DoCurrentAction()
@@ -170,6 +187,9 @@ public class AiBase : PlayerBase
             case AiActionEnum.killPlayer4:
                 KillPlayer(player4);
                 break;
+            case AiActionEnum.avoidBullet:
+                AvoidBullet();
+                break;
             default:
                 Stand();
                 break;
@@ -186,7 +206,7 @@ public class AiBase : PlayerBase
         RaycastHit2D[] hitGun = Physics2D.RaycastAll(rayGun.origin, direction, mapLenght);
 
         Debug.DrawRay(rayGun.origin, direction, Color.cyan);
-        Debug.DrawRay(rayGun.origin, direction*-1, Color.red);
+        Debug.DrawRay(rayGun.origin, direction * -1, Color.red);
 
         if (hitGun.Length != 0)
         {
@@ -196,7 +216,7 @@ public class AiBase : PlayerBase
             //}
             //Debug.Log("---");
             //Borders have tag "Barrier" and it sometimes doesnt hit player first, but the border
-            if (hitGun[0].transform.tag == "Barrier" 
+            if (hitGun[0].transform.tag == "Barrier"
                 && hitGun[0].transform.gameObject.layer != LayerMask.NameToLayer("Border"))
             {
                 //Debug.Log("cant shoot");
@@ -210,11 +230,7 @@ public class AiBase : PlayerBase
     {
         return mapMinX < point.x && point.x < mapMaxX && mapMinY < point.y && point.y < mapMaxY;
     }
-
-    /// <summary>
-    /// TODO: nastavení destinace - aby se nekrylo s barrierou
-    /// </summary>
-    /// <param name="player"></param>
+    
     public void KillPlayer(PlayerBase player)
     {
         Vector2 targetPlayerPosition = player.transform.position;
@@ -232,7 +248,7 @@ public class AiBase : PlayerBase
         Vector2 bestVerticalLeft = bestVertical;
         Vector2 bestVerticalRight = bestVertical;
 
-        
+
         while (bestHorizontalDown.y > mapMinY && !CharacterCollidesBarrier(bestHorizontalDown) && bestHorizontalDown.y > posY)
         {
             bestHorizontalDown.y -= 0.1f;
@@ -240,7 +256,7 @@ public class AiBase : PlayerBase
 
         //mapMaxY = 4f;
 
-        
+
 
 
 
@@ -269,7 +285,7 @@ public class AiBase : PlayerBase
         float distanceFromMe = 100; //big enough
         for (int i = 0; i < possibleShootSpots.Count; i++)
         {
-            
+
             //Debug.Log(possibleShootSpots[i]);
             if (distanceFromMe > GetDistance(gameObject.transform.position, possibleShootSpots[i]))
             {
@@ -284,11 +300,19 @@ public class AiBase : PlayerBase
 
 
         //if you are on same axis -> turn his direction and shoot
-        
-        if (AlmostEqual(posX,player.posX,0.1)||AlmostEqual(posY,player.posY,0.1))
+
+        if (AlmostEqual(posX, player.posX, 0.1) || AlmostEqual(posY, player.posY, 0.1))
         {
             //Debug.Log("i can shoot");
-            LookAt(player.gameObject);
+            //look at him (if you are not already looking at him)
+
+            if(GetObjectDirection(player.gameObject) != direction)
+                LookAt(player.gameObject);
+            else
+            {
+                //UpdateAnimatorState(AnimatorStateEnum.stop);
+            }
+
             if (CanShoot(transform.position, direction))
             {
                 //Debug.Log("I can shoot from:" + transform.position + " to: " + direction);
@@ -297,13 +321,45 @@ public class AiBase : PlayerBase
                     weaponHandling.fire(direction);
             }
         }
-        
+
 
     }
 
     public bool AlmostEqual(float pos1, float pos2, double e)
     {
         return pos2 - e < pos1 && pos1 < pos2 + e;
+    }
+
+    public Vector2 GetObjectDirection(GameObject obj)
+    {
+        double distanceX = Mathf.Abs(posX - obj.transform.position.x);
+        double distanceY = Mathf.Abs(posY - obj.transform.position.y);
+
+        //prefer more dominant axis
+        if (distanceX > distanceY)
+        {
+            //it is on my left
+            if (obj.transform.position.x < posX)
+            {
+                return left;
+            }
+            else
+            {
+                return right;
+            }
+        }
+        else
+        {
+            //it is below me
+            if (obj.transform.position.y < posY)
+            {
+                return down;
+            }
+            else
+            {
+                return up;
+            }
+        }
     }
 
     public void LookAt(GameObject obj)
@@ -319,10 +375,13 @@ public class AiBase : PlayerBase
             if (obj.transform.position.x < posX)
             {
                 direction = left;
+                UpdateAnimatorState(AnimatorStateEnum.walkLeft);
             }
             else
             {
                 direction = right;
+                UpdateAnimatorState(AnimatorStateEnum.walkRight);
+                Debug.Log("look right");
             }
         }
         else
@@ -331,47 +390,19 @@ public class AiBase : PlayerBase
             if (obj.transform.position.y < posY)
             {
                 direction = down;
+                UpdateAnimatorState(AnimatorStateEnum.walkDown);
             }
             else
             {
                 direction = up;
+                UpdateAnimatorState(AnimatorStateEnum.walkUp);
             }
         }
+        //UpdateAnimatorState(AnimatorStateEnum.stop);
 
     }
 
-
-    /*
-    /// <summary>
-    /// nefachá se současným BulletShooterem
-    /// </summary>
-    public void Fire()
-    {
-        System.Random rnd = new System.Random();
-        damage = rnd.Next(20, 30); //podla danej zbrane -> zbran musi mat min a max dmg
-        for (int i = 0; i < bullets.Count; i++)
-        {
-            if (!bullets[i].activeInHierarchy)
-            {
-                bullets[i].transform.position = (transform.position + new Vector3(direction.x, direction.y));
-                bullets[i].transform.rotation = transform.rotation;
-                bullets[i].SetActive(true);
-                break;
-
-            }
-        }
-    }
     
-    public void SwitchWeapon()
-    {
-        if (inventory.Count == 1) return;
-
-        activeWeapon = inventory[((inventory.IndexOf(activeWeapon) + 1) % inventory.Count)];
-        transform.Find("weapon").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(activeWeapon.sprite);
-        //Debug.Log("active weapon = " + activeWeapon);
-        
-    }
-    */
 
 
     public void Stand()
@@ -384,9 +415,254 @@ public class AiBase : PlayerBase
     public void CheckPriorities()
     {
         SetKillPriorities();
+        PrintPriorities();
+
+        //register incoming bullets, powerups,...
+        LookAroundYourself();
+        if (bulletIncoming)
+        {
+            SetAvoidBulletPriority(highPriority);
+        }
 
         //....
     }
+
+
+    /// ////////////////////////////AVOID BULLETS
+
+
+    public bool decidedDirectionBool = false;
+    public Vector2 decidedDirection;
+    public void AvoidBullet()
+    {
+        Debug.Log("decidedDirectionBool:"+ decidedDirectionBool);
+        Debug.Log("decidedDirection:" + decidedDirection);
+
+        if (
+            (decidedDirection == up && Collides(up,1))||
+            (decidedDirection == right && Collides(right, 1)) ||
+            (decidedDirection == down && Collides(down, 1)) ||
+            (decidedDirection == left && Collides(left, 1))
+            )
+        {
+            decidedDirectionBool = false;
+        }
+
+        if (decidedDirectionBool)
+        {
+            if(decidedDirection == up)
+            {
+                MoveTo(posX, posY+1);
+            }
+            else if (decidedDirection == right)
+            {
+                MoveTo(posX+1, posY);
+            }
+            else if (decidedDirection == down)
+            {
+                MoveTo(posX, posY-1);
+            }
+            else if (decidedDirection == left)
+            {
+                MoveTo(posX - 1, posY);
+            }
+            else
+            {
+                Debug.Log("fail direction");
+            }
+        }
+        else
+        {
+            if (bulletFrom == up)
+            {
+                if (!Collides(left, 1))
+                {
+                    MoveTo(posX - 1, posY);
+                    decidedDirection = left;
+                }
+                else if (!Collides(right, 1))
+                {
+                    MoveTo(posX + 1, posY);
+                    decidedDirection = right;
+                }
+                else if (!Collides(down, 1))
+                {
+                    MoveTo(posX, posY - 1);
+                    decidedDirection = down;
+                }
+            }
+            else if (bulletFrom == right)
+            {
+                //Debug.Log("from right");
+                if (!Collides(up, 1))
+                {
+                    MoveTo(posX, posY + 1);
+                    decidedDirection = up;
+                    Debug.Log("go up");
+                }
+                else if (!Collides(down, 1))
+                {
+                    Debug.Log("go down");
+                    MoveTo(posX, posY - 1);
+                    decidedDirection = down;
+                }
+                else if (!Collides(left, 1))
+                {
+                    Debug.Log("go left");
+                    MoveTo(posX - 1, posY);
+                    decidedDirection = left;
+                }
+                else
+                {
+                    Debug.Log("cant avoid");
+                }
+            }
+            else if (bulletFrom == down)
+            {
+                if (!Collides(left, 1))
+                {
+                    MoveTo(posX - 1, posY);
+                    decidedDirection = left;
+                }
+                else if (!Collides(right, 1))
+                {
+                    MoveTo(posX + 1, posY);
+                    decidedDirection = right;
+                }
+                else if (!Collides(up, 1))
+                {
+                    MoveTo(posX, posY + 1);
+                    decidedDirection = up;
+                }
+            }
+            else if (bulletFrom == left)
+            {
+                //Debug.Log("from right");
+                if (!Collides(up, 1))
+                {
+                    MoveTo(posX, posY + 1);
+                    decidedDirection = up;
+                }
+                else if (!Collides(down, 1))
+                {
+                    MoveTo(posX, posY - 1);
+                    decidedDirection = down;
+                }
+                else if (!Collides(right, 1))
+                {
+                    MoveTo(posX + 1, posY);
+                    decidedDirection = right;
+                }
+            }
+            decidedDirectionBool = true;
+        }
+
+        //chek if you avoided
+        if (!RegisterBullets())
+        {
+            decidedDirectionBool = false;
+            decidedDirection = down;
+            Debug.Log("bullet avoided");
+            SetAvoidBulletPriority(zeroPriority);
+            UpdateCurrentAction();
+        }
+    }
+
+    public LayerMask bulletMask;
+    public static List<float> sphereCast = new List<float>();
+
+    public void LookAroundYourself()
+    {
+        RegisterBullets();
+        //RegisterPowerUps();
+        
+
+    }
+    
+
+    public void SetAvoidBulletPriority(int priority)
+    {
+        avoidBulletPriority = priority;
+
+        killPlayer1Priority = zeroPriority;
+        killPlayer2Priority = zeroPriority;
+        killPlayer3Priority = zeroPriority;
+        killPlayer4Priority = zeroPriority;
+    }
+
+    public float characterColliderWidth;
+    public float characterColliderHeight;
+
+    public bool RegisterBullets()
+    {
+        bulletIncoming = false;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, mapWidth / 2, bulletMask);
+        
+
+
+        foreach (Collider2D collider in colliders)
+        {
+            // enemies within 1m of the player
+            //Debug.Log(collider.name);
+            Vector2 bulletPosition = collider.transform.position;
+            Vector2 bulletDirection = collider.GetComponent<Bullet>().direction;
+            //Debug.Log(bulletPosition);
+            //Debug.Log(bulletDirection);
+
+            //Debug.Log(bulletPosition.y);
+            //Debug.Log(posY);
+            //Debug.Log(characterColliderHeight);
+
+
+
+            if (AlmostEqual(bulletPosition.x, posX,characterColliderWidth))//bullet above or bellow
+            {
+                if(bulletPosition.y > posY) //bullet is above
+                {
+                    if(bulletDirection == down) //bullet is aiming down
+                    {
+                        bulletIncoming = true;
+                        bulletFrom = up;
+                    }
+                }
+                else //bullet is bellow
+                {
+                    if (bulletDirection == up) //bullet is aiming up
+                    {
+                        bulletIncoming = true;
+                        bulletFrom = down;
+                    }
+                }
+            }
+            else if ( AlmostEqual(bulletPosition.y, posY, characterColliderHeight))//bullet is on left or right
+            {
+                if (bulletPosition.x > posX) //bullet is on right
+                {
+                    if (bulletDirection == left) //bullet is aiming left
+                    {
+                        bulletIncoming = true;
+                        bulletFrom = right;
+                    }
+                }
+                else //bullet on left
+                {
+                    if (bulletDirection == right) //bullet is aiming right
+                    {
+                        bulletIncoming = true;
+                        bulletFrom = left;
+                    }
+                }
+            }
+           
+
+        }
+        //Debug.Log(bulletIncoming);
+        return bulletIncoming;
+    }
+
+
+    /// ////////////////////////////.........
+
     public void UpdateCurrentAction()
     {
         if (killPlayer1Priority >= GetCurrentHighestPriority())
@@ -405,6 +681,16 @@ public class AiBase : PlayerBase
         {
             currentAction = AiActionEnum.killPlayer4;
         }
+        else if(avoidBulletPriority >= GetCurrentHighestPriority())
+        {
+            currentAction = AiActionEnum.avoidBullet;
+        }
+        else
+        {
+            currentAction = AiActionEnum.stand;
+        }
+
+        //currentAction = AiActionEnum.stand;
     }
 
     public int GetCurrentHighestPriority()
@@ -418,7 +704,11 @@ public class AiBase : PlayerBase
             highestPriority = killPlayer3Priority;
         if (killPlayer4Priority > highestPriority)
             highestPriority = killPlayer4Priority;
+        if (avoidBulletPriority > highestPriority)
+            highestPriority = avoidBulletPriority;
 
+        if (highestPriority == 0)
+            highestPriority++;
         return highestPriority;
     }
 
@@ -486,7 +776,7 @@ public class AiBase : PlayerBase
                     Debug.Log(player.ToString() + " has no player number!");
                     break;
             }
-            Debug.Log("setting player: " + player.gameObject.name + ", number: " + player.playerNumber);
+            //Debug.Log("setting player: " + player.gameObject.name + ", number: " + player.playerNumber);
         }
     }
 
@@ -601,7 +891,7 @@ public class AiBase : PlayerBase
 
     public List<Vector2> GetPathTo(Vector2 target)
     {
-        float step = 0.3f;
+        float step = characterColliderWidth;
         //float step = characterWidth/2;
         //Debug.Log(characterWidth);
         //um....wtf, proč když nenapíšu ručně 0.5f tak to nejde?
@@ -614,7 +904,8 @@ public class AiBase : PlayerBase
         bool found = false;
         int finalNodeIndex = 0;
         //5!!!!!!!!!!!!!!!
-        for(int start = 0; start < 5; start++){
+        for (int start = 0; start < 5; start++)
+        {
             //Debug.Log("start:"+start);
             visitedNodes.Clear();
             switch (start)
@@ -623,20 +914,20 @@ public class AiBase : PlayerBase
                     startNode = new PathNode(new Vector2(posX, posY), 0);
                     break;
                 case 1://left
-                    startNode = new PathNode(new Vector2(posX-step/2, posY), 0);
+                    startNode = new PathNode(new Vector2(posX - step / 2, posY), 0);
                     break;
                 case 2://up
-                    startNode = new PathNode(new Vector2(posX, posY+ step / 2), 0);
+                    startNode = new PathNode(new Vector2(posX, posY + step / 2), 0);
                     break;
                 case 3://right
-                    startNode = new PathNode(new Vector2(posX+ step / 2, posY), 0);
+                    startNode = new PathNode(new Vector2(posX + step / 2, posY), 0);
                     break;
                 case 4://down
-                    startNode = new PathNode(new Vector2(posX, posY- step / 2), 0);
+                    startNode = new PathNode(new Vector2(posX, posY - step / 2), 0);
                     break;
                 default:
                     break;
-            }   
+            }
             //Debug.Log("startNode:"+ startNode);
 
             visitedNodes.Add(startNode);
@@ -646,12 +937,12 @@ public class AiBase : PlayerBase
                 //Debug.Log(i);
                 PathNode currentNode = visitedNodes[i];
                 //end process when current node is close to target
-                if (GetDistance(currentNode.node, target) < 2 * step)
+                if (GetDistance(currentNode.node, target) < step)
                 {
                     //Debug.Log("final = " + currentNode.node);
                     finalNodeIndex = i;
                     found = true;
-                    break;                    
+                    break;
                 }
                 if (i > 5000)
                 {
@@ -714,13 +1005,13 @@ public class AiBase : PlayerBase
             path.Add(visitedNodes[index].node);
             index = visitedNodes[index].parentIndex;
             //Debug.Log(visitedNodes[index].node);
-            
+
         }
         //reverse path
         path.Reverse();
 
-        
-        
+
+
 
         return path;
     }
@@ -732,10 +1023,13 @@ public class AiBase : PlayerBase
     /// <param name="y"></param>
     public void MoveTo(float x, float y)
     {
-        if(ValueEquals(posX, x) && ValueEquals(posY, y))
+        //Debug.Log("destination:" + x + "," + y);
+        //Debug.Log(GetMyPosition());
+        if (ValueEquals(posX, x) && ValueEquals(posY, y))
         {
             Stand();
             //Debug.Log("you there");
+
             return;
         }
 
@@ -752,7 +1046,7 @@ public class AiBase : PlayerBase
         if (Time.frameCount % 30 == 0)
         {
             //Debug.Log("walkFront:" + walkingFront.Count);
-            foreach(Vector2 v in walkingFront)
+            foreach (Vector2 v in walkingFront)
             {
                 //Debug.Log(v);
             }
@@ -771,12 +1065,12 @@ public class AiBase : PlayerBase
         else
         {
             //draw path
-            for(int i = 0; i< walkingFront.Count; i++)
+            for (int i = 0; i < walkingFront.Count; i++)
             {
-                if(i+1 != walkingFront.Count)
+                if (i + 1 != walkingFront.Count)
                     Debug.DrawLine(walkingFront[i], walkingFront[i + 1], Color.blue);
             }
-            
+
             Vector2 currentNode = walkingFront[0];
             if (ValueEquals(gameObject.transform.position.y, currentNode.y) && ValueEquals(gameObject.transform.position.x, currentNode.x))
             {
@@ -796,7 +1090,7 @@ public class AiBase : PlayerBase
         }
     }
 
-    
+
     /// <summary>
     /// chekovat pouze jeden směr nestačí
     /// </summary>
@@ -810,15 +1104,15 @@ public class AiBase : PlayerBase
 
         bool colRight = ObjectCollides(center + colliderOffset, colliderWidth, right, distance);
         //bool colLeft = ObjectCollides(center + colliderOffset, colliderWidth, left, distance);
-        bool colUp = ObjectCollides(center + colliderOffset/2, colliderWidth, up, distance);
+        bool colUp = ObjectCollides(center + colliderOffset / 2, colliderWidth, up, distance);
         //bool colDown = ObjectCollides(center + colliderOffset, colliderWidth, down, distance);
 
         //return colRight || colLeft || colUp || colDown;
         //return colRight || colLeft;
         //return colRight;
-        return  colUp;
+        return colUp;
     }
-    
+
 
     /// <summary>
     /// new collisioncheck using box collider bounds
@@ -827,16 +1121,17 @@ public class AiBase : PlayerBase
     public bool CharacterCollidesBarrier(Vector2 center)
     {
         //Debug.Log("colCheck");
-        float width = gameObject.GetComponent<BoxCollider2D>().bounds.size.x / 2;
+        float width = characterColliderWidth/2;
+        float height = characterColliderHeight/2;
         Vector2 colliderOffset = GetComponent<Collider2D>().offset / 2;
         float offset = 0.1f;
 
-        Vector2 botLeft = new Vector2(center.x - width - offset, center.y - width - offset);
-        Vector2 botRight = new Vector2(center.x + width + offset, center.y - width - offset);
-        Vector2 topLeft = new Vector2(center.x - width - offset, center.y + width + offset);
-        Vector2 topRight = new Vector2(center.x + width + offset, center.y + width + offset);
+        Vector2 botLeft = new Vector2(center.x - width - offset, center.y - height - offset);
+        Vector2 botRight = new Vector2(center.x + width + offset, center.y - height - offset);
+        Vector2 topLeft = new Vector2(center.x - width - offset, center.y + height + offset);
+        Vector2 topRight = new Vector2(center.x + width + offset, center.y + height + offset);
 
-        
+
 
         for (int i = 0; i < barriers.Length; i++)
         {
@@ -871,14 +1166,14 @@ public class AiBase : PlayerBase
         charBotRight = new Vector2(center.x + width / 2, center.y - width / 2);
         charTopLeft = new Vector2(center.x - width / 2, center.y + width / 2);
         charTopRight = new Vector2(center.x + width / 2, center.y + width / 2);
-        
+
 
         //charBot = new Vector2(center.x - width / 2, center.y - width / 2);
         //charTop = new Vector2(center.x + width / 2, center.y - width / 2);
         //charLeft = new Vector2(center.x - width / 2, center.y + width / 2);
         //charRight = new Vector2(center.x + width / 2, center.y + width / 2);
 
-        
+
         /*
         for(int i = 0; i < barriers.Length; i++)
         {
@@ -892,8 +1187,8 @@ public class AiBase : PlayerBase
                 return true;
         }
         */
-        
-        
+
+
         RaycastHit2D hitBotLeft;
         Ray rayBotLeft = new Ray(charBotLeft, direction);
         RaycastHit2D hitBotRight;
@@ -945,7 +1240,7 @@ public class AiBase : PlayerBase
             //Debug.DrawLine(charBotRight, charTopRight, Color.green, 1f);
             //Debug.DrawLine(charTopLeft, charTopRight, Color.green, 1f);
         }
-        
+
         return false;
     }
 
@@ -1026,7 +1321,7 @@ public class AiBase : PlayerBase
         //Debug.DrawRay(currentTargetDestination, left, Color.red);
         //Debug.DrawRay(currentTargetDestination, up, Color.blue);
 
-       // Debug.DrawRay(botLeft, direction, Color.cyan);
+        // Debug.DrawRay(botLeft, direction, Color.cyan);
         //Debug.DrawRay(botRight, direction, Color.green);
         //Debug.DrawRay(topLeft, direction, Color.yellow);
         //Debug.DrawRay(topRight, direction, Color.red);
@@ -1103,7 +1398,7 @@ public class AiBase : PlayerBase
         return Collides(center, 0.5f, 0.3f, barrierMask, direction);
     }
 
-    
+
 
     /// <summary>
     /// bacha, dělá to skoky po 1, přitom charWidth = 0.5..uvidí se, jak to pofachá
@@ -1314,7 +1609,7 @@ public class AiBase : PlayerBase
         else if (ValueSmaller(gameObject.transform.position.y, y)) { MoveUp(); }
         else { MoveDown(); }
 
-        if (ValueEquals(gameObject.transform.position.x, x)) {  }
+        if (ValueEquals(gameObject.transform.position.x, x)) { }
         else if (ValueSmaller(gameObject.transform.position.x, x)) { MoveRight(); }
         else { MoveLeft(); }
     }
@@ -1325,7 +1620,7 @@ public class AiBase : PlayerBase
     /// <param name="y"></param>
     public void PreferY(double x, double y)
     {
-        if (ValueEquals(gameObject.transform.position.x, x)) {  }
+        if (ValueEquals(gameObject.transform.position.x, x)) { }
         else if (ValueSmaller(gameObject.transform.position.x, x)) { MoveRight(); }
         else { MoveLeft(); }
 
@@ -1377,10 +1672,10 @@ public class AiBase : PlayerBase
     public void Stop()
     {
         rb2d.velocity = Vector2.zero;
-        UpdateAnimatorState(AnimatorStateEnum.stop);
+        //UpdateAnimatorState(AnimatorStateEnum.stop);
     }
 
-    private double e = 0.1; //odchylka
+    private float e = 0.1f; //odchylka
     /// <summary>
     /// porovnání z důvodu odchylky způsobené pohybem (škubáním)
     /// </summary>
@@ -1396,6 +1691,11 @@ public class AiBase : PlayerBase
     }
 
     public bool ValueEquals(double value1, double value2)
+    {
+        return ValueEquals(value1, value2, e);
+    }
+
+    public bool ValueEquals(double value1, double value2, float e)
     {
         if (value2 - e <= value1 && value1 <= value2 + e)
             return true;
