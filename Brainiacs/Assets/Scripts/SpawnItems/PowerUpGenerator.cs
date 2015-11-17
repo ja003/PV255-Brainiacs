@@ -17,7 +17,7 @@ public class PowerUpGenerator : MonoBehaviour
     private List<GameObject>[] powerUps;
 
     private float time = 0.0f;
-    private float spawnInterval = 15.0f;
+    private float spawnInterval = 8.0f; //malý pro testování
 
     private string location = "Prefabs/SpawnItems/PowerUps/powerup_";
     private string[] powerUpNames = new string[countOfPrefabedPowerUps] { "shield", "heal", "ammo", "speed", "mystery" };

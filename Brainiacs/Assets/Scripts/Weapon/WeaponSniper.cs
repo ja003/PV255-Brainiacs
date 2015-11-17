@@ -13,7 +13,7 @@ public class WeaponSniper : WeaponBase
         base.maxAmmo = 5;
         
 
-        base.reloadTime = 5f;
+        base.reloadTime = 1f;
         base.ready = true;
         base.sprite = "Sprites/Weapons/sniper";
         base.bulletSprite = "Sprites/Bullets/bullet";

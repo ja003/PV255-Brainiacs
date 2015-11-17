@@ -8,7 +8,8 @@ public enum AiActionEnum
     killPlayer3,
     killPlayer4,
 
-    pickupObject,
+    pickupPowerUp,
+    pickupWeapon,
 
     avoidBullet, 
     stand

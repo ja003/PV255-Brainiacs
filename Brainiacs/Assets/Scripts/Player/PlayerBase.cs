@@ -42,6 +42,11 @@ public abstract class PlayerBase : MonoBehaviour
     private static int maxHP = 100;
     public int hitPoints = maxHP;
     private bool isShielded = false;
+
+    public int GetMaxHp()
+    {
+        return maxHP;
+    }
     
     // ///////////////////////////////////// POWER UPS ///////////////////////////////////////////
     private bool speedBuffIsActive = false;

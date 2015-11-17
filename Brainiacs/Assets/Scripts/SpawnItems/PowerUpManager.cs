@@ -5,7 +5,7 @@ using System.Collections.Generic;
 //--MG
 public class PowerUpManager : MonoBehaviour
 {
-    private PowerUpEnum type;
+    public PowerUpEnum type;
     private bool assignedType = false;
 
     private float floatingSpeed = 0.2f;

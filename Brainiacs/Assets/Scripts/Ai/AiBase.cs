@@ -13,10 +13,15 @@ public class AiBase : PlayerBase
     Components comp;
     PlayerInfo playInfo;
 
-    public static int zeroPriority = 0;
-    public static int lowPriority = 10;
-    public static int mediumPriority = 50;
-    public static int highPriority = 100;
+    static int priority0 = 0;
+    static int priority10 = 10;
+    static int priority25 = 25;
+    static int priority40 = 40;
+    static int priority50 = 50;
+    static int priority70 = 70;
+    static int priority80 = 80;
+    static int priority90 = 90;
+    static int priority100 = 100;
 
     public int killPlayer1Priority;
     public int killPlayer2Priority;
@@ -28,8 +33,11 @@ public class AiBase : PlayerBase
     public Vector2 lastPosition;
     public Vector2 preLastPosition;
 
-    ////MAP shit
+    //////////////////////////////MAP shit
     public GameObject[] barriers;
+
+    public List<GameObject> itemPowerUps;
+    public List<GameObject> itemWeapons;
 
     public bool bulletIncoming;
     public Vector2 bulletFrom;
@@ -66,6 +74,10 @@ public class AiBase : PlayerBase
         walkingFront = new List<Vector2>();
 
         barriers = GameObject.FindGameObjectsWithTag("Barrier");
+
+        itemPowerUps = new List<GameObject>();
+        itemWeapons = new List<GameObject>();
+
         //Debug.Log(barriers[0].name);
         //Debug.Log(barriers[1].name);
         //Debug.Log(barriers[2].name);
@@ -95,7 +107,7 @@ public class AiBase : PlayerBase
         //////////CHEK ONCE PER SECOND
         if (Time.frameCount % 30 == 6)
         {
-            CheckPriorities();
+            UpdatePriorities();
             /*
             Debug.Log("kill_1=" + killPlayer1Priority);
             Debug.Log("kill_2=" + killPlayer2Priority);
@@ -123,21 +135,25 @@ public class AiBase : PlayerBase
                     break;
             }
 
+            //Debug.Log("!");
+            PrintPriorities();
             UpdateCurrentAction();
+
             UpdateLastPosition();
 
 
-
-            //Fire();
-            //SwitchWeapon();
+            
         }
 
         if (Time.frameCount % 200 == 0)
         {
-            PrintPriorities();
+            //PrintPriorities();
             PrintAction();
         }
 
+        //Debug.Log("currentAction:"+currentAction);
+
+        
         DoCurrentAction();
         UpdateDirection();
 
@@ -162,6 +178,8 @@ public class AiBase : PlayerBase
     public void PrintPriorities()
     {
         string message = "priorities \n";
+        message += "pickPowerUpPriority=" + pickPowerUpPriority + ",\n";
+
         message += "KillPlayer1=" + killPlayer1Priority;
         message += ",KillPlayer2=" + killPlayer2Priority;
         message += ",KillPlayer3=" + killPlayer3Priority;
@@ -189,6 +207,9 @@ public class AiBase : PlayerBase
                 break;
             case AiActionEnum.avoidBullet:
                 AvoidBullet();
+                break;
+            case AiActionEnum.pickupPowerUp:
+                PickUp(bestPowerUp);
                 break;
             default:
                 Stand();
@@ -381,7 +402,6 @@ public class AiBase : PlayerBase
             {
                 direction = right;
                 UpdateAnimatorState(AnimatorStateEnum.walkRight);
-                Debug.Log("look right");
             }
         }
         else
@@ -412,21 +432,103 @@ public class AiBase : PlayerBase
 
     // <<...COMMANDS>>
 
-    public void CheckPriorities()
+    public void UpdatePriorities()
     {
         SetKillPriorities();
-        PrintPriorities();
+        
 
         //register incoming bullets, powerups,...
         LookAroundYourself();
+
+        SetPowerUpsPriority();
+
         if (bulletIncoming)
         {
-            SetAvoidBulletPriority(highPriority);
+            SetAvoidBulletPriority(priority100);
         }
+
+
+        PrintPriorities();
 
         //....
     }
 
+    GameObject bestPowerUp;
+    int pickPowerUpPriority;
+
+    public void SetPowerUpsPriority()
+    {
+        List<int> powerUpsPriorities = new List<int>();
+
+        if(itemPowerUps.Count == 0)
+        {
+            //Debug.Log("no items around");
+            return;
+        }
+
+        int highestPriority = 0;
+        foreach(GameObject powerUp in itemPowerUps)
+        {
+            //Debug.Log("I see " + powerUp.name);
+            PowerUpManager manager = powerUp.GetComponent<PowerUpManager>();
+            float distanceFromMe = GetDistance(gameObject, powerUp);
+            float distanceFactor = GetDistanceFactor(distanceFromMe);
+
+            int priority = 0;
+            switch (manager.type)
+            {              
+
+                case PowerUpEnum.Ammo:
+                    float ammoFactor = distanceFactor * weaponHandling.activeWeapon.ammo / weaponHandling.activeWeapon.clip;
+                    priority = (int)ammoFactor * 10;
+                    break;
+                case PowerUpEnum.Heal:
+                    float healthFactor = distanceFactor * hitPoints / GetMaxHp();
+                    priority = (int)healthFactor * 10;
+                    break;
+                case PowerUpEnum.Mystery:
+                    int mysteryFactor = (int)distanceFactor*Random.Range(0, 80);
+                    mysteryFactor += (int)distanceFactor * priority25;
+                    priority = mysteryFactor;
+                    break;
+                case PowerUpEnum.Shield:
+                    float shieldFactor = distanceFactor * (priority50 + Random.Range(0,20));
+                    priority = (int)shieldFactor;
+                    break;
+                case PowerUpEnum.Speed:
+                    float speedFactor = distanceFactor * (priority50 + Random.Range(0, 20));
+                    priority=(int)speedFactor;
+                    break;
+            }
+            if (priority == 0)
+                priority = priority10;
+            powerUpsPriorities.Add(priority);
+
+            //Debug.Log("setting: " + powerUpsPriorities[powerUpsPriorities.Count - 1]);
+
+            if (powerUpsPriorities[powerUpsPriorities.Count-1] > highestPriority)
+            {
+                highestPriority = powerUpsPriorities[powerUpsPriorities.Count - 1];
+            }
+        }
+        
+        bestPowerUp = itemPowerUps[powerUpsPriorities.IndexOf(highestPriority)];
+        
+        pickPowerUpPriority = highestPriority;
+        //Debug.Log("pickPowerUpPriority:" + pickPowerUpPriority);
+
+
+    }
+
+    public void PickUp(GameObject obj)
+    {
+        //Debug.Log("picking up " + obj.name);
+        if (MoveTo(obj.transform.position))
+        {
+            //Debug.Log("picked up");
+            LookAroundYourself();
+        }
+    }
 
     /// ////////////////////////////AVOID BULLETS
 
@@ -435,8 +537,8 @@ public class AiBase : PlayerBase
     public Vector2 decidedDirection;
     public void AvoidBullet()
     {
-        Debug.Log("decidedDirectionBool:"+ decidedDirectionBool);
-        Debug.Log("decidedDirection:" + decidedDirection);
+        //Debug.Log("decidedDirectionBool:"+ decidedDirectionBool);
+        //Debug.Log("decidedDirection:" + decidedDirection);
 
         if (
             (decidedDirection == up && Collides(up,1))||
@@ -563,35 +665,50 @@ public class AiBase : PlayerBase
             decidedDirectionBool = false;
             decidedDirection = down;
             Debug.Log("bullet avoided");
-            SetAvoidBulletPriority(zeroPriority);
+            SetAvoidBulletPriority(priority0);
             UpdateCurrentAction();
         }
     }
 
     public LayerMask bulletMask;
-    public static List<float> sphereCast = new List<float>();
+    public LayerMask itemMask;
+    
 
     public void LookAroundYourself()
     {
         RegisterBullets();
-        //RegisterPowerUps();
+
+        RegisterPowerUps();
         
 
     }
-    
+
+    public void RegisterPowerUps()
+    {
+        itemPowerUps.Clear();
+        Collider2D[] items = Physics2D.OverlapCircleAll(transform.position, mapWidth / 2, itemMask);
+        
+        foreach (Collider2D item in items)
+        {
+            if(item.transform.tag == "PowerUp" && item.gameObject.activeSelf)
+            {
+                itemPowerUps.Add(item.gameObject);
+            }
+        }
+    }
 
     public void SetAvoidBulletPriority(int priority)
     {
         avoidBulletPriority = priority;
 
-        killPlayer1Priority = zeroPriority;
-        killPlayer2Priority = zeroPriority;
-        killPlayer3Priority = zeroPriority;
-        killPlayer4Priority = zeroPriority;
+        killPlayer1Priority = priority0;
+        killPlayer2Priority = priority0;
+        killPlayer3Priority = priority0;
+        killPlayer4Priority = priority0;
     }
 
-    public float characterColliderWidth;
-    public float characterColliderHeight;
+    float characterColliderWidth;
+    float characterColliderHeight;
 
     public bool RegisterBullets()
     {
@@ -665,25 +782,31 @@ public class AiBase : PlayerBase
 
     public void UpdateCurrentAction()
     {
-        if (killPlayer1Priority >= GetCurrentHighestPriority())
+        int highestPriority = GetCurrentHighestPriority();
+
+        if (killPlayer1Priority >= highestPriority)
         {
             currentAction = AiActionEnum.killPlayer1;
         }
-        else if (killPlayer2Priority >= GetCurrentHighestPriority())
+        else if (killPlayer2Priority >= highestPriority)
         {
             currentAction = AiActionEnum.killPlayer2;
         }
-        else if (killPlayer3Priority >= GetCurrentHighestPriority())
+        else if (killPlayer3Priority >= highestPriority)
         {
             currentAction = AiActionEnum.killPlayer3;
         }
-        else if (killPlayer4Priority >= GetCurrentHighestPriority())
+        else if (killPlayer4Priority >= highestPriority)
         {
             currentAction = AiActionEnum.killPlayer4;
         }
-        else if(avoidBulletPriority >= GetCurrentHighestPriority())
+        else if(avoidBulletPriority >= highestPriority)
         {
             currentAction = AiActionEnum.avoidBullet;
+        }
+        else if(pickPowerUpPriority >= highestPriority)
+        {
+            currentAction = AiActionEnum.pickupPowerUp;
         }
         else
         {
@@ -706,7 +829,10 @@ public class AiBase : PlayerBase
             highestPriority = killPlayer4Priority;
         if (avoidBulletPriority > highestPriority)
             highestPriority = avoidBulletPriority;
+        if (pickPowerUpPriority > highestPriority)
+            highestPriority = pickPowerUpPriority;
 
+        //Debug.Log("highestPriority:" + highestPriority);
         if (highestPriority == 0)
             highestPriority++;
         return highestPriority;
@@ -718,10 +844,14 @@ public class AiBase : PlayerBase
     /// </summary>
     public void SetKillPriorities()
     {
-        killPlayer1Priority = 200 - (int)(GetDistance(gameObject, player1.gameObject));
-        killPlayer2Priority = 200 - (int)(GetDistance(gameObject, player2.gameObject));
-        killPlayer3Priority = 200 - (int)(GetDistance(gameObject, player3.gameObject));
-        killPlayer4Priority = 200 - (int)(GetDistance(gameObject, player4.gameObject));
+        if (player1 != null && playerNumber != 1)
+            killPlayer1Priority = (int) (priority90 * GetDistanceFactor(GetDistance(gameObject, player1.gameObject)));
+        if(player2 != null && playerNumber != 2)
+            killPlayer2Priority = (int) (priority90 * GetDistanceFactor(GetDistance(gameObject, player2.gameObject)));
+        if (player3 != null && playerNumber != 3)
+            killPlayer3Priority = (int) (priority90 * GetDistanceFactor(GetDistance(gameObject, player3.gameObject)));
+        if (player4 != null && playerNumber != 4)
+            killPlayer4Priority = (int) (priority90 * GetDistanceFactor(GetDistance(gameObject, player4.gameObject)));
 
 
     }
@@ -739,6 +869,11 @@ public class AiBase : PlayerBase
     public float GetDistance(Vector2 pos1, Vector2 pos2)
     {
         return (pos1 - pos2).sqrMagnitude;
+    }
+
+    public float GetDistanceFactor(float distance)
+    {
+        return (priority100 - distance)/priority100;
     }
 
     public List<PlayerBase> GetPlayers()
@@ -832,9 +967,9 @@ public class AiBase : PlayerBase
     }
 
 
-    public void MoveTo(Vector2 position)
+    public bool MoveTo(Vector2 position)
     {
-        MoveTo(position.x, position.y);
+        return MoveTo(position.x, position.y);
     }
 
     public List<Vector2> walkingFront;
@@ -903,7 +1038,7 @@ public class AiBase : PlayerBase
 
         bool found = false;
         int finalNodeIndex = 0;
-        //5!!!!!!!!!!!!!!!
+        //trying 5 different starting points!!!!!!!!!!!!!!!
         for (int start = 0; start < 5; start++)
         {
             //Debug.Log("start:"+start);
@@ -950,11 +1085,7 @@ public class AiBase : PlayerBase
                     finalNodeIndex = 100;
                     break;
                 }
-
-                if (ValueEquals(currentNode.node.x, 2.4) && ValueEquals(currentNode.node.y, -1.7))
-                {
-                    Debug.Log("!");
-                }
+                
 
                 //set neighbouring nodes
                 PathNode nodeLeft = new PathNode(new Vector2(currentNode.node.x - step, currentNode.node.y), i);
@@ -971,26 +1102,7 @@ public class AiBase : PlayerBase
                 if (!CharacterCollidesBarrier(nodeDown.node) && !visitedNodes.Contains(nodeDown))
                 { visitedNodes.Add(nodeDown); }
 
-                if (ValueEquals(currentNode.node.x, 2.4) && ValueEquals(currentNode.node.y, -1.7))
-                {
-                    Debug.Log("!-------------------------------------------------------------------------");
-                    Debug.Log("current:" + currentNode);
-                    Debug.Log("index:" + i);
-                    Debug.Log("CharacterCollides-right: " + CharacterCollides(nodeRight.node));
-                    Debug.Log("visitedNodes.Contains-right: " + visitedNodes.Contains(nodeRight));
-                    Debug.Log("!CharacterCollides(nodeRight.node) && !visitedNodes.Contains(nodeRight)");
-                    Debug.Log(!CharacterCollides(nodeRight.node) && !visitedNodes.Contains(nodeRight));
-
-                    Debug.Log("right:" + nodeRight);
-                }
-                if (ValueEquals(currentNode.node.x, 2.7) && ValueEquals(currentNode.node.y, -1.7))
-                {
-                    Debug.Log("!-------------------------------------------------------------------------");
-                    Debug.Log("current:" + currentNode);
-                    Debug.Log("index:" + i);
-                    Debug.Log("parentIndex:" + currentNode.parentIndex);
-                    Debug.Log("parent:" + visitedNodes[currentNode.parentIndex]);
-                }
+                
 
             }
 
@@ -1021,7 +1133,7 @@ public class AiBase : PlayerBase
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>
-    public void MoveTo(float x, float y)
+    public bool MoveTo(float x, float y)
     {
         //Debug.Log("destination:" + x + "," + y);
         //Debug.Log(GetMyPosition());
@@ -1030,7 +1142,7 @@ public class AiBase : PlayerBase
             Stand();
             //Debug.Log("you there");
 
-            return;
+            return true;
         }
 
         //refresh path only when target moves
@@ -1088,6 +1200,7 @@ public class AiBase : PlayerBase
                 }
             }
         }
+        return false;
     }
 
 
