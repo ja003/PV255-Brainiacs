@@ -6,10 +6,13 @@ public class WeaponBase
 {
     public WeaponEnum weaponType { get; set; }
 
+    //unused
+    public int maxClip { get; set; }
+    public int clip { get; set; }
+    //
+    
     public int maxAmmo { get; set; }
     public int ammo { get; set; }
-    public int clip { get; set; }
-    public int maxClip { get; set; }
     public int damage { get; set; }
     public bool ready { get; set; }
     public float time { get; set; }
@@ -18,7 +21,6 @@ public class WeaponBase
     public float kadency { get; set; }
 
     public string sprite { get; set; }
-
     public Sprite[] weaponSprites;
 
 
@@ -29,7 +31,6 @@ public class WeaponBase
     {
         time = 0;
         ammo = maxAmmo;
-        clip = maxClip;
     }
 
     public void reload(int numOfBullets)

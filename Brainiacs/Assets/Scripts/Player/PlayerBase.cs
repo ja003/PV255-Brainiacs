@@ -67,7 +67,6 @@ public abstract class PlayerBase : MonoBehaviour
 
     /// //////////////////////////////////// WEAPON HANDLING ///////////////////////////////////
     public WeaponHandling weaponHandling;
-
     public List<WeaponBase> inventory { get; set; }
     public WeaponBase activeWeapon { get; set; }
     public Dictionary<Vector2, int> directionMapping = new Dictionary<Vector2, int>();

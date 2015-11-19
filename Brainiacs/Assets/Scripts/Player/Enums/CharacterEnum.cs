@@ -5,5 +5,6 @@ using System.Collections;
 public enum CharacterEnum  {
     Tesla,
     Einstein,
-    Nobel
+    Nobel,
+    Curie
 }

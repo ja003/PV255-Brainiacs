@@ -70,15 +70,19 @@ public class Player1 : HumanBase
 
     public void setUpWeapons(PlayerInfo pi)
     {
-        WeaponPistol pistol = new WeaponPistol(pi.charEnum); //OLD
-        WeaponSniper sniper = new WeaponSniper(); //just for now
+        WeaponBase pistol = new WeaponPistol(pi.charEnum); 
+        WeaponBase sniper = new WeaponSniper(); 
+
 
         weaponHandling.player = GetComponent<PlayerBase>();
 
         // Tu sa vytvoria vsetky zbrane ktore sa priradia do weapon handling aby sa nemusel volat zbytocne load na sprajtoch
         weaponHandling.weapons.Add(WeaponEnum.sniper, sniper);
+        weaponHandling.weapons.Add(WeaponEnum.pistol, pistol);
 
         weaponHandling.inventory.Add(sniper);
+        weaponHandling.inventory.Add(pistol);
+
         weaponHandling.activeWeapon = weaponHandling.inventory[0];
         weaponHandling.weaponRenderer = transform.Find("weapon").GetComponent<SpriteRenderer>();
         // weaponHandling.weaponRenderer.sprite = Resources.Load<Sprite>(pistol.sprite);

@@ -10,23 +10,27 @@ public class WeaponPistol : WeaponBase {
 
     public WeaponPistol(CharacterEnum type)
     {
-        base.damage = 10;
+        base.damage = 25;
         base.weaponType = WeaponEnum.pistol;
 
-        base.ammo = 10;
-        base.maxAmmo = 10;
+        base.ammo = 5;
+        base.maxAmmo = 5;
 
-        base.clip = 5;
-        base.maxClip = 5;
-
-        base.reloadTime = 0.5f;
+        base.reloadTime = 2f;
         base.ready = true;
+
         switch (type)
         {
             //ten bulletSprite se ještě nikde nevyužívá? -AJ
-            case (CharacterEnum.Tesla): base.sprite = "Sprites/Weapons/weapon_Tesla-pistol"; base.bulletSprite = "Sprites/Electricity"; break;
-            case (CharacterEnum.Nobel): base.sprite = "Sprites/Weapons/weapon_Nobel-pistol"; break;
-            case (CharacterEnum.Einstein): base.sprite = "Sprites/Weapons/weapon_Einstein-pistol"; break;
+            case (CharacterEnum.Tesla): base.sprite = "Sprites/Weapons/teslaPistol"; break;
+            case (CharacterEnum.Nobel): base.sprite = "Sprites/Weapons/nobelPistol"; break;
+            case (CharacterEnum.Einstein): base.sprite = "Sprites/Weapons/einsteinPistol"; break;
+            case (CharacterEnum.Curie): base.sprite = "Sprites/Weapons/curiePistol"; break;
         }
+
+        kadency = 0.05f;
+        kadReady = true;
+
+        loadSprites(sprite, bulletSprite);
     }
 }
