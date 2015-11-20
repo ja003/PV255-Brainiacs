@@ -9,8 +9,8 @@ public class WeaponSniper : WeaponBase
         base.damage = 50;
         base.weaponType = WeaponEnum.sniper;
 
-        base.ammo = 2;
-        base.maxAmmo = 2;
+        base.ammo = 5;  // 2->5 na test
+        base.maxAmmo = 5;
         
         base.reloadTime = 3f;
         base.ready = true;
