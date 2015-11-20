@@ -57,12 +57,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -101,8 +95,11 @@
     <Compile Include="Assets\Scripts\Weapon\BulletManager.cs" />
     <Compile Include="Assets\Scripts\Weapon\Skvrna.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponBase.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponBiogun.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponEnum.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponFlamethrower.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponHandling.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponMP40.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponPistol.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponSniper.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponTeslaSpecial.cs" />

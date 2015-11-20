@@ -1,27 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WeaponSniper : WeaponBase
+public class WeaponFlamethrower : WeaponBase
 {
-
-    public WeaponSniper()
+    public WeaponFlamethrower()
     {
-        base.damage = 50;
+        base.damage = 35;
         base.weaponType = WeaponEnum.sniper;
 
-        base.ammo = 2;
-        base.maxAmmo = 2;
-        
-        base.reloadTime = 3f;
+        base.ammo = 3;
+        base.maxAmmo = 3;
+
+        base.reloadTime = 4f;
         base.ready = true;
 
-        base.sprite = "Sprites/Weapons/sniper";
+        base.sprite = "Sprites/Weapons/flamethrower";
         base.bulletAnimControler = "Sprites/Bullets/bullet";
 
-        kadency = 0.25f;
+        kadency = 0.3f;
         kadReady = true;
 
         loadSprites(sprite, bulletAnimControler);
     }
-
 }

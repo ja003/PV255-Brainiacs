@@ -3,12 +3,13 @@ using System.Collections;
 
 public class Bullet : MonoBehaviour {
 
+    Animator animator;
     public int damage = 20;
     public Vector2 direction;
     public float speed;
     public bool isActive = false;
 
-    public void iniciate(Vector2 dir, Vector2 pos, string sprt) {
+    public void iniciate(Vector2 dir, Vector2 pos, RuntimeAnimatorController animController) {
         direction = new Vector2(dir.x, dir.y);
         //transform.position = pos + direction.normalized;
         
@@ -23,9 +24,10 @@ public class Bullet : MonoBehaviour {
         }
         else{
             transform.position = pos + new Vector2(direction.normalized.x*0.5f, -0.17f);
-        } 
-        
-        GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(sprt);
+        }
+        animator = GetComponent<Animator>();
+        Debug.Log(animController);
+        animator.runtimeAnimatorController = animController;
         gameObject.SetActive(true);
         isActive = true;
     }

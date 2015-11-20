@@ -50,6 +50,10 @@ public class Player1 : HumanBase
     public void SetUpPlayer(PlayerInfo pi, ControlKeys ck)
     {
 
+        
+        comp.animator = gameObject.GetComponent<Animator>();
+        //comp.animator.runtimeAnimatorController = Resources.Load("Animations/currie_red_override") as RuntimeAnimatorController;
+    
         base.playerNumber = 1;
         base.speed = 2f;
         base.direction = base.right;
@@ -70,18 +74,23 @@ public class Player1 : HumanBase
 
     public void setUpWeapons(PlayerInfo pi)
     {
-        WeaponBase pistol = new WeaponPistol(pi.charEnum); 
-        WeaponBase sniper = new WeaponSniper(); 
-
+        //WeaponBase pistol = new WeaponPistol(pi.charEnum); 
+        //WeaponBase sniper = new WeaponSniper();
+        WeaponBase biogun = new WeaponBiogun();
+        //WeaponBase flameTh = new WeaponFlamethrower();
+        //WeaponBase MP40 = new WeaponMP40();
 
         weaponHandling.player = GetComponent<PlayerBase>();
 
         // Tu sa vytvoria vsetky zbrane ktore sa priradia do weapon handling aby sa nemusel volat zbytocne load na sprajtoch
-        weaponHandling.weapons.Add(WeaponEnum.sniper, sniper);
-        weaponHandling.weapons.Add(WeaponEnum.pistol, pistol);
+        //weaponHandling.weapons.Add(WeaponEnum.sniper, sniper);
+        //weaponHandling.weapons.Add(WeaponEnum.pistol, pistol);
 
-        weaponHandling.inventory.Add(sniper);
-        weaponHandling.inventory.Add(pistol);
+        //weaponHandling.inventory.Add(sniper);
+        //weaponHandling.inventory.Add(pistol);
+        weaponHandling.inventory.Add(biogun);
+        //weaponHandling.inventory.Add(flameTh);
+        //weaponHandling.inventory.Add(MP40);
 
         weaponHandling.activeWeapon = weaponHandling.inventory[0];
         weaponHandling.weaponRenderer = transform.Find("weapon").GetComponent<SpriteRenderer>();

@@ -257,12 +257,14 @@ public abstract class PlayerBase : MonoBehaviour
                 //TODO delay nejake 2s
 
                 //presun na novu poziciu
+                
                 Vector3 newRandomPosition = PositionGenerator.GenerateRandomPosition();
                 posX = newRandomPosition.x;
                 posY = newRandomPosition.y;
                 transform.position = newRandomPosition;
                 Debug.Log("X " + newRandomPosition.x);
                 Debug.Log("Y " + newRandomPosition.y);
+                
                 hitPoints = maxHP;
                 
                 dead = false;

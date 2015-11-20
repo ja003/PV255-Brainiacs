@@ -67,7 +67,8 @@ public class WeaponHandling : MonoBehaviour {
         if (!activeWeapon.ready || !activeWeapon.kadReady) return;
         activeWeapon.kadReady = false;
         int bulletsLeft = activeWeapon.fire();
-        buletManager.fire(new Vector2(direction.x, direction.y), transform.position, activeWeapon.bulletSprite);
+        
+        buletManager.fire(new Vector2(direction.x, direction.y), transform.position, activeWeapon.animController);
 
         if (bulletsLeft == 0)
         {
