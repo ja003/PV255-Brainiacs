@@ -91,5 +91,4 @@ public class WeaponHandling : MonoBehaviour {
         weaponRenderer.sprite = activeWeapon.weaponSprites[player.directionMapping[player.direction]];
     }
 
-
 }

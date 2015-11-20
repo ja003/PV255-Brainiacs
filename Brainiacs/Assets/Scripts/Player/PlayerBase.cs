@@ -261,8 +261,8 @@ public abstract class PlayerBase : MonoBehaviour
                 posX = newRandomPosition.x;
                 posY = newRandomPosition.y;
                 transform.position = newRandomPosition;
-                Debug.Log("X " + newRandomPosition.x);
-                Debug.Log("Y " + newRandomPosition.y);
+                //Debug.Log("X " + newRandomPosition.x);
+                //Debug.Log("Y " + newRandomPosition.y);
                 hitPoints = maxHP;
                 
                 dead = false;
