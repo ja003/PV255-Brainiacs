@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 class WeaponManager : MonoBehaviour
 {
-    private WeaponEnum type;
+    public WeaponEnum type;
     private bool assignedType = false;
 
     private float floatingSpeed = 0.2f;

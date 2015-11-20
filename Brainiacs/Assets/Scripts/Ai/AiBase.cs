@@ -30,8 +30,8 @@ public class AiBase : PlayerBase
 
     public int avoidBulletPriority;
 
-    public Vector2 lastPosition;
-    public Vector2 preLastPosition;
+    public Vector2 lastPosition;    //asi k ničemu - smazat
+    public Vector2 preLastPosition; //asi k ničemu - smazat
 
     //////////////////////////////MAP shit
     public GameObject[] barriers;
@@ -77,6 +77,8 @@ public class AiBase : PlayerBase
 
         itemPowerUps = new List<GameObject>();
         itemWeapons = new List<GameObject>();
+        pickWeaponPriority = priority0;
+        pickPowerUpPriority = priority0;
 
         //Debug.Log(barriers[0].name);
         //Debug.Log(barriers[1].name);
@@ -101,6 +103,7 @@ public class AiBase : PlayerBase
         }
 
         //////////CHEK EVERY FRAME
+        
         
         
 
@@ -136,13 +139,20 @@ public class AiBase : PlayerBase
             }
 
             //Debug.Log("!");
-            PrintPriorities();
+            //PrintPriorities();
+            //UpdateCurrentAction(); //has to be checked faster
             UpdateCurrentAction();
 
             UpdateLastPosition();
 
 
             
+        }
+
+        //////////CHECK 4 PER SECOND
+        if (Time.frameCount % 8 == 0)
+        {
+           
         }
 
         if (Time.frameCount % 200 == 0)
@@ -153,9 +163,14 @@ public class AiBase : PlayerBase
 
         //Debug.Log("currentAction:"+currentAction);
 
-        
+        //CheckAmmo(); //check when firing
+
+        //UpdateCurrentAction(); //lagz
         DoCurrentAction();
         UpdateDirection();
+
+        //PrintPriorities();
+        ///PrintAction();
 
 
     }
@@ -178,6 +193,7 @@ public class AiBase : PlayerBase
     public void PrintPriorities()
     {
         string message = "priorities \n";
+        message += "pickWeaponPriority=" + pickWeaponPriority + ",\n";
         message += "pickPowerUpPriority=" + pickPowerUpPriority + ",\n";
 
         message += "KillPlayer1=" + killPlayer1Priority;
@@ -210,6 +226,9 @@ public class AiBase : PlayerBase
                 break;
             case AiActionEnum.pickupPowerUp:
                 PickUp(bestPowerUp);
+                break;
+            case AiActionEnum.pickupWeapon:
+                PickUp(bestWeapon);
                 break;
             default:
                 Stand();
@@ -276,13 +295,7 @@ public class AiBase : PlayerBase
         }
 
         //mapMaxY = 4f;
-
-
-
-
-
-
-
+        
         while (bestHorizontalUp.y < mapMaxY && !CharacterCollidesBarrier(bestHorizontalUp) && bestHorizontalUp.y < posY)
         {
             bestHorizontalUp.y += 0.1f;
@@ -317,12 +330,13 @@ public class AiBase : PlayerBase
 
         //Debug.Log("move to: " + possibleShootSpots[spotIndex]);
         Debug.DrawRay(possibleShootSpots[spotIndex], up, Color.cyan);
-        MoveTo(possibleShootSpots[spotIndex]);
+        //MoveTo(possibleShootSpots[spotIndex]);
 
 
         //if you are on same axis -> turn his direction and shoot
 
-        if (AlmostEqual(posX, player.posX, 0.1) || AlmostEqual(posY, player.posY, 0.1))
+        //if (AlmostEqual(posX, player.posX, 0.1) || AlmostEqual(posY, player.posY, 0.1))
+        if(MoveTo(possibleShootSpots[spotIndex]))
         {
             //Debug.Log("i can shoot");
             //look at him (if you are not already looking at him)
@@ -338,8 +352,8 @@ public class AiBase : PlayerBase
             {
                 //Debug.Log("I can shoot from:" + transform.position + " to: " + direction);
                 //chybí implementace kadence zbraně
-                if (Time.frameCount % 10 == 0)
-                    weaponHandling.fire(direction);
+                //CheckAmmo();
+                weaponHandling.fire(direction);
             }
         }
 
@@ -434,7 +448,9 @@ public class AiBase : PlayerBase
 
     public void UpdatePriorities()
     {
-        SetKillPriorities();
+        //set kill priorities only when you can shoot
+        if(CheckAmmo())
+            SetKillPriorities();
         
 
         //register incoming bullets, powerups,...
@@ -442,97 +458,134 @@ public class AiBase : PlayerBase
 
         SetPowerUpsPriority();
 
+        SetWeaponsPriority();
+
         if (bulletIncoming)
         {
             SetAvoidBulletPriority(priority100);
         }
 
+        //check bullets
+        //CheckAmmo(); //has to be updated faster
 
-        PrintPriorities();
+
+        //PrintPriorities();
 
         //....
     }
 
-    GameObject bestPowerUp;
-    int pickPowerUpPriority;
-
-    public void SetPowerUpsPriority()
+    ////////////////////////CHECK AMMO
+    public bool CheckAmmo()
     {
-        List<int> powerUpsPriorities = new List<int>();
-
-        if(itemPowerUps.Count == 0)
+        bool canShoot = true;
+        //Debug.Log(weaponHandling.activeWeapon.ammo);
+        if(!weaponHandling.activeWeapon.ready || !weaponHandling.activeWeapon.kadReady)
         {
-            //Debug.Log("no items around");
-            return;
+            //try switching to another fire weapon - TODO
+            //Debug.Log("CANT shoot");
+
+            canShoot = false;
         }
 
-        int highestPriority = 0;
-        foreach(GameObject powerUp in itemPowerUps)
+        //Debug.Log(canShoot);
+
+        if (!canShoot)
         {
-            //Debug.Log("I see " + powerUp.name);
-            PowerUpManager manager = powerUp.GetComponent<PowerUpManager>();
-            float distanceFromMe = GetDistance(gameObject, powerUp);
-            float distanceFactor = GetDistanceFactor(distanceFromMe);
 
-            int priority = 0;
-            switch (manager.type)
-            {              
-
-                case PowerUpEnum.Ammo:
-                    float ammoFactor = distanceFactor * weaponHandling.activeWeapon.ammo / weaponHandling.activeWeapon.clip;
-                    priority = (int)ammoFactor * 10;
-                    break;
-                case PowerUpEnum.Heal:
-                    float healthFactor = distanceFactor * hitPoints / GetMaxHp();
-                    priority = (int)healthFactor * 10;
-                    break;
-                case PowerUpEnum.Mystery:
-                    int mysteryFactor = (int)distanceFactor*Random.Range(0, 80);
-                    mysteryFactor += (int)distanceFactor * priority25;
-                    priority = mysteryFactor;
-                    break;
-                case PowerUpEnum.Shield:
-                    float shieldFactor = distanceFactor * (priority50 + Random.Range(0,20));
-                    priority = (int)shieldFactor;
-                    break;
-                case PowerUpEnum.Speed:
-                    float speedFactor = distanceFactor * (priority50 + Random.Range(0, 20));
-                    priority=(int)speedFactor;
-                    break;
-            }
-            if (priority == 0)
-                priority = priority10;
-            powerUpsPriorities.Add(priority);
-
-            //Debug.Log("setting: " + powerUpsPriorities[powerUpsPriorities.Count - 1]);
-
-            if (powerUpsPriorities[powerUpsPriorities.Count-1] > highestPriority)
-            {
-                highestPriority = powerUpsPriorities[powerUpsPriorities.Count - 1];
-            }
+            killPlayer1Priority -= priority50;
+            killPlayer2Priority -= priority50;
+            killPlayer3Priority -= priority50;
+            killPlayer4Priority -= priority50;
         }
-        
-        bestPowerUp = itemPowerUps[powerUpsPriorities.IndexOf(highestPriority)];
-        
-        pickPowerUpPriority = highestPriority;
-        //Debug.Log("pickPowerUpPriority:" + pickPowerUpPriority);
 
-
+        return canShoot;
     }
 
-    public void PickUp(GameObject obj)
-    {
-        //Debug.Log("picking up " + obj.name);
-        if (MoveTo(obj.transform.position))
-        {
-            //Debug.Log("picked up");
-            LookAroundYourself();
-        }
-    }
+
+
 
     /// ////////////////////////////AVOID BULLETS
 
+    public void SetAvoidBulletPriority(int priority)
+    {
+        avoidBulletPriority = priority;
 
+        killPlayer1Priority = priority0;
+        killPlayer2Priority = priority0;
+        killPlayer3Priority = priority0;
+        killPlayer4Priority = priority0;
+    }
+
+    float characterColliderWidth;
+    float characterColliderHeight;
+
+    public bool RegisterBullets()
+    {
+        bulletIncoming = false;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, mapWidth / 2, bulletMask);
+
+
+
+        foreach (Collider2D collider in colliders)
+        {
+            // enemies within 1m of the player
+            //Debug.Log(collider.name);
+            Vector2 bulletPosition = collider.transform.position;
+            Vector2 bulletDirection = collider.GetComponent<Bullet>().direction;
+            //Debug.Log(bulletPosition);
+            //Debug.Log(bulletDirection);
+
+            //Debug.Log(bulletPosition.y);
+            //Debug.Log(posY);
+            //Debug.Log(characterColliderHeight);
+
+
+
+            if (AlmostEqual(bulletPosition.x, posX, characterColliderWidth))//bullet above or bellow
+            {
+                if (bulletPosition.y > posY) //bullet is above
+                {
+                    if (bulletDirection == down) //bullet is aiming down
+                    {
+                        bulletIncoming = true;
+                        bulletFrom = up;
+                    }
+                }
+                else //bullet is bellow
+                {
+                    if (bulletDirection == up) //bullet is aiming up
+                    {
+                        bulletIncoming = true;
+                        bulletFrom = down;
+                    }
+                }
+            }
+            else if (AlmostEqual(bulletPosition.y, posY, characterColliderHeight))//bullet is on left or right
+            {
+                if (bulletPosition.x > posX) //bullet is on right
+                {
+                    if (bulletDirection == left) //bullet is aiming left
+                    {
+                        bulletIncoming = true;
+                        bulletFrom = right;
+                    }
+                }
+                else //bullet on left
+                {
+                    if (bulletDirection == right) //bullet is aiming right
+                    {
+                        bulletIncoming = true;
+                        bulletFrom = left;
+                    }
+                }
+            }
+
+
+        }
+        //Debug.Log(bulletIncoming);
+        return bulletIncoming;
+    }
+    
     public bool decidedDirectionBool = false;
     public Vector2 decidedDirection;
     public void AvoidBullet()
@@ -679,8 +732,183 @@ public class AiBase : PlayerBase
         RegisterBullets();
 
         RegisterPowerUps();
+
+        RegisterWeapons();
         
 
+    }
+
+    ////////////////////////WEAPONS
+    public void RegisterWeapons()
+    {
+        itemWeapons.Clear();
+        Collider2D[] items = Physics2D.OverlapCircleAll(transform.position, mapWidth / 2, itemMask);
+
+        foreach (Collider2D item in items)
+        {
+            if (item.transform.tag == "Weapon" && item.gameObject.activeSelf)
+            {
+                itemWeapons.Add(item.gameObject);
+            }
+        }
+    }
+    GameObject bestWeapon;
+    int pickWeaponPriority;
+
+    public void SetWeaponsPriority()
+    {
+        List<int> weaponsPriorities = new List<int>();
+
+        if (itemWeapons.Count == 0)
+        {
+            //Debug.Log("no items around");
+            pickWeaponPriority = priority0;
+            return;
+        }
+
+        int highestPriority = 0;
+        foreach (GameObject weapon in itemWeapons)
+        {
+            //Debug.Log("I see " + powerUp.name);
+            WeaponManager manager = weapon.GetComponent<WeaponManager>();
+            float distanceFromMe = GetDistance(gameObject, weapon);
+            float distanceFactor = GetDistanceFactor(distanceFromMe);
+
+            int priority = 0;
+            switch (manager.type)
+            {
+
+                case WeaponEnum.flamethrower:
+                    float flamethrowerFactor = distanceFactor;// * weaponHandling.activeWeapon.ammo / weaponHandling.activeWeapon.clip;
+                    /*if (HasWeapon(WeaponEnum.flamethrower))
+                    {
+                        //flamethrowerFactor /= ...
+                    }
+                    */
+
+                    priority = (int)flamethrowerFactor * 10;
+                    break;
+
+                case WeaponEnum.shotgun:
+                    float shotgunFactor = distanceFactor;// * weaponHandling.activeWeapon.ammo / weaponHandling.activeWeapon.clip;
+                    /*if (HasWeapon(WeaponEnum.flamethrower))
+                    {
+                        //flamethrowerFactor /= ...
+                    }
+                    */
+
+                    priority = (int)shotgunFactor * 10;
+                    break;
+
+                default:
+                    priority = 0;
+                    break;
+            }
+            if (priority == 0)
+                priority = priority10;
+            weaponsPriorities.Add(priority);
+
+            //Debug.Log("setting: " + powerUpsPriorities[powerUpsPriorities.Count - 1]);
+
+            if (weaponsPriorities[weaponsPriorities.Count - 1] > highestPriority)
+            {
+                highestPriority = weaponsPriorities[weaponsPriorities.Count - 1];
+            }
+        }
+
+        bestWeapon = itemWeapons[weaponsPriorities.IndexOf(highestPriority)];
+
+        pickWeaponPriority = highestPriority;
+        //Debug.Log("pickPowerUpPriority:" + pickPowerUpPriority);
+
+
+    }
+
+
+    /// ////////////////////POWERUPS
+
+    GameObject bestPowerUp;
+    int pickPowerUpPriority;
+
+    public void SetPowerUpsPriority()
+    {
+        List<int> powerUpsPriorities = new List<int>();
+
+        if (itemPowerUps.Count == 0)
+        {
+            //Debug.Log("no items around");
+            pickPowerUpPriority = priority0;
+            return;
+        }
+
+        int highestPriority = 0;
+        foreach (GameObject powerUp in itemPowerUps)
+        {
+            //Debug.Log("I see " + powerUp.name);
+            PowerUpManager manager = powerUp.GetComponent<PowerUpManager>();
+            if(manager == null)
+            {
+                Debug.Log(powerUp + " has no manager");
+                return;
+            }
+
+            float distanceFromMe = GetDistance(gameObject, powerUp);
+            float distanceFactor = GetDistanceFactor(distanceFromMe);
+
+            int priority = 0;
+            switch (manager.type)
+            {
+
+                case PowerUpEnum.Ammo:
+                    float ammoFactor = distanceFactor * weaponHandling.activeWeapon.ammo / weaponHandling.activeWeapon.clip;
+                    priority = (int)ammoFactor * 10;
+                    break;
+                case PowerUpEnum.Heal:
+                    float healthFactor = distanceFactor * hitPoints / GetMaxHp();
+                    priority = (int)healthFactor * 10;
+                    break;
+                case PowerUpEnum.Mystery:
+                    int mysteryFactor = (int)distanceFactor * Random.Range(0, 80);
+                    mysteryFactor += (int)distanceFactor * priority25;
+                    priority = mysteryFactor;
+                    break;
+                case PowerUpEnum.Shield:
+                    float shieldFactor = distanceFactor * (priority50 + Random.Range(0, 20));
+                    priority = (int)shieldFactor;
+                    break;
+                case PowerUpEnum.Speed:
+                    float speedFactor = distanceFactor * (priority50 + Random.Range(0, 20));
+                    priority = (int)speedFactor;
+                    break;
+            }
+            if (priority == 0)
+                priority = priority10;
+            powerUpsPriorities.Add(priority);
+
+            //Debug.Log("setting: " + powerUpsPriorities[powerUpsPriorities.Count - 1]);
+
+            if (powerUpsPriorities[powerUpsPriorities.Count - 1] > highestPriority)
+            {
+                highestPriority = powerUpsPriorities[powerUpsPriorities.Count - 1];
+            }
+        }
+
+        bestPowerUp = itemPowerUps[powerUpsPriorities.IndexOf(highestPriority)];
+
+        pickPowerUpPriority = highestPriority;
+        //Debug.Log("pickPowerUpPriority:" + pickPowerUpPriority);
+
+
+    }
+
+    public void PickUp(GameObject obj)
+    {
+        //Debug.Log("picking up " + obj.name);
+        if (MoveTo(obj.transform.position))
+        {
+            //Debug.Log("picked up");
+            LookAroundYourself();
+        }
     }
 
     public void RegisterPowerUps()
@@ -697,87 +925,7 @@ public class AiBase : PlayerBase
         }
     }
 
-    public void SetAvoidBulletPriority(int priority)
-    {
-        avoidBulletPriority = priority;
-
-        killPlayer1Priority = priority0;
-        killPlayer2Priority = priority0;
-        killPlayer3Priority = priority0;
-        killPlayer4Priority = priority0;
-    }
-
-    float characterColliderWidth;
-    float characterColliderHeight;
-
-    public bool RegisterBullets()
-    {
-        bulletIncoming = false;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, mapWidth / 2, bulletMask);
-        
-
-
-        foreach (Collider2D collider in colliders)
-        {
-            // enemies within 1m of the player
-            //Debug.Log(collider.name);
-            Vector2 bulletPosition = collider.transform.position;
-            Vector2 bulletDirection = collider.GetComponent<Bullet>().direction;
-            //Debug.Log(bulletPosition);
-            //Debug.Log(bulletDirection);
-
-            //Debug.Log(bulletPosition.y);
-            //Debug.Log(posY);
-            //Debug.Log(characterColliderHeight);
-
-
-
-            if (AlmostEqual(bulletPosition.x, posX,characterColliderWidth))//bullet above or bellow
-            {
-                if(bulletPosition.y > posY) //bullet is above
-                {
-                    if(bulletDirection == down) //bullet is aiming down
-                    {
-                        bulletIncoming = true;
-                        bulletFrom = up;
-                    }
-                }
-                else //bullet is bellow
-                {
-                    if (bulletDirection == up) //bullet is aiming up
-                    {
-                        bulletIncoming = true;
-                        bulletFrom = down;
-                    }
-                }
-            }
-            else if ( AlmostEqual(bulletPosition.y, posY, characterColliderHeight))//bullet is on left or right
-            {
-                if (bulletPosition.x > posX) //bullet is on right
-                {
-                    if (bulletDirection == left) //bullet is aiming left
-                    {
-                        bulletIncoming = true;
-                        bulletFrom = right;
-                    }
-                }
-                else //bullet on left
-                {
-                    if (bulletDirection == right) //bullet is aiming right
-                    {
-                        bulletIncoming = true;
-                        bulletFrom = left;
-                    }
-                }
-            }
-           
-
-        }
-        //Debug.Log(bulletIncoming);
-        return bulletIncoming;
-    }
-
-
+    
     /// ////////////////////////////.........
 
     public void UpdateCurrentAction()
@@ -807,6 +955,10 @@ public class AiBase : PlayerBase
         else if(pickPowerUpPriority >= highestPriority)
         {
             currentAction = AiActionEnum.pickupPowerUp;
+        }
+        else if (pickWeaponPriority >= highestPriority)
+        {
+            currentAction = AiActionEnum.pickupWeapon;
         }
         else
         {
