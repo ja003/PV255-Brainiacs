@@ -15,15 +15,16 @@ public class Bullet : MonoBehaviour {
         
 
         if (dir == Vector2.up){
-            transform.position = pos + new Vector2(0.2f, 0.3f);
+            transform.position = pos + new Vector2(0.1f, 0.35f);
+            transform.rotation = Quaternion.Euler(0, 0, 90);
         }
         else if (dir == Vector2.down) {
-            //Debug.Log("down");
-            //Debug.Log(pos + new Vector2(-0.07f, -0.5f));
             transform.position = pos + new Vector2(-0.1f, -0.75f);
+            transform.rotation = Quaternion.Euler(0, 0, 90);
         }
         else{
             transform.position = pos + new Vector2(direction.normalized.x*0.5f, -0.17f);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         animator = GetComponent<Animator>();
         Debug.Log(animController);

@@ -48,7 +48,6 @@ public class WeaponBase
 
     public int fire()
     {
-      
         ammo -= 1;  
         return ammo;
     }
