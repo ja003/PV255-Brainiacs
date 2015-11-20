@@ -16,12 +16,12 @@ public class WeaponSniper : WeaponBase
         base.ready = true;
 
         base.sprite = "Sprites/Weapons/sniper";
-        base.bulletSprite = "Sprites/Bullets/bullet";
+        base.bulletAnimControler = "Sprites/Bullets/bullet";
 
         kadency = 0.25f;
         kadReady = true;
 
-        loadSprites(sprite, bulletSprite);
+        loadSprites(sprite, bulletAnimControler);
     }
 
 }

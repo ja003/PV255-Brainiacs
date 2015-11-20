@@ -3,29 +3,32 @@ using System.Collections;
 
 public class Bullet : MonoBehaviour {
 
+    Animator animator;
     public int damage = 20;
     public Vector2 direction;
     public float speed;
     public bool isActive = false;
 
-    public void iniciate(Vector2 dir, Vector2 pos, string sprt) {
+    public void iniciate(Vector2 dir, Vector2 pos, RuntimeAnimatorController animController) {
         direction = new Vector2(dir.x, dir.y);
         //transform.position = pos + direction.normalized;
         
 
         if (dir == Vector2.up){
-            transform.position = pos + new Vector2(0.2f, 0.3f);
+            transform.position = pos + new Vector2(0.1f, 0.35f);
+            transform.rotation = Quaternion.Euler(0, 0, 90);
         }
         else if (dir == Vector2.down) {
-            //Debug.Log("down");
-            //Debug.Log(pos + new Vector2(-0.07f, -0.5f));
             transform.position = pos + new Vector2(-0.1f, -0.75f);
+            transform.rotation = Quaternion.Euler(0, 0, 90);
         }
         else{
             transform.position = pos + new Vector2(direction.normalized.x*0.5f, -0.17f);
-        } 
-        
-        GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(sprt);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        animator = GetComponent<Animator>();
+        Debug.Log(animController);
+        animator.runtimeAnimatorController = animController;
         gameObject.SetActive(true);
         isActive = true;
     }

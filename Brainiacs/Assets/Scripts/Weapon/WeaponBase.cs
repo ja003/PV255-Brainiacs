@@ -24,7 +24,8 @@ public class WeaponBase
     public Sprite[] weaponSprites;
 
 
-    public string bulletSprite { get; set; }
+    public string bulletAnimControler { get; set; }
+    public RuntimeAnimatorController animController;
     public float reloadTime { get; set; }
 
     public void reload()
@@ -47,7 +48,6 @@ public class WeaponBase
 
     public int fire()
     {
-      
         ammo -= 1;  
         return ammo;
     }
@@ -60,7 +60,10 @@ public class WeaponBase
 
     protected void loadSprites(string sprt, string bullSprt)
     {
+        
         weaponSprites = Resources.LoadAll<Sprite>(sprt);
+        animController = Resources.Load(bullSprt) as RuntimeAnimatorController;
+       
     }
 }
 
