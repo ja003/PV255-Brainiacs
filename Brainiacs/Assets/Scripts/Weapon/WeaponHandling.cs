@@ -58,9 +58,10 @@ public class WeaponHandling : MonoBehaviour {
 
     }
 
-    public void reload() {
-
+    public void AddWeapon(WeaponEnum we) {
+        inventory.Add(weapons[we]);
     }
+
 
     public void fire(Vector2 direction)
     {

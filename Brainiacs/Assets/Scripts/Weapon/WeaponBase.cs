@@ -58,6 +58,8 @@ public class WeaponBase
         time = 0.0f; 
     }
 
+    
+
     protected void loadSprites(string sprt, string bullSprt)
     {
         
