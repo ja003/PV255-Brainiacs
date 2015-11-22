@@ -11,10 +11,10 @@ public class Ai_03 : AiBase {
     void Start()
     {
         playerNumber = 3;
-        killPlayer1Priority = 0;
-        killPlayer2Priority = 0;
-        killPlayer3Priority = 0;
-        killPlayer4Priority = 0;
+        base.killPlayer1Priority = 0;
+        base.killPlayer2Priority = 0;
+        base.killPlayer3Priority = 0;
+        base.killPlayer4Priority = 0;
 
         
 

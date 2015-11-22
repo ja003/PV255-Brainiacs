@@ -5,10 +5,10 @@ using System.Collections.Generic;
 public class AiBase : PlayerBase
 {
 
-    public PlayerBase player1;
-    public PlayerBase player2;
-    public PlayerBase player3;
-    public PlayerBase player4;
+    PlayerBase player1;
+    PlayerBase player2;
+    PlayerBase player3;
+    PlayerBase player4;
 
     Components comp;
     PlayerInfo playInfo;
@@ -23,15 +23,15 @@ public class AiBase : PlayerBase
     static int priority90 = 90;
     static int priority100 = 100;
 
-    public int killPlayer1Priority;
-    public int killPlayer2Priority;
-    public int killPlayer3Priority;
-    public int killPlayer4Priority;
+    protected int killPlayer1Priority;
+    protected int killPlayer2Priority;
+    protected int killPlayer3Priority;
+    protected int killPlayer4Priority;
 
-    public int avoidBulletPriority;
+    int avoidBulletPriority;
 
-    public Vector2 lastPosition;    //asi k ničemu - smazat
-    public Vector2 preLastPosition; //asi k ničemu - smazat
+    Vector2 lastPosition;    //asi k ničemu - smazat
+    Vector2 preLastPosition; //asi k ničemu - smazat
 
     //////////////////////////////MAP shit
     public GameObject[] barriers;
@@ -351,7 +351,6 @@ public class AiBase : PlayerBase
             if (CanShoot(transform.position, direction))
             {
                 //Debug.Log("I can shoot from:" + transform.position + " to: " + direction);
-                //chybí implementace kadence zbraně
                 //CheckAmmo();
                 weaponHandling.fire(direction);
             }
@@ -1190,8 +1189,8 @@ public class AiBase : PlayerBase
 
         bool found = false;
         int finalNodeIndex = 0;
-        //trying 5 different starting points!!!!!!!!!!!!!!!
-        for (int start = 0; start < 5; start++)
+        //trying 5 different starting points!!!!!!!!!!!!!!! - only 1 for now
+        for (int start = 0; start < 1; start++)
         {
             //Debug.Log("start:"+start);
             visitedNodes.Clear();
@@ -1298,7 +1297,7 @@ public class AiBase : PlayerBase
         }
 
         //refresh path only when target moves
-        if (!ValueEquals(currentTargetDestination.x, x) || !ValueEquals(currentTargetDestination.y, y))
+        if (!ValueEquals(currentTargetDestination.x, x,characterWidth) || !ValueEquals(currentTargetDestination.y, y,characterColliderHeight))
         {
             //Debug.Log("oldTarget:" + currentTargetDestination);
             //Debug.Log("newTarget:" + x + "," +y);
@@ -1315,8 +1314,11 @@ public class AiBase : PlayerBase
                 //Debug.Log(v);
             }
         }
+
+        //walk the small distance
         if (walkingFront.Count == 0)
         {
+            //Debug.Log("getting to: " + currentTargetDestination);
             if (Time.frameCount % 30 < 15)
             {
                 PreferX(x, y);
@@ -1398,17 +1400,45 @@ public class AiBase : PlayerBase
 
 
 
+        RaycastHit2D hitBotLeft;
+        Ray rayBotLeft = new Ray(botLeft, direction);
+        RaycastHit2D hitBotRight;
+        Ray rayBotRight = new Ray(botRight, direction);
+        RaycastHit2D hitTopLeft;
+        Ray rayTopLeft = new Ray(topLeft, direction);
+        RaycastHit2D hitTopRight;
+        Ray rayTopRight = new Ray(topRight, direction);
+        
+        
+        hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, direction, 0.1f, barrierMask);
+        hitBotRight = Physics2D.Raycast(rayBotRight.origin, direction, 0.1f, barrierMask);
+        hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, direction, 0.1f, barrierMask);
+        hitTopRight = Physics2D.Raycast(rayTopRight.origin, direction, 0.1f, barrierMask);
+
+        if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
+        {
+            //Debug.DrawLine(charBotLeft, charBotRight, Color.red, 2f);
+            //Debug.DrawLine(charBotLeft, charTopLeft, Color.red, 2f);
+            //Debug.DrawLine(charBotRight, charTopRight, Color.red, 2f);
+            //Debug.DrawLine(charTopLeft, charTopRight, Color.red, 2f);
+            return true;
+        }
+
+        //old version
+        /*
         for (int i = 0; i < barriers.Length; i++)
         {
-            if (barriers[i].GetComponent<BoxCollider2D>().bounds.Contains(botLeft + colliderOffset))
+            if (barriers[i].GetComponent<BoxCollider2D>().bounds.Contains(botLeft ))
                 return true;
-            if (barriers[i].GetComponent<BoxCollider2D>().bounds.Contains(botRight + colliderOffset))
+            if (barriers[i].GetComponent<BoxCollider2D>().bounds.Contains(botRight ))
                 return true;
-            if (barriers[i].GetComponent<BoxCollider2D>().bounds.Contains(topLeft + colliderOffset))
+            if (barriers[i].GetComponent<BoxCollider2D>().bounds.Contains(topLeft ))
                 return true;
-            if (barriers[i].GetComponent<BoxCollider2D>().bounds.Contains(topRight + colliderOffset))
+            if (barriers[i].GetComponent<BoxCollider2D>().bounds.Contains(topRight ))
                 return true;
         }
+        Debug.Log(botLeft);
+        */
 
         //Debug.DrawLine(botLeft, botRight, Color.green, 2f);
         //Debug.DrawLine(botLeft, topLeft, Color.green, 2f);
@@ -1425,6 +1455,7 @@ public class AiBase : PlayerBase
     /// <returns></returns>
     public bool ObjectCollides(Vector2 center, float width, Vector2 direction, float distance)
     {
+        width += 0.1f; //small offset
         //Debug.Log("width:" + width);
         LayerMask layerMask = barrierMask;
         charBotLeft = new Vector2(center.x - width / 2, center.y - width / 2);
@@ -1664,7 +1695,7 @@ public class AiBase : PlayerBase
     }
 
 
-
+    /*
     /// <summary>
     /// bacha, dělá to skoky po 1, přitom charWidth = 0.5..uvidí se, jak to pofachá
     /// </summary>
@@ -1699,7 +1730,7 @@ public class AiBase : PlayerBase
         //Debug.Log(PrintNodeList(possibleDirections));
 
         return possibleDirections;
-    }
+    }*/
 
     public string PrintNodeList(List<Vector2> list)
     {
@@ -1712,7 +1743,7 @@ public class AiBase : PlayerBase
     }
 
     private Vector2 lastDirection;
-
+    /*
     public bool FindPath()
     {
         //Vector2 currentPosition = transform.position;
@@ -1814,7 +1845,7 @@ public class AiBase : PlayerBase
         //Debug.Log("---");
         return true;
     }
-
+    */
     //s tímto návrhem pohybu k ničemu
     /*
         for (int i=0;i<visited.Count;i++)
@@ -1839,15 +1870,17 @@ public class AiBase : PlayerBase
 
 
 
-    //detect only collision with barriers (assigned manually to prefab)
+    //detect only collision with barriers and borders (assigned manually to prefab)
     public LayerMask barrierMask;
     public bool decided = false;
+
 
     /// <summary>
     /// returns false while there is still some collision with barrier
     /// </summary>
     /// <returns>state of avoiding barrier</returns>
-    public bool AvoidBariers()
+    /// /*
+   /* public bool AvoidBariers()
     {
         if (Collides(0.1f))
         {
@@ -1859,7 +1892,7 @@ public class AiBase : PlayerBase
             //Debug.Log("avoided");
             return true;
         }
-    }
+    }*/
 
 
 
