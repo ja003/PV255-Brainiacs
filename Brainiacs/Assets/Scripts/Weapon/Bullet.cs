@@ -27,7 +27,6 @@ public class Bullet : MonoBehaviour {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         animator = GetComponent<Animator>();
-        Debug.Log(animController);
         animator.runtimeAnimatorController = animController;
         gameObject.SetActive(true);
         isActive = true;

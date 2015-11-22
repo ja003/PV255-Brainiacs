@@ -21,7 +21,6 @@ public class WeaponPistol : WeaponBase {
 
         switch (type)
         {
-            //ten bulletSprite se ještě nikde nevyužívá? -AJ
             case (CharacterEnum.Tesla): base.sprite = "Sprites/Weapons/teslaPistol"; base.bulletAnimControler = "Animations/bullet_tesla_animator"; break;
             case (CharacterEnum.Nobel): base.sprite = "Sprites/Weapons/nobelPistol"; break;
             case (CharacterEnum.Einstein): base.sprite = "Sprites/Weapons/einsteinPistol"; break;

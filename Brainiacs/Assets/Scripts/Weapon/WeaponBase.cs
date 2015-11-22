@@ -65,7 +65,7 @@ public class WeaponBase
         
         weaponSprites = Resources.LoadAll<Sprite>(sprt);
         animController = Resources.Load(bullSprt) as RuntimeAnimatorController;
-       
+        Debug.Log(weaponSprites);
     }
 }
 
