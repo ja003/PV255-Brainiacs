@@ -74,7 +74,6 @@
      <Compile Include="Assets\Scripts\Teleport\TeleportUR.cs" />
      <Compile Include="Assets\Scripts\Weapon\Bullet.cs" />
      <Compile Include="Assets\Scripts\Weapon\BulletManager.cs" />
-     <Compile Include="Assets\Scripts\Weapon\Skvrna.cs" />
      <Compile Include="Assets\Scripts\Weapon\WeaponBase.cs" />
      <Compile Include="Assets\Scripts\Weapon\WeaponBiogun.cs" />
      <Compile Include="Assets\Scripts\Weapon\WeaponEnum.cs" />
