@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Brainiacs.Generate;
+using System.Collections;
 
 public abstract class PlayerBase : MonoBehaviour
 {
@@ -250,24 +251,14 @@ public abstract class PlayerBase : MonoBehaviour
         {
             if ((hitPoints - dmg) <= 0) 
             {
-                UpdateAnimatorState(AnimatorStateEnum.dead);
+                //UpdateAnimatorState(AnimatorStateEnum.dead);
                 hitPoints = 0;
                 //TODO sputenie animacie smrti
                 comp.rb2d.velocity = stop;
-                //TODO delay nejake 2s
-
-                //presun na novu poziciu
                 
-                Vector3 newRandomPosition = PositionGenerator.GenerateRandomPosition();
-                posX = newRandomPosition.x;
-                posY = newRandomPosition.y;
-                transform.position = newRandomPosition;
-                Debug.Log("X " + newRandomPosition.x);
-                Debug.Log("Y " + newRandomPosition.y);
+                if(!dead)
+                    StartCoroutine(Die());
                 
-                hitPoints = maxHP;
-                
-                dead = false;
             }
             else
             {
@@ -276,6 +267,46 @@ public abstract class PlayerBase : MonoBehaviour
         }
         //Debug.Log(hitPoints);
     }
+
+    IEnumerator Die()
+    {
+        dead = true;
+        Debug.Log("dead");
+        //disable movement
+        up = stop;
+        right = stop;
+        down= stop;
+        left = stop;
+        //disable weapon
+        //....
+
+        //float deadTime = characterAnimator.
+        yield return new WaitForSeconds(1.5f);
+
+        hitPoints = maxHP;
+        dead = false;
+        Debug.Log("alive");
+
+        //TODO
+        //load player again (without old weapons,...)
+
+        Vector3 newRandomPosition = PositionGenerator.GenerateRandomPosition();
+        posX = newRandomPosition.x;
+        posY = newRandomPosition.y;
+        transform.position = newRandomPosition;
+        Debug.Log("X " + newRandomPosition.x);
+        Debug.Log("Y " + newRandomPosition.y);
+
+        //enable movement
+        up = Vector2.up;
+        down = Vector2.down;
+        left = Vector2.left;
+        right = Vector2.right;
+        
+
+
+
+}
 
     /// ////////////////////////////////////// POWER UPS ///////////////////////////////////////////
     //player receives heal

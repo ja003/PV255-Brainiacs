@@ -12,7 +12,7 @@ public class WeaponBiogun : WeaponBase
         base.ammo = 4;
         base.maxAmmo = 4;
 
-        base.reloadTime = 2.5f;
+        base.reloadTime = 1f; //2,5 -> 1 for test
         base.ready = true;
 
         base.sprite = "Sprites/Weapons/biogun";
