@@ -74,11 +74,11 @@ public class Player1 : HumanBase
 
     public void setUpWeapons(PlayerInfo pi)
     {
-        //WeaponBase pistol = new WeaponPistol(pi.charEnum); 
-        //WeaponBase sniper = new WeaponSniper();
+        WeaponBase pistol = new WeaponPistol(pi.charEnum); 
+        WeaponBase sniper = new WeaponSniper();
         WeaponBase biogun = new WeaponBiogun();
         //WeaponBase flameTh = new WeaponFlamethrower();
-        //WeaponBase MP40 = new WeaponMP40();
+        WeaponBase MP40 = new WeaponMP40();
 
         weaponHandling.player = GetComponent<PlayerBase>();
 
@@ -86,14 +86,14 @@ public class Player1 : HumanBase
         //weaponHandling.weapons.Add(WeaponEnum.sniper, sniper);
         //weaponHandling.weapons.Add(WeaponEnum.pistol, pistol);
 
-        //weaponHandling.inventory.Add(sniper);
-        //weaponHandling.inventory.Add(pistol);
+        weaponHandling.inventory.Add(sniper);
+        weaponHandling.inventory.Add(pistol);
         weaponHandling.inventory.Add(biogun);
         //weaponHandling.inventory.Add(flameTh);
-        //weaponHandling.inventory.Add(MP40);
+        weaponHandling.inventory.Add(MP40);
 
         weaponHandling.activeWeapon = weaponHandling.inventory[0];
-        weaponHandling.weaponRenderer = transform.Find("weapon").GetComponent<SpriteRenderer>();
+        //weaponHandling.weaponRenderer = transform.Find("weapon").GetComponent<SpriteRenderer>();
         // weaponHandling.weaponRenderer.sprite = Resources.Load<Sprite>(pistol.sprite);
         //weaponHandling.weaponRenderer.sprite = Resources.Load<Sprite>(sniper.sprite); 
     }

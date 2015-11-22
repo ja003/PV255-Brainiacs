@@ -21,10 +21,10 @@ public class WeaponPistol : WeaponBase {
 
         switch (type)
         {
-            case (CharacterEnum.Tesla): base.sprite = "Sprites/Weapons/teslaPistol"; base.bulletAnimControler = "Animations/bullet_tesla_animator"; break;
-            case (CharacterEnum.Nobel): base.sprite = "Sprites/Weapons/nobelPistol"; break;
-            case (CharacterEnum.Einstein): base.sprite = "Sprites/Weapons/einsteinPistol"; break;
-            case (CharacterEnum.Curie): base.sprite = "Sprites/Weapons/curiePistol"; break;
+            case (CharacterEnum.Tesla): base.sprite = "Sprites/Weapons/teslaPistol"; base.bulletAnimControler = "Animations/bullets_animators/bullet_tesla_animator"; break;
+            case (CharacterEnum.Nobel): base.sprite = "Sprites/Weapons/nobelPistol"; base.bulletAnimControler = "Animations/bullets_animators/bullet_nobel_animator"; break;
+            case (CharacterEnum.Einstein): base.sprite = "Sprites/Weapons/einsteinPistol"; base.bulletAnimControler = "Animations/bullets_animators/bullet_einstein_animator"; break;
+            case (CharacterEnum.Curie): base.sprite = "Sprites/Weapons/curiePistol"; base.bulletAnimControler = "Animations/bullets_animators/bullet_curie_animator"; break;
         }
 
         kadency = 0.05f;

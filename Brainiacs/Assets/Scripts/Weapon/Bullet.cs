@@ -10,9 +10,7 @@ public class Bullet : MonoBehaviour {
     public bool isActive = false;
 
     public void iniciate(Vector2 dir, Vector2 pos, RuntimeAnimatorController animController) {
-        direction = new Vector2(dir.x, dir.y);
-        //transform.position = pos + direction.normalized;
-        
+        direction = new Vector2(dir.x, dir.y);      
 
         if (dir == Vector2.up){
             transform.position = pos + new Vector2(0.1f, 0.35f);
@@ -26,6 +24,7 @@ public class Bullet : MonoBehaviour {
             transform.position = pos + new Vector2(direction.normalized.x*0.5f, -0.17f);
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
+        Debug.Log(animController);
         animator = GetComponent<Animator>();
         animator.runtimeAnimatorController = animController;
         gameObject.SetActive(true);
@@ -47,7 +46,7 @@ public class Bullet : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if ((coll.gameObject.tag == "Barrier") || (coll.gameObject.tag == "Player"))
+        if ((coll.gameObject.tag == "Barrier") || (coll.gameObject.tag == "Player") || (coll.gameObject.tag == "Border"))
         {
             if (coll.gameObject.tag == "Player")
             {

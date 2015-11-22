@@ -16,7 +16,7 @@ public class WeaponSniper : WeaponBase
         base.ready = true;
 
         base.sprite = "Sprites/Weapons/sniper";
-        base.bulletAnimControler = "Sprites/Bullets/bullet";
+        base.bulletAnimControler = "Animations/bullets_animators/bullet_sniper_animator";
 
         kadency = 0.25f;
         kadReady = true;

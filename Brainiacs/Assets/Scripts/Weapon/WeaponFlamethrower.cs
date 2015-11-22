@@ -15,7 +15,7 @@ public class WeaponFlamethrower : WeaponBase
         base.ready = true;
 
         base.sprite = "Sprites/Weapons/flamethrower";
-        base.bulletAnimControler = "Sprites/Bullets/bullet";
+        base.bulletAnimControler = "Animations/bullet_MP40_animator";
 
         kadency = 0.3f;
         kadReady = true;

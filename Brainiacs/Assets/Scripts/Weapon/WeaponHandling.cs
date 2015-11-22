@@ -74,7 +74,7 @@ public class WeaponHandling : MonoBehaviour {
 
         if (bulletsLeft == 0)
         {
-            if (activeWeapon.weaponType == WeaponEnum.pistol || activeWeapon.weaponType == WeaponEnum.sniper)
+            if (activeWeapon.weaponType == WeaponEnum.pistol)
             {
                 activeWeapon.reload();
                 activeWeapon.ready = false;

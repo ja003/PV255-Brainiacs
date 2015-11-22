@@ -16,7 +16,7 @@ public class WeaponBiogun : WeaponBase
         base.ready = true;
 
         base.sprite = "Sprites/Weapons/biogun";
-        base.bulletAnimControler = "Animations/bullet_biogun_animator";
+        base.bulletAnimControler = "Animations/bullets_animators/bullet_biogun_animator";
 
         kadency = 0.1f;
         kadReady = true;
