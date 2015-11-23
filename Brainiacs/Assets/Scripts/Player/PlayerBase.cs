@@ -111,12 +111,19 @@ public abstract class PlayerBase : MonoBehaviour
     }
 
     private void setUpSprites() {
-        string sprite = "";
-        sprite += playInfo.charEnum.ToString();
-        sprite += playInfo.playerColor;
+        string animControllerString = "";
+        string character = playInfo.charEnum.ToString().ToLower();
+        animControllerString +=  character + "_";
+        animControllerString += playInfo.playerColor + "_";
+        animControllerString += "override";
+        animControllerString = "Animations/Characters/" + character + "/" + animControllerString;
 
-        comp.spriteRend.sprite = Resources.Load<Sprite>("Sprites/Players/" + sprite);
-        //Debug.Log("setting sprite: " + sprite);
+        RuntimeAnimatorController rtac = Resources.Load(animControllerString) as AnimatorOverrideController;
+        Debug.Log(animControllerString);
+        Debug.Log(rtac);
+        comp.animator.runtimeAnimatorController = rtac;
+
+        
     }
 
     //TODO: transform.GetChild(1).GetComponent<SpriteRenderer>().sortingLayerName = "Hand_back";
@@ -399,7 +406,7 @@ public abstract class PlayerBase : MonoBehaviour
                 //Debug.Log("player picked up heal");
                 break;
             case PowerUpEnum.Ammo:
-                activeWeapon.reload();
+                weaponHandling.activeWeapon.reload();
                 //Debug.Log("player picked up ammo");
                 break;
             case PowerUpEnum.Speed:
@@ -433,13 +440,6 @@ public abstract class PlayerBase : MonoBehaviour
     }
     
 }
-
-//namespace Assets.Scripts.Player
-//{
-//    public enum AnimatorStateEnum
-//    {
-//    }
-//}
 
 //proč mi to v Enums nefunguje?
 public enum AnimatorStateEnum

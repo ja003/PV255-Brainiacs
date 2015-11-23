@@ -96,9 +96,9 @@ public class gm : MonoBehaviour {
 
         player3Comp = player3.transform.GetChild(0).GetComponent<Ai_03>(); //zatim 03...
 
-        SetUpPlayer(1, CharacterEnum.Einstein);
-        SetUpPlayer(2, CharacterEnum.Nobel);
-        SetUpPlayer(3, CharacterEnum.Tesla);
+        //SetUpPlayer(1, CharacterEnum.Curie);
+        SetUpPlayer(2, CharacterEnum.Einstein);
+        SetUpPlayer(3, CharacterEnum.Curie);
         SetUpPlayer(4, CharacterEnum.Tesla);
 
 
@@ -113,29 +113,29 @@ public class gm : MonoBehaviour {
             case 1:
                 player1Info.playerNumber = 1;
                 player1Info.charEnum = charEnum;
-                player1Info.playerColor = "Red";
+                player1Info.playerColor = "red";
                 player1Comp.SetUpPlayer(player1Info, new ControlKeysP1());
                 player1Active = true;
                 break;
             case 2:
                 player2Info.playerNumber = 2;
                 player2Info.charEnum = charEnum;
-                player2Info.playerColor = "Green";
-                player2Comp.SetUpPlayer(player2Info, new ControlKeysP2());
+                player2Info.playerColor = "green";
+                player2Comp.SetUpPlayer(player2Info, new ControlKeysP1());
                 player2Active = true;
                 break;
             case 3:
                 player3Info.playerNumber = 3;
                 player3Info.charEnum = charEnum;
-                player3Info.playerColor = "Blue";
+                player3Info.playerColor = "blue";
                 player3Comp.SetUpPlayer(player3Info);
                 player3Active = true;
                 break;
             case 4:
                 player4Info.playerNumber = 4;
                 player4Info.charEnum = charEnum;
-                player4Info.playerColor = "Yellow";
-                player4Comp.SetUpPlayer(player4Info, new ControlKeys());
+                player4Info.playerColor = "yellow";
+                player4Comp.SetUpPlayer(player4Info, new ControlKeysP2());
                 player4Active = true;
                 break;
         }
@@ -146,8 +146,8 @@ public class gm : MonoBehaviour {
         if (player1Active) player1.SetActive(true);
         started = player1Active;
         if (player2Active) player2.SetActive(true);
-        //if (player3Active) player3.SetActive(true);
-        //if (player4Active) player4.SetActive(true);
+        if (player3Active) player3.SetActive(true);
+        if (player4Active) player4.SetActive(true);
     }
 
     void FixedUpdate()

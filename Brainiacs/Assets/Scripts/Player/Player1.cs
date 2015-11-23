@@ -63,6 +63,7 @@ public class Player1 : HumanBase
        
         comp.spriteRend = GetComponent<SpriteRenderer>();
         comp.rb2d = gameObject.GetComponent<Rigidbody2D>();
+        comp.animator = GetComponent<Animator>();
 
         setUpHB(comp, playInfo);
         setUpPB(comp, playInfo);
@@ -83,39 +84,23 @@ public class Player1 : HumanBase
         weaponHandling.player = GetComponent<PlayerBase>();
 
         // Tu sa vytvoria vsetky zbrane ktore sa priradia do weapon handling aby sa nemusel volat zbytocne load na sprajtoch
-        //weaponHandling.weapons.Add(WeaponEnum.sniper, sniper);
-        //weaponHandling.weapons.Add(WeaponEnum.pistol, pistol);
+        weaponHandling.weapons.Add(WeaponEnum.sniper, sniper);
+        weaponHandling.weapons.Add(WeaponEnum.pistol, pistol);
+        weaponHandling.weapons.Add(WeaponEnum.biogun, biogun);
+        weaponHandling.weapons.Add(WeaponEnum.MP40, MP40);
 
-        weaponHandling.inventory.Add(sniper);
+        // Inicializacia prvej zbrane
         weaponHandling.inventory.Add(pistol);
+        weaponHandling.inventory.Add(sniper);
         weaponHandling.inventory.Add(biogun);
-        //weaponHandling.inventory.Add(flameTh);
         weaponHandling.inventory.Add(MP40);
-
         weaponHandling.activeWeapon = weaponHandling.inventory[0];
-        //weaponHandling.weaponRenderer = transform.Find("weapon").GetComponent<SpriteRenderer>();
-        // weaponHandling.weaponRenderer.sprite = Resources.Load<Sprite>(pistol.sprite);
-        //weaponHandling.weaponRenderer.sprite = Resources.Load<Sprite>(sniper.sprite); 
+
     }
 
-        void Update()
+    void Update()
     {
         base.Movement();
-        //Debug.Log("update");
-        //base.SwitchWeapon();
-        //UpdateDirection();
-
-        if(Time.frameCount%30 == 0)
-        {
-            //Debug.Log(
-            //"walkUp:" + walkUp +
-            //",walkDown:" + walkDown +
-            //",walkRight:" + walkDown +
-            //",walkLeft:" + walkLeft +
-            //",dead:" + dead
-            //);
-            
-        }
     }
 
    

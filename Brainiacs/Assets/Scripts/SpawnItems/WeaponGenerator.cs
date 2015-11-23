@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Brainiacs.Generate;
 
@@ -20,7 +18,7 @@ public class WeaponGenerator : MonoBehaviour
     private float spawnInterval = 3.0f; //malý na test
 
     private string location = "Prefabs/SpawnItems/Weapons/weapon_";
-    private string[] weaponNames = new string[countOfWeapons - indexOfSpawnWeps] { "shotgun", "flamethrower" };
+    private string[] weaponNames = new string[countOfWeapons - indexOfSpawnWeps] { "pistol", "flamethrower" };
 
     void Start()
     {

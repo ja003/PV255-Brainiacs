@@ -5,7 +5,7 @@ public class WeaponMP40 : WeaponBase {
 
     public WeaponMP40()
     {
-        base.damage = 30;
+        base.damage = 20;
         base.weaponType = WeaponEnum.sniper;
 
         base.ammo = 10;
@@ -19,6 +19,8 @@ public class WeaponMP40 : WeaponBase {
 
         kadency = 0.0f;
         kadReady = true;
+
+        bulletSpeed = 1.25f;
 
         loadSprites(sprite, bulletAnimControler);
     }

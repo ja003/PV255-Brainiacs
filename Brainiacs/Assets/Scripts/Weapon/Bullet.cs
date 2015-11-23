@@ -6,12 +6,12 @@ public class Bullet : MonoBehaviour {
     Animator animator;
     public int damage = 20;
     public Vector2 direction;
-    public float speed;
+    public float bulletSpeed;
     public bool isActive = false;
 
-    public void iniciate(Vector2 dir, Vector2 pos, RuntimeAnimatorController animController) {
-        direction = new Vector2(dir.x, dir.y);      
-
+    public void iniciate(Vector2 dir, Vector2 pos, RuntimeAnimatorController animController, float bulletSpd) {
+        direction = new Vector2(dir.x, dir.y);
+        bulletSpeed = bulletSpd;
         if (dir == Vector2.up){
             transform.position = pos + new Vector2(0.1f, 0.35f);
             transform.rotation = Quaternion.Euler(0, 0, 90);
@@ -40,7 +40,7 @@ public class Bullet : MonoBehaviour {
     {
         if (isActive)
         {
-            transform.position = transform.position + new Vector3(direction.x, direction.y).normalized / 10;
+            transform.position = transform.position + new Vector3(direction.x, direction.y).normalized / (10 / bulletSpeed);
         }
     }
 

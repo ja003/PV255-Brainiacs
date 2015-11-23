@@ -19,6 +19,8 @@ public class WeaponPistol : WeaponBase {
         base.reloadTime = 2f;
         base.ready = true;
 
+        bulletSpeed = 1.1f;
+
         switch (type)
         {
             case (CharacterEnum.Tesla): base.sprite = "Sprites/Weapons/teslaPistol"; base.bulletAnimControler = "Animations/bullets_animators/bullet_tesla_animator"; break;
@@ -27,7 +29,7 @@ public class WeaponPistol : WeaponBase {
             case (CharacterEnum.Curie): base.sprite = "Sprites/Weapons/curiePistol"; base.bulletAnimControler = "Animations/bullets_animators/bullet_curie_animator"; break;
         }
 
-        kadency = 0.05f;
+        kadency = 0.1f;
         kadReady = true;
 
         loadSprites(sprite, bulletAnimControler);

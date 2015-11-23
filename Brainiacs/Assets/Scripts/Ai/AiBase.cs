@@ -787,18 +787,18 @@ public class AiBase : PlayerBase
 
                     priority = (int)flamethrowerFactor * 10;
                     break;
-
+/*
                 case WeaponEnum.shotgun:
                     float shotgunFactor = distanceFactor;// * weaponHandling.activeWeapon.ammo / weaponHandling.activeWeapon.clip;
                     /*if (HasWeapon(WeaponEnum.flamethrower))
                     {
                         //flamethrowerFactor /= ...
                     }
-                    */
+                    
 
                     priority = (int)shotgunFactor * 10;
                     break;
-
+*/
                 default:
                     priority = 0;
                     break;

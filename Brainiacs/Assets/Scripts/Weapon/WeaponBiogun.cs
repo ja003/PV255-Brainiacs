@@ -21,6 +21,8 @@ public class WeaponBiogun : WeaponBase
         kadency = 0.1f;
         kadReady = true;
 
+        bulletSpeed = 1f;
+
         loadSprites(sprite, bulletAnimControler);
     }
 

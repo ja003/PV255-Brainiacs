@@ -16,20 +16,12 @@ public class Ai_03 : AiBase {
         base.killPlayer3Priority = 0;
         base.killPlayer4Priority = 0;
 
-        
 
+        
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         speed = 2f;
 
         currentAction = AiActionEnum.stand;
-
-        inventory = new List<WeaponBase>();
-        WeaponBase pistol = new WeaponPistol(CharacterEnum.Tesla);
-        inventory.Add(pistol);
-        WeaponBase special = new WeaponTeslaSpecial();
-        inventory.Add(special);
-
-        activeWeapon = inventory[0];
 
         //InitializeBullets();
     }
@@ -45,6 +37,7 @@ public class Ai_03 : AiBase {
         
         comp.spriteRend = GetComponent<SpriteRenderer>();
         comp.rb2d = gameObject.GetComponent<Rigidbody2D>();
+        comp.animator = GetComponent<Animator>();
 
         setUpAiB(comp, playInfo);
         setUpPB(comp, playInfo);
@@ -55,16 +48,15 @@ public class Ai_03 : AiBase {
     public void setUpWeapons(PlayerInfo pi)
     {
         WeaponPistol pistol = new WeaponPistol(pi.charEnum); //OLD
-        WeaponSniper sniper = new WeaponSniper(); //just for now
+
 
         weaponHandling.player = GetComponent<PlayerBase>();
 
         // Tu sa vytvoria vsetky zbrane ktore sa priradia do weapon handling aby sa nemusel volat zbytocne load na sprajtoch
-        weaponHandling.weapons.Add(WeaponEnum.sniper, sniper);
-
-        weaponHandling.inventory.Add(sniper);
+        weaponHandling.weapons.Add(WeaponEnum.pistol, pistol);
+        weaponHandling.inventory.Add(pistol);
         weaponHandling.activeWeapon = weaponHandling.inventory[0];
-        weaponHandling.weaponRenderer = transform.Find("weapon").GetComponent<SpriteRenderer>();
+
     }
 
 

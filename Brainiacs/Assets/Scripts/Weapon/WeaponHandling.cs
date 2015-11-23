@@ -14,13 +14,13 @@ public class WeaponHandling : MonoBehaviour {
     public SpriteRenderer weaponRenderer;
     public BulletManager buletManager;
 
-    
+
 
     public void FixedUpdate() {
 
         weaponRenderer.sprite = activeWeapon.weaponSprites[player.directionMapping[player.direction]];
 
-        foreach (var weap in inventory){
+        foreach (var weap in inventory) {
             if (!weap.ready) {
                 if (weap.time >= weap.reloadTime)
                 {
@@ -58,8 +58,18 @@ public class WeaponHandling : MonoBehaviour {
 
     }
 
-    public void AddWeapon(WeaponEnum we) {
-        inventory.Add(weapons[we]);
+    public void AddWeapon(WeaponEnum we)
+    {
+        WeaponBase weapon = weapons[we];
+        if (inventory.Contains(weapon))
+        {
+            inventory[inventory.IndexOf(weapon)].reload();
+        }
+        else
+        {
+            weapon.recycle();
+            inventory.Add(weapon);
+        }
     }
 
 
@@ -70,7 +80,7 @@ public class WeaponHandling : MonoBehaviour {
         int bulletsLeft = activeWeapon.fire();
 
         Debug.Log(activeWeapon.animController);
-        buletManager.fire(new Vector2(direction.x, direction.y), transform.position, activeWeapon.animController);
+        buletManager.fire(new Vector2(direction.x, direction.y), transform.position, activeWeapon.animController, activeWeapon.bulletSpeed);
 
         if (bulletsLeft == 0)
         {

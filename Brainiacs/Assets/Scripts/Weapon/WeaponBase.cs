@@ -20,6 +20,9 @@ public class WeaponBase
     public bool kadReady { get; set; }
     public float kadency { get; set; }
 
+    // 1 min 3 max
+    public float bulletSpeed { get; set; }
+
     public string sprite { get; set; }
     public Sprite[] weaponSprites;
 
@@ -31,6 +34,9 @@ public class WeaponBase
     public void reload()
     {
         time = 0;
+        kadReady = true;
+        ready = true;
+        kadTime = 0;
         ammo = maxAmmo;
     }
 
@@ -54,18 +60,12 @@ public class WeaponBase
 
     public void recycle() {
         reload();
-        ready = true;
-        time = 0.0f; 
     }
-
-    
 
     protected void loadSprites(string sprt, string bullSprt)
     {
-        
         weaponSprites = Resources.LoadAll<Sprite>(sprt);
         animController = Resources.Load(bullSprt) as RuntimeAnimatorController;
-        Debug.Log(animController);
     }
 }
 
