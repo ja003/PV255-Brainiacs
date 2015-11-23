@@ -78,7 +78,7 @@ public class gm : MonoBehaviour {
         Vector2 pl1pos = new Vector2(5,1);
         player1.transform.position = pl1pos;
 
-        Vector2 pl2pos = new Vector2(5, 3);
+        Vector2 pl2pos = new Vector2(6, 0);
         player2.transform.position = pl2pos;
 
         Vector2 pl3pos = new Vector2(-4, 0);

@@ -144,14 +144,19 @@ public abstract class PlayerBase : MonoBehaviour
     {
         if (direction == up)
         {
-            Debug.Log(playerNumber + ":" + weaponHandling.weaponRenderer.sprite);
+            //Debug.Log(playerNumber + ":" + weaponHandling.weaponRenderer.sprite);
             weaponHandling.weaponRenderer.sortingLayerName = "Weapon_back";
             handsRenderer.sortingLayerName = "Hand_back";
+
+            transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "Weapon_back";
         }
         else
         {
             weaponHandling.weaponRenderer.sortingLayerName = "Weapon_front";
             handsRenderer.sortingLayerName = "Hand_front";
+
+            transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "Weapon_front";
+
         }
     }
 
@@ -229,22 +234,26 @@ public abstract class PlayerBase : MonoBehaviour
 
         if (direction == down)
         {
-            //weaponHandling.weaponRenderer.sprite = weaponHandling.weaponSprites[0];
+            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weaponHandling.activeWeapon.weaponSprites[0];
+            //weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[0];
             handsRenderer.sprite = handsSprites[0];
         }
         else if (direction == left)
         {
-            //weaponHandling.weaponRenderer.sprite = weaponHandling.weaponSprites[1];
+            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weaponHandling.activeWeapon.weaponSprites[1];
+            //weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[1];
             handsRenderer.sprite = handsSprites[1];
         }
         else if (direction == right)
         {
-            //weaponHandling.weaponRenderer.sprite = weaponHandling.weaponSprites[2];
+            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weaponHandling.activeWeapon.weaponSprites[2];
+            //weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[2];
             handsRenderer.sprite = handsSprites[2];
         }
         else if (direction == up)
         {
-            //weaponHandling.weaponRenderer.sprite = weaponHandling.weaponSprites[3];
+            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weaponHandling.activeWeapon.weaponSprites[3];
+            //weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[3];
             handsRenderer.sprite = handsSprites[3];
         }
 
