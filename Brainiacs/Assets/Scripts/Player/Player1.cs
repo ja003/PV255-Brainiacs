@@ -96,6 +96,8 @@ public class Player1 : HumanBase
         weaponHandling.inventory.Add(MP40);
         weaponHandling.activeWeapon = weaponHandling.inventory[0];
 
+        Debug.Log("rend:"+weaponHandling.weaponRenderer);
+
     }
 
     void Update()

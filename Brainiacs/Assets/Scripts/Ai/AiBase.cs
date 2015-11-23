@@ -43,7 +43,6 @@ public class AiBase : PlayerBase
     public Vector2 bulletFrom;
 
     /// //////////////////////////////////// CHARACTER COORDINATES /////////////////////////////
-    Renderer aiRenderer;
     Collider2D collider;
 
     public Vector2 charBotLeft;
@@ -65,9 +64,9 @@ public class AiBase : PlayerBase
         comp = c;
         playInfo = p;
         //weaponHandling = GetComponent<WeaponHandling>();
+
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         //Debug.Log(rb2d);
-        aiRenderer = GetComponent<Renderer>();
         currentTargetDestination = new Vector2(0, 0);
         collider = GetComponent<Collider2D>();
 

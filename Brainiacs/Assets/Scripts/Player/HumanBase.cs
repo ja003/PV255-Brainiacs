@@ -132,7 +132,7 @@ public class HumanBase : PlayerBase {
 
         CheckPressedKeys();
 
-        SortLayers();
+        
         UpdateDirection();
     }
 

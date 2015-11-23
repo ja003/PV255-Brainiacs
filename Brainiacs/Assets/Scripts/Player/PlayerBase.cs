@@ -72,6 +72,10 @@ public abstract class PlayerBase : MonoBehaviour
     public WeaponBase activeWeapon { get; set; }
     public Dictionary<Vector2, int> directionMapping = new Dictionary<Vector2, int>();
 
+    /////////////////////////////////////////////HANDS//////////////////////////////////////
+    public SpriteRenderer handsRenderer;
+    public Sprite[] handsSprites;
+
     /// //////////////////////////////////////// END ///////////////////////////////////////////
 
 
@@ -108,6 +112,9 @@ public abstract class PlayerBase : MonoBehaviour
         directionMapping.Add(down, 0);
         directionMapping.Add(left, 1);
         directionMapping.Add(right, 2);
+
+        handsRenderer = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        handsSprites = Resources.LoadAll<Sprite>("Sprites/Hands");
     }
 
     private void setUpSprites() {
@@ -137,11 +144,14 @@ public abstract class PlayerBase : MonoBehaviour
     {
         if (direction == up)
         {
-            transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "Weapon_back";
+            Debug.Log(playerNumber + ":" + weaponHandling.weaponRenderer.sprite);
+            weaponHandling.weaponRenderer.sortingLayerName = "Weapon_back";
+            handsRenderer.sortingLayerName = "Hand_back";
         }
         else
         {
-            transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "Weapon_front";
+            weaponHandling.weaponRenderer.sortingLayerName = "Weapon_front";
+            handsRenderer.sortingLayerName = "Hand_front";
         }
     }
 
@@ -216,27 +226,30 @@ public abstract class PlayerBase : MonoBehaviour
     public void UpdateDirection()
     {
         //Debug.Log("[" + playerNumber + "]:" + direction);
-        /*
+
         if (direction == down)
         {
-            weaponHandling.weaponRenderer.sprite = weaponHandling.weaponSprites[0];
+            //weaponHandling.weaponRenderer.sprite = weaponHandling.weaponSprites[0];
+            handsRenderer.sprite = handsSprites[0];
         }
         else if (direction == left)
         {
-            weaponHandling.weaponRenderer.sprite = weaponHandling.weaponSprites[1];
-
+            //weaponHandling.weaponRenderer.sprite = weaponHandling.weaponSprites[1];
+            handsRenderer.sprite = handsSprites[1];
         }
         else if (direction == right)
         {
-            weaponHandling.weaponRenderer.sprite = weaponHandling.weaponSprites[2];
-
+            //weaponHandling.weaponRenderer.sprite = weaponHandling.weaponSprites[2];
+            handsRenderer.sprite = handsSprites[2];
         }
         else if (direction == up)
         {
-            weaponHandling.weaponRenderer.sprite = weaponHandling.weaponSprites[3];
+            //weaponHandling.weaponRenderer.sprite = weaponHandling.weaponSprites[3];
+            handsRenderer.sprite = handsSprites[3];
+        }
 
-        }*/
-        
+        SortLayers();
+
     }
 
     public void UpdatePosition()
