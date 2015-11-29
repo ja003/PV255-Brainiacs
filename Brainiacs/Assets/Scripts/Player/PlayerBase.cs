@@ -125,8 +125,8 @@ public abstract class PlayerBase : MonoBehaviour
         animControllerString = "Animations/Characters/" + character + "/" + animControllerString;
 
         RuntimeAnimatorController rtac = Resources.Load(animControllerString) as AnimatorOverrideController;
-        Debug.Log(animControllerString);
-        Debug.Log(rtac);
+        //Debug.Log(animControllerString);
+        //Debug.Log(rtac);
         comp.animator.runtimeAnimatorController = rtac;
 
         

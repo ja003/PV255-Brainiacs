@@ -45,7 +45,7 @@ public class WeaponGenerator : MonoBehaviour
         if (time > spawnInterval)
         {
             time = 0.0f;
-            SpawnWeapon();
+            //SpawnWeapon();
         }
     }
 
