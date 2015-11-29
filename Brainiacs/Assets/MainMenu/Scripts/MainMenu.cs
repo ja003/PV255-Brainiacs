@@ -5,9 +5,14 @@ public class MainMenu : MonoBehaviour {
 
 	public Texture backgroundTexture;
 
+    public Texture headerTexture;
+
     public GUIStyle newGameTexture;
     public GUIStyle controlsTexture;
     public GUIStyle quitTexture;
+
+    public float headerYCoord;
+    public float headerHeight;
 
     public float newGamePlacementX;
     public float newGamePlacementY;
@@ -19,6 +24,9 @@ public class MainMenu : MonoBehaviour {
     {
         //displays background texture
         GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), backgroundTexture);
+
+        //displays header texture
+        GUI.DrawTexture(new Rect(0, Screen.height * headerYCoord, Screen.width, Screen.height * headerHeight), headerTexture);
 
         //display buttons
         float buttonX = Screen.width * newGamePlacementX;
