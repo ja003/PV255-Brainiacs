@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Brainiacs.Generate;
-using System.Collections;
 
 public abstract class PlayerBase : MonoBehaviour
 {
@@ -319,7 +318,7 @@ public abstract class PlayerBase : MonoBehaviour
         //TODO
         //load player again (without old weapons,...)
 
-        Vector3 newRandomPosition = PositionGenerator.GenerateRandomPosition();
+        Vector3 newRandomPosition = Vector3.zero;//= generator.GenerateRandomPosition();
         posX = newRandomPosition.x;
         posY = newRandomPosition.y;
         transform.position = newRandomPosition;

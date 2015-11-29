@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
-using Brainiacs.Generate;
 
 //--MG
 public class PowerUpGenerator : MonoBehaviour
@@ -59,7 +58,7 @@ public class PowerUpGenerator : MonoBehaviour
         {
             if (!powerUps[i][j].activeInHierarchy)
             {
-                powerUps[i][j].transform.position = PositionGenerator.GenerateRandomPosition();
+                powerUps[i][j].transform.position = Vector3.zero;//= generator.GenerateRandomPosition();
                 powerUps[i][j].SetActive(true);
                 break;
             }

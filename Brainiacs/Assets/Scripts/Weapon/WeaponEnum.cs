@@ -1,12 +1,14 @@
 ﻿public enum WeaponEnum
 {
     // !!! WHEN YOU ADD OR DELETE WEAPON TYPE IT IS NEEDED TO CHANGE RANGE AND weaponNames IN WeaponGenerator !!!
-    pistol,
-    //specialTesla,
-    //specialEinstein,
-    //shotgun,
+    // ^ten warning je tam na to ze ked tu nieco zmenite rozbijete spawn zbrani - tak mi potom nehovorte ze sa spawnuju so zlym enumom
     flamethrower,
     sniper,
     biogun,
-    MP40
+    MP40,
+    mine,
+    pistol
+    //specialTesla,
+    //specialEinstein,
+    //shotgun,
 }

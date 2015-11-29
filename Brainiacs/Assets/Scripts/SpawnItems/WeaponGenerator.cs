@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
-using Brainiacs.Generate;
 
 public class WeaponGenerator : MonoBehaviour
 {
@@ -9,7 +8,7 @@ public class WeaponGenerator : MonoBehaviour
 
     private GameObject tmp;
     private int pooledAmount = 5;       //count of each generated weapon
-    private const int indexOfSpawnWeps = 3;   //WeaponEnum contains also nonspawnable weapons
+    private const int indexOfSpawnWeps = 0;   //WeaponEnum contains also nonspawnable weapons
     private const int countOfWeapons = 5;     //count of WeaponEnum items
 
     private List<GameObject>[] weapons;
@@ -18,8 +17,8 @@ public class WeaponGenerator : MonoBehaviour
     private float spawnInterval = 3.0f; //malý na test
 
     private string location = "Prefabs/SpawnItems/Weapons/weapon_";
-    private string[] weaponNames = new string[countOfWeapons - indexOfSpawnWeps] { "pistol", "flamethrower" };
-
+    private string[] weaponNames = new string[countOfWeapons - indexOfSpawnWeps] { "flamethrower", "sniper", "biogun", "MP40", "mine" };
+    
     void Start()
     {
         weapons = new List<GameObject>[countOfWeapons - indexOfSpawnWeps];
@@ -60,7 +59,7 @@ public class WeaponGenerator : MonoBehaviour
         for (int j = 0; j < pooledAmount; j++){
             if (!weapons[i][j].activeInHierarchy)
             {
-                weapons[i][j].transform.position = PositionGenerator.GenerateRandomPosition();
+                weapons[i][j].transform.position = Vector3.zero;//= GameObject.FindGameObjectsWithTag("Generator")[0].gameObject.;
                 weapons[i][j].SetActive(true);
                 break;
             }
