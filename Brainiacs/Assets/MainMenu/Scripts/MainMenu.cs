@@ -5,11 +5,14 @@ public class MainMenu : MonoBehaviour {
 
 	public Texture backgroundTexture;
 
-    public GUIStyle buttonTexture;
+    public GUIStyle newGameTexture;
+    public GUIStyle controlsTexture;
+    public GUIStyle quitTexture;
 
     public float newGamePlacementX;
     public float newGamePlacementY;
     public float newGameHeight;
+    public float distanceBetweenButtons;
     
 
     void OnGUI()
@@ -18,10 +21,20 @@ public class MainMenu : MonoBehaviour {
         GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), backgroundTexture);
 
         //display buttons
-        float newGameWidth = (Screen.width ) - (Screen.width * newGamePlacementX * 2);
-        if (GUI.Button(new Rect(Screen.width * newGamePlacementX, Screen.height * newGamePlacementY, newGameWidth, Screen.height * newGameHeight), "", buttonTexture))
+        float buttonX = Screen.width * newGamePlacementX;
+        float buttonWidth = (Screen.width ) - (Screen.width * newGamePlacementX * 2);
+        float buttonHeight = Screen.height * newGameHeight;
+        if (GUI.Button(new Rect(buttonX, Screen.height * newGamePlacementY, buttonWidth, buttonHeight), "", newGameTexture))
         {
             //game manager
+        }
+        if (GUI.Button(new Rect(buttonX, Screen.height * (newGamePlacementY + distanceBetweenButtons), buttonWidth, buttonHeight), "", controlsTexture))
+        {
+            //controls
+        }
+        if (GUI.Button(new Rect(buttonX, Screen.height * (newGamePlacementY + 2 * distanceBetweenButtons), buttonWidth, buttonHeight), "", quitTexture))
+        {
+            Application.Quit();
         }
     }
 }

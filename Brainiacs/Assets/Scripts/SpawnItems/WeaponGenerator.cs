@@ -7,9 +7,9 @@ public class WeaponGenerator : MonoBehaviour
     public WeaponEnum weaponType;
 
     private GameObject tmp;
-    private int pooledAmount = 5;       //count of each generated weapon
-    private const int indexOfSpawnWeps = 0;   //WeaponEnum contains also nonspawnable weapons
-    private const int countOfWeapons = 5;     //count of WeaponEnum items
+    private int pooledAmount = 5;               //count of each generated weapon
+    private const int indexOfSpawnWeps = 0;     //WeaponEnum contains also nonspawnable weapons
+    private const int countOfWeapons = 5;       //count of WeaponEnum items
 
     private List<GameObject>[] weapons;
 
@@ -45,7 +45,7 @@ public class WeaponGenerator : MonoBehaviour
         if (time > spawnInterval)
         {
             time = 0.0f;
-            //SpawnWeapon();
+            SpawnWeapon();
         }
     }
 
