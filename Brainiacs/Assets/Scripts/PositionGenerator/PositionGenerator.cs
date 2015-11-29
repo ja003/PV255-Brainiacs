@@ -74,11 +74,11 @@ using System.Collections.Generic;
 
             for (int i = 0; i < barriers.Count; i++)
             {
-                if (barriers[i].Contains(vec) 
-                    || barriers[i].Contains(new Vector2(vec.x + (width / 2.0f), vec.y))
-                    || barriers[i].Contains(new Vector2(vec.x - (width / 2.0f), vec.y)) 
-                    || barriers[i].Contains(new Vector2(vec.x, vec.y + (height / 2.0f)))
-                    || barriers[i].Contains(new Vector2(vec.x, vec.y - (height / 2.0f))))
+                if (barriers[i].Contains(vec)
+                    || barriers[i].Contains(new Vector2(vec.x + (width / 2.0f), vec.y + (height / 2.0f)))
+                    || barriers[i].Contains(new Vector2(vec.x + (width / 2.0f), vec.y - (height / 2.0f)))
+                    || barriers[i].Contains(new Vector2(vec.x - (width / 2.0f), vec.y + (height / 2.0f)))
+                    || barriers[i].Contains(new Vector2(vec.x - (width / 2.0f), vec.y - (height / 2.0f))))
                 {
                     badPosition = true;
                     break;
