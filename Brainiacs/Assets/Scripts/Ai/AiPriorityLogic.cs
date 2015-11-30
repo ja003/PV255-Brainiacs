@@ -12,11 +12,21 @@ public class AiPriorityLogic
     public int killPlayer3Priority;
     public int killPlayer4Priority;
 
+    public int pickPowerUpPriority;
+    public int pickWeaponPriority;
+
+    public int avoidBulletPriority;
+
+    public int standPriority;
+
+    public int deathPriority;
+
     //logics
     public AiPowerUpLogic aiPowerUpLogic;
     public AiWeaponLogic aiWeaponLogic;
     public AiMovementLogic aiMovementLogic;
     public AiAvoidBulletLogic aiAvoidBulletLogic;
+    public AiActionLogic aiActionLogic;
     //public AiPriorityLogic aiPriorityLogic;
 
     public AiPriorityLogic(AiBase aiBase)
@@ -27,14 +37,15 @@ public class AiPriorityLogic
     public void PrintPriorities()
     {
         string message = "priorities \n";
-        message += "pickWeaponPriority=" + aiBase.aiWeaponLogic.pickWeaponPriority + ",\n";
-        message += "pickPowerUpPriority=" + aiBase.aiPowerUpLogic.pickPowerUpPriority + ",\n";
+        message += "standPriority=" + standPriority + ",\n";
+        message += "pickWeaponPriority=" + pickWeaponPriority + ",\n";
+        message += "pickPowerUpPriority=" + pickPowerUpPriority + ",\n";
 
         message += "KillPlayer1=" + killPlayer1Priority;
         message += ",KillPlayer2=" + killPlayer2Priority;
         message += ",KillPlayer3=" + killPlayer3Priority;
         message += ",KillPlayer4=" + killPlayer4Priority;
-        message += ",avoidBulletPriority=" + aiBase.aiAvoidBulletLogic.avoidBulletPriority;
+        message += ",avoidBulletPriority=" + avoidBulletPriority;
 
         Debug.Log(message);
     }
@@ -43,7 +54,10 @@ public class AiPriorityLogic
     public void UpdatePriorities()
     {
         //set kill priorities only when you can shoot
-        if (aiBase.CheckAmmo())
+        if (aiBase.hitPoints > 0)
+            SetDeathPriority(0);
+
+        if (aiWeaponLogic.CheckAmmo())
             SetKillPriorities();
 
 
@@ -57,8 +71,14 @@ public class AiPriorityLogic
         if (aiBase.aiAvoidBulletLogic.bulletIncoming)
         {
             //Debug.Log("avoiding");
-            aiBase.aiAvoidBulletLogic.SetAvoidBulletPriority(100);
+            SetAvoidBulletPriority(100);
         }
+
+        if (aiBase.hitPoints <= 0)
+            SetDeathPriority(666);
+
+        //debuggig - just stand
+        standPriority = 666;
 
         //check bullets
         //CheckAmmo(); //has to be updated faster
@@ -69,8 +89,18 @@ public class AiPriorityLogic
         //....
     }
 
+    public void SetDeathPriority(int priority)
+    {
+        deathPriority = priority;
+        killPlayer1Priority = 0;
+        killPlayer2Priority = 0;
+        killPlayer3Priority = 0;
+        killPlayer4Priority = 0;
+    }
+
     public int GetCurrentHighestPriority()
     {
+        /*
         int highestPriority = 0;
         if (killPlayer1Priority > highestPriority)
             highestPriority = killPlayer1Priority;
@@ -80,15 +110,32 @@ public class AiPriorityLogic
             highestPriority = killPlayer3Priority;
         if (killPlayer4Priority > highestPriority)
             highestPriority = killPlayer4Priority;
-        if (aiBase.aiAvoidBulletLogic.avoidBulletPriority > highestPriority)
-            highestPriority = aiBase.aiAvoidBulletLogic.avoidBulletPriority;
+        if (avoidBulletPriority > highestPriority)
+            highestPriority = avoidBulletPriority;
         if (aiBase.aiPowerUpLogic.pickPowerUpPriority > highestPriority)
             highestPriority = aiBase.aiPowerUpLogic.pickPowerUpPriority;
+        if (deathPriority > highestPriority)
+            highestPriority = deathPriority;
 
+        if (standPriority > highestPriority)
+            highestPriority = standPriority;
         //Debug.Log("highestPriority:" + highestPriority);
         if (highestPriority == 0)
             highestPriority++;
         return highestPriority;
+        */
+        return Mathf.Max(
+            1,
+            killPlayer1Priority,
+            killPlayer2Priority,
+            killPlayer3Priority,
+            killPlayer4Priority,
+            avoidBulletPriority,
+            pickPowerUpPriority,
+            pickWeaponPriority,
+            deathPriority,
+            standPriority
+            );
     }
 
     /// <summary>
@@ -116,7 +163,7 @@ public class AiPriorityLogic
         if (aiWeaponLogic.itemWeapons.Count == 0)
         {
             //Debug.Log("no items around");
-            aiWeaponLogic.pickWeaponPriority = 0;
+            pickWeaponPriority = 0;
             return;
         }
 
@@ -172,7 +219,7 @@ public class AiPriorityLogic
 
         aiWeaponLogic.bestWeapon = aiWeaponLogic.itemWeapons[weaponsPriorities.IndexOf(highestPriority)];
 
-        aiWeaponLogic.pickWeaponPriority = highestPriority;
+        pickWeaponPriority = highestPriority;
         //Debug.Log("pickPowerUpPriority:" + pickPowerUpPriority);
 
 
@@ -186,7 +233,7 @@ public class AiPriorityLogic
         if (aiPowerUpLogic.itemPowerUps.Count == 0)
         {
             //Debug.Log("no items around");
-            aiPowerUpLogic.pickPowerUpPriority = 0;
+            pickPowerUpPriority = 0;
             return;
         }
 
@@ -244,10 +291,19 @@ public class AiPriorityLogic
 
         aiPowerUpLogic.bestPowerUp = aiPowerUpLogic.itemPowerUps[powerUpsPriorities.IndexOf(highestPriority)];
 
-        aiPowerUpLogic.pickPowerUpPriority = highestPriority;
+        pickPowerUpPriority = highestPriority;
         //Debug.Log("pickPowerUpPriority:" + pickPowerUpPriority);
 
 
     }
 
+    public void SetAvoidBulletPriority(int priority)
+    {
+        avoidBulletPriority = priority;
+
+        killPlayer1Priority = 0;
+        killPlayer2Priority = 0;
+        killPlayer3Priority = 0;
+        killPlayer4Priority = 0;
+    }
 }

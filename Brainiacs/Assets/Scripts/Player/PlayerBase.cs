@@ -112,8 +112,10 @@ public abstract class PlayerBase : MonoBehaviour
         directionMapping.Add(left, 1);
         directionMapping.Add(right, 2);
 
-        handsRenderer = transform.GetChild(1).GetComponent<SpriteRenderer>();
+        handsRenderer = transform.Find("hands_down").GetComponent<SpriteRenderer>(); //hands_down, protože sem zrovna na prefab přetáhl hands_down a nejde to změnit..normálně
         handsSprites = Resources.LoadAll<Sprite>("Sprites/Hands");
+
+        weaponHandling.weaponRenderer = transform.Find("weapon").GetComponent<SpriteRenderer>();
     }
 
     private void setUpSprites() {
@@ -225,36 +227,42 @@ public abstract class PlayerBase : MonoBehaviour
             */
 
     }
+    
 
-    //zatím pouze doleva a doprava
+    /// <summary>
+    /// momenátlně pouze na ruce + sortění LAYERS
+    /// buď někam přesunout, nebo oatřičně přejmenovat
+    /// </summary>
     public void UpdateDirection()
     {
         //Debug.Log("[" + playerNumber + "]:" + direction);
 
+        
         if (direction == down)
         {
-            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weaponHandling.activeWeapon.weaponSprites[0];
+            //transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weaponHandling.activeWeapon.weaponSprites[0];
             //weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[0];
             handsRenderer.sprite = handsSprites[0];
         }
         else if (direction == left)
         {
-            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weaponHandling.activeWeapon.weaponSprites[1];
+            //transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weaponHandling.activeWeapon.weaponSprites[1];
             //weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[1];
             handsRenderer.sprite = handsSprites[1];
         }
         else if (direction == right)
         {
-            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weaponHandling.activeWeapon.weaponSprites[2];
+            //transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weaponHandling.activeWeapon.weaponSprites[2];
             //weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[2];
             handsRenderer.sprite = handsSprites[2];
         }
         else if (direction == up)
         {
-            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weaponHandling.activeWeapon.weaponSprites[3];
+            //transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weaponHandling.activeWeapon.weaponSprites[3];
             //weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[3];
             handsRenderer.sprite = handsSprites[3];
         }
+        
 
         SortLayers();
 
@@ -300,6 +308,7 @@ public abstract class PlayerBase : MonoBehaviour
     {
         dead = true;
         Debug.Log("dead");
+        UpdateAnimatorState(AnimatorStateEnum.dead);
         //disable movement
         up = stop;
         right = stop;
@@ -314,6 +323,7 @@ public abstract class PlayerBase : MonoBehaviour
         hitPoints = maxHP;
         dead = false;
         Debug.Log("alive");
+        UpdateAnimatorState(AnimatorStateEnum.walkRight);
 
         //TODO
         //load player again (without old weapons,...)
@@ -331,9 +341,6 @@ public abstract class PlayerBase : MonoBehaviour
         left = Vector2.left;
         right = Vector2.right;
         
-
-
-
 }
 
     /// ////////////////////////////////////// POWER UPS ///////////////////////////////////////////

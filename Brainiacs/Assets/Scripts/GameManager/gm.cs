@@ -98,7 +98,7 @@ public class gm : MonoBehaviour {
 
         //SetUpPlayer(1, CharacterEnum.Curie);
         SetUpPlayer(2, CharacterEnum.Einstein);
-        SetUpPlayer(3, CharacterEnum.Curie);
+        SetUpPlayer(3, CharacterEnum.Einstein);
         SetUpPlayer(4, CharacterEnum.Tesla);
 
 
@@ -147,7 +147,7 @@ public class gm : MonoBehaviour {
         started = player1Active;
         if (player2Active) player2.SetActive(true);
         if (player3Active) player3.SetActive(true);
-        //if (player4Active) player4.SetActive(true);
+        if (player4Active) player4.SetActive(true);
     }
 
     void FixedUpdate()

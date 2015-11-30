@@ -21,7 +21,7 @@ public class Ai_03 : AiBase {
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         speed = 2f;
 
-        currentAction = AiActionEnum.stand;
+        aiActionLogic.currentAction = AiActionEnum.stand;
 
         //InitializeBullets();
     }
@@ -68,6 +68,8 @@ public class Ai_03 : AiBase {
         //weaponHandling.inventory.Add(MP40);
         weaponHandling.activeWeapon = weaponHandling.inventory[0];
         //weaponHandling.
+
+        
 
     }
 

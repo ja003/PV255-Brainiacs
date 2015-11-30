@@ -34,7 +34,58 @@ public class AiWeaponLogic {
         }
     }
     public GameObject bestWeapon;
-    public int pickWeaponPriority;
     
+
+    public bool CheckAmmo()
+    {
+        bool canShoot = true;
+        //Debug.Log(aiBase.weaponHandling.activeWeapon.ammo);
+        //Debug.Log("OK shoot");
+        if (!aiBase.weaponHandling.activeWeapon.ready || !aiBase.weaponHandling.activeWeapon.kadReady)
+        {
+            //try switching to another fire weapon - TODO
+            //Debug.Log("CANT shoot");
+
+            canShoot = false;
+        }
+
+        //Debug.Log(canShoot);
+
+        if (!canShoot)
+        {
+
+            aiPriorityLogic.killPlayer1Priority -= 50;
+            aiPriorityLogic.killPlayer2Priority -= 50;
+            aiPriorityLogic.killPlayer3Priority -= 50;
+            aiPriorityLogic.killPlayer4Priority -= 50;
+        }
+
+        return canShoot;
+    }
+
+    public bool CanShoot(Vector2 center, Vector2 direction)
+    {
+
+        Ray rayGun = new Ray(center, direction);
+
+        float mapLenght = 15;
+        RaycastHit2D[] hitGun = Physics2D.RaycastAll(rayGun.origin, direction, mapLenght);
+
+        Debug.DrawRay(rayGun.origin, direction, Color.cyan);
+        Debug.DrawRay(rayGun.origin, direction * -1, Color.red);
+
+        if (hitGun.Length != 0)
+        {
+            //Borders have tag "Barrier" and it sometimes doesnt hit player first, but the border
+            if (hitGun[0].transform.tag == "Barrier"
+                && hitGun[0].transform.gameObject.layer != LayerMask.NameToLayer("Border"))
+            {
+                //Debug.Log("cant shoot");
+                return false;
+            }
+        }
+        return true;
+    }
+
 
 }

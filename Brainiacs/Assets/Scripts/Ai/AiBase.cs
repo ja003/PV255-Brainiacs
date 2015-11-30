@@ -13,11 +13,11 @@ public class AiBase : PlayerBase
     public Components comp;
     public PlayerInfo playInfo;
 
-   
 
-    
-    
-    
+
+
+
+
 
     //////////////////////////////MAP shit
     public GameObject[] barriers;
@@ -36,14 +36,15 @@ public class AiBase : PlayerBase
     public float characterColliderWidth;
     public float characterColliderHeight;
 
-    public AiActionEnum currentAction;
+    
 
     /// //////////////////////////////////// LOGICS /////////////////////////////
     public AiPowerUpLogic aiPowerUpLogic;
     public AiWeaponLogic aiWeaponLogic;
-    public AiMovementLogic aiMovementLogic; 
+    public AiMovementLogic aiMovementLogic;
     public AiAvoidBulletLogic aiAvoidBulletLogic;
     public AiPriorityLogic aiPriorityLogic;
+    public AiActionLogic aiActionLogic;
 
     public void setUpAiB(Components c, PlayerInfo p)
     {
@@ -55,16 +56,13 @@ public class AiBase : PlayerBase
 
         barriers = GameObject.FindGameObjectsWithTag("Barrier");
 
-        //itemPowerUps = new List<GameObject>();
-        //itemWeapons = new List<GameObject>();
-        //pickWeaponPriority = 0;
-        //pickPowerUpPriority = 0;
+
 
         //Debug.Log(barriers[0].name);
         //Debug.Log(barriers[1].name);
         //Debug.Log(barriers[2].name);
         //Debug.Log(barriers[3].name);
-        
+
 
         characterColliderHeight = gameObject.GetComponent<BoxCollider2D>().size.y;
         characterColliderWidth = gameObject.GetComponent<BoxCollider2D>().size.x;
@@ -74,6 +72,7 @@ public class AiBase : PlayerBase
         aiMovementLogic = new AiMovementLogic(this);
         aiAvoidBulletLogic = new AiAvoidBulletLogic(this);
         aiPriorityLogic = new AiPriorityLogic(this);
+        aiActionLogic = new AiActionLogic(this);
 
         AssingLogic();
 
@@ -82,8 +81,21 @@ public class AiBase : PlayerBase
     public void AssingLogic()
     {
         aiPowerUpLogic.aiMovementLogic = aiMovementLogic;
+
         aiPriorityLogic.aiPowerUpLogic = aiPowerUpLogic;
         aiPriorityLogic.aiWeaponLogic = aiWeaponLogic;
+        aiPriorityLogic.aiActionLogic = aiActionLogic;
+
+        aiWeaponLogic.aiPriorityLogic = aiPriorityLogic;
+
+        aiAvoidBulletLogic.aiPriorityLogic = aiPriorityLogic;
+        aiAvoidBulletLogic.aiActionLogic = aiActionLogic;
+
+        aiActionLogic.aiMovementLogic = aiMovementLogic;
+        aiActionLogic.aiPriorityLogic = aiPriorityLogic;
+        aiActionLogic.aiPowerUpLogic = aiPowerUpLogic;
+        aiActionLogic.aiWeaponLogic = aiWeaponLogic;
+        aiActionLogic.aiAvoidBulletLogic = aiAvoidBulletLogic;
     }
 
     // Update is called once per frame
@@ -95,9 +107,9 @@ public class AiBase : PlayerBase
         }
 
         //////////CHEK EVERY FRAME
-        
-        
-        
+
+
+
 
         //////////CHEK ONCE PER SECOND
         if (Time.frameCount % 30 == 6)
@@ -131,25 +143,25 @@ public class AiBase : PlayerBase
             }
 
             //Debug.Log("!");
-            //PrintPriorities();
+            //aiPriorityLogic.PrintPriorities();
             //UpdateCurrentAction(); //has to be checked faster
-            UpdateCurrentAction();
-            
+            aiActionLogic.UpdateCurrentAction();
 
 
-            
+
+
         }
 
         //////////CHECK 4 PER SECOND
         if (Time.frameCount % 8 == 0)
         {
-           
+
         }
 
         if (Time.frameCount % 200 == 0)
         {
-            //PrintPriorities();
-            PrintAction();
+            //aiPriorityLogic.PrintPriorities();
+            //aiActionLogic.PrintAction();
         }
 
         //Debug.Log("currentAction:"+currentAction);
@@ -157,7 +169,7 @@ public class AiBase : PlayerBase
         //CheckAmmo(); //check when firing
 
         //UpdateCurrentAction(); //lagz
-        DoCurrentAction();
+        aiActionLogic.DoCurrentAction();
         UpdateDirection();
 
         //PrintPriorities();
@@ -166,48 +178,10 @@ public class AiBase : PlayerBase
 
     }
 
+
+
     
-
-    public void PrintAction()
-    {
-        string message = "";
-        message += "current action=" + currentAction;
-
-        Debug.Log(message);
-    }
-
-     public void DoCurrentAction()
-    {
-        switch (currentAction)
-        {
-            case AiActionEnum.killPlayer1:
-                KillPlayer(player1);
-                break;
-            case AiActionEnum.killPlayer2:
-                KillPlayer(player2);
-                break;
-            case AiActionEnum.killPlayer3:
-                KillPlayer(player3);
-                break;
-            case AiActionEnum.killPlayer4:
-                KillPlayer(player4);
-                break;
-            case AiActionEnum.avoidBullet:
-                aiAvoidBulletLogic.AvoidBullet();
-                break;
-            case AiActionEnum.pickupPowerUp:
-                aiPowerUpLogic.PickUp(aiPowerUpLogic.bestPowerUp);
-                break;
-            case AiActionEnum.pickupWeapon:
-                aiPowerUpLogic.PickUp(aiWeaponLogic.bestWeapon);
-                break;
-            default:
-                aiMovementLogic.Stop();
-                break;
-        }
-        //Debug.Log("processing action: " + currentAction);
-    }
-
+    /*
     public bool CanShoot(Vector2 center, Vector2 direction)
     {
 
@@ -231,12 +205,13 @@ public class AiBase : PlayerBase
         }
         return true;
     }
+    */
 
     public bool IsInPlayground(Vector2 point)
     {
         return mapMinX < point.x && point.x < mapMaxX && mapMinY < point.y && point.y < mapMaxY;
     }
-    
+
     public void KillPlayer(PlayerBase player)
     {
         Vector2 targetPlayerPosition = player.transform.position;
@@ -259,8 +234,8 @@ public class AiBase : PlayerBase
         {
             bestHorizontalDown.y -= 0.1f;
         }
-        
-        
+
+
         while (bestHorizontalUp.y < mapMaxY && !aiMovementLogic.CharacterCollidesBarrier(bestHorizontalUp) && bestHorizontalUp.y < posY)
         {
             bestHorizontalUp.y += 0.1f;
@@ -301,19 +276,19 @@ public class AiBase : PlayerBase
         //if you are on same axis -> turn his direction and shoot
 
         //if (AlmostEqual(posX, player.posX, 0.1) || AlmostEqual(posY, player.posY, 0.1))
-        if(aiMovementLogic.MoveTo(possibleShootSpots[spotIndex]))
+        if (aiMovementLogic.MoveTo(possibleShootSpots[spotIndex]))
         {
             //Debug.Log("i can shoot");
             //look at him (if you are not already looking at him)
 
-            if(GetObjectDirection(player.gameObject) != direction)
+            if (GetObjectDirection(player.gameObject) != direction)
                 LookAt(player.gameObject);
             else
             {
                 //UpdateAnimatorState(AnimatorStateEnum.stop);
             }
 
-            if (CanShoot(transform.position, direction))
+            if (aiWeaponLogic.CanShoot(transform.position, direction))
             {
                 //Debug.Log("I can shoot from:" + transform.position + " to: " + direction);
                 //CheckAmmo();
@@ -400,43 +375,7 @@ public class AiBase : PlayerBase
 
     }
 
-
-
-
-    // <<...COMMANDS>>
     
-
-    ////////////////////////CHECK AMMO
-    public bool CheckAmmo()
-    {
-        bool canShoot = true;
-        //Debug.Log(weaponHandling.activeWeapon.ammo);
-        if(!weaponHandling.activeWeapon.ready || !weaponHandling.activeWeapon.kadReady)
-        {
-            //try switching to another fire weapon - TODO
-            //Debug.Log("CANT shoot");
-
-            canShoot = false;
-        }
-
-        //Debug.Log(canShoot);
-
-        if (!canShoot)
-        {
-
-            aiPriorityLogic.killPlayer1Priority -= 50;
-            aiPriorityLogic.killPlayer2Priority -= 50;
-            aiPriorityLogic.killPlayer3Priority -= 50;
-            aiPriorityLogic.killPlayer4Priority -= 50;
-        }
-
-        return canShoot;
-    }
-
-
-    
-    
-
     public void LookAroundYourself()
     {
         aiAvoidBulletLogic.RegisterBullets();
@@ -444,14 +383,61 @@ public class AiBase : PlayerBase
         aiPowerUpLogic.RegisterPowerUps();
 
         aiWeaponLogic.RegisterWeapons();
-        
+
 
     }
-    
+
+    ///ACTIONS
+    /*
+    public void PrintAction()
+    {
+        string message = "";
+        message += "current action=" + currentAction;
+
+        Debug.Log(message);
+    }
+
+    public void DoCurrentAction()
+    {
+        switch (currentAction)
+        {
+            case AiActionEnum.killPlayer1:
+                KillPlayer(player1);
+                break;
+            case AiActionEnum.killPlayer2:
+                KillPlayer(player2);
+                break;
+            case AiActionEnum.killPlayer3:
+                KillPlayer(player3);
+                break;
+            case AiActionEnum.killPlayer4:
+                KillPlayer(player4);
+                break;
+            case AiActionEnum.avoidBullet:
+                aiAvoidBulletLogic.AvoidBullet();
+                break;
+            case AiActionEnum.pickupPowerUp:
+                aiPowerUpLogic.PickUp(aiPowerUpLogic.bestPowerUp);
+                break;
+            case AiActionEnum.pickupWeapon:
+                aiPowerUpLogic.PickUp(aiWeaponLogic.bestWeapon);
+                break;
+            case AiActionEnum.stand:
+                aiMovementLogic.Stop();
+                break;
+            default:
+                aiMovementLogic.Stop();
+                break;
+        }
+        //Debug.Log("processing action: " + currentAction);
+    }
+
+    public AiActionEnum currentAction;
 
     public void UpdateCurrentAction()
     {
         int highestPriority = aiPriorityLogic.GetCurrentHighestPriority();
+        //Debug.Log("highest = " + highestPriority);
 
         if (aiPriorityLogic.killPlayer1Priority >= highestPriority)
         {
@@ -469,11 +455,11 @@ public class AiBase : PlayerBase
         {
             currentAction = AiActionEnum.killPlayer4;
         }
-        else if(aiAvoidBulletLogic.avoidBulletPriority >= highestPriority)
+        else if (aiPriorityLogic.avoidBulletPriority >= highestPriority)
         {
             currentAction = AiActionEnum.avoidBullet;
         }
-        else if(aiPowerUpLogic.pickPowerUpPriority >= highestPriority)
+        else if (aiPowerUpLogic.pickPowerUpPriority >= highestPriority)
         {
             currentAction = AiActionEnum.pickupPowerUp;
         }
@@ -481,6 +467,12 @@ public class AiBase : PlayerBase
         {
             currentAction = AiActionEnum.pickupWeapon;
         }
+        else if (aiPriorityLogic.standPriority >= highestPriority)
+        {
+            currentAction = AiActionEnum.stand;
+            //Debug.Log("STAND");
+        }
+
         else
         {
             currentAction = AiActionEnum.stand;
@@ -489,8 +481,8 @@ public class AiBase : PlayerBase
         //currentAction = AiActionEnum.stand;
     }
 
-    
-    
+    */
+
 
     public float GetDistance(GameObject object1, GameObject object2)
     {
@@ -504,7 +496,7 @@ public class AiBase : PlayerBase
 
     public float GetDistanceFactor(float distance)
     {
-        return (100 - distance)/100;
+        return (100 - distance) / 100;
     }
 
     public List<PlayerBase> GetPlayers()
@@ -524,6 +516,7 @@ public class AiBase : PlayerBase
         allPlayers = GetPlayers();
         foreach (PlayerBase player in allPlayers)
         {
+            //Debug.Log(player);
             switch (player.playerNumber)
             {
                 case 1:

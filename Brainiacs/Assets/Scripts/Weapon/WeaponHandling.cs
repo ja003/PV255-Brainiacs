@@ -18,6 +18,14 @@ public class WeaponHandling : MonoBehaviour {
 
     public void FixedUpdate() {
 
+        
+        if(activeWeapon == null)
+            Debug.Log("activeWeapon");
+        if (activeWeapon.weaponSprites == null)
+            Debug.Log("weaponSprites");
+        if (activeWeapon.weaponSprites[player.directionMapping[player.direction]] == null)
+            Debug.Log("direction");
+
         weaponRenderer.sprite = activeWeapon.weaponSprites[player.directionMapping[player.direction]];
 
         foreach (var weap in inventory) {

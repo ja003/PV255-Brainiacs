@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class AiPowerUpLogic  {
     public GameObject bestPowerUp;
-    public int pickPowerUpPriority;
+    
     public List<GameObject> itemPowerUps;
     public AiBase aiBase;
     public LayerMask itemMask;

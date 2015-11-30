@@ -17,7 +17,7 @@ public class AiAvoidBulletLogic : AiBase {
     public int killPlayer3Priority;
     public int killPlayer4Priority;
 
-    public int avoidBulletPriority;
+    
 
     float characterColliderWidth;
     float characterColliderHeight;
@@ -38,7 +38,7 @@ public class AiAvoidBulletLogic : AiBase {
         characterColliderHeight = aiBase.characterColliderHeight;
     }
 
-
+    /*
     public void SetAvoidBulletPriority(int priority)
     {
         avoidBulletPriority = priority;
@@ -47,7 +47,7 @@ public class AiAvoidBulletLogic : AiBase {
         killPlayer2Priority = 0;
         killPlayer3Priority = 0;
         killPlayer4Priority = 0;
-    }
+    }*/
 
     
     public bool RegisterBullets()
@@ -202,7 +202,7 @@ public class AiAvoidBulletLogic : AiBase {
                 }
                 else
                 {
-                    Debug.Log("cant avoid");
+                    //Debug.Log("cant avoid");
                 }
             }
             else if (bulletFrom == down)
@@ -251,8 +251,8 @@ public class AiAvoidBulletLogic : AiBase {
             decidedDirectionBool = false;
             decidedDirection = down;
             //Debug.Log("bullet avoided");
-            SetAvoidBulletPriority(0);
-            aiBase.UpdateCurrentAction();
+            aiPriorityLogic.SetAvoidBulletPriority(0);
+            aiActionLogic.UpdateCurrentAction();
         }
     }
 
