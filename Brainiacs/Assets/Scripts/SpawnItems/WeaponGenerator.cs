@@ -18,6 +18,8 @@ public class WeaponGenerator : MonoBehaviour
 
     private string location = "Prefabs/SpawnItems/Weapons/weapon_";
     private string[] weaponNames = new string[countOfWeapons - indexOfSpawnWeps] { "flamethrower", "sniper", "biogun", "MP40", "mine" };
+
+    public PositionGenerator posGenerator;
     
     void Start()
     {
@@ -59,7 +61,7 @@ public class WeaponGenerator : MonoBehaviour
         for (int j = 0; j < pooledAmount; j++){
             if (!weapons[i][j].activeInHierarchy)
             {
-                weapons[i][j].transform.position = Vector3.zero;//= GameObject.FindGameObjectsWithTag("Generator")[0].gameObject.;
+                weapons[i][j].transform.position = posGenerator.GenerateRandomPosition(1.0f, 1.0f);
                 weapons[i][j].SetActive(true);
                 break;
             }

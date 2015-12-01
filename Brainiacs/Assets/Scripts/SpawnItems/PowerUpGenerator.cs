@@ -18,7 +18,9 @@ public class PowerUpGenerator : MonoBehaviour
 
     private string location = "Prefabs/SpawnItems/PowerUps/powerup_";
     private string[] powerUpNames = new string[countOfPrefabedPowerUps] { "shield", "heal", "ammo", "speed", "mystery" };
-  
+
+    public PositionGenerator posGenerator;
+
     void Start(){
         powerUps = new List<GameObject>[countOfPrefabedPowerUps];
 
@@ -58,7 +60,7 @@ public class PowerUpGenerator : MonoBehaviour
         {
             if (!powerUps[i][j].activeInHierarchy)
             {
-                powerUps[i][j].transform.position = Vector3.zero;//= generator.GenerateRandomPosition();
+                powerUps[i][j].transform.position = posGenerator.GenerateRandomPosition(1.0f, 1.0f);
                 powerUps[i][j].SetActive(true);
                 break;
             }
