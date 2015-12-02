@@ -218,7 +218,7 @@ public class AiPriorityLogic
             }
         }
 
-        aiWeaponLogic.bestWeapon = aiWeaponLogic.itemWeapons[weaponsPriorities.IndexOf(highestPriority)];
+        aiWeaponLogic.bestWeaponItem = aiWeaponLogic.itemWeapons[weaponsPriorities.IndexOf(highestPriority)];
 
         pickWeaponPriority = highestPriority;
         //Debug.Log("pickPowerUpPriority:" + pickPowerUpPriority);

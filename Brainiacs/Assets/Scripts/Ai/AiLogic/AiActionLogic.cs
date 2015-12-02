@@ -49,7 +49,7 @@ public class AiActionLogic {
                 aiPowerUpLogic.PickUp(aiPowerUpLogic.bestPowerUp);
                 break;
             case AiActionEnum.pickupWeapon:
-                aiPowerUpLogic.PickUp(aiWeaponLogic.bestWeapon);
+                aiPowerUpLogic.PickUp(aiWeaponLogic.bestWeaponItem);
                 break;
             case AiActionEnum.stand:
                 aiMovementLogic.Stop();

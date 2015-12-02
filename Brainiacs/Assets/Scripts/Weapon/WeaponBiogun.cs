@@ -7,7 +7,7 @@ public class WeaponBiogun : WeaponBase
     public WeaponBiogun()
     {
         base.damage = 35;
-        base.weaponType = WeaponEnum.sniper;
+        base.weaponType = WeaponEnum.biogun;
 
         base.ammo = 4;
         base.maxAmmo = 4;

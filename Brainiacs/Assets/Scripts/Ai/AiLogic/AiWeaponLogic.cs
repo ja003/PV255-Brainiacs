@@ -34,7 +34,7 @@ public class AiWeaponLogic {
             }
         }
     }
-    public GameObject bestWeapon;
+    public GameObject bestWeaponItem;
     
 
     public bool CheckAmmo()

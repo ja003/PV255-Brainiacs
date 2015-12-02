@@ -11,10 +11,12 @@ public class Ai_03 : AiBase {
     void Start()
     {
         playerNumber = 3;
+        /*
         base.aiPriorityLogic.killPlayer1Priority = 0;
         base.aiPriorityLogic.killPlayer2Priority = 0;
         base.aiPriorityLogic.killPlayer3Priority = 0;
         base.aiPriorityLogic.killPlayer4Priority = 0;
+        */
 
 
         
@@ -63,14 +65,13 @@ public class Ai_03 : AiBase {
 
         // Inicializacia prvej zbrane
         weaponHandling.inventory.Add(pistol);
-        //weaponHandling.inventory.Add(sniper);
-        //weaponHandling.inventory.Add(biogun);
-        //weaponHandling.inventory.Add(MP40);
+        weaponHandling.inventory.Add(sniper);
+        weaponHandling.inventory.Add(biogun);
+        weaponHandling.inventory.Add(MP40);
         weaponHandling.activeWeapon = weaponHandling.inventory[0];
         //weaponHandling.
 
         
-
     }
 
     /*
