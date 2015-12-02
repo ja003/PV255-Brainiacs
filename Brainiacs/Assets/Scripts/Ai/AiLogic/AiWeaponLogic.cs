@@ -12,6 +12,7 @@ public class AiWeaponLogic {
     public AiMovementLogic aiMovementLogic;
     public AiAvoidBulletLogic aiAvoidBulletLogic;
     public AiPriorityLogic aiPriorityLogic;
+    public AiMapLogic aiMapLogic;
 
     public AiWeaponLogic(AiBase aiBase)
     {

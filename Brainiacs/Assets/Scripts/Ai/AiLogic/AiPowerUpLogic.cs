@@ -15,6 +15,7 @@ public class AiPowerUpLogic  {
     public AiMovementLogic aiMovementLogic;
     public AiAvoidBulletLogic aiAvoidBulletLogic;
     public AiPriorityLogic aiPriorityLogic;
+    public AiMapLogic aiMapLogic;
 
     public AiPowerUpLogic(AiBase aiBase)
     {
@@ -25,12 +26,10 @@ public class AiPowerUpLogic  {
     }
     public void PickUp(GameObject obj)
     {
-        Debug.Log("picking up " + obj.name);
-        Debug.Log("aiMovementLogic " + aiMovementLogic);
         if (aiMovementLogic.MoveTo(obj.transform.position))
         {
             //Debug.Log("picked up");
-            aiBase.LookAroundYourself();
+            aiMapLogic.LookAroundYourself();
         }
     }
 

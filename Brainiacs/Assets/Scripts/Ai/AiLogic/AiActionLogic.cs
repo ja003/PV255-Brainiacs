@@ -11,6 +11,7 @@ public class AiActionLogic {
     public AiAvoidBulletLogic aiAvoidBulletLogic;
     public AiPriorityLogic aiPriorityLogic;
     //public AiActionLogic aiActionLogic;
+    public AiKillingLogic aiKillingLogic;
 
     public AiActionLogic(AiBase aiBase)
     {
@@ -30,16 +31,16 @@ public class AiActionLogic {
         switch (currentAction)
         {
             case AiActionEnum.killPlayer1:
-                aiBase.KillPlayer(aiBase.player1);
+                aiKillingLogic.KillPlayer(aiBase.player1);
                 break;
             case AiActionEnum.killPlayer2:
-                aiBase.KillPlayer(aiBase.player2);
+                aiKillingLogic.KillPlayer(aiBase.player2);
                 break;
             case AiActionEnum.killPlayer3:
-                aiBase.KillPlayer(aiBase.player3);
+                aiKillingLogic.KillPlayer(aiBase.player3);
                 break;
             case AiActionEnum.killPlayer4:
-                aiBase.KillPlayer(aiBase.player4);
+                aiKillingLogic.KillPlayer(aiBase.player4);
                 break;
             case AiActionEnum.avoidBullet:
                 aiAvoidBulletLogic.AvoidBullet();

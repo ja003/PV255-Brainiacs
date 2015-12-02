@@ -58,11 +58,11 @@ public abstract class PlayerBase : MonoBehaviour
     
     // /////////////////////////////////////// Movement ///////////////////////////////////////////
     public Vector2 direction;
-    protected Vector2 up = Vector2.up;
-    protected Vector2 down = Vector2.down;
-    protected Vector2 left = Vector2.left;
-    protected Vector2 right = Vector2.right;
-    protected Vector2 stop = Vector2.zero;
+    public Vector2 up = Vector2.up;
+    public Vector2 down = Vector2.down;
+    public Vector2 left = Vector2.left;
+    public Vector2 right = Vector2.right;
+    public Vector2 stop = Vector2.zero;
     // ///////////////////////////////////////////////////////////////////////////////////////////
 
     /// //////////////////////////////////// WEAPON HANDLING ///////////////////////////////////

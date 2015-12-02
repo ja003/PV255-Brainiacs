@@ -28,6 +28,7 @@ public class AiPriorityLogic
     public AiAvoidBulletLogic aiAvoidBulletLogic;
     public AiActionLogic aiActionLogic;
     //public AiPriorityLogic aiPriorityLogic;
+    public AiMapLogic aiMapLogic;
 
     public AiPriorityLogic(AiBase aiBase)
     {
@@ -62,7 +63,7 @@ public class AiPriorityLogic
 
 
         //register incoming bullets, powerups,...
-        aiBase.LookAroundYourself();
+        aiMapLogic.LookAroundYourself();
 
         SetPowerUpsPriority();
 
@@ -145,13 +146,13 @@ public class AiPriorityLogic
     public void SetKillPriorities()
     {
         if (aiBase.player1 != null && aiBase.playerNumber != 1)
-            killPlayer1Priority = (int)(90 * aiBase.GetDistanceFactor(aiBase.GetDistance(aiBase.gameObject, aiBase.player1.gameObject)));
+            killPlayer1Priority = (int)(90 * aiMapLogic.GetDistanceFactor(aiMapLogic.GetDistance(aiBase.gameObject, aiBase.player1.gameObject)));
         if (aiBase.player2 != null && aiBase.playerNumber != 2)
-            killPlayer2Priority = (int)(90 * aiBase.GetDistanceFactor(aiBase.GetDistance(aiBase.gameObject, aiBase.player2.gameObject)));
+            killPlayer2Priority = (int)(90 * aiMapLogic.GetDistanceFactor(aiMapLogic.GetDistance(aiBase.gameObject, aiBase.player2.gameObject)));
         if (aiBase.player3 != null && aiBase.playerNumber != 3)
-            killPlayer3Priority = (int)(90 * aiBase.GetDistanceFactor(aiBase.GetDistance(aiBase.gameObject, aiBase.player3.gameObject)));
+            killPlayer3Priority = (int)(90 * aiMapLogic.GetDistanceFactor(aiMapLogic.GetDistance(aiBase.gameObject, aiBase.player3.gameObject)));
         if (aiBase.player4 != null && aiBase.playerNumber != 4)
-            killPlayer4Priority = (int)(90 * aiBase.GetDistanceFactor(aiBase.GetDistance(aiBase.gameObject, aiBase.player4.gameObject)));
+            killPlayer4Priority = (int)(90 * aiMapLogic.GetDistanceFactor(aiMapLogic.GetDistance(aiBase.gameObject, aiBase.player4.gameObject)));
 
 
     }
@@ -172,8 +173,8 @@ public class AiPriorityLogic
         {
             //Debug.Log("I see " + powerUp.name);
             WeaponManager manager = weapon.GetComponent<WeaponManager>();
-            float distanceFromMe = aiBase.GetDistance(aiBase.gameObject, weapon);
-            float distanceFactor = aiBase.GetDistanceFactor(distanceFromMe);
+            float distanceFromMe = aiMapLogic.GetDistance(aiBase.gameObject, weapon);
+            float distanceFactor = aiMapLogic.GetDistanceFactor(distanceFromMe);
 
             int priority = 0;
             switch (manager.type)
@@ -248,8 +249,8 @@ public class AiPriorityLogic
                 return;
             }
 
-            float distanceFromMe = aiBase.GetDistance(aiBase.gameObject, powerUp);
-            float distanceFactor = aiBase.GetDistanceFactor(distanceFromMe);
+            float distanceFromMe = aiMapLogic.GetDistance(aiBase.gameObject, powerUp);
+            float distanceFactor = aiMapLogic.GetDistanceFactor(distanceFromMe);
 
             int priority = 0;
             switch (manager.type)

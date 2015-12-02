@@ -9,6 +9,9 @@ public class AiMovementLogic {
     float characterColliderHeight;
     Collider2D collider;
 
+    //logic
+    public AiMapLogic aiMapLogic;
+
     protected Vector2 up = Vector2.up;
     protected Vector2 down = Vector2.down;
     protected Vector2 left = Vector2.left;
@@ -144,7 +147,7 @@ public class AiMovementLogic {
                 //Debug.Log(i);
                 PathNode currentNode = visitedNodes[i];
                 //end process when current node is close to target
-                if (aiBase.GetDistance(currentNode.node, target) < step)
+                if (aiMapLogic.GetDistance(currentNode.node, target) < step)
                 {
                     //Debug.Log("final = " + currentNode.node);
                     finalNodeIndex = i;

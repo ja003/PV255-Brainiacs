@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AiAvoidBulletLogic : AiBase {
+public class AiAvoidBulletLogic {
 
     public AiBase aiBase;
     public AiMovementLogic aiMovementLogic;
+    public AiPowerUpLogic aiPowerUpLogic;
+    public AiWeaponLogic aiWeaponLogic;
+    //public AiAvoidBulletLogic aiAvoidBulletLogic;
+    public AiPriorityLogic aiPriorityLogic;
+    public AiActionLogic aiActionLogic;
+    public AiMapLogic aiMapLogic;
 
     protected Vector2 up = Vector2.up;
     protected Vector2 down = Vector2.down;
@@ -73,7 +79,7 @@ public class AiAvoidBulletLogic : AiBase {
 
 
 
-            if (aiBase.AlmostEqual(bulletPosition.x, aiBase.posX, characterColliderWidth))//bullet above or bellow
+            if (aiMapLogic.AlmostEqual(bulletPosition.x, aiBase.posX, characterColliderWidth))//bullet above or bellow
             {
                 if (bulletPosition.y > aiBase.posY) //bullet is above
                 {
@@ -92,7 +98,7 @@ public class AiAvoidBulletLogic : AiBase {
                     }
                 }
             }
-            else if (aiBase.AlmostEqual(bulletPosition.y, aiBase.posY, characterColliderHeight))//bullet is on left or right
+            else if (aiMapLogic.AlmostEqual(bulletPosition.y, aiBase.posY, characterColliderHeight))//bullet is on left or right
             {
                 if (bulletPosition.x > aiBase.posX) //bullet is on right
                 {
