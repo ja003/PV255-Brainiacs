@@ -45,7 +45,10 @@ public class MainMenu : MonoBehaviour {
         }
         if (GUI.Button(new Rect(buttonX + (Screen.width / 4), Screen.height * (-1 + cameraPositionY + backButtonPlacementY), buttonWidth, buttonHeight), "", backTexture))
         {
+            moveToControls = false;
+            moveToNewGame = false;
             moveDownToMenu = true;
+            moveUpToMenu = false;
         }
 
         //-------------------------------MENU SCREEN-----------------------------------
@@ -53,17 +56,23 @@ public class MainMenu : MonoBehaviour {
         //displays header texture
         GUI.DrawTexture(new Rect(0, Screen.height * (headerYCoord + cameraPositionY), Screen.width, Screen.height * headerHeight), headerTexture);
 
-        //newGamePlacementY += cameraPositionY;
+        float newGameButtonY = cameraPositionY + newGamePlacementY;
 
-        if (GUI.Button(new Rect(buttonX, Screen.height * (newGamePlacementY + cameraPositionY), buttonWidth, buttonHeight), "", newGameTexture))
+        if (GUI.Button(new Rect(buttonX, Screen.height * newGameButtonY, buttonWidth, buttonHeight), "", newGameTexture))
         {
+            moveToControls = false;
             moveToNewGame = true;
+            moveDownToMenu = false;
+            moveUpToMenu = false;
         }
-        if (GUI.Button(new Rect(buttonX, Screen.height * (newGamePlacementY + distanceBetweenButtons + cameraPositionY), buttonWidth, buttonHeight), "", controlsTexture))
+        if (GUI.Button(new Rect(buttonX, Screen.height * (newGameButtonY + distanceBetweenButtons), buttonWidth, buttonHeight), "", controlsTexture))
         {
             moveToControls = true;
+            moveToNewGame = false;
+            moveDownToMenu = false;
+            moveUpToMenu = false;
         }
-        if (GUI.Button(new Rect(buttonX, Screen.height * (newGamePlacementY + 2 * distanceBetweenButtons + cameraPositionY), buttonWidth, buttonHeight), "", quitTexture))
+        if (GUI.Button(new Rect(buttonX, Screen.height * (newGameButtonY + 2 * distanceBetweenButtons), buttonWidth, buttonHeight), "", quitTexture))
         {
             Application.Quit();
         }
@@ -71,6 +80,9 @@ public class MainMenu : MonoBehaviour {
         //-------------------------------CONTROLS SCREEN-------------------------------
         if (GUI.Button(new Rect(buttonX, Screen.height * (1 + cameraPositionY + backButtonPlacementY), buttonWidth, buttonHeight), "", backTexture))
         {
+            moveToControls = false;
+            moveToNewGame = false;
+            moveDownToMenu = false;
             moveUpToMenu = true;
         }
     }
