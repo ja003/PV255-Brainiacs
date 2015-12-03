@@ -72,11 +72,13 @@ public class WeaponHandling : MonoBehaviour {
         if (inventory.Contains(weapon))
         {
             inventory[inventory.IndexOf(weapon)].reload();
+            activeWeapon = inventory[inventory.IndexOf(weapon)];
         }
         else
         {
             weapon.recycle();
             inventory.Add(weapon);
+            activeWeapon = weapon;
         }
     }
 
@@ -88,7 +90,7 @@ public class WeaponHandling : MonoBehaviour {
         int bulletsLeft = activeWeapon.fire();
 
         //Debug.Log(activeWeapon.animController);
-        buletManager.fire(new Vector2(direction.x, direction.y), transform.position, activeWeapon.animController, activeWeapon.bulletSpeed);
+        buletManager.fire(new Vector2(direction.x, direction.y), transform.position, activeWeapon.animController, activeWeapon.bulletSpeed, activeWeapon.damage);
 
         if (bulletsLeft == 0)
         {

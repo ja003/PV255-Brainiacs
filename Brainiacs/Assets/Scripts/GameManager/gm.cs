@@ -115,6 +115,7 @@ public class gm : MonoBehaviour {
                 player1Info.charEnum = charEnum;
                 player1Info.playerColor = "red";
                 player1Comp.SetUpPlayer(player1Info, new ControlKeysP1());
+                GameObject.Find("player_info_red").GetComponent<HUDBase>().SetUp(player1Comp);
                 player1Active = true;
                 break;
             case 2:
@@ -122,6 +123,7 @@ public class gm : MonoBehaviour {
                 player2Info.charEnum = charEnum;
                 player2Info.playerColor = "green";
                 player2Comp.SetUpPlayer(player2Info, new ControlKeysP1());
+                GameObject.Find("player_info_green").GetComponent<HUDBase>().SetUp(player2Comp);
                 player2Active = true;
                 break;
             case 3:
@@ -129,6 +131,7 @@ public class gm : MonoBehaviour {
                 player3Info.charEnum = charEnum;
                 player3Info.playerColor = "blue";
                 player3Comp.SetUpPlayer(player3Info);
+                GameObject.Find("player_info_blue").GetComponent<HUDBase>().SetUp(player3Comp);
                 player3Active = true;
                 break;
             case 4:
@@ -136,6 +139,7 @@ public class gm : MonoBehaviour {
                 player4Info.charEnum = charEnum;
                 player4Info.playerColor = "yellow";
                 player4Comp.SetUpPlayer(player4Info, new ControlKeysP2());
+                GameObject.Find("player_info_yellow").GetComponent<HUDBase>().SetUp(player4Comp);
                 player4Active = true;
                 break;
         }

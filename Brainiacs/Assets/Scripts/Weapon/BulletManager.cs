@@ -30,9 +30,9 @@ public class BulletManager : MonoBehaviour {
         //Debug.Log(prefabBullets[indexUsedBullet]);
     }
 
-    public void fire(Vector2 direction, Vector2 position, RuntimeAnimatorController animController, float bulletSpeed)
+    public void fire(Vector2 direction, Vector2 position, RuntimeAnimatorController animController, float bulletSpeed, int damage)
     {
-        prefabBullets[indexUsedBullet].GetComponent<Bullet>().iniciate(direction, position, animController, bulletSpeed);
+        prefabBullets[indexUsedBullet].GetComponent<Bullet>().iniciate(direction, position, animController, bulletSpeed, damage);
         indexUsedBullet = (indexUsedBullet + 1) % maxBullets;
     }
 }

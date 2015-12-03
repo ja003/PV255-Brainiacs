@@ -14,8 +14,8 @@ public class HumanBase : PlayerBase {
     private KeyCode lastPressed { get; set; }
     public List<KeyCode> pressedKeys = new List<KeyCode>();
 
-    Components comp;
-    PlayerInfo playInfo;
+    //Components comp;
+    //PlayerInfo playInfo;
 
     // JP - pre alternatibny movement
     //public Stack<KeyCode> pressed_keys = new Stack<KeyCode>();

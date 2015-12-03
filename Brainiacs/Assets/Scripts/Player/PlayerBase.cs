@@ -81,9 +81,9 @@ public abstract class PlayerBase : MonoBehaviour
     // //////////////////////////////////////  Components ///////////////////////////////////////
     //rigid body of controlled object
     public Rigidbody2D rb2d { get; set; }
-    Components comp;
+    public Components comp;
     /////////////////////////////////////////////////////////////////////////////////////////////
-    PlayerInfo playInfo;
+    public PlayerInfo playInfo;
 
     public void setUpPB(Components c, PlayerInfo p)
     {
@@ -116,6 +116,36 @@ public abstract class PlayerBase : MonoBehaviour
         handsSprites = Resources.LoadAll<Sprite>("Sprites/Hands");
 
         weaponHandling.weaponRenderer = transform.Find("weapon").GetComponent<SpriteRenderer>();
+    }
+
+    public void setUpWeapons(PlayerInfo pi)
+    {
+        weaponHandling.player = GetComponent<PlayerBase>();
+
+        WeaponBase pistol = new WeaponPistol(pi.charEnum);
+        WeaponBase sniper = new WeaponSniper();
+        WeaponBase biogun = new WeaponBiogun();
+        //WeaponBase flameTh = new WeaponFlamethrower();
+        WeaponBase MP40 = new WeaponMP40();
+        WeaponBase mine = new WeaponMine();
+
+        // Tu sa vytvoria vsetky zbrane ktore sa priradia do weapon handling aby sa nemusel volat zbytocne load na sprajtoch
+        weaponHandling.weapons.Add(WeaponEnum.sniper, sniper);
+        weaponHandling.weapons.Add(WeaponEnum.pistol, pistol);
+        weaponHandling.weapons.Add(WeaponEnum.biogun, biogun);
+        weaponHandling.weapons.Add(WeaponEnum.MP40, MP40);
+        weaponHandling.weapons.Add(WeaponEnum.mine, mine);
+
+        // Inicializacia prvej zbrane
+        weaponHandling.inventory.Add(pistol);
+        weaponHandling.inventory.Add(sniper);
+        weaponHandling.inventory.Add(biogun);
+        weaponHandling.inventory.Add(MP40);
+        weaponHandling.inventory.Add(mine);
+        weaponHandling.activeWeapon = weaponHandling.inventory[0];
+
+        Debug.Log("rend:" + weaponHandling.weaponRenderer);
+
     }
 
     private void setUpSprites() {

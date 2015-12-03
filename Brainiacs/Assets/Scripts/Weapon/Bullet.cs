@@ -4,12 +4,13 @@ using System.Collections;
 public class Bullet : MonoBehaviour {
 
     Animator animator;
-    public int damage = 20;
     public Vector2 direction;
     public float bulletSpeed;
+    int damage;
     public bool isActive = false;
 
-    public void iniciate(Vector2 dir, Vector2 pos, RuntimeAnimatorController animController, float bulletSpd) {
+    public void iniciate(Vector2 dir, Vector2 pos, RuntimeAnimatorController animController, float bulletSpd, int dmg) {
+        damage = dmg;
         direction = new Vector2(dir.x, dir.y);
         bulletSpeed = bulletSpd;
         if (dir == Vector2.up){
