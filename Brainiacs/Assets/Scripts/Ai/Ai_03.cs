@@ -33,7 +33,7 @@ public class Ai_03 : AiBase {
 
         base.playerNumber = 3;
         base.speed = 2f;
-        base.direction = base.right;
+        base.direction = base.left;
 
         playInfo = pi;
         
@@ -45,8 +45,12 @@ public class Ai_03 : AiBase {
         setUpPB(comp, playInfo);
 
         setUpWeapons(pi);
+
+        
     }
 
+    //moved to PlayerBase
+    /*
     public void setUpWeapons(PlayerInfo pi)
     {
         WeaponBase pistol = new WeaponPistol(pi.charEnum);
@@ -73,6 +77,7 @@ public class Ai_03 : AiBase {
 
         
     }
+    */
 
     /*
     public void setUpWeapons(PlayerInfo pi)

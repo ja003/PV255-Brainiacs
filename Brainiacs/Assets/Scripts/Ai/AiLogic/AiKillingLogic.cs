@@ -135,8 +135,8 @@ public class AiKillingLogic {
                             bestWeaponIndex = aiBase.weaponHandling.inventory.IndexOf(weapon);
                         }
                     }
-                    Debug.Log("bestWeaponIndex: " + bestWeaponIndex);
-                    Debug.Log("highestWeaponPriority: " + highestWeaponPriority);
+                    //Debug.Log("bestWeaponIndex: " + bestWeaponIndex);
+                    //Debug.Log("highestWeaponPriority: " + highestWeaponPriority);
 
                     if (aiBase.weaponHandling.activeWeapon != aiBase.weaponHandling.inventory[bestWeaponIndex])
                     {

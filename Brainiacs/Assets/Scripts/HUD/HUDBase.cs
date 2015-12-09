@@ -18,7 +18,7 @@ public class HUDBase : MonoBehaviour {
     public void SetUp(PlayerBase p) {
         player = p;
         weaponHandling = p.weaponHandling;
-        Debug.Log(weaponHandling.activeWeapon.ammo);
+        //Debug.Log(weaponHandling.activeWeapon.ammo);
         sprite = p.playInfo.charEnum.ToString() + "_Avatar";
         SetupAvatar();
         ready = true;

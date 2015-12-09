@@ -128,6 +128,9 @@ public class AiBase : PlayerBase
         if (Time.frameCount == 5)
         {
             SetPlayers();
+            
+
+            weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[weaponHandling.player.directionMapping[weaponHandling.player.direction]];
         }
 
         //////////CHEK EVERY FRAME

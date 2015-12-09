@@ -143,6 +143,7 @@ public abstract class PlayerBase : MonoBehaviour
         weaponHandling.inventory.Add(MP40);
         weaponHandling.inventory.Add(mine);
         weaponHandling.activeWeapon = weaponHandling.inventory[0];
+        
 
         Debug.Log("rend:" + weaponHandling.weaponRenderer);
 
@@ -353,7 +354,7 @@ public abstract class PlayerBase : MonoBehaviour
         hitPoints = maxHP;
         dead = false;
         Debug.Log("alive");
-        UpdateAnimatorState(AnimatorStateEnum.walkRight);
+        //UpdateAnimatorState(AnimatorStateEnum.walkRight);
 
         //TODO
         //load player again (without old weapons,...)
@@ -362,16 +363,20 @@ public abstract class PlayerBase : MonoBehaviour
         posX = newRandomPosition.x;
         posY = newRandomPosition.y;
         transform.position = newRandomPosition;
-        Debug.Log("X " + newRandomPosition.x);
-        Debug.Log("Y " + newRandomPosition.y);
+        //Debug.Log("X " + newRandomPosition.x);
+        //Debug.Log("Y " + newRandomPosition.y);
 
         //enable movement
         up = Vector2.up;
         down = Vector2.down;
         left = Vector2.left;
         right = Vector2.right;
-        
-}
+
+        //update weapon direction and stop player animation(AI reasons)
+        UpdateAnimatorState(AnimatorStateEnum.stop);
+        //weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[weaponHandling.player.directionMapping[direction]];
+        //TODO - ^ udělat metodu
+    }
 
     /// ////////////////////////////////////// POWER UPS ///////////////////////////////////////////
     //player receives heal
