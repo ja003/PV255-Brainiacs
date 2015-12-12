@@ -8,7 +8,7 @@ public class TeleportBase : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D coll)
     {   
-        coll.gameObject.GetComponent<PlayerBase>().Teleport(otherTeleport.position);         
+        coll.gameObject.GetComponent<HumanBase>().Teleport(otherTeleport.position);
     }
 
 

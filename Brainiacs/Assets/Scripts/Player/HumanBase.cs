@@ -10,6 +10,7 @@ public class HumanBase : PlayerBase {
     public KeyCode keyFire { get; set; }
     public KeyCode keySwitchWeapon { get; set; }
 
+    private bool teleport = false;
 
     private KeyCode lastPressed { get; set; }
     public List<KeyCode> pressedKeys = new List<KeyCode>();
@@ -39,6 +40,13 @@ public class HumanBase : PlayerBase {
         this.keySwitchWeapon = keySwitchWeapon;
     }
 
+    public void Teleport(Vector2 position)
+    {
+        transform.position = position;
+        teleport = true;
+
+    }
+
     // <<<MOVEMENT...>>> //
     protected void Movement()
     {
@@ -53,12 +61,14 @@ public class HumanBase : PlayerBase {
 
         if (Input.GetKeyDown(keyUp) && !PressedKeysContains(keyUp))
         {
-            //Debug.Log(keyUp);
+
             pressedKeys.Add(keyUp);
+
         }
         else if (Input.GetKeyDown(keyLeft) && !PressedKeysContains(keyLeft))
         {
             //Debug.Log(keyLeft);
+            teleport = false;
             pressedKeys.Add(keyLeft);
            
         }
@@ -66,20 +76,31 @@ public class HumanBase : PlayerBase {
         {
 
             //Debug.Log(keyDown); 
+            teleport = false;
             pressedKeys.Add(keyDown);
         }
         else if (Input.GetKeyDown(keyRight) && !PressedKeysContains(keyRight))
         {
             //Debug.Log(keyRight);
+            teleport = false;
             pressedKeys.Add(keyRight);
         }
 
         //actualy moving
         if (GetLastPressed() == keyUp)
         {
-            rb2d.velocity = up * speed;
-            direction = up;
-            UpdateAnimatorState(AnimatorStateEnum.walkUp);
+            if (!teleport)
+            {
+                rb2d.velocity = up*speed;
+                direction = up;
+                UpdateAnimatorState(AnimatorStateEnum.walkUp);
+            }
+            else
+            {
+                rb2d.velocity = down * speed;
+                direction = down;
+                UpdateAnimatorState(AnimatorStateEnum.walkDown);
+            }
         }
         else if (GetLastPressed() == keyLeft)
         {
@@ -115,6 +136,8 @@ public class HumanBase : PlayerBase {
             if (Input.GetKeyUp(keyUp))
             {
                 RemoveKeyPressed(keyUp);
+                teleport = false;
+
             }
             if (Input.GetKeyUp(keyLeft))
             {

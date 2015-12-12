@@ -496,12 +496,6 @@ public abstract class PlayerBase : MonoBehaviour
         }
     }
     //<<<...MG>>>
-
-    public void Teleport(Vector2 position) {
-        transform.position = position;
-        UpdateAnimatorState(AnimatorStateEnum.walkDown);
-    }
-    
 }
 
 //proč mi to v Enums nefunguje?
