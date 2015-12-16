@@ -10,6 +10,9 @@ public class WeaponBase
     public int maxClip { get; set; }
     public int clip { get; set; }
     //
+
+    //AUDIO
+    public AudioClip fireSound_01;
     
     public int maxAmmo { get; set; }
     public int ammo { get; set; }
@@ -66,6 +69,14 @@ public class WeaponBase
     {
         weaponSprites = Resources.LoadAll<Sprite>(sprt);
         animController = Resources.Load(bullSprt) as RuntimeAnimatorController;
+    }
+
+    public void setUpSounds(string fireSound_01_string)
+    {
+        string soundLoaderString = "Sounds/Weapon/";
+
+        fireSound_01 = Resources.Load(soundLoaderString + fireSound_01_string) as AudioClip;
+
     }
 }
 

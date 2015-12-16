@@ -41,9 +41,9 @@ public class HUDBase : MonoBehaviour {
 	void SetupAvatar (string sprite) {
         avatar = transform.Find("Avatar_" + color).gameObject;
         renderer = avatar.GetComponent<SpriteRenderer>();
-        Debug.Log(renderer.sprite);
+        //Debug.Log(renderer.sprite);
 	    renderer.sprite = Resources.Load<Sprite>("Sprites/HUD/" + sprite);
-        Debug.Log(renderer.sprite);
+        //Debug.Log(renderer.sprite);
     }
 	
 	// Update is called once per frame

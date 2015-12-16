@@ -90,6 +90,8 @@ public class WeaponHandling : MonoBehaviour {
         activeWeapon.kadReady = false;
         int bulletsLeft = activeWeapon.fire();
 
+        SoundManager.instance.RandomizeSfx(activeWeapon.fireSound_01);
+
         //Debug.Log(activeWeapon.animController);
         buletManager.fire(new Vector2(direction.x, direction.y), transform.position, activeWeapon.animController, activeWeapon.bulletSpeed, activeWeapon.damage);
 

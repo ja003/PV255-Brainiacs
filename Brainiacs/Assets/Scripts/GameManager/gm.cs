@@ -36,7 +36,10 @@ public class gm : MonoBehaviour {
 
     void Start()
     {
-        prefab = (GameObject)Resources.Load("Prefabs/PlayerManagment"); 
+        prefab = (GameObject)Resources.Load("Prefabs/PlayerManagment");
+
+        //AUDIO
+        SetUpBackgroundMusic("steampunk");
 
         player1 = Instantiate(prefab); player1.SetActive(false);
         player2 = Instantiate(prefab); player2.SetActive(false);
@@ -103,6 +106,18 @@ public class gm : MonoBehaviour {
 
 
         Run();
+    }
+
+    public void SetUpBackgroundMusic(string mapName)
+    {
+        //GameObject sm = GameObject.Find("SoundManager");
+        //AudioSource[] audioSources = sm.GetComponents<AudioSource>();
+        //0 = sound FX, 1 = bg music
+        //AudioSource bgMusicAudioSource = audioSources[1];
+        AudioClip bgMusic = Resources.Load("Sounds/BackgroundMusic/map_" + mapName) as AudioClip;
+        //bgMusicAudioSource.clip = bgMusic;
+        //play it
+        SoundManager.instance.PlaySingle(bgMusic);
     }
 
     public void SetUpPlayer(int playerNumber, CharacterEnum charEnum)

@@ -29,6 +29,9 @@ public abstract class PlayerBase : MonoBehaviour
 
     public float characterWidth = 1f;
 
+    //////////////////////AUDIO SOURCE/////////////////////////
+    public AudioClip deathSound_01;
+
     //////////////////////ANIMATOR VARIABLES/////////////////////////
     public Animator characterAnimator;
     public bool walkUp = false;
@@ -92,6 +95,9 @@ public abstract class PlayerBase : MonoBehaviour
         weaponHandling = GetComponent<WeaponHandling>();
         
         setUpSprites();
+
+        setUpSounds();
+
         weaponHandling.buletManager = transform.parent.GetComponent<BulletManager>();
         weaponHandling.buletManager.createBullets();
 
@@ -116,6 +122,18 @@ public abstract class PlayerBase : MonoBehaviour
         handsSprites = Resources.LoadAll<Sprite>("Sprites/Hands");
 
         weaponHandling.weaponRenderer = transform.Find("weapon").GetComponent<SpriteRenderer>();
+    }
+
+    public void setUpSounds()
+    {
+        //string soundLoaderString = "Sounds/Player/" + playInfo.charEnum.ToString().ToLower() + "/";
+        string soundLoaderString = "Sounds/Player/" + "davinci" + "/"; //for now
+
+        deathSound_01 = Resources.Load(soundLoaderString + "death_01") as AudioClip;
+
+        //Debug.Log(soundLoaderString + "death_01");
+
+        //Debug.Log("loaded sound: " + deathSound_01.name);
     }
 
     public void setUpWeapons(PlayerInfo pi)
@@ -145,7 +163,7 @@ public abstract class PlayerBase : MonoBehaviour
         weaponHandling.activeWeapon = weaponHandling.inventory[0];
         
 
-        Debug.Log("rend:" + weaponHandling.weaponRenderer);
+        //Debug.Log("rend:" + weaponHandling.weaponRenderer);
 
     }
 
@@ -339,6 +357,10 @@ public abstract class PlayerBase : MonoBehaviour
     {
         dead = true;
         Debug.Log("dead");
+
+        //play death sound
+        SoundManager.instance.RandomizeSfx(deathSound_01);
+
         UpdateAnimatorState(AnimatorStateEnum.dead);
         //disable movement
         up = stop;
