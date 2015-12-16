@@ -189,7 +189,8 @@ public class AiKillingLogic {
                 distanceFromMe = aiMapLogic.GetDistance(aiBase.gameObject, targetObject);
                 //Debug.Log(distanceFromMe);
                 return 100 - 2*(int)distanceFromMe;
-
+            case WeaponEnum.mine:
+                return 80;
         }
 
 

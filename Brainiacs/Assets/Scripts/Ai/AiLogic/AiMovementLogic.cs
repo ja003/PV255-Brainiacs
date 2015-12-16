@@ -28,6 +28,8 @@ public class AiMovementLogic {
     //detect only collision with barriers and borders (assigned manually to prefab)
     public LayerMask barrierMask;
 
+    //public AiAvoidBulletLogic aiAvoidBulletLogic;
+
     public AiMovementLogic(AiBase aiBase)
     {
         this.aiBase = aiBase;
@@ -341,33 +343,52 @@ public class AiMovementLogic {
 
         if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
         {
-            //Debug.DrawLine(charBotLeft, charBotRight, Color.red, 2f);
-            //Debug.DrawLine(charBotLeft, charTopLeft, Color.red, 2f);
-            //Debug.DrawLine(charBotRight, charTopRight, Color.red, 2f);
-            //Debug.DrawLine(charTopLeft, charTopRight, Color.red, 2f);
+            return true;
+        }
+        
+
+        return false;
+    }
+
+    public bool CharacterCollidesMine(Vector2 center)
+    {
+        //Debug.Log("colCheck");
+        float width = characterColliderWidth / 2;
+        float height = characterColliderHeight / 2;
+        Vector2 colliderOffset = aiBase.GetComponent<Collider2D>().offset / 2;
+        float offset = 0.1f;
+
+        Vector2 botLeft = new Vector2(center.x - width - offset, center.y - height - offset);
+        Vector2 botRight = new Vector2(center.x + width + offset, center.y - height - offset);
+        Vector2 topLeft = new Vector2(center.x - width - offset, center.y + height + offset);
+        Vector2 topRight = new Vector2(center.x + width + offset, center.y + height + offset);
+
+
+
+        RaycastHit2D hitBotLeft;
+        Ray rayBotLeft = new Ray(botLeft, aiBase.direction);
+        RaycastHit2D hitBotRight;
+        Ray rayBotRight = new Ray(botRight, aiBase.direction);
+        RaycastHit2D hitTopLeft;
+        Ray rayTopLeft = new Ray(topLeft, aiBase.direction);
+        RaycastHit2D hitTopRight;
+        Ray rayTopRight = new Ray(topRight, aiBase.direction);
+        
+        hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, aiBase.direction, 0.1f, barrierMask);
+        hitBotRight = Physics2D.Raycast(rayBotRight.origin, aiBase.direction, 0.1f, barrierMask);
+        hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, aiBase.direction, 0.1f, barrierMask);
+        hitTopRight = Physics2D.Raycast(rayTopRight.origin, aiBase.direction, 0.1f, barrierMask);
+
+        RaycastHit2D hitLeft;
+        hitLeft = Physics2D.Raycast(center, left, width, aiBase.bulletMask);
+
+
+
+        if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
+        {
             return true;
         }
 
-        //old version
-        /*
-        for (int i = 0; i < barriers.Length; i++)
-        {
-            if (barriers[i].aiBase.GetComponent<BoxCollider2D>().bounds.Contains(botLeft ))
-                return true;
-            if (barriers[i].aiBase.GetComponent<BoxCollider2D>().bounds.Contains(botRight ))
-                return true;
-            if (barriers[i].aiBase.GetComponent<BoxCollider2D>().bounds.Contains(topLeft ))
-                return true;
-            if (barriers[i].aiBase.GetComponent<BoxCollider2D>().bounds.Contains(topRight ))
-                return true;
-        }
-        Debug.Log(botLeft);
-        */
-
-        //Debug.DrawLine(botLeft, botRight, Color.green, 2f);
-        //Debug.DrawLine(botLeft, topLeft, Color.green, 2f);
-        //Debug.DrawLine(topLeft, topRight, Color.green, 2f);
-        //Debug.DrawLine(topRight, botRight, Color.green, 2f);
 
         return false;
     }

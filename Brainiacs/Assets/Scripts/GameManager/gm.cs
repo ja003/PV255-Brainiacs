@@ -114,10 +114,10 @@ public class gm : MonoBehaviour {
         //AudioSource[] audioSources = sm.GetComponents<AudioSource>();
         //0 = sound FX, 1 = bg music
         //AudioSource bgMusicAudioSource = audioSources[1];
-        AudioClip bgMusic = Resources.Load("Sounds/BackgroundMusic/map_" + mapName) as AudioClip;
+        AudioClip bgMusic = Resources.Load("Sounds/BackgroundMusic/map_" + mapName) as AudioClip;        
         //bgMusicAudioSource.clip = bgMusic;
         //play it
-        SoundManager.instance.PlaySingle(bgMusic);
+        //SoundManager.instance.PlaySingle(bgMusic);
     }
 
     public void SetUpPlayer(int playerNumber, CharacterEnum charEnum)
