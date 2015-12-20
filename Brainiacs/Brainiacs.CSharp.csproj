@@ -96,7 +96,8 @@
     <Compile Include="Assets\Scripts\Player\PlayerBase.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerInfo.cs" />
     <Compile Include="Assets\Scripts\PositionGenerator\PositionGenerator.cs" />
-    <Compile Include="Assets\Scripts\SoundManager\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\SceneManagers\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\SceneManagers\TextManager.cs" />
     <Compile Include="Assets\Scripts\SpawnItems\PowerUpEnum.cs" />
     <Compile Include="Assets\Scripts\SpawnItems\PowerUpGenerator.cs" />
     <Compile Include="Assets\Scripts\SpawnItems\PowerUpManager.cs" />

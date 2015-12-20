@@ -5,7 +5,7 @@ public class gm : MonoBehaviour {
 
     GameObject prefab;
     GameObject aiPrefab;
-
+    
     GameObject player1;
     GameObject player2;
     GameObject player3;
@@ -117,7 +117,7 @@ public class gm : MonoBehaviour {
         AudioClip bgMusic = Resources.Load("Sounds/BackgroundMusic/map_" + mapName) as AudioClip;        
         //bgMusicAudioSource.clip = bgMusic;
         //play it
-        //SoundManager.instance.PlaySingle(bgMusic);
+        SoundManager.instance.PlaySingle(bgMusic);
     }
 
     public void SetUpPlayer(int playerNumber, CharacterEnum charEnum)

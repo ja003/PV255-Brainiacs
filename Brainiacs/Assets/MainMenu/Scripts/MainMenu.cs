@@ -42,6 +42,7 @@ public class MainMenu : MonoBehaviour {
         if (GUI.Button(new Rect(buttonX - (Screen.width / 4), Screen.height * (-1 + cameraPositionY + backButtonPlacementY), buttonWidth, buttonHeight), "", startTexture))
         {
             //startgame
+            StartGame("BackgroundSteampuk");
         }
         if (GUI.Button(new Rect(buttonX + (Screen.width / 4), Screen.height * (-1 + cameraPositionY + backButtonPlacementY), buttonWidth, buttonHeight), "", backTexture))
         {
@@ -85,6 +86,11 @@ public class MainMenu : MonoBehaviour {
             moveDownToMenu = false;
             moveUpToMenu = true;
         }
+    }
+
+    void StartGame(string levelName)
+    {
+        Application.LoadLevel(levelName);
     }
 
     void FixedUpdate()

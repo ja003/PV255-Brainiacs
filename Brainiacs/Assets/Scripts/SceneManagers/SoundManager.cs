@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance = null;     //Allows other scripts to call functions from SoundManager.             
     public float lowPitchRange = .95f;              //The lowest a sound effect will be randomly pitched.
     public float highPitchRange = 1.05f;            //The highest a sound effect will be randomly pitched.
+    public float volume;
 
 
     void Awake()
@@ -52,6 +53,7 @@ public class SoundManager : MonoBehaviour
         {
             availableAS.clip = clip;
             availableAS.pitch = randomPitch;
+            availableAS.volume = volume;
             availableAS.Play();
         }
         else
@@ -59,6 +61,7 @@ public class SoundManager : MonoBehaviour
             AudioSource newAS = gameObject.AddComponent<AudioSource>();
             newAS.clip = clip;
             newAS.pitch = randomPitch;
+            newAS.volume = volume;
             newAS.Play();
         }
     }
