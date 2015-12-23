@@ -25,9 +25,9 @@ public class MainMenu : MonoBehaviour {
     //0 - player, 1 - AI, 2 - none
     public List<Texture> playerType;
     //0 - time, 1 - score, 2 - deathmatch
-    public List<Texture> gameMode;
-    public List<Texture> activeGameMode;
-    //0 - steampunk
+    public List<Texture2D> gameMode;
+    public List<Texture2D> activeGameMode;
+    //0 - steampunk, 1 - wonderland
     public List<Texture> maps;
     public List<Texture> mapSelect;
 
@@ -44,9 +44,9 @@ public class MainMenu : MonoBehaviour {
     private int selectedMode = 0;
     private int selectedMap = 0;
 
-    private Texture activeTimeText;
-    private Texture activeScoreText;
-    private Texture activeDeathText;
+    private GUIStyle activeTimeText;
+    private GUIStyle activeScoreText;
+    private GUIStyle activeDeathText;
 
     public GUIStyle newGameTexture;
     public GUIStyle controlsTexture;
@@ -55,6 +55,7 @@ public class MainMenu : MonoBehaviour {
     public GUIStyle startTexture;
     public GUIStyle nextTexture;
     public GUIStyle previousTexture;
+    public GUIStyle inputField;
 
     public float portraitBackgroundX;
     public float portraitBackgroundY;
@@ -66,6 +67,7 @@ public class MainMenu : MonoBehaviour {
     public float classYPosition;
     public float typeYPosition;
     public float selectYPosition;
+    public float selectOptionYDistance;
 
     public float headerYCoord;
     public float headerHeight;
@@ -88,6 +90,19 @@ public class MainMenu : MonoBehaviour {
     private bool moveUpToMenu = false;
     private float movingSpeed = 0.01f;
 
+    private string inputValue = "10";
+
+    void Start()
+    {
+        activeTimeText = new GUIStyle();
+        activeScoreText = new GUIStyle();
+        activeDeathText = new GUIStyle();
+        activeTimeText.normal.background = activeGameMode[0];
+        activeScoreText.normal.background = gameMode[1];
+        activeDeathText.normal.background = gameMode[2];
+        inputField.fontSize = inputField.normal.background.height / 3;
+    }
+
     void OnGUI()
     {
         //displays background texture
@@ -108,9 +123,21 @@ public class MainMenu : MonoBehaviour {
         float nextWidth = nextTexture.normal.background.width * (Screen.width / 1920.0f);
         float nextHeight = nextTexture.normal.background.height * (Screen.height / 1080.0f);
         float nextClassPosX = (classes[0].width + 10.0f) * Screen.width / (1920.0f * 2.0f);
-        float nextClassPosY = (classHeight - nextHeight) / (2.0f * Screen.width);
+        float nextClassPosY = (classHeight - nextHeight) / (1080.0f * 2.0f);
         float selectWidth = selectBackground.width * Screen.width / 1920.0f;
         float selectHeight = selectBackground.height * Screen.height / 1080.0f;
+        float selectOptionWidth = activeScoreText.normal.background.width * Screen.width / 1920.0f;
+        float selectOptionHeight = activeScoreText.normal.background.height * Screen.height / 1080.0f;
+        float activeMapWidth = maps[0].width * Screen.width / 1920.0f;
+        float activeMapHeigh = maps[0].height * Screen.height / 1080.0f;
+        float activeMapYPos = (selectHeight - activeMapHeigh) / (2.0f * Screen.height);
+        float mapSelectWidth = mapSelect[0].width * Screen.width / 1920.0f;
+        float mapSelectHeight = mapSelect[0].height * Screen.height / 1080.0f;
+        float mapSelectYPos = ((Screen.height * selectYPosition) + selectHeight) + ((Screen.height * backButtonPlacementY - ((Screen.height * selectYPosition) + selectHeight + mapSelectHeight)) / 2.0f);
+        float nextMapXPos = (mapSelect[0].width + 10.0f) * Screen.width / (1920.0f * 2.0f);
+        float nextMapYDif = (mapSelect[0].height - nextTexture.normal.background.height) * Screen.height / (1080.0f * 2.0f);
+        float inputWidth = inputField.normal.background.width * Screen.width / 1920.0f;
+        float nextInputXPos = (inputField.normal.background.width + 10.0f) * Screen.width / (1920.0f * 2.0f);
         //-------------------------------NEW GAME SCREEN-------------------------------
         GUI.DrawTexture(new Rect(Screen.width * controlsHeaderX, Screen.height * (-1 + cameraPositionY), Screen.width * (1.0f - controlsHeaderX * 2.0f), Screen.height * controlsHeaderHeight), newGameHeader);
 
@@ -220,10 +247,59 @@ public class MainMenu : MonoBehaviour {
         GUI.DrawTexture(new Rect((Screen.width / 4) - (selectWidth / 2.0f), Screen.height * (-1 + cameraPositionY + selectYPosition), selectWidth, selectHeight), selectBackground);
         GUI.DrawTexture(new Rect((3 * Screen.width / 4) - (selectWidth / 2.0f), Screen.height * (-1 + cameraPositionY + selectYPosition), selectWidth, selectHeight), selectBackground);
 
+        if (GUI.Button(new Rect((Screen.width / 4) - (selectOptionWidth / 2.0f), Screen.height * (-1 + cameraPositionY + selectYPosition + (1 * selectOptionYDistance)), selectOptionWidth, selectOptionHeight), "", activeTimeText))
+        {
+            activeTimeText.normal.background = activeGameMode[0];
+            activeScoreText.normal.background = gameMode[1];
+            activeDeathText.normal.background = gameMode[2];
+            selectedMode = 0;
+        }
+        if (GUI.Button(new Rect((Screen.width / 4) - (selectOptionWidth / 2.0f), Screen.height * (-1 + cameraPositionY + selectYPosition + (2 * selectOptionYDistance) + (selectOptionHeight / Screen.height)), selectOptionWidth, selectOptionHeight), "", activeScoreText))
+        {
+            activeTimeText.normal.background = gameMode[0];
+            activeScoreText.normal.background = activeGameMode[1];
+            activeDeathText.normal.background = gameMode[2];
+            selectedMode = 1;
+        }
+        if (GUI.Button(new Rect((Screen.width / 4) - (selectOptionWidth / 2.0f), Screen.height * (-1 + cameraPositionY + selectYPosition + (3 * selectOptionYDistance) + (2 * selectOptionHeight / Screen.height)), selectOptionWidth, selectOptionHeight), "", activeDeathText))
+        {
+            activeTimeText.normal.background = gameMode[0];
+            activeScoreText.normal.background = gameMode[1];
+            activeDeathText.normal.background = activeGameMode[2];
+            selectedMode = 2;
+        }
+
+        string tmp = inputValue;
+        inputValue = GUI.TextField(new Rect((Screen.width / 4) - (inputWidth / 2.0f), Screen.height * (-1 + cameraPositionY) + mapSelectYPos, inputWidth, mapSelectHeight), inputValue, 3, inputField);
+        if (!containsOnlyNumeric(inputValue))
+        {
+            inputValue = tmp;
+        }
+        if (GUI.Button(new Rect((Screen.width / 4) + nextInputXPos, Screen.height * (-1 + cameraPositionY) + mapSelectYPos + nextMapYDif, nextWidth, nextHeight), "", nextTexture))
+        {
+            inputValue = NextInputValue(inputValue);
+        }
+        if (GUI.Button(new Rect((Screen.width / 4) - nextInputXPos - nextWidth, Screen.height * (-1 + cameraPositionY) + mapSelectYPos + nextMapYDif, nextWidth, nextHeight), "", previousTexture))
+        {
+            inputValue = PreviousInputValue(inputValue);
+        }
+
+        GUI.DrawTexture(new Rect((3 * Screen.width / 4) - (activeMapWidth / 2.0f), Screen.height * (-1 + cameraPositionY + selectYPosition + activeMapYPos), activeMapWidth, activeMapHeigh), maps[selectedMap]);
+        GUI.DrawTexture(new Rect((3 * Screen.width / 4) - (mapSelectWidth / 2.0f), Screen.height * (-1 + cameraPositionY) + mapSelectYPos, mapSelectWidth, mapSelectHeight), mapSelect[selectedMap]);
+        if (GUI.Button(new Rect((3 * Screen.width / 4) + nextMapXPos, Screen.height * (-1 + cameraPositionY) + mapSelectYPos + nextMapYDif, nextWidth, nextHeight), "", nextTexture))
+        {
+            selectedMap = NextMap(selectedMap);
+        }
+        if (GUI.Button(new Rect((3 * Screen.width / 4) - nextMapXPos - nextWidth, Screen.height * (-1 + cameraPositionY) + mapSelectYPos + nextMapYDif, nextWidth, nextHeight), "", previousTexture))
+        {
+            selectedMap = PreviousMap(selectedMap);
+        }
+
         if (GUI.Button(new Rect(buttonX - (Screen.width / 4), Screen.height * (-1 + cameraPositionY + backButtonPlacementY), buttonWidth, buttonHeight), "", startTexture))
         {
             //startgame
-            StartGame("BackgroundSteampuk");
+            string s = "" + (MapEnum)selectedMap;
+            StartGame(s);
         }
         if (GUI.Button(new Rect(buttonX + (Screen.width / 4), Screen.height * (-1 + cameraPositionY + backButtonPlacementY), buttonWidth, buttonHeight), "", backTexture))
         {
@@ -355,5 +431,122 @@ public class MainMenu : MonoBehaviour {
             return playerType.Count - 1;
         }
         return p - 1;
+    }
+
+    private int NextMap(int m)
+    {
+        if (m + 1 == maps.Count)
+        {
+            return 0;
+        }
+        return m + 1;
+    }
+
+    private int PreviousMap(int m)
+    {
+        if (m == 0)
+        {
+            return maps.Count - 1;
+        }
+        return m - 1;
+    }
+
+    private string NextInputValue(string s)
+    {
+        if (s.Equals("999"))
+        {
+            return "1";
+        }
+        return (int.Parse(s) + 1).ToString();
+    }
+
+    private string PreviousInputValue(string s)
+    {
+        if (s.Equals("1"))
+        {
+            return "999";
+        }
+        return (int.Parse(s) - 1).ToString();
+    }
+
+    public CharacterEnum GetPlayersCharacter(PlayerEnum p)
+    {
+        switch (p)
+        {
+            case PlayerEnum.Player1:
+                return GetCharacter(p1Class);
+            case PlayerEnum.Player2:
+                return GetCharacter(p2Class);
+            case PlayerEnum.Player3:
+                return GetCharacter(p3Class);
+            case PlayerEnum.Player4:
+                return GetCharacter(p4Class);
+            default:
+                Debug.Log("error in assigning class for " + p);
+                return GetCharacter(5);
+        }
+    }
+
+    private CharacterEnum GetCharacter(int p)
+    {
+        if (p >= 0 && p < 5){
+            return (CharacterEnum) p;
+        }
+        if (p == 5){
+            return GetCharacter(Random.Range(0, 5));
+        }
+        Debug.Log("invalid character enum number " + p);
+        return GetCharacter(Random.Range(0, 5));
+    }
+
+    public PlayerTypeEnum GetTypeOfPlayer(PlayerEnum p)
+    {
+        switch (p)
+        {
+            case PlayerEnum.Player1:
+                return (PlayerTypeEnum)p1Type;
+            case PlayerEnum.Player2:
+                return (PlayerTypeEnum)p2Type;
+            case PlayerEnum.Player3:
+                return (PlayerTypeEnum)p3Type;
+            case PlayerEnum.Player4:
+                return (PlayerTypeEnum)p4Type;
+            default:
+                Debug.Log("Invalid PlayerEnum" + p);
+                return PlayerTypeEnum.Player;
+        }
+    }
+
+    public GameModeEnum GetGameMode(){
+        return (GameModeEnum)selectedMode;
+    }
+
+    public int GetInputValue()
+    {
+        if (inputValue.Length == 0)
+        {
+            return 10;
+        }
+        return int.Parse(inputValue);
+    }
+
+    private bool containsOnlyNumeric(string s)
+    {
+        if (s.Length > 0)
+        {
+            if (s[0] == '0')
+            {
+                return false;
+            }
+        }
+        
+        for (int i = 0; i < s.Length; i++)
+        {
+            if (s[i] > '9' || s[i] < '0')
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -6,5 +6,6 @@ public enum CharacterEnum  {
     Tesla,
     Einstein,
     Nobel,
-    Curie
+    Curie,
+    DaVinci
 }

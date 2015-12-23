@@ -68,7 +68,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\MainMenu\Scripts\GameModeEnum.cs" />
     <Compile Include="Assets\MainMenu\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\MainMenu\Scripts\MapEnum.cs" />
+    <Compile Include="Assets\MainMenu\Scripts\PlayerEnum.cs" />
+    <Compile Include="Assets\MainMenu\Scripts\PlayerTypeEnum.cs" />
     <Compile Include="Assets\Scripts\Ai\AiActionEnum.cs" />
     <Compile Include="Assets\Scripts\Ai\AiBase.cs" />
     <Compile Include="Assets\Scripts\Ai\AiLogic\AiActionLogic.cs" />
