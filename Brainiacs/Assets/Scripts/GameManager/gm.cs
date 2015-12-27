@@ -78,7 +78,7 @@ public class gm : MonoBehaviour {
             }
         }
         //manualni přiřazení
-        Vector2 pl1pos = new Vector2(5,1);
+        Vector2 pl1pos = new Vector2(2,0);
         player1.transform.position = pl1pos;
 
         Vector2 pl2pos = new Vector2(6, 0);
@@ -87,7 +87,7 @@ public class gm : MonoBehaviour {
         Vector2 pl3pos = new Vector2(-4, 0);
         player3.transform.position = pl3pos;
 
-        Vector2 pl4pos = new Vector2(5, 2);
+        Vector2 pl4pos = new Vector2(2, 0);
         player4.transform.position = pl4pos;
 
         //----------------
