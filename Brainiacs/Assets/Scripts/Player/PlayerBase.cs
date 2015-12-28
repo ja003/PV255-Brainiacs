@@ -29,6 +29,8 @@ public abstract class PlayerBase : MonoBehaviour
 
     public float characterWidth = 1f;
 
+    public PositionGenerator posGenerator;
+
     //////////////////////AUDIO SOURCE/////////////////////////
     public AudioClip deathSound_01;
 
@@ -122,6 +124,9 @@ public abstract class PlayerBase : MonoBehaviour
         handsSprites = Resources.LoadAll<Sprite>("Sprites/Hands");
 
         weaponHandling.weaponRenderer = transform.Find("weapon").GetComponent<SpriteRenderer>();
+
+        //setup position generator
+        posGenerator = GameObject.Find("PositionGenerator").GetComponent<PositionGenerator>();
     }
 
     public void setUpSounds()
@@ -381,7 +386,8 @@ public abstract class PlayerBase : MonoBehaviour
         //TODO
         //load player again (without old weapons,...)
 
-        Vector3 newRandomPosition = Vector3.zero;//= generator.GenerateRandomPosition();
+        //Vector3 newRandomPosition = Vector3.zero;//= generator.GenerateRandomPosition();
+        Vector3 newRandomPosition = posGenerator.GenerateRandomPosition(mapHeight, mapWidth);
         posX = newRandomPosition.x;
         posY = newRandomPosition.y;
         transform.position = newRandomPosition;

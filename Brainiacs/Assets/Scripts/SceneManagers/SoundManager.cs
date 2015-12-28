@@ -26,9 +26,18 @@ public class SoundManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void StartBackgroundMusic(AudioClip clip)
+    {
+        PlaySingle(clip, true);
+    }
+
+    public void PlaySingle(AudioClip clip)
+    {
+        PlaySingle(clip, false);
+    }
 
     //Used to play single sound clips.
-    public void PlaySingle(AudioClip clip)
+    public void PlaySingle(AudioClip clip, bool loop)
     {
         //Set the clip of our efxSource audio source to the clip passed in as a parameter.
         //efxSource.clip = clip;
@@ -51,6 +60,10 @@ public class SoundManager : MonoBehaviour
 
         if (availableAS != null)
         {
+            if (loop)
+            {
+                availableAS.loop = true;
+            }
             availableAS.clip = clip;
             availableAS.pitch = randomPitch;
             availableAS.volume = volume;
@@ -59,6 +72,10 @@ public class SoundManager : MonoBehaviour
         else
         {
             AudioSource newAS = gameObject.AddComponent<AudioSource>();
+            if (loop)
+            {
+                newAS.loop = true;
+            }
             newAS.clip = clip;
             newAS.pitch = randomPitch;
             newAS.volume = volume;

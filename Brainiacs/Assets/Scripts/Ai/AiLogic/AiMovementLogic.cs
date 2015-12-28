@@ -27,6 +27,7 @@ public class AiMovementLogic {
 
     //detect only collision with barriers and borders (assigned manually to prefab)
     public LayerMask barrierMask;
+    public LayerMask notproofBarrierMask;
 
     //public AiAvoidBulletLogic aiAvoidBulletLogic;
 
@@ -40,6 +41,8 @@ public class AiMovementLogic {
 
         walkingFront = new List<Vector2>();
         barrierMask = aiBase.barrierMask;
+
+        notproofBarrierMask = 1 << 14;
     }
 
 
@@ -307,12 +310,54 @@ public class AiMovementLogic {
     }
 
 
+
+    public bool CharacterCollidesNotproofBarrier(Vector2 center)
+    {
+
+        //Debug.Log("colCheck");
+        float width = characterColliderWidth / 2;
+        float height = characterColliderHeight / 2;
+        Vector2 colliderOffset = aiBase.GetComponent<Collider2D>().offset / 2;
+        float offset = 0.1f;
+
+        Vector2 botLeft = new Vector2(center.x - width - offset, center.y - height - offset);
+        Vector2 botRight = new Vector2(center.x + width + offset, center.y - height - offset);
+        Vector2 topLeft = new Vector2(center.x - width - offset, center.y + height + offset);
+        Vector2 topRight = new Vector2(center.x + width + offset, center.y + height + offset);
+
+
+
+        RaycastHit2D hitBotLeft;
+        Ray rayBotLeft = new Ray(botLeft, aiBase.direction);
+        RaycastHit2D hitBotRight;
+        Ray rayBotRight = new Ray(botRight, aiBase.direction);
+        RaycastHit2D hitTopLeft;
+        Ray rayTopLeft = new Ray(topLeft, aiBase.direction);
+        RaycastHit2D hitTopRight;
+        Ray rayTopRight = new Ray(topRight, aiBase.direction);
+
+
+        hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, aiBase.direction, 0.1f, notproofBarrierMask);
+        hitBotRight = Physics2D.Raycast(rayBotRight.origin, aiBase.direction, 0.1f, notproofBarrierMask);
+        hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, aiBase.direction, 0.1f, notproofBarrierMask);
+        hitTopRight = Physics2D.Raycast(rayTopRight.origin, aiBase.direction, 0.1f, notproofBarrierMask);
+
+        if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
+        {
+            return true;            
+        }
+
+
+        return false;
+    }
+
     /// <summary>
     /// new collisioncheck using box collider bounds
     /// </summary>
     /// <returns></returns>
     public bool CharacterCollidesBarrier(Vector2 center)
     {
+
         //Debug.Log("colCheck");
         float width = characterColliderWidth / 2;
         float height = characterColliderHeight / 2;

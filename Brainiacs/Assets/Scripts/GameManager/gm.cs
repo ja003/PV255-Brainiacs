@@ -81,13 +81,13 @@ public class gm : MonoBehaviour {
         Vector2 pl1pos = new Vector2(2,0);
         player1.transform.position = pl1pos;
 
-        Vector2 pl2pos = new Vector2(6, 0);
+        Vector2 pl2pos = new Vector2(2, 0);
         player2.transform.position = pl2pos;
 
-        Vector2 pl3pos = new Vector2(-4, 0);
+        Vector2 pl3pos = new Vector2(-4, -1);
         player3.transform.position = pl3pos;
 
-        Vector2 pl4pos = new Vector2(2, 0);
+        Vector2 pl4pos = new Vector2(2, -1);
         player4.transform.position = pl4pos;
 
         //----------------
@@ -117,7 +117,7 @@ public class gm : MonoBehaviour {
         AudioClip bgMusic = Resources.Load("Sounds/BackgroundMusic/map_" + mapName) as AudioClip;        
         //bgMusicAudioSource.clip = bgMusic;
         //play it
-        SoundManager.instance.PlaySingle(bgMusic);
+        SoundManager.instance.StartBackgroundMusic(bgMusic);
     }
 
     public void SetUpPlayer(int playerNumber, CharacterEnum charEnum)

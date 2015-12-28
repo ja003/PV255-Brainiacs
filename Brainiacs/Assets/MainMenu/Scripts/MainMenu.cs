@@ -92,6 +92,8 @@ public class MainMenu : MonoBehaviour {
 
     private string inputValue = "10";
 
+    private AudioClip bgMusic;
+
     void Start()
     {
         activeTimeText = new GUIStyle();
@@ -101,6 +103,11 @@ public class MainMenu : MonoBehaviour {
         activeScoreText.normal.background = gameMode[1];
         activeDeathText.normal.background = gameMode[2];
         inputField.fontSize = inputField.normal.background.height / 3;
+
+        //for now
+        bgMusic = Resources.Load("Sounds/BackgroundMusic/map_" + "steampunk") as AudioClip;
+
+        SoundManager.instance.StartBackgroundMusic(bgMusic);
     }
 
     void OnGUI()

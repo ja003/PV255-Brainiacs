@@ -30,6 +30,7 @@ public class AiKillingLogic {
         frameToShoot = 15;
         targetObject = aiBase.gameObject;
         
+        
     }
 
 
@@ -52,21 +53,35 @@ public class AiKillingLogic {
         Vector2 bestVerticalRight = bestVertical;
 
 
-        while (bestHorizontalDown.y > aiBase.mapMinY && !aiMovementLogic.CharacterCollidesBarrier(bestHorizontalDown) && bestHorizontalDown.y > aiBase.posY)
+        while (bestHorizontalDown.y > aiBase.mapMinY 
+            && !aiMovementLogic.CharacterCollidesBarrier(bestHorizontalDown) 
+            && bestHorizontalDown.y > aiBase.posY 
+            || aiMovementLogic.CharacterCollidesNotproofBarrier(bestHorizontalDown))
         {
             bestHorizontalDown.y -= 0.1f;
         }
 
 
-        while (bestHorizontalUp.y < aiBase.mapMaxY && !aiMovementLogic.CharacterCollidesBarrier(bestHorizontalUp) && bestHorizontalUp.y < aiBase.posY)
+        while (bestHorizontalUp.y < aiBase.mapMaxY 
+            && !aiMovementLogic.CharacterCollidesBarrier(bestHorizontalUp) 
+            && bestHorizontalUp.y < aiBase.posY
+            || aiMovementLogic.CharacterCollidesNotproofBarrier(bestHorizontalUp))
         {
             bestHorizontalUp.y += 0.1f;
         }
-        while (bestVerticalLeft.x > aiBase.mapMinX && !aiMovementLogic.CharacterCollidesBarrier(bestVerticalLeft) && bestVerticalLeft.x > aiBase.posX)
+        while (
+            (bestVerticalLeft.x > aiBase.mapMinX 
+            && !aiMovementLogic.CharacterCollidesBarrier(bestVerticalLeft) 
+            && bestVerticalLeft.x > aiBase.posX)
+            || aiMovementLogic.CharacterCollidesNotproofBarrier(bestVerticalLeft))
         {
             bestVerticalLeft.x -= 0.1f;
+            //Debug.Log(bestVerticalLeft);
         }
-        while (bestVerticalRight.x < aiBase.mapMaxX && !aiMovementLogic.CharacterCollidesBarrier(bestVerticalRight) && bestVerticalRight.x < aiBase.posX)
+        while (bestVerticalRight.x < aiBase.mapMaxX 
+            && !aiMovementLogic.CharacterCollidesBarrier(bestVerticalRight) 
+            && bestVerticalRight.x < aiBase.posX
+            || aiMovementLogic.CharacterCollidesNotproofBarrier(bestVerticalRight))
         {
             bestVerticalRight.x += 0.1f;
         }

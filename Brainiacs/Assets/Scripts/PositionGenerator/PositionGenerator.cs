@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 
 //--MG
-    public class PositionGenerator : MonoBehaviour {
+public class PositionGenerator : MonoBehaviour {
 
         private float mapStartX;
         private float mapStartY;
@@ -14,17 +15,27 @@ using System.Collections.Generic;
 
         public void Start()
         {
-            float eastEdge = 7.0f;
-            float northEdge = 2.75f;
-            float southEdge = -4.0f;
-            float westEdge = -4.0f;
+        float eastEdge = 7.0f;
+        float northEdge = 2.75f;
+        float southEdge = -4.0f;
+        float westEdge = -4.0f;
 
-            GameObject[] borders;
-            borders = GameObject.FindGameObjectsWithTag("Border");
+        GameObject[] borders;
+        borders = GameObject.FindGameObjectsWithTag("Border");
 
-            GameObject[] barrs;
-            barrs = GameObject.FindGameObjectsWithTag("Barrier");
-            barriers = new List<Rect>();
+        GameObject[] barrs;
+        barrs = GameObject.FindGameObjectsWithTag("Barrier");
+        int barrsLength = barrs.Length;
+
+        //add not proof barriers
+        GameObject[] barrs2;
+        barrs2 = GameObject.FindGameObjectsWithTag("Barrier_notproof");
+
+        Array.Resize<GameObject>(ref barrs, barrsLength + barrs2.Length);
+        Array.Copy(barrs2, 0, barrs, barrsLength, barrs2.Length);
+
+
+        barriers = new List<Rect>();
 
             for (int i = 0; i < borders.Length; i++)
             {
