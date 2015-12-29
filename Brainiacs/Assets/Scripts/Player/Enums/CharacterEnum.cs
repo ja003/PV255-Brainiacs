@@ -3,9 +3,11 @@ using System.Collections;
 
 
 public enum CharacterEnum  {
-    Tesla,
+    Curie,
+    DaVinci,
     Einstein,
     Nobel,
-    Curie,
-    DaVinci
+    Tesla
+
+
 }

@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class Ai_03 : AiBase {
+public class Ai : AiBase {
 
     Components comp = new Components();
     PlayerInfo playInfo = new PlayerInfo();
 
     void Start()
     {
-        playerNumber = 3;
+        //playerNumber = 3;
         /*
         base.aiPriorityLogic.killPlayer1Priority = 0;
         base.aiPriorityLogic.killPlayer2Priority = 0;
@@ -31,7 +31,7 @@ public class Ai_03 : AiBase {
     public void SetUpPlayer(PlayerInfo pi)
     {
 
-        base.playerNumber = 3;
+        //base.playerNumber = 3;
         base.speed = 2f;
         base.direction = base.left;
 

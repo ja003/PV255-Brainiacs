@@ -39,10 +39,16 @@ public class WeaponPistol : WeaponBase {
                 base.sprite = "Sprites/Weapons/curiePistol"; base.bulletAnimControler = "Animations/bullets_animators/bullet_curie_animator";
                 base.setUpSounds("davinciPistol");
                 break;
+            case (CharacterEnum.DaVinci):
+                base.sprite = "Sprites/Weapons/davinciPistol"; base.bulletAnimControler = "Animations/bullets_animators/bullet_davinci_animator";
+                base.setUpSounds("davinciPistol");
+                break;
         }
 
         kadency = 0.1f;
         kadReady = true;
+        //Debug.Log(sprite);
+        //Debug.Log(bulletAnimControler);
 
         loadSprites(sprite, bulletAnimControler);
     }

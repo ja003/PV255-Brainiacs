@@ -145,6 +145,8 @@ public abstract class PlayerBase : MonoBehaviour
     {
         weaponHandling.player = GetComponent<PlayerBase>();
 
+        //Debug.Log(pi);
+        //Debug.Log(pi.charEnum);
         WeaponBase pistol = new WeaponPistol(pi.charEnum);
         WeaponBase sniper = new WeaponSniper();
         WeaponBase biogun = new WeaponBiogun();
@@ -175,10 +177,13 @@ public abstract class PlayerBase : MonoBehaviour
     private void setUpSprites() {
         string animControllerString = "";
         string character = playInfo.charEnum.ToString().ToLower();
+
+        //Debug.Log(character);
         animControllerString +=  character + "_";
         animControllerString += playInfo.playerColor + "_";
         animControllerString += "override";
         animControllerString = "Animations/Characters/" + character + "/" + animControllerString;
+        //Debug.Log(animControllerString);
 
         RuntimeAnimatorController rtac = Resources.Load(animControllerString) as AnimatorOverrideController;
         //Debug.Log(animControllerString);

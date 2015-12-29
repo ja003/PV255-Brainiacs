@@ -15,10 +15,10 @@ public class GameManager : MonoBehaviour
     bool player3Active = false;
     bool player4Active = false;
 
-    Player1 player1Comp;
-    Player1 player2Comp;
-    Player1 player3Comp;
-    Player1 player4Comp;
+    Player player1Comp;
+    Player player2Comp;
+    Player player3Comp;
+    Player player4Comp;
 
     PlayerInfo player1Info = new PlayerInfo();
     PlayerInfo player2Info = new PlayerInfo();
@@ -35,10 +35,10 @@ public class GameManager : MonoBehaviour
         player4 = (GameObject)Resources.Load("Prefabs/PlayerManagment"); player4.SetActive(false);
         Debug.Log(player1);
 
-        player1Comp = player1.transform.GetChild(0).GetComponent<Player1>();
-        player2Comp = player2.transform.GetChild(0).GetComponent<Player1>();
-        player3Comp = player3.transform.GetChild(0).GetComponent<Player1>();
-        player4Comp = player4.transform.GetChild(0).GetComponent<Player1>();
+        player1Comp = player1.transform.GetChild(0).GetComponent<Player>();
+        player2Comp = player2.transform.GetChild(0).GetComponent<Player>();
+        player3Comp = player3.transform.GetChild(0).GetComponent<Player>();
+        player4Comp = player4.transform.GetChild(0).GetComponent<Player>();
 
         SetUpPlayer(1, CharacterEnum.Tesla);
         Run();

@@ -94,6 +94,9 @@ public class MainMenu : MonoBehaviour {
 
     private AudioClip bgMusic;
 
+    //Game info
+    private GameObject gameInfoObj;
+
     void Start()
     {
         activeTimeText = new GUIStyle();
@@ -108,6 +111,8 @@ public class MainMenu : MonoBehaviour {
         bgMusic = Resources.Load("Sounds/BackgroundMusic/map_" + "steampunk") as AudioClip;
 
         SoundManager.instance.StartBackgroundMusic(bgMusic);
+
+        gameInfoObj = GameObject.Find("GameInfo");
     }
 
     void OnGUI()
@@ -305,8 +310,8 @@ public class MainMenu : MonoBehaviour {
         if (GUI.Button(new Rect(buttonX - (Screen.width / 4), Screen.height * (-1 + cameraPositionY + backButtonPlacementY), buttonWidth, buttonHeight), "", startTexture))
         {
             //startgame
-            string s = "" + (MapEnum)selectedMap;
-            StartGame(s);
+            string selectedMapName = "" + (MapEnum)selectedMap;
+            StartGame(selectedMapName);
         }
         if (GUI.Button(new Rect(buttonX + (Screen.width / 4), Screen.height * (-1 + cameraPositionY + backButtonPlacementY), buttonWidth, buttonHeight), "", backTexture))
         {
@@ -356,9 +361,35 @@ public class MainMenu : MonoBehaviour {
         }
     }
 
-    void StartGame(string levelName)
+    void StartGame(string mapName)
     {
-        Application.LoadLevel(levelName);
+        SetUpGameInfo();
+
+        Application.LoadLevel("Loading");
+    }
+
+    void SetUpGameInfo()
+    {
+        Object.DontDestroyOnLoad(gameInfoObj);
+        GameInfo gameInfo = gameInfoObj.GetComponent<GameInfo>();
+
+        gameInfo.mapName = "" + (MapEnum)selectedMap;
+
+        gameInfo.player1char = GetPlayersCharacter(PlayerEnum.Player1);
+        gameInfo.player1type = GetTypeOfPlayer(PlayerEnum.Player1);
+        gameInfo.player2char = GetPlayersCharacter(PlayerEnum.Player2);
+        gameInfo.player2type = GetTypeOfPlayer(PlayerEnum.Player2);
+        gameInfo.player3char = GetPlayersCharacter(PlayerEnum.Player3);
+        gameInfo.player3type = GetTypeOfPlayer(PlayerEnum.Player3);
+        gameInfo.player4char = GetPlayersCharacter(PlayerEnum.Player4);
+        gameInfo.player4type = GetTypeOfPlayer(PlayerEnum.Player4);
+
+        gameInfo.gameMode = GetGameMode();
+
+        gameInfo.time = GetInputValue();
+        gameInfo.score = GetInputValue();
+        gameInfo.lifes = GetInputValue();
+        
     }
 
     void FixedUpdate()
@@ -375,6 +406,9 @@ public class MainMenu : MonoBehaviour {
 
         if (moveToNewGame)
         {
+            //Debug.Log("tmp");
+            //StartGame("");
+
             cameraPositionY += movingSpeed;
             if (cameraPositionY > 0.99f)
             {
@@ -496,14 +530,15 @@ public class MainMenu : MonoBehaviour {
 
     private CharacterEnum GetCharacter(int p)
     {
+        //Debug.Log(p + " = " + (CharacterEnum)p);
         if (p >= 0 && p < 5){
             return (CharacterEnum) p;
         }
         if (p == 5){
-            return GetCharacter(Random.Range(0, 5));
+            return GetCharacter(Random.Range(0, 4));
         }
         Debug.Log("invalid character enum number " + p);
-        return GetCharacter(Random.Range(0, 5));
+        return GetCharacter(Random.Range(0, 4));
     }
 
     public PlayerTypeEnum GetTypeOfPlayer(PlayerEnum p)

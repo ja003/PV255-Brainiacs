@@ -67,6 +67,8 @@ public class WeaponBase
 
     protected void loadSprites(string sprt, string bullSprt)
     {
+        //Debug.Log(sprt);
+        //Debug.Log(bullSprt);
         weaponSprites = Resources.LoadAll<Sprite>(sprt);
         animController = Resources.Load(bullSprt) as RuntimeAnimatorController;
     }

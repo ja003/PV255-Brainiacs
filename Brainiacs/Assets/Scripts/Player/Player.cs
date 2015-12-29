@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Player1 : HumanBase
+public class Player : HumanBase
 {
 
     Components comp = new Components();
@@ -54,7 +54,7 @@ public class Player1 : HumanBase
         comp.animator = gameObject.GetComponent<Animator>();
         //comp.animator.runtimeAnimatorController = Resources.Load("Animations/currie_red_override") as RuntimeAnimatorController;
     
-        base.playerNumber = 1;
+        //base.playerNumber = 1;
         base.speed = 2f;
         base.direction = base.right;
 
