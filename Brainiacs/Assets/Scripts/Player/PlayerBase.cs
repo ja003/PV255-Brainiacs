@@ -380,8 +380,13 @@ public abstract class PlayerBase : MonoBehaviour
         //disable weapon
         //....
 
-        //float deadTime = characterAnimator.
-        yield return new WaitForSeconds(1.5f);
+        float deadTime = characterAnimator.GetCurrentAnimatorStateInfo(0).length;
+        
+        yield return new WaitForSeconds(deadTime + 0.1f);
+
+        transform.position = new Vector2(-666, 666);
+
+        yield return new WaitForSeconds(1f);
 
         hitPoints = maxHP;
         dead = false;
