@@ -1,0 +1,683 @@
+fileFormatVersion: 2
+guid: b251b73807a7f184aac5a87f5319b0e1
+timeCreated: 1451496107
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: bullet_curieSpecial_left_crash_0
+    21300002: bullet_curieSpecial_left_crash_1
+    21300004: bullet_curieSpecial_left_crash_2
+    21300006: bullet_curieSpecial_left_crash_3
+    21300008: bullet_curieSpecial_left_crash_4
+    21300010: bullet_curieSpecial_left_crash_5
+    21300012: bullet_curieSpecial_left_crash_6
+    21300014: bullet_curieSpecial_left_crash_7
+    21300016: bullet_curieSpecial_left_crash_8
+    21300018: bullet_curieSpecial_left_crash_9
+    21300020: bullet_curieSpecial_left_crash_10
+    21300022: bullet_curieSpecial_left_crash_11
+    21300024: bullet_curieSpecial_left_crash_12
+    21300026: bullet_curieSpecial_left_crash_13
+    21300028: bullet_curieSpecial_left_crash_14
+    21300030: bullet_curieSpecial_left_crash_15
+    21300032: bullet_curieSpecial_left_crash_16
+    21300034: bullet_curieSpecial_left_crash_17
+    21300036: bullet_curieSpecial_left_crash_18
+    21300038: bullet_curieSpecial_left_crash_19
+    21300040: bullet_curieSpecial_left_crash_20
+    21300042: bullet_curieSpecial_left_crash_21
+    21300044: bullet_curieSpecial_left_crash_22
+    21300046: bullet_curieSpecial_left_crash_23
+    21300048: bullet_curieSpecial_left_crash_24
+    21300050: bullet_curieSpecial_left_crash_25
+    21300052: bullet_curieSpecial_left_crash_26
+    21300054: bullet_curieSpecial_left_crash_27
+    21300056: bullet_curieSpecial_left_crash_28
+    21300058: bullet_curieSpecial_left_crash_29
+    21300060: bullet_curieSpecial_left_crash_30
+    21300062: bullet_curieSpecial_left_crash_31
+    21300064: bullet_curieSpecial_left_crash_32
+    21300066: bullet_curieSpecial_left_crash_33
+    21300068: bullet_curieSpecial_left_crash_34
+    21300070: bullet_curieSpecial_left_crash_35
+    21300072: bullet_curieSpecial_left_crash_36
+    21300074: bullet_curieSpecial_left_crash_37
+    21300076: bullet_curieSpecial_left_crash_38
+    21300078: bullet_curieSpecial_left_crash_39
+    21300080: bullet_curieSpecial_left_crash_40
+    21300082: bullet_curieSpecial_left_crash_41
+    21300084: bullet_curieSpecial_left_crash_42
+    21300086: bullet_curieSpecial_left_crash_43
+    21300088: bullet_curieSpecial_left_crash_44
+    21300090: bullet_curieSpecial_left_crash_45
+    21300092: bullet_curieSpecial_left_crash_46
+    21300094: bullet_curieSpecial_left_crash_47
+    21300096: bullet_curieSpecial_left_crash_48
+    21300098: bullet_curieSpecial_left_crash_49
+    21300100: bullet_curieSpecial_left_crash_50
+    21300102: bullet_curieSpecial_left_crash_51
+    21300104: bullet_curieSpecial_left_crash_52
+    21300106: bullet_curieSpecial_left_crash_53
+    21300108: bullet_curieSpecial_left_crash_54
+    21300110: bullet_curieSpecial_left_crash_55
+    21300112: bullet_curieSpecial_left_crash_56
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: bullet_curieSpecial_left_crash_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 805
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_1
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 805
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_2
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 805
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_3
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 805
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_4
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 805
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_5
+      rect:
+        serializedVersion: 2
+        x: 1256
+        y: 805
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_6
+      rect:
+        serializedVersion: 2
+        x: 1507
+        y: 805
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_7
+      rect:
+        serializedVersion: 2
+        x: 1758
+        y: 805
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_8
+      rect:
+        serializedVersion: 2
+        x: 2009
+        y: 805
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_9
+      rect:
+        serializedVersion: 2
+        x: 2260
+        y: 805
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_10
+      rect:
+        serializedVersion: 2
+        x: 2511
+        y: 805
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_11
+      rect:
+        serializedVersion: 2
+        x: 2762
+        y: 805
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_12
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 604
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_13
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 604
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_14
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 604
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_15
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 604
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_16
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 604
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_17
+      rect:
+        serializedVersion: 2
+        x: 1256
+        y: 604
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_18
+      rect:
+        serializedVersion: 2
+        x: 1507
+        y: 604
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_19
+      rect:
+        serializedVersion: 2
+        x: 1758
+        y: 604
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_20
+      rect:
+        serializedVersion: 2
+        x: 2009
+        y: 604
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_21
+      rect:
+        serializedVersion: 2
+        x: 2260
+        y: 604
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_22
+      rect:
+        serializedVersion: 2
+        x: 2511
+        y: 604
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_23
+      rect:
+        serializedVersion: 2
+        x: 2762
+        y: 604
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_24
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 403
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_25
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 403
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_26
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 403
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_27
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 403
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_28
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 403
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_29
+      rect:
+        serializedVersion: 2
+        x: 1256
+        y: 403
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_30
+      rect:
+        serializedVersion: 2
+        x: 1507
+        y: 403
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_31
+      rect:
+        serializedVersion: 2
+        x: 1758
+        y: 403
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_32
+      rect:
+        serializedVersion: 2
+        x: 2009
+        y: 403
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_33
+      rect:
+        serializedVersion: 2
+        x: 2260
+        y: 403
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_34
+      rect:
+        serializedVersion: 2
+        x: 2511
+        y: 403
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_35
+      rect:
+        serializedVersion: 2
+        x: 2762
+        y: 403
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_36
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 202
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_37
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 202
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_38
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 202
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_39
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 202
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_40
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 202
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_41
+      rect:
+        serializedVersion: 2
+        x: 1256
+        y: 202
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_42
+      rect:
+        serializedVersion: 2
+        x: 1507
+        y: 202
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_43
+      rect:
+        serializedVersion: 2
+        x: 1758
+        y: 202
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_44
+      rect:
+        serializedVersion: 2
+        x: 2009
+        y: 202
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_45
+      rect:
+        serializedVersion: 2
+        x: 2260
+        y: 202
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_46
+      rect:
+        serializedVersion: 2
+        x: 2511
+        y: 202
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_47
+      rect:
+        serializedVersion: 2
+        x: 2762
+        y: 202
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_48
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_49
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 1
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_50
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 1
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_51
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 1
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_52
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 1
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_53
+      rect:
+        serializedVersion: 2
+        x: 1256
+        y: 1
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_54
+      rect:
+        serializedVersion: 2
+        x: 1507
+        y: 1
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_55
+      rect:
+        serializedVersion: 2
+        x: 1758
+        y: 1
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_curieSpecial_left_crash_56
+      rect:
+        serializedVersion: 2
+        x: 2009
+        y: 1
+        width: 250
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
