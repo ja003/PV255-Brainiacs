@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour {
     public float bulletSpeed;
     int damage;
     public bool isActive = false;
+    public PlayerBase owner;   
 
     public void iniciate(Vector2 dir, Vector2 pos, RuntimeAnimatorController animController, float bulletSpd, int dmg) {
         damage = dmg;
@@ -52,7 +53,7 @@ public class Bullet : MonoBehaviour {
             if (coll.gameObject.tag == "Player")
             {
                 //Debug.Log(coll.name);
-                coll.gameObject.GetComponent<PlayerBase>().ApplyDamage(damage);
+                coll.gameObject.GetComponent<PlayerBase>().ApplyDamage(damage, owner);
             }
             //Debug.Log(coll.name);
             gameObject.SetActive(false);

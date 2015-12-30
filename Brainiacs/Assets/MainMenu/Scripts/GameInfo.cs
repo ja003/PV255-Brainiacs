@@ -4,15 +4,15 @@ using System.Collections;
 public class GameInfo : MonoBehaviour {
 
     public string mapName;
-    public GameModeEnum gameMode = GameModeEnum.Time;
+    public GameModeEnum gameMode = GameModeEnum.Score;
 
     public int time = 9;
-    public int score = 9;
-    public int lifes = 9;
+    public int winScore = 2;
+    public int lifes = 1;
 
     public PlayerTypeEnum player1type = PlayerTypeEnum.Player;
     public PlayerTypeEnum player2type = PlayerTypeEnum.Player;
-    public PlayerTypeEnum player3type = PlayerTypeEnum.AI;
+    public PlayerTypeEnum player3type = PlayerTypeEnum.None;
     public PlayerTypeEnum player4type = PlayerTypeEnum.None;
 
     public CharacterEnum player1char = CharacterEnum.DaVinci;
@@ -20,13 +20,24 @@ public class GameInfo : MonoBehaviour {
     public CharacterEnum player3char = CharacterEnum.Nobel;
     public CharacterEnum player4char = CharacterEnum.Einstein;
 
+    public int player1score = 0;
+    public int player2score = 0;
+    public int player3score = 0;
+    public int player4score = 0;
+
+    public int player1lifes = 0;
+    public int player2lifes = 0;
+    public int player3lifes = 0;
+    public int player4lifes = 0;
+
+
     public override string ToString()
     {
         string s = "";
         s += "gameMode = " + gameMode+"\n";
 
         s += "time = " + time + "\n";
-        s += "score = " + score + "\n";
+        s += "score = " + winScore + "\n";
         s += "lifes = " + lifes + "\n";
 
         s += "player1type = " + player1type + "\n";

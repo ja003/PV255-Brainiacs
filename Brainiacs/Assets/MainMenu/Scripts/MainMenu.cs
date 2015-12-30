@@ -387,7 +387,7 @@ public class MainMenu : MonoBehaviour {
         gameInfo.gameMode = GetGameMode();
 
         gameInfo.time = GetInputValue();
-        gameInfo.score = GetInputValue();
+        gameInfo.winScore = GetInputValue();
         gameInfo.lifes = GetInputValue();
         
     }

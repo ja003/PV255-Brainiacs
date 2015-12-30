@@ -10,6 +10,7 @@ public class Ai : AiBase {
 
     void Start()
     {
+        frameCountSinceLvlLoad = 0;
         //playerNumber = 3;
         /*
         base.aiPriorityLogic.killPlayer1Priority = 0;
@@ -19,7 +20,7 @@ public class Ai : AiBase {
         */
 
 
-        
+
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         speed = 2f;
 

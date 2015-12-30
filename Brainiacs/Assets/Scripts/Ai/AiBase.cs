@@ -14,9 +14,7 @@ public class AiBase : PlayerBase
     public PlayerInfo playInfo;
 
 
-
-
-
+    protected int frameCountSinceLvlLoad;
 
 
     //////////////////////////////MAP shit
@@ -125,7 +123,9 @@ public class AiBase : PlayerBase
     // Update is called once per frame
     void Update()
     {
-        if (Time.frameCount == 5)
+        frameCountSinceLvlLoad++;
+
+        if (frameCountSinceLvlLoad == 5)
         {
             SetPlayers();
             

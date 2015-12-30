@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System;
 
 
-public class TextManager : MonoBehaviour {
+public class TimeManager : MonoBehaviour {
 
     public RectTransform myRectT;
 
@@ -142,5 +142,11 @@ public class TextManager : MonoBehaviour {
             new Rect(x, y, width, height),
             stopWatchStr,
             style);
+
+        if(seconds <= 0)
+        {
+            GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+            gm.EndGame();
+        }
     }
 }

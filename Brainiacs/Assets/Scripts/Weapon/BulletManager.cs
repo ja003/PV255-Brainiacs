@@ -13,7 +13,7 @@ public class BulletManager : MonoBehaviour {
     protected Vector2 left = Vector2.left;
     protected Vector2 right = Vector2.right;
 
-    public void createBullets()
+    public void createBullets(PlayerBase owner)
     {
         //Debug.Log("created");
         bullet = (GameObject)Resources.Load("Prefabs/Projectile");
@@ -25,6 +25,8 @@ public class BulletManager : MonoBehaviour {
             obj.transform.parent = gameObject.transform;
             obj.SetActive(false);
 
+            Bullet bulletClass = obj.GetComponent<Bullet>();
+            bulletClass.owner = owner;
         }
         //Debug.Log(prefabBullets.Count);
         //Debug.Log(prefabBullets[indexUsedBullet]);

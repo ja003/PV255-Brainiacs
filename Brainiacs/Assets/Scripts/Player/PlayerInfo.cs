@@ -7,4 +7,5 @@ public class PlayerInfo {
     public int playerNumber;
     public string playerColor { get; set; }
     public string playerName;
+    public int lifes;
 }

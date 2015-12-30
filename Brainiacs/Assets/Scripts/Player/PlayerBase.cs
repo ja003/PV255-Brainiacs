@@ -31,6 +31,14 @@ public abstract class PlayerBase : MonoBehaviour
 
     public PositionGenerator posGenerator;
 
+
+    //////////////////////STATS/////////////////////////
+    public int lifes;
+    public int score;
+    public GameInfo gameInfo;
+    public GameManager gameManager;
+
+
     //////////////////////AUDIO SOURCE/////////////////////////
     public AudioClip deathSound_01;
 
@@ -92,6 +100,9 @@ public abstract class PlayerBase : MonoBehaviour
 
     public void setUpPB(Components c, PlayerInfo p)
     {
+        lifes = p.lifes;
+        score = 0;
+
         comp = c;
         playInfo = p;
         weaponHandling = GetComponent<WeaponHandling>();
@@ -101,7 +112,7 @@ public abstract class PlayerBase : MonoBehaviour
         setUpSounds();
 
         weaponHandling.buletManager = transform.parent.GetComponent<BulletManager>();
-        weaponHandling.buletManager.createBullets();
+        weaponHandling.buletManager.createBullets(this);
 
         characterAnimator = GetComponent<Animator>();
 
@@ -127,6 +138,8 @@ public abstract class PlayerBase : MonoBehaviour
 
         //setup position generator
         posGenerator = GameObject.Find("PositionGenerator").GetComponent<PositionGenerator>();
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     public void setUpSounds()
@@ -336,7 +349,7 @@ public abstract class PlayerBase : MonoBehaviour
     //PowerUp and HP management - <<<MG...>>>
 
     //player receives damage
-    public void ApplyDamage(int dmg)
+    public void ApplyDamage(int dmg, PlayerBase owner)
     {
         if (isShielded)
         {
@@ -344,13 +357,22 @@ public abstract class PlayerBase : MonoBehaviour
         }
         else
         {
-            if ((hitPoints - dmg) <= 0) 
+            if ((hitPoints - dmg) <= 0 && !dead) 
             {
                 //UpdateAnimatorState(AnimatorStateEnum.dead);
                 hitPoints = 0;
                 //TODO sputenie animacie smrti
                 comp.rb2d.velocity = stop;
-                
+
+                //add score to owner of bullet
+                owner.score++;
+                Debug.Log(owner.playerNumber + ": " + owner.score);
+                //check score
+                if(gameInfo.gameMode == GameModeEnum.Score && owner.score >= gameInfo.winScore)
+                {
+                    gameManager.EndGame();
+                }
+                                
                 if(!dead)
                     StartCoroutine(Die());
                 
@@ -383,37 +405,46 @@ public abstract class PlayerBase : MonoBehaviour
         float deadTime = characterAnimator.GetCurrentAnimatorStateInfo(0).length;
         
         yield return new WaitForSeconds(deadTime + 0.1f);
+        lifes--;
 
-        transform.position = new Vector2(-666, 666);
+        transform.position = new Vector2(-666, 666);//move to hell
 
-        yield return new WaitForSeconds(1f);
+        if (gameInfo.gameMode == GameModeEnum.Deathmatch && lifes <= 0)
+        {
+            Debug.Log("you dead");
+            gameManager.CheckLifes();
+        }
+        else
+        {
+            yield return new WaitForSeconds(1f);
 
-        hitPoints = maxHP;
-        dead = false;
-        Debug.Log("alive");
-        //UpdateAnimatorState(AnimatorStateEnum.walkRight);
+            hitPoints = maxHP;
+            dead = false;
+            Debug.Log("alive");
+            //UpdateAnimatorState(AnimatorStateEnum.walkRight);
 
-        //TODO
-        //load player again (without old weapons,...)
+            //TODO
+            //load player again (without old weapons,...)
 
-        //Vector3 newRandomPosition = Vector3.zero;//= generator.GenerateRandomPosition();
-        Vector3 newRandomPosition = posGenerator.GenerateRandomPosition(mapHeight, mapWidth);
-        posX = newRandomPosition.x;
-        posY = newRandomPosition.y;
-        transform.position = newRandomPosition;
-        //Debug.Log("X " + newRandomPosition.x);
-        //Debug.Log("Y " + newRandomPosition.y);
+            //Vector3 newRandomPosition = Vector3.zero;//= generator.GenerateRandomPosition();
+            Vector3 newRandomPosition = posGenerator.GenerateRandomPosition(mapHeight, mapWidth);
+            posX = newRandomPosition.x;
+            posY = newRandomPosition.y;
+            transform.position = newRandomPosition;
+            //Debug.Log("X " + newRandomPosition.x);
+            //Debug.Log("Y " + newRandomPosition.y);
 
-        //enable movement
-        up = Vector2.up;
-        down = Vector2.down;
-        left = Vector2.left;
-        right = Vector2.right;
+            //enable movement
+            up = Vector2.up;
+            down = Vector2.down;
+            left = Vector2.left;
+            right = Vector2.right;
 
-        //update weapon direction and stop player animation(AI reasons)
-        UpdateAnimatorState(AnimatorStateEnum.stop);
-        //weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[weaponHandling.player.directionMapping[direction]];
-        //TODO - ^ udělat metodu
+            //update weapon direction and stop player animation(AI reasons)
+            UpdateAnimatorState(AnimatorStateEnum.stop);
+            //weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[weaponHandling.player.directionMapping[direction]];
+            //TODO - ^ udělat metodu
+        }
     }
 
     /// ////////////////////////////////////// POWER UPS ///////////////////////////////////////////
@@ -521,7 +552,7 @@ public abstract class PlayerBase : MonoBehaviour
                 AddPowerUp((PowerUpEnum)v.GetValue(rnd.Next(v.Length)));
                 break;
             case PowerUpEnum.dealDamage:
-                ApplyDamage(maxHP / 3);
+                ApplyDamage(maxHP / 3, this); //hit yourself
                 //Debug.Log("player picked up dealDamage");
                 break;
             case PowerUpEnum.slowSpeed:
