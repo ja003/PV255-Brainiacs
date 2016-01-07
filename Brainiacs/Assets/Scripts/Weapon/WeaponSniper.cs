@@ -18,6 +18,8 @@ public class WeaponSniper : WeaponBase
         base.sprite = "Sprites/Weapons/sniper";
         base.bulletAnimControler = "Animations/bullets_animators/bullet_sniper_animator";
 
+        base.setUpSounds("sniper");
+
         kadency = 0.25f;
         kadReady = true;
 

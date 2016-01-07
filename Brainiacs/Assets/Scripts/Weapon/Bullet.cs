@@ -8,9 +8,10 @@ public class Bullet : MonoBehaviour {
     public float bulletSpeed;
     int damage;
     public bool isActive = false;
-    public PlayerBase owner;   
+    public PlayerBase owner;
+    public AudioClip hitSound;
 
-    public void iniciate(Vector2 dir, Vector2 pos, RuntimeAnimatorController animController, float bulletSpd, int dmg) {
+    public void iniciate(Vector2 dir, Vector2 pos, RuntimeAnimatorController animController, float bulletSpd, int dmg, string weapon) {
         damage = dmg;
         direction = new Vector2(dir.x, dir.y);
         bulletSpeed = bulletSpd;
@@ -29,6 +30,14 @@ public class Bullet : MonoBehaviour {
         //Debug.Log(animController);
         animator = GetComponent<Animator>();
         animator.runtimeAnimatorController = animController;
+        //load hitSound
+
+        string soundLoaderString = "Sounds/Weapon/";
+        string hitSoundString = weapon + "Hit";
+
+        if(Resources.Load(soundLoaderString + hitSoundString) != null)
+            hitSound = Resources.Load(soundLoaderString + hitSoundString) as AudioClip;
+
         gameObject.SetActive(true);
         isActive = true;
     }
@@ -54,6 +63,11 @@ public class Bullet : MonoBehaviour {
             {
                 //Debug.Log(coll.name);
                 coll.gameObject.GetComponent<PlayerBase>().ApplyDamage(damage, owner);
+                SoundManager.instance.RandomizeSfx(hitSound);
+            }
+            else
+            {
+                SoundManager.instance.RandomizeSfx(hitSound); //todo barrier hitSound..maybe
             }
             //Debug.Log(coll.name);
             gameObject.SetActive(false);

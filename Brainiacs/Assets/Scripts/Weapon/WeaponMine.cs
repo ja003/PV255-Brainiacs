@@ -16,6 +16,7 @@ public class WeaponMine : WeaponBase
 
         base.sprite = "Sprites/Weapons/MP40";
         base.bulletAnimControler = "Animations/bullets_animators/bullet_MP40_animator";
+        base.setUpSounds("mine");
 
         kadency = 0.0f;
         kadReady = true;

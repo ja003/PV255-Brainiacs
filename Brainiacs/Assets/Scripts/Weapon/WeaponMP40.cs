@@ -16,6 +16,7 @@ public class WeaponMP40 : WeaponBase {
 
         base.sprite = "Sprites/Weapons/MP40";
         base.bulletAnimControler = "Animations/bullets_animators/bullet_MP40_animator";
+        base.setUpSounds("mp40");
 
         kadency = 0.05f;
         kadReady = true;

@@ -92,8 +92,18 @@ public class WeaponHandling : MonoBehaviour {
 
         SoundManager.instance.RandomizeSfx(activeWeapon.fireSound_01);
 
-        //Debug.Log(activeWeapon.animController);
-        buletManager.fire(new Vector2(direction.x, direction.y), transform.position, activeWeapon.animController, activeWeapon.bulletSpeed, activeWeapon.damage);
+        //handle if active weapon is pistol (character is not specified in WeaponEnum)
+        string weapon;
+        if (activeWeapon.ToString() == "pistol")
+            weapon = player.playInfo.charEnum.ToString() + "Pistol";
+        else
+            weapon = activeWeapon.ToString();
+
+        buletManager.fire(
+            new Vector2(direction.x, direction.y), 
+            transform.position, activeWeapon.animController, 
+            activeWeapon.bulletSpeed, activeWeapon.damage, 
+            weapon);
 
         if (bulletsLeft == 0)
         {

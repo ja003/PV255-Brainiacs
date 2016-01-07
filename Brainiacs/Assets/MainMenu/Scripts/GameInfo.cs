@@ -12,13 +12,13 @@ public class GameInfo : MonoBehaviour {
 
     public PlayerTypeEnum player1type = PlayerTypeEnum.Player;
     public PlayerTypeEnum player2type = PlayerTypeEnum.Player;
-    public PlayerTypeEnum player3type = PlayerTypeEnum.None;
-    public PlayerTypeEnum player4type = PlayerTypeEnum.None;
+    public PlayerTypeEnum player3type = PlayerTypeEnum.Player;
+    public PlayerTypeEnum player4type = PlayerTypeEnum.Player;
 
     public CharacterEnum player1char = CharacterEnum.DaVinci;
     public CharacterEnum player2char = CharacterEnum.Tesla;
     public CharacterEnum player3char = CharacterEnum.Nobel;
-    public CharacterEnum player4char = CharacterEnum.Einstein;
+    public CharacterEnum player4char = CharacterEnum.Curie;
 
     public int player1score = 0;
     public int player2score = 0;
