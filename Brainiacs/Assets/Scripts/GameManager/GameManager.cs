@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour {
 
         try {
             gameInfo = GameObject.Find("GameInfo").GetComponent<GameInfo>();
+            Debug.Log(gameInfo);
         }catch(Exception e)
         {
             Debug.Log("NO GAME INFO OBJECT - setting default values");

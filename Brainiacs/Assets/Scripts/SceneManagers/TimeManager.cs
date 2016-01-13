@@ -17,6 +17,7 @@ public class TimeManager : MonoBehaviour {
 
     void Start()
     {
+        
         try
         {
             gameInfo = GameObject.Find("GameInfo").GetComponent<GameInfo>();
@@ -28,14 +29,15 @@ public class TimeManager : MonoBehaviour {
 
         if (gameInfo == null)
         {
-            GameObject gameInfoObj = new GameObject("GameInfo_tmp");
+            GameObject gameInfoObj = new GameObject("GameInfo_tmp 2");
             gameInfoObj.AddComponent<GameInfo>();
             gameInfo = gameInfoObj.GetComponent<GameInfo>();
         }
+
         stopWatch = Stopwatch.StartNew();
         countdown = TimeSpan.FromSeconds(gameInfo.time);
         InvokeRepeating("Count1SecDown", 0, 1.0f);
-        UnityEngine.Debug.Log("tick");
+        //UnityEngine.Debug.Log("tick");
 
     }
     
