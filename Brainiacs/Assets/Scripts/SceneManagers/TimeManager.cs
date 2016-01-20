@@ -14,9 +14,12 @@ public class TimeManager : MonoBehaviour {
 
     private GameInfo gameInfo;
 
+    private TextDisplay textDisplay;
+
 
     void Start()
     {
+        textDisplay = new TextDisplay();
         
         try
         {
@@ -118,6 +121,8 @@ public class TimeManager : MonoBehaviour {
         //string str = stopWatchSpan.
         int seconds = stopWatchSpan.Seconds;
 
+        textDisplay.ShowTime(seconds);
+
         var stopWatchStr = String.Format("{0:0}:{1:00}", Mathf.Floor(seconds / 60), seconds % 60);
         
 
@@ -136,6 +141,8 @@ public class TimeManager : MonoBehaviour {
 
 
         int seconds = countdown.Seconds;
+
+        textDisplay.ShowTime(seconds);
 
         var stopWatchStr = String.Format("{0:0}:{1:00}", Mathf.Floor(seconds / 60), seconds % 60);
 

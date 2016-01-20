@@ -7,12 +7,12 @@ public class GameInfo : MonoBehaviour {
     public GameModeEnum gameMode = GameModeEnum.Score;
 
     public int time = 9;
-    public int winScore = 2;
+    public int winScore = 4;
     public int lifes = 1;
 
-    public PlayerTypeEnum player1type = PlayerTypeEnum.AI;
+    public PlayerTypeEnum player1type = PlayerTypeEnum.Player;
     public PlayerTypeEnum player2type = PlayerTypeEnum.Player;
-    public PlayerTypeEnum player3type = PlayerTypeEnum.Player;
+    public PlayerTypeEnum player3type = PlayerTypeEnum.AI;
     public PlayerTypeEnum player4type = PlayerTypeEnum.None;
 
     public CharacterEnum player1char = CharacterEnum.DaVinci;

@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\Ai\AiLogic\AiWeaponLogic.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\HUD\HUDBase.cs" />
+    <Compile Include="Assets\Scripts\HUD\TextDisplay.cs" />
     <Compile Include="Assets\Scripts\Loading\Loading.cs" />
     <Compile Include="Assets\Scripts\Player\Components.cs" />
     <Compile Include="Assets\Scripts\Player\ControlKeys.cs" />

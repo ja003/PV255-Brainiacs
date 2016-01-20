@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class HUDBase : MonoBehaviour {
 
@@ -9,8 +10,11 @@ public class HUDBase : MonoBehaviour {
     protected SpriteRenderer renderer;
     protected string sprite;
     private string color;
+    private Colors playerColor;
 
     protected GameObject avatar;
+
+    private TextDisplay textDisplay;
 
     private Text name;
     private Text hp;
@@ -25,6 +29,7 @@ public class HUDBase : MonoBehaviour {
         player = p;
         weaponHandling = p.weaponHandling;
         color = p.playInfo.playerColor;
+        playerColor = (Colors)Enum.Parse(typeof(Colors), UppercaseFirst(color));
 
         sprite = p.playInfo.charEnum.ToString() + "_portail";
         sprite = sprite.ToLower();
@@ -36,6 +41,8 @@ public class HUDBase : MonoBehaviour {
         ammo = GameObject.Find("ammo_" + color).GetComponent<Text>();
 
         name.text = p.playInfo.playerName;
+
+        textDisplay = new TextDisplay();
     }
 
 	void SetupAvatar (string sprite) {
@@ -54,22 +61,51 @@ public class HUDBase : MonoBehaviour {
 	        {
 	            ammo.color = Color.black;
 	            ammo.text = weaponHandling.activeWeapon.ammo.ToString();
+                textDisplay.SetClipValue(playerColor, weaponHandling.activeWeapon.ammo);
 	        }
 	        else
 	        {
 	            ammo.color = Color.red;
 	            string temp = (weaponHandling.activeWeapon.reloadTime - weaponHandling.activeWeapon.time).ToString();
-	            int l = temp.Length;
-	            if (l <= 3)
+
+                float reloadingProcess = weaponHandling.activeWeapon.reloadTime - weaponHandling.activeWeapon.time;
+                //Debug.Log(reloadingProcess);
+                int reloadinProcessInt = (int)(reloadingProcess * 10);
+                //Debug.Log(reloadinProcessInt);
+
+                if (reloadinProcessInt < 100)
+                {
+                    textDisplay.SetClipValue(playerColor, reloadinProcessInt);
+
+                }
+
+                int l = temp.Length;                
+
+                if (l <= 3)
 	            {
 	                ammo.text = temp;
-	            }
+                    //textDisplay.SetClipValue(playerColor, 10);
+                }
 	            else
 	            {
 	                ammo.text = temp.Substring(0, 3);
-	            }
-	        }
+                    //textDisplay.SetClipValue(playerColor, 20);
+
+                }
+            }
 	        hp.text = player.hitPoints.ToString();
+            textDisplay.SetHpValue(playerColor, player.hitPoints);
 	    }
 	}
+
+    static string UppercaseFirst(string s)
+    {
+        // Check for empty string.
+        if (string.IsNullOrEmpty(s))
+        {
+            return string.Empty;
+        }
+        // Return char and concat substring.
+        return char.ToUpper(s[0]) + s.Substring(1);
+    }
 }
