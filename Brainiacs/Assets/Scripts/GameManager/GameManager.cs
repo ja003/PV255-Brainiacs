@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour {
     public bool started;
 
     private GameInfo gameInfo;
+    private bool endGame = false;
+    float fadeCounter = 0;
 
     private int frameCountSinceLvlLoad;
 
@@ -80,7 +82,11 @@ public class GameManager : MonoBehaviour {
         AssignCharacters();
         
         Run();
+
+        screenFaderColor = GameObject.Find("ScreenFader").GetComponent<SpriteRenderer>().color;
+        screenFaderRenderer = GameObject.Find("ScreenFader").GetComponent<SpriteRenderer>();
     }
+    
 
     public void SetUpStartingPosition()
     {
@@ -398,10 +404,15 @@ public class GameManager : MonoBehaviour {
     public void EndGame()
     {
         Debug.Log("END");
-        Application.LoadLevel("MainMenu");
+        //int currentFrameCount = Time.frameCount;
+        endGame = true;
+
+        //Application.LoadLevel("MainMenu");
     }
 
 
+    Color screenFaderColor;
+    SpriteRenderer screenFaderRenderer;
     void Update()
     {
         if(frameCountSinceLvlLoad == 5)
@@ -409,6 +420,23 @@ public class GameManager : MonoBehaviour {
             SetPlayers();
         }
         frameCountSinceLvlLoad++;
+
+        if (endGame && fadeCounter < 1.1f)
+        {
+            fadeCounter += 0.01f;
+
+            screenFaderColor = GameObject.Find("ScreenFader").GetComponent<SpriteRenderer>().color;
+            screenFaderColor.a = fadeCounter;
+            Debug.Log(screenFaderColor.a);
+
+            screenFaderRenderer = GameObject.Find("ScreenFader").GetComponent<SpriteRenderer>();
+            screenFaderRenderer.color = screenFaderColor;
+
+            if(fadeCounter > 1)
+            {
+                Application.LoadLevel("MainMenu");
+            }
+        }
     }
 
 
