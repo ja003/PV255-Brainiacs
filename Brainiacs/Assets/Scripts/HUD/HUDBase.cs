@@ -43,6 +43,7 @@ public class HUDBase : MonoBehaviour {
         name.text = p.playInfo.playerName;
 
         textDisplay = new TextDisplay();
+        textDisplay.InitializeGameVariables();
     }
 
 	void SetupAvatar (string sprite) {

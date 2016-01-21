@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\Ai\AiLogic\AiPowerUpLogic.cs" />
     <Compile Include="Assets\Scripts\Ai\AiLogic\AiPriorityLogic.cs" />
     <Compile Include="Assets\Scripts\Ai\AiLogic\AiWeaponLogic.cs" />
+    <Compile Include="Assets\Scripts\EndGame\EndGameManager.cs" />
     <Compile Include="Assets\Scripts\GameManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\HUD\HUDBase.cs" />
     <Compile Include="Assets\Scripts\HUD\TextDisplay.cs" />

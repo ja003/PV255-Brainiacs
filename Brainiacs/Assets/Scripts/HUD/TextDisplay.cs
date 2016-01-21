@@ -37,8 +37,120 @@ public class TextDisplay {
     SpriteRenderer timeSecondsUnit;
 
 
+    SpriteRenderer redScoreSingle;
+    SpriteRenderer redScoreTenField;
+    SpriteRenderer redScoreUnitField;
+    SpriteRenderer redDeathSingle;
+    SpriteRenderer redDeathTenField;
+    SpriteRenderer redDeathUnitField;
+
+    SpriteRenderer greenScoreSingle;
+    SpriteRenderer greenScoreTenField;
+    SpriteRenderer greenScoreUnitField;
+    SpriteRenderer greenDeathSingle;
+    SpriteRenderer greenDeathTenField;
+    SpriteRenderer greenDeathUnitField;
+
+    SpriteRenderer blueScoreSingle;
+    SpriteRenderer blueScoreTenField;
+    SpriteRenderer blueScoreUnitField;
+    SpriteRenderer blueDeathSingle;
+    SpriteRenderer blueDeathTenField;
+    SpriteRenderer blueDeathUnitField;
+
+    SpriteRenderer yellowScoreSingle;
+    SpriteRenderer yellowScoreTenField;
+    SpriteRenderer yellowScoreUnitField;
+    SpriteRenderer yellowDeathSingle;
+    SpriteRenderer yellowDeathTenField;
+    SpriteRenderer yellowDeathUnitField;
 
     public TextDisplay()
+    {
+        
+        
+    }
+
+    public void SetEndGameValues(
+        int redScore, int redDeaths, 
+        int greenScore, int greenDeaths,
+        int blueScore, int blueDeaths,
+        int yellowScore, int yellowDeaths)
+    {
+        DisplayNumberOn(redScoreSingle, redScoreTenField, redScoreUnitField, redScore);
+        DisplayNumberOn(redDeathSingle, redDeathTenField, redDeathUnitField, redDeaths);
+
+        DisplayNumberOn(greenScoreSingle, greenScoreTenField, greenScoreUnitField, greenScore);
+        DisplayNumberOn(greenDeathSingle, greenDeathTenField, greenDeathUnitField, greenDeaths);
+
+        DisplayNumberOn(blueScoreSingle, blueScoreTenField, blueScoreUnitField, blueScore);
+        DisplayNumberOn(blueDeathSingle, blueDeathTenField, blueDeathUnitField, blueDeaths);
+
+        DisplayNumberOn(yellowScoreSingle, yellowScoreTenField, yellowScoreUnitField, yellowScore);
+        DisplayNumberOn(yellowDeathSingle, yellowDeathTenField, yellowDeathUnitField, yellowDeaths);
+    }
+
+    public void DisplayNumberOn(SpriteRenderer singleField, SpriteRenderer tenField, SpriteRenderer unitField, int value)
+    {
+        Debug.Log("displaying " + value);
+        if (value < 10 && value > -1)
+        {
+            tenField.sprite = null;
+            unitField.sprite = null;
+            singleField.sprite = GetNumberSprite("number_single_" + value);
+        }
+        else if (value >= 10 && value < 100)
+        {
+            singleField.sprite = null;
+
+            int ten = value / 10;
+            int unit = value % 10;
+            tenField.sprite = GetNumberSprite("number_double_" + ten);
+            unitField.sprite = GetNumberSprite("number_double_" + unit);
+        }
+    }
+
+    public void InitializeEndGameVariables()
+    {
+        redScoreSingle = GameObject.Find("red_score_single_field").GetComponent<SpriteRenderer>();
+        redScoreTenField = GameObject.Find("red_score_ten_field").GetComponent<SpriteRenderer>();
+        redScoreUnitField = GameObject.Find("red_score_unit_field").GetComponent<SpriteRenderer>();
+        redDeathSingle = GameObject.Find("red_death_single_field").GetComponent<SpriteRenderer>();
+        redDeathTenField = GameObject.Find("red_death_ten_field").GetComponent<SpriteRenderer>();
+        redDeathUnitField = GameObject.Find("red_death_unit_field").GetComponent<SpriteRenderer>();
+        
+        greenScoreSingle = GameObject.Find("green_score_single_field").GetComponent<SpriteRenderer>();
+        greenScoreTenField = GameObject.Find("green_score_ten_field").GetComponent<SpriteRenderer>();
+        greenScoreUnitField = GameObject.Find("green_score_unit_field").GetComponent<SpriteRenderer>();
+        greenDeathSingle = GameObject.Find("green_death_single_field").GetComponent<SpriteRenderer>();
+        greenDeathTenField = GameObject.Find("green_death_ten_field").GetComponent<SpriteRenderer>();
+        greenDeathUnitField = GameObject.Find("green_death_unit_field").GetComponent<SpriteRenderer>();
+        
+        blueScoreSingle = GameObject.Find("blue_score_single_field").GetComponent<SpriteRenderer>();
+        blueScoreTenField = GameObject.Find("blue_score_ten_field").GetComponent<SpriteRenderer>();
+        blueScoreUnitField = GameObject.Find("blue_score_unit_field").GetComponent<SpriteRenderer>();
+        blueDeathSingle = GameObject.Find("blue_death_single_field").GetComponent<SpriteRenderer>();
+        blueDeathTenField = GameObject.Find("blue_death_ten_field").GetComponent<SpriteRenderer>();
+        blueDeathUnitField = GameObject.Find("blue_death_unit_field").GetComponent<SpriteRenderer>();
+
+        yellowScoreSingle = GameObject.Find("yellow_score_single_field").GetComponent<SpriteRenderer>();
+        yellowScoreTenField = GameObject.Find("yellow_score_ten_field").GetComponent<SpriteRenderer>();
+        yellowScoreUnitField = GameObject.Find("yellow_score_unit_field").GetComponent<SpriteRenderer>();
+        yellowDeathSingle = GameObject.Find("yellow_death_single_field").GetComponent<SpriteRenderer>();
+        yellowDeathTenField = GameObject.Find("yellow_death_ten_field").GetComponent<SpriteRenderer>();
+        yellowDeathUnitField = GameObject.Find("yellow_death_unit_field").GetComponent<SpriteRenderer>();
+
+    }
+
+    public void InitializeTimeVariable()
+    {
+        timeMinutesTen = GameObject.Find("time_minutes_ten").GetComponent<SpriteRenderer>();
+        timeMinutesUnit = GameObject.Find("time_minutes_unit").GetComponent<SpriteRenderer>();
+        timeSecondsTen = GameObject.Find("time_seconds_ten").GetComponent<SpriteRenderer>();
+        timeSecondsUnit = GameObject.Find("time_seconds_unit").GetComponent<SpriteRenderer>();
+    }
+
+    public void InitializeGameVariables()
     {
         redClipSingle = GameObject.Find("red_clip_single_field").GetComponent<SpriteRenderer>();
         redClipTenField = GameObject.Find("red_clip_ten_field").GetComponent<SpriteRenderer>();
@@ -68,11 +180,6 @@ public class TextDisplay {
         yellowHpTenField = GameObject.Find("yellow_hp_ten_field").GetComponent<SpriteRenderer>();
         yellowHpUnitField = GameObject.Find("yellow_hp_unit_field").GetComponent<SpriteRenderer>();
 
-        timeMinutesTen = GameObject.Find("time_minutes_ten").GetComponent<SpriteRenderer>();
-        timeMinutesUnit = GameObject.Find("time_minutes_unit").GetComponent<SpriteRenderer>();
-        timeSecondsTen = GameObject.Find("time_seconds_ten").GetComponent<SpriteRenderer>();
-        timeSecondsUnit = GameObject.Find("time_seconds_unit").GetComponent<SpriteRenderer>();
-        
     }
 
     public void ShowTime(int seconds)

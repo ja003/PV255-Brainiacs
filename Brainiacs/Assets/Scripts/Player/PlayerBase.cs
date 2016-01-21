@@ -346,6 +346,50 @@ public abstract class PlayerBase : MonoBehaviour
         posY = gameObject.transform.position.y;
     }
 
+    public void UpdateGameInfoDeaths(int playerNumber, int value)
+    {
+        switch (playerNumber)
+        {
+            case 1:
+                gameInfo.player1deaths += value;
+                break;
+            case 2:
+                gameInfo.player2deaths += value;
+                break;
+            case 3:
+                gameInfo.player3deaths += value;
+                break;
+            case 4:
+                gameInfo.player4deaths += value;
+                break;
+            default:
+                Debug.Log("playerNumber not valid");
+                break;
+        }
+    }
+
+    public void UpdateGameInfoScore(int playerNumber, int value)
+    {
+        switch (playerNumber)
+        {
+            case 1:
+                gameInfo.player1score += value;
+                break;
+            case 2:
+                gameInfo.player2score += value;
+                break;
+            case 3:
+                gameInfo.player3score += value;
+                break;
+            case 4:
+                gameInfo.player4score += value;
+                break;
+            default:
+                Debug.Log("playerNumber not valid");
+                break;
+        }
+    }
+
     //PowerUp and HP management - <<<MG...>>>
 
     //player receives damage
@@ -363,9 +407,12 @@ public abstract class PlayerBase : MonoBehaviour
                 hitPoints = 0;
                 //TODO sputenie animacie smrti
                 comp.rb2d.velocity = stop;
+                UpdateGameInfoDeaths(playerNumber,1);
 
                 //add score to owner of bullet
                 owner.score++;
+                UpdateGameInfoScore(owner.playerNumber, 1);
+
                 Debug.Log(owner.playerNumber + ": " + owner.score);
                 //check score
                 if(gameInfo.gameMode == GameModeEnum.Score && owner.score >= gameInfo.winScore)

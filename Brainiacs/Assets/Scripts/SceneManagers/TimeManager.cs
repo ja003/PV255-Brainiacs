@@ -20,7 +20,8 @@ public class TimeManager : MonoBehaviour {
     void Start()
     {
         textDisplay = new TextDisplay();
-        
+        textDisplay.InitializeTimeVariable();
+
         try
         {
             gameInfo = GameObject.Find("GameInfo").GetComponent<GameInfo>();

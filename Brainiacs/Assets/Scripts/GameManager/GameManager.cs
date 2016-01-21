@@ -66,7 +66,9 @@ public class GameManager : MonoBehaviour {
 
         if (gameInfo == null)
         {
-            GameObject gameInfoObj = new GameObject("GameInfo_tmp");
+            GameObject gameInfoObj = new GameObject("GameInfo");
+            UnityEngine.Object.DontDestroyOnLoad(gameInfoObj);
+
             gameInfoObj.AddComponent<GameInfo>();
             gameInfo = gameInfoObj.GetComponent<GameInfo>();
         }
@@ -423,7 +425,7 @@ public class GameManager : MonoBehaviour {
 
         if (endGame && fadeCounter < 1.1f)
         {
-            fadeCounter += 0.01f;
+            fadeCounter += 0.1f;
 
             screenFaderColor = GameObject.Find("ScreenFader").GetComponent<SpriteRenderer>().color;
             screenFaderColor.a = fadeCounter;
@@ -434,7 +436,7 @@ public class GameManager : MonoBehaviour {
 
             if(fadeCounter > 1)
             {
-                Application.LoadLevel("MainMenu");
+                Application.LoadLevel("EndGame");
             }
         }
     }

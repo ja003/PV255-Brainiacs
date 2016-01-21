@@ -30,6 +30,12 @@ public class GameInfo : MonoBehaviour {
     public int player3lifes = 0;
     public int player4lifes = 0;
 
+    public int player1deaths = 0;
+    public int player2deaths = 0;
+    public int player3deaths = 0;
+    public int player4deaths = 0;
+
+
 
     public override string ToString()
     {
