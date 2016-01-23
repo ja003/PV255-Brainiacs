@@ -1,0 +1,353 @@
+fileFormatVersion: 2
+guid: d37aeb4b704bc3548a5d7bac05dd3313
+timeCreated: 1453591193
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: bullet_flamethrower_0
+    21300002: bullet_flamethrower_1
+    21300004: bullet_flamethrower_2
+    21300006: bullet_flamethrower_3
+    21300008: bullet_flamethrower_4
+    21300010: bullet_flamethrower_5
+    21300012: bullet_flamethrower_6
+    21300014: bullet_flamethrower_7
+    21300016: bullet_flamethrower_8
+    21300018: bullet_flamethrower_9
+    21300020: bullet_flamethrower_10
+    21300022: bullet_flamethrower_11
+    21300024: bullet_flamethrower_12
+    21300026: bullet_flamethrower_13
+    21300028: bullet_flamethrower_14
+    21300030: bullet_flamethrower_15
+    21300032: bullet_flamethrower_16
+    21300034: bullet_flamethrower_17
+    21300036: bullet_flamethrower_18
+    21300038: bullet_flamethrower_19
+    21300040: bullet_flamethrower_20
+    21300042: bullet_flamethrower_21
+    21300044: bullet_flamethrower_22
+    21300046: bullet_flamethrower_23
+    21300048: bullet_flamethrower_24
+    21300050: bullet_flamethrower_25
+    21300052: bullet_flamethrower_26
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: bullet_flamethrower_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 3218
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_1
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 3218
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_2
+      rect:
+        serializedVersion: 2
+        x: 1406
+        y: 3218
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_3
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2816
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_4
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 2816
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_5
+      rect:
+        serializedVersion: 2
+        x: 1406
+        y: 2816
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_6
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2414
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_7
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 2414
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_8
+      rect:
+        serializedVersion: 2
+        x: 1406
+        y: 2414
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_9
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2012
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_10
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 2012
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_11
+      rect:
+        serializedVersion: 2
+        x: 1406
+        y: 2012
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_12
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1610
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_13
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 1610
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_14
+      rect:
+        serializedVersion: 2
+        x: 1406
+        y: 1610
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_15
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1208
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_16
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 1208
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_17
+      rect:
+        serializedVersion: 2
+        x: 1406
+        y: 1208
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_18
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 806
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_19
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 806
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_20
+      rect:
+        serializedVersion: 2
+        x: 1406
+        y: 806
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_21
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 404
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_22
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 404
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_23
+      rect:
+        serializedVersion: 2
+        x: 1406
+        y: 404
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_24
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_25
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 2
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: bullet_flamethrower_26
+      rect:
+        serializedVersion: 2
+        x: 1406
+        y: 2
+        width: 700
+        height: 400
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
