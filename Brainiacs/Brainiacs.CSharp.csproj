@@ -121,6 +121,7 @@
     <Compile Include="Assets\Scripts\Weapon\WeaponBase.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponBiogun.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponCurieSpecial.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponEinsteinSpecial.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponEnum.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponFlamethrower.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponHandling.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Assets\Scripts\Weapon\WeaponSniper.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponSpecial.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponSpecialCurieLogic.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponSpecialEinsteinLogic.cs" />
     <Compile Include="Assets\Scripts\unused\BulletManager2.cs" />
     <Compile Include="Assets\Scripts\unused\BulletShooter.cs" />
   </ItemGroup>

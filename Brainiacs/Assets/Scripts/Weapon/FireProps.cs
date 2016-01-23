@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FireProps : MonoBehaviour
+public class FireProps
 {
     public Vector2 direction { get; set; }
     public Vector2 position { get; set; }

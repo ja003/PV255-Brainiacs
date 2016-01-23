@@ -1,24 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WeaponCurieSpecial : WeaponBase{
+public class WeaponEinsteinSpecial : WeaponBase {
 
-    public WeaponCurieSpecial()
+    public WeaponEinsteinSpecial()
     {
         base.weaponType = WeaponEnum.specialCurie;
         isSpecial = true;
 
+        base.damage = 100;
 
-        base.damage = 75;
-        
         base.ammo = 300;
         base.maxAmmo = 300;
 
         base.reloadTime = 3f;
         base.readyToFire = true;
 
-        base.sprite = "Sprites/Special/curieSpecial";
-        base.bulletAnimControler = "Animations/bullets_animators/bullet_curie_animator";
+        base.sprite = "Sprites/Special/einsteinSpecial";
+        //base.bulletAnimControler = "Animations/bullets_animators/bullet_curie_animator";
 
         base.setUpSounds("sniper");
 

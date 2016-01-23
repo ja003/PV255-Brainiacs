@@ -112,7 +112,7 @@ public class WeaponHandling : MonoBehaviour {
         int bulletsLeft = activeWeapon.fire(); 
         if (activeWeapon.isSpecial)
         {
-            specialWeapon.fire(fireProps);
+            specialWeapon.fire(fireProps, buletManager);
         }
         else
         { 
