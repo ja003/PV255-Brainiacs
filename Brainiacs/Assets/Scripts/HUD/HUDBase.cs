@@ -58,7 +58,7 @@ public class HUDBase : MonoBehaviour {
 	void Update () {
 	    if (ready)
 	    {
-	        if (weaponHandling.activeWeapon.ready)
+	        if (weaponHandling.activeWeapon.readyToFire)
 	        {
 	            ammo.color = Color.black;
 	            ammo.text = weaponHandling.activeWeapon.ammo.ToString();

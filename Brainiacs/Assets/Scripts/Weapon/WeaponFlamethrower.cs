@@ -12,7 +12,7 @@ public class WeaponFlamethrower : WeaponBase
         base.maxAmmo = 3;
 
         base.reloadTime = 4f;
-        base.ready = true;
+        base.readyToFire = true;
 
         base.sprite = "Sprites/Weapons/flamethrower";
         base.bulletAnimControler = "Animations/bullet_MP40_animator";

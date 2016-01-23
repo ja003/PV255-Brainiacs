@@ -12,7 +12,7 @@ public class WeaponMP40 : WeaponBase {
         base.maxAmmo = 10;
 
         base.reloadTime = 2f;
-        base.ready = true;
+        base.readyToFire = true;
 
         base.sprite = "Sprites/Weapons/MP40";
         base.bulletAnimControler = "Animations/bullets_animators/bullet_MP40_animator";

@@ -1,26 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WeaponSniper : WeaponBase
-{
+public class WeaponCurieSpecial : WeaponBase{
 
-    public WeaponSniper()
+    public WeaponCurieSpecial()
     {
-        base.damage = 50;
-        base.weaponType = WeaponEnum.sniper;
+        base.weaponType = WeaponEnum.specialCurie;
+        isSpecial = true;
 
-        base.ammo = 2;  
-        base.maxAmmo = 2;
+
+        base.damage = 30;
         
+        base.ammo = 300;
+        base.maxAmmo = 300;
+
         base.reloadTime = 3f;
         base.readyToFire = true;
 
-        base.sprite = "Sprites/Weapons/sniper";
+        base.sprite = "Sprites/Special/curieSpecial";
         base.bulletAnimControler = "Animations/bullets_animators/bullet_sniper_animator";
 
         base.setUpSounds("sniper");
 
-        kadency = 0.25f;
+        kadency = 0.0f;
         kadReady = true;
 
         bulletSpeed = 3f;

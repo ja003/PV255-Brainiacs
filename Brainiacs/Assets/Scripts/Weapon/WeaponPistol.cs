@@ -17,7 +17,7 @@ public class WeaponPistol : WeaponBase {
         base.maxAmmo = 5;
 
         base.reloadTime = 2f;
-        base.ready = true;
+        base.readyToFire = true;
 
         bulletSpeed = 1.1f;
 

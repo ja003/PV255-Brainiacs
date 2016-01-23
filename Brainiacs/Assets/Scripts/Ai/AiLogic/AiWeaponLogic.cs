@@ -42,7 +42,7 @@ public class AiWeaponLogic {
         bool canShoot = true;
         //Debug.Log(aiBase.weaponHandling.activeWeapon.ammo);
         //Debug.Log("OK shoot");
-        if (!aiBase.weaponHandling.activeWeapon.ready || !aiBase.weaponHandling.activeWeapon.kadReady)
+        if (!aiBase.weaponHandling.activeWeapon.readyToFire || !aiBase.weaponHandling.activeWeapon.kadReady)
         {
             //try switching to another fire weapon - TODO
             //Debug.Log("CANT shoot");

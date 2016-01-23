@@ -13,7 +13,7 @@ public class WeaponBiogun : WeaponBase
         base.maxAmmo = 4;
 
         base.reloadTime = 1f; //2,5 -> 1 for test
-        base.ready = true;
+        base.readyToFire = true;
 
         base.sprite = "Sprites/Weapons/biogun";
         base.bulletAnimControler = "Animations/bullets_animators/bullet_biogun_animator";

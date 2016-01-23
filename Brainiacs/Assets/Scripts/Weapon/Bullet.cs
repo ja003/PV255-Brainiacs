@@ -15,6 +15,7 @@ public class Bullet : MonoBehaviour {
         damage = dmg;
         direction = new Vector2(dir.x, dir.y);
         bulletSpeed = bulletSpd;
+
         if (dir == Vector2.up){
             transform.position = pos + new Vector2(0.1f, 0.35f);
             transform.rotation = Quaternion.Euler(0, 0, 90);
@@ -41,8 +42,9 @@ public class Bullet : MonoBehaviour {
         gameObject.SetActive(true);
         isActive = true;
     }
-	// Use this for initialization
-	void Start () {
+    
+    // Use this for initialization
+    void Start () {
         
 	}
 

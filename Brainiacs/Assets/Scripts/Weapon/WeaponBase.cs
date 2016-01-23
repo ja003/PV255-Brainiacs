@@ -4,22 +4,27 @@ using System.Collections;
 
 public class WeaponBase
 {
-    public WeaponEnum weaponType { get; set; }
 
-    //unused
-    public int maxClip { get; set; }
-    public int clip { get; set; }
-    //
+    public WeaponEnum weaponType { get; set; }
+    public bool isSpecial { get; set; }
+
+    // 
+    public int clip;
 
     //AUDIO
     public AudioClip fireSound_01;
     
+    // ammo
     public int maxAmmo { get; set; }
     public int ammo { get; set; }
+
+   
     public int damage { get; set; }
-    public bool ready { get; set; }
+    public bool readyToFire { get; set; }
+
     public float time { get; set; }
     public float kadTime { get; set; }
+
     public bool kadReady { get; set; }
     public float kadency { get; set; }
 
@@ -29,16 +34,16 @@ public class WeaponBase
     public string sprite { get; set; }
     public Sprite[] weaponSprites;
 
-
     public string bulletAnimControler { get; set; }
     public RuntimeAnimatorController animController;
     public float reloadTime { get; set; }
+    public bool shouldBeReloaded { get; set; }
 
     public void reload()
     {
         time = 0;
         kadReady = true;
-        ready = true;
+        readyToFire = true;
         kadTime = 0;
         ammo = maxAmmo;
     }
@@ -61,14 +66,19 @@ public class WeaponBase
         return ammo;
     }
 
+    public int fireSpecial()
+    {
+        Debug.Log("fire");
+        ammo -= 1;
+        return ammo;
+    }
+
     public void recycle() {
         reload();
     }
 
     protected void loadSprites(string sprt, string bullSprt)
     {
-        //Debug.Log(sprt);
-        //Debug.Log(bullSprt);
         weaponSprites = Resources.LoadAll<Sprite>(sprt);
         animController = Resources.Load(bullSprt) as RuntimeAnimatorController;
     }

@@ -99,6 +99,11 @@
     <Compile Include="Assets\Scripts\Player\Enums\AnimatorStateEnum.cs" />
     <Compile Include="Assets\Scripts\Player\Enums\CharacterEnum.cs" />
     <Compile Include="Assets\Scripts\Player\Enums\Colors.cs" />
+    <Compile Include="Assets\Scripts\Player\Enums\SpawnItems\PowerUpEnum.cs" />
+    <Compile Include="Assets\Scripts\Player\Enums\SpawnItems\PowerUpGenerator.cs" />
+    <Compile Include="Assets\Scripts\Player\Enums\SpawnItems\PowerUpManager.cs" />
+    <Compile Include="Assets\Scripts\Player\Enums\SpawnItems\WeaponGenerator.cs" />
+    <Compile Include="Assets\Scripts\Player\Enums\SpawnItems\WeaponManager.cs" />
     <Compile Include="Assets\Scripts\Player\HumanBase.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\Player2.cs" />
@@ -107,18 +112,15 @@
     <Compile Include="Assets\Scripts\PositionGenerator\PositionGenerator.cs" />
     <Compile Include="Assets\Scripts\SceneManagers\SoundManager.cs" />
     <Compile Include="Assets\Scripts\SceneManagers\TimeManager.cs" />
-    <Compile Include="Assets\Scripts\SpawnItems\PowerUpEnum.cs" />
-    <Compile Include="Assets\Scripts\SpawnItems\PowerUpGenerator.cs" />
-    <Compile Include="Assets\Scripts\SpawnItems\PowerUpManager.cs" />
-    <Compile Include="Assets\Scripts\SpawnItems\WeaponGenerator.cs" />
-    <Compile Include="Assets\Scripts\SpawnItems\WeaponManager.cs" />
     <Compile Include="Assets\Scripts\Teleport\TeleportBase.cs" />
     <Compile Include="Assets\Scripts\Teleport\TeleportLB.cs" />
     <Compile Include="Assets\Scripts\Teleport\TeleportUR.cs" />
     <Compile Include="Assets\Scripts\Weapon\Bullet.cs" />
     <Compile Include="Assets\Scripts\Weapon\BulletManager.cs" />
+    <Compile Include="Assets\Scripts\Weapon\FireProps.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponBase.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponBiogun.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponCurieSpecial.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponEnum.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponFlamethrower.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponHandling.cs" />
@@ -126,7 +128,8 @@
     <Compile Include="Assets\Scripts\Weapon\WeaponMine.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponPistol.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponSniper.cs" />
-    <Compile Include="Assets\Scripts\Weapon\WeaponTeslaSpecial.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponSpecial.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponSpecialCurieLogic.cs" />
     <Compile Include="Assets\Scripts\unused\BulletManager2.cs" />
     <Compile Include="Assets\Scripts\unused\BulletShooter.cs" />
   </ItemGroup>

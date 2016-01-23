@@ -5,9 +5,11 @@ using System.Collections.Generic;
 public class BulletManager : MonoBehaviour {
 
     List<GameObject> prefabBullets = new List<GameObject>();
+    List<GameObject> prefabSpecialBullets = new List<GameObject>();
     public GameObject bullet;
     public int maxBullets = 20;
     public int indexUsedBullet = 0;
+
     protected Vector2 up = Vector2.up;
     protected Vector2 down = Vector2.down;
     protected Vector2 left = Vector2.left;
@@ -28,6 +30,18 @@ public class BulletManager : MonoBehaviour {
             Bullet bulletClass = obj.GetComponent<Bullet>();
             bulletClass.owner = owner;
         }
+
+        bullet = (GameObject)Resources.Load("Prefabs/SpecialProjectile");
+        for (int i = 0; i < 5; i++)
+        {
+            GameObject obj = (GameObject)Instantiate(bullet);
+            prefabSpecialBullets.Add(obj);
+            obj.transform.parent = gameObject.transform;
+            obj.SetActive(false);
+
+            Bullet bulletClass = obj.GetComponent<Bullet>();
+            bulletClass.owner = owner;
+        }
         //Debug.Log(prefabBullets.Count);
         //Debug.Log(prefabBullets[indexUsedBullet]);
     }
@@ -40,7 +54,10 @@ public class BulletManager : MonoBehaviour {
             animController, 
             bulletSpeed, 
             damage, 
-            weapon);
+            weapon
+            );
+
         indexUsedBullet = (indexUsedBullet + 1) % maxBullets;
     }
+
 }

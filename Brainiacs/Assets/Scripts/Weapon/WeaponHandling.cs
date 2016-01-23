@@ -8,6 +8,8 @@ public class WeaponHandling : MonoBehaviour {
 
     public List<WeaponBase> inventory = new List<WeaponBase>();
     public Dictionary<WeaponEnum, WeaponBase> weapons = new Dictionary<WeaponEnum, WeaponBase>();
+    public WeaponSpecial specialWeapon;
+
 
     public WeaponBase activeWeapon { get; set; }
     public float lastFired { get; set; }
@@ -30,10 +32,10 @@ public class WeaponHandling : MonoBehaviour {
         weaponRenderer.sprite = activeWeapon.weaponSprites[player.directionMapping[player.direction]];
         
         foreach (var weap in inventory) {
-            if (!weap.ready) {
+            if (!weap.readyToFire) {
                 if (weap.time >= weap.reloadTime)
                 {
-                    weap.ready = true;
+                    weap.readyToFire = true;
                 }
                 else
                 {
@@ -62,6 +64,7 @@ public class WeaponHandling : MonoBehaviour {
         {
             return;
         }
+
         activeWeapon = inventory[((inventory.IndexOf(activeWeapon) + 1) % inventory.Count)];
         tranActiveWeapon();
 
@@ -86,31 +89,49 @@ public class WeaponHandling : MonoBehaviour {
 
     public void fire(Vector2 direction)
     {
-        if (!activeWeapon.ready || !activeWeapon.kadReady) return;
+        if (!activeWeapon.readyToFire || !activeWeapon.kadReady) return;
         activeWeapon.kadReady = false;
-        int bulletsLeft = activeWeapon.fire();
 
-        SoundManager.instance.RandomizeSfx(activeWeapon.fireSound_01);
+        
+                SoundManager.instance.RandomizeSfx(activeWeapon.fireSound_01);
+                //handle if active weapon is pistol (character is not specified in WeaponEnum)
+                string weapon;
+                if (activeWeapon.ToString() == "pistol")
+                    weapon = player.playInfo.charEnum.ToString() + "Pistol";
+                else
+                    weapon = activeWeapon.ToString();
+        
+        FireProps fireProps = new FireProps(
+                new Vector2(direction.x, direction.y),
+                transform.position,
+                activeWeapon.animController,
+                activeWeapon.bulletSpeed,
+                activeWeapon.damage,
+                weapon);
 
-        //handle if active weapon is pistol (character is not specified in WeaponEnum)
-        string weapon;
-        if (activeWeapon.ToString() == "pistol")
-            weapon = player.playInfo.charEnum.ToString() + "Pistol";
+        int bulletsLeft = activeWeapon.fire(); 
+        if (activeWeapon.isSpecial)
+        {
+            specialWeapon.fire(fireProps);
+        }
         else
-            weapon = activeWeapon.ToString();
-
-        buletManager.fire(
-            new Vector2(direction.x, direction.y), 
-            transform.position, activeWeapon.animController, 
-            activeWeapon.bulletSpeed, activeWeapon.damage, 
-            weapon);
+        { 
+            buletManager.fire(
+                new Vector2(direction.x, direction.y),
+                transform.position,
+                activeWeapon.animController,
+                activeWeapon.bulletSpeed,
+                activeWeapon.damage,
+                weapon
+                );
+        }
 
         if (bulletsLeft == 0)
         {
             if (activeWeapon.weaponType == WeaponEnum.pistol)
             {
                 activeWeapon.reload();
-                activeWeapon.ready = false;
+                activeWeapon.readyToFire = false;
             }
             else
             {

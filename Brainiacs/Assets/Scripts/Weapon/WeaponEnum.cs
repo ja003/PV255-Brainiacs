@@ -7,8 +7,9 @@
     biogun,
     MP40,
     mine,
-    pistol
-    //specialTesla,
-    //specialEinstein,
-    //shotgun,
+    pistol,
+    specialTesla,
+    specialEinstein,
+    specialCurie,
+    specialDaVinci
 }

@@ -12,10 +12,10 @@ public class WeaponMine : WeaponBase
         base.maxAmmo = 1;
 
         base.reloadTime = 2f;
-        base.ready = true;
+        base.readyToFire = true;
 
-        base.sprite = "Sprites/Weapons/MP40";
-        base.bulletAnimControler = "Animations/bullets_animators/bullet_MP40_animator";
+        base.sprite = "Sprites/Weapons/mine 1";
+        base.bulletAnimControler = "Animations/bullets_animators/bullet_mine_animator";
         base.setUpSounds("mine");
 
         kadency = 0.0f;
