@@ -431,7 +431,7 @@ public class GameManager : MonoBehaviour {
 
             screenFaderColor = GameObject.Find("ScreenFader").GetComponent<SpriteRenderer>().color;
             screenFaderColor.a = fadeCounter;
-            Debug.Log(screenFaderColor.a);
+            //Debug.Log(screenFaderColor.a);
 
             screenFaderRenderer = GameObject.Find("ScreenFader").GetComponent<SpriteRenderer>();
             screenFaderRenderer.color = screenFaderColor;

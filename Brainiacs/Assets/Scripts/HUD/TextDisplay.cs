@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class TextDisplay {
 
@@ -67,12 +68,20 @@ public class TextDisplay {
 
     public TextDisplay()
     {
-        InitializeGameVariables();
+        try {
+            InitializeGameVariables();
+            HidePlayerInfo(Colors.Red);
+            HidePlayerInfo(Colors.Green);
+            HidePlayerInfo(Colors.Blue);
+            HidePlayerInfo(Colors.Yellow);
 
-        HidePlayerInfo(Colors.Red);
-        HidePlayerInfo(Colors.Green);
-        HidePlayerInfo(Colors.Blue);
-        HidePlayerInfo(Colors.Yellow);
+        }
+        catch(NullReferenceException e)
+        {
+            Debug.Log("GameVariables not found");
+        }
+
+        
 
     }
 

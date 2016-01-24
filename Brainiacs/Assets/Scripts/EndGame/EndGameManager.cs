@@ -13,7 +13,7 @@ public class EndGameManager : MonoBehaviour
         try
         {
             gameInfo = GameObject.Find("GameInfo").GetComponent<GameInfo>();
-            Debug.Log(gameInfo);
+            //Debug.Log(gameInfo);
         }
         catch (Exception e)
         {

@@ -64,7 +64,7 @@ public class HUDBase : MonoBehaviour {
         color = p.playInfo.playerColor;
         playerColor = (Colors)Enum.Parse(typeof(Colors), UppercaseFirst(color));
 
-        sprite = p.playInfo.charEnum.ToString() + "_portail";
+        sprite = p.playInfo.charEnum.ToString() + "_portrait";
         sprite = sprite.ToLower();
         SetupAvatar(sprite);
         ready = true;
@@ -82,9 +82,8 @@ public class HUDBase : MonoBehaviour {
 	void SetupAvatar (string sprite) {
         avatar = transform.Find("Avatar_" + color).gameObject;
         renderer = avatar.GetComponent<SpriteRenderer>();
-        //Debug.Log(renderer.sprite);
 	    renderer.sprite = Resources.Load<Sprite>("Sprites/HUD/" + sprite);
-        //Debug.Log(renderer.sprite);
+        Debug.Log(sprite);
     }
 	
 	// Update is called once per frame
