@@ -25,6 +25,39 @@ public class HUDBase : MonoBehaviour {
 
     bool ready = false;
 
+    private GameInfo gameInfo;
+
+    public void Start()
+    {
+        try
+        {
+            gameInfo = GameObject.Find("GameInfo").GetComponent<GameInfo>();
+            //Debug.Log(gameInfo);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("HUDBase - NO GAME INFO OBJECT - setting default values");
+        }
+        if (gameInfo == null)
+        {
+            GameObject gameInfoObj = new GameObject("GameInfo");
+            UnityEngine.Object.DontDestroyOnLoad(gameInfoObj);
+
+            gameInfoObj.AddComponent<GameInfo>();
+            gameInfo = gameInfoObj.GetComponent<GameInfo>();
+        }
+
+        //bool redActive = gameInfo.player1type != PlayerTypeEnum.None;
+        //bool greenActive = gameInfo.player2type != PlayerTypeEnum.None;
+        //bool blueActive = gameInfo.player3type != PlayerTypeEnum.None;
+        //bool yellowActive = gameInfo.player4type != PlayerTypeEnum.None;
+
+        textDisplay = new TextDisplay();
+        textDisplay.InitializeGameVariables(); 
+        //není to uplně košer, protože HUDBase je přiřazeno 4 objektům, takže se to volá zbytečně vícekrát, ale...
+
+    }
+
     public void SetUp(PlayerBase p) {
         player = p;
         weaponHandling = p.weaponHandling;
@@ -42,8 +75,8 @@ public class HUDBase : MonoBehaviour {
 
         name.text = p.playInfo.playerName;
 
-        textDisplay = new TextDisplay();
-        textDisplay.InitializeGameVariables();
+        
+        
     }
 
 	void SetupAvatar (string sprite) {

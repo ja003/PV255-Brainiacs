@@ -67,8 +67,13 @@ public class TextDisplay {
 
     public TextDisplay()
     {
-        
-        
+        InitializeGameVariables();
+
+        HidePlayerInfo(Colors.Red);
+        HidePlayerInfo(Colors.Green);
+        HidePlayerInfo(Colors.Blue);
+        HidePlayerInfo(Colors.Yellow);
+
     }
 
     public void SetEndGameValues(
@@ -92,7 +97,7 @@ public class TextDisplay {
 
     public void DisplayNumberOn(SpriteRenderer singleField, SpriteRenderer tenField, SpriteRenderer unitField, int value)
     {
-        Debug.Log("displaying " + value);
+        //Debug.Log("displaying " + value);
         if (value < 10 && value > -1)
         {
             tenField.sprite = null;
@@ -346,6 +351,14 @@ public class TextDisplay {
     public Sprite GetNumberSprite(string path)
     {
         return Resources.Load<Sprite>("Sprites/HUD/numbers/" + path);
+    }
+
+    public void HidePlayerInfo(Colors color)
+    {
+        HideDoubleClip(color);
+        HideSingleClip(color);
+        HideDoubleHp(color);
+        HideSingleHp(color);
     }
 
     public void HideDoubleClip(Colors color)

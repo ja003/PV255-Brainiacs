@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour {
     float fadeCounter = 0;
 
     private int frameCountSinceLvlLoad;
+    
 
     void Start()
     {
@@ -73,7 +74,7 @@ public class GameManager : MonoBehaviour {
             gameInfo = gameInfoObj.GetComponent<GameInfo>();
         }
 
-        Debug.Log(gameInfo);
+        //Debug.Log(gameInfo);
 
         SetUpBackgroundMusic("steampunk");
         
@@ -84,6 +85,7 @@ public class GameManager : MonoBehaviour {
         AssignCharacters();
         
         Run();
+        
 
         screenFaderColor = GameObject.Find("ScreenFader").GetComponent<SpriteRenderer>().color;
         screenFaderRenderer = GameObject.Find("ScreenFader").GetComponent<SpriteRenderer>();
