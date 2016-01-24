@@ -171,7 +171,7 @@ public abstract class PlayerBase : MonoBehaviour
         WeaponBase specialE = new WeaponEinsteinSpecial();
 
         // Tu sa vytvoria vsetky zbrane ktore sa priradia do weapon handling aby sa nemusel volat zbytocne load na sprajtoch
-        weaponHandling.weapons.Add(WeaponEnum.specialCurie, special);
+        //weaponHandling.weapons.Add(WeaponEnum.specialCurie, special);
         weaponHandling.weapons.Add(WeaponEnum.specialEinstein, specialE);
         weaponHandling.weapons.Add(WeaponEnum.sniper, sniper);
         weaponHandling.weapons.Add(WeaponEnum.pistol, pistol);
