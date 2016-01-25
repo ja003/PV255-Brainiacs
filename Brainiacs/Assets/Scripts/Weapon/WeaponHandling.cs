@@ -17,7 +17,7 @@ public class WeaponHandling : MonoBehaviour {
     public SpriteRenderer weaponRenderer;
     public BulletManager buletManager;
 
-
+    public bool switchedWeapon = false;
 
     public void FixedUpdate() {
 
@@ -76,6 +76,7 @@ public class WeaponHandling : MonoBehaviour {
 
         activeWeapon = inventory[((inventory.IndexOf(activeWeapon) + 1) % inventory.Count)];
         tranActiveWeapon();
+        switchedWeapon = true;
 
     }
 

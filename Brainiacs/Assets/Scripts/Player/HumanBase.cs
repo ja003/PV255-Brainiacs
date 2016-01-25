@@ -15,6 +15,8 @@ public class HumanBase : PlayerBase {
     private KeyCode lastPressed { get; set; }
     public List<KeyCode> pressedKeys = new List<KeyCode>();
 
+
+    private WeaponBase prevWeapon;
     //Components comp;
     //PlayerInfo playInfo;
 
@@ -152,6 +154,15 @@ public class HumanBase : PlayerBase {
                 RemoveKeyPressed(keyRight);
             }
         }
+
+
+        // checking if weapon was switched last frame for hud
+        if (prevWeapon == activeWeapon)
+        {
+            weaponHandling.switchedWeapon = false;
+        }
+        prevWeapon = weaponHandling.activeWeapon;
+        
 
         CheckPressedKeys();
 

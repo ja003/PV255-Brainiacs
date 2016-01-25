@@ -8,6 +8,7 @@ public class HUDBase : MonoBehaviour {
     protected PlayerBase player;
     protected WeaponHandling weaponHandling;
     protected SpriteRenderer renderer;
+    protected SpriteRenderer iconRenderer;
     protected string sprite;
     private string color;
     private Colors playerColor;
@@ -75,8 +76,9 @@ public class HUDBase : MonoBehaviour {
 
         name.text = p.playInfo.playerName;
 
-        
-        
+        iconRenderer = transform.Find("weaponI_" + p.playInfo.playerColor).gameObject.GetComponent<SpriteRenderer>();
+        iconRenderer.sprite = Resources.Load<Sprite>("Sprites/HUD/" + "icon_" + p.playInfo.charEnum.ToString().ToLower() + "Pistol");
+
     }
 
 	void SetupAvatar (string sprite) {
@@ -94,38 +96,60 @@ public class HUDBase : MonoBehaviour {
 	        {
 	            ammo.color = Color.black;
 	            ammo.text = weaponHandling.activeWeapon.ammo.ToString();
-                textDisplay.SetClipValue(playerColor, weaponHandling.activeWeapon.ammo);
+	            textDisplay.SetClipValue(playerColor, weaponHandling.activeWeapon.ammo);
 	        }
 	        else
 	        {
 	            ammo.color = Color.red;
 	            string temp = (weaponHandling.activeWeapon.reloadTime - weaponHandling.activeWeapon.time).ToString();
 
-                float reloadingProcess = weaponHandling.activeWeapon.reloadTime - weaponHandling.activeWeapon.time;
-                //Debug.Log(reloadingProcess);
-                int reloadinProcessInt = (int)(reloadingProcess * 10);
-                //Debug.Log(reloadinProcessInt);
+	            float reloadingProcess = weaponHandling.activeWeapon.reloadTime - weaponHandling.activeWeapon.time;
+	            //Debug.Log(reloadingProcess);
+	            int reloadinProcessInt = (int) (reloadingProcess*10);
+	            //Debug.Log(reloadinProcessInt);
 
-                if (reloadinProcessInt < 100)
-                {
-                    textDisplay.SetClipValue(playerColor, reloadinProcessInt);
+	            if (reloadinProcessInt < 100)
+	            {
+	                textDisplay.SetClipValue(playerColor, reloadinProcessInt);
 
-                }
+	            }
 
-                int l = temp.Length;                
+	            int l = temp.Length;
 
-                if (l <= 3)
+	            if (l <= 3)
 	            {
 	                ammo.text = temp;
-                    //textDisplay.SetClipValue(playerColor, 10);
-                }
+	                //textDisplay.SetClipValue(playerColor, 10);
+	            }
 	            else
 	            {
 	                ammo.text = temp.Substring(0, 3);
-                    //textDisplay.SetClipValue(playerColor, 20);
+	                //textDisplay.SetClipValue(playerColor, 20);
 
-                }
-            }
+	            }
+	        }
+
+	        if (weaponHandling.switchedWeapon)
+	        {
+
+	            if (weaponHandling.activeWeapon.weaponType == WeaponEnum.pistol)
+	            {
+	                iconRenderer.sprite =
+	                    Resources.Load<Sprite>("Sprites/HUD/" + "icon_" + player.playInfo.charEnum.ToString().ToLower() + "Pistol");
+	            }
+	            else if (weaponHandling.activeWeapon.isSpecial)
+	            {
+	                iconRenderer.sprite =
+	                    Resources.Load<Sprite>("Sprites/HUD/" + "icon_" + player.playInfo.charEnum.ToString().ToLower() + "Special");
+	            }
+	            else
+	            {
+	                iconRenderer.sprite =
+	                    Resources.Load<Sprite>("Sprites/HUD/" + "icon_" + weaponHandling.activeWeapon.weaponType.ToString());
+	            }
+	        }
+
+
 	        hp.text = player.hitPoints.ToString();
             textDisplay.SetHpValue(playerColor, player.hitPoints);
 	    }
