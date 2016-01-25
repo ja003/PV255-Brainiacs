@@ -21,6 +21,7 @@ public class MainMenu : MonoBehaviour {
 
     //0 - currie, 1 - davinci, 2 - einstein, 3 - nobel, 4 - tesla, 5 - random
     public List<Texture> heads;
+    public List<Texture> backgrounds;
     public List<Texture> classes;
     //0 - player, 1 - AI, 2 - none
     public List<Texture> playerType;
@@ -56,9 +57,6 @@ public class MainMenu : MonoBehaviour {
     public GUIStyle nextTexture;
     public GUIStyle previousTexture;
     public GUIStyle inputField;
-
-    public float portraitBackgroundX;
-    public float portraitBackgroundY;
 
     public float playerTextX;
     public float playerTextY;
@@ -124,7 +122,9 @@ public class MainMenu : MonoBehaviour {
         float buttonWidth = (Screen.width) - (Screen.width * newGamePlacementX * 2);
         float buttonHeight = Screen.height * newGameHeight;
 
-        float portBackX = portraitBackgroundX * Screen.width;
+        float portBackX = backgrounds[0].width * 1.2f * Screen.width / 1920.0f;
+        float portBackY = backgrounds[0].height * 1.2f * Screen.height / 1080.0f;
+        float portBackSpace = (classYPosition - (playerTextY + (p1Text.height / 1080.0f)) - (backgrounds[0].height * 1.2f / 1080.0f)) / 2.0f;
         float playerTX = playerTextX * Screen.width;
         float playerTextWidth = p1Text.width * Screen.width / 1920.0f;
         float playerTextHeight = p1Text.height * Screen.height / 1080.0f;
@@ -160,10 +160,10 @@ public class MainMenu : MonoBehaviour {
         GUI.DrawTexture(new Rect((7 * Screen.width / 8) - playerTX, Screen.height * (-1 + cameraPositionY + playerTextY), playerTextWidth, playerTextHeight), p4Text);
 
         //portrait background
-        GUI.DrawTexture(new Rect((Screen.width / 8) - portBackX, Screen.height * (-1 + cameraPositionY + portraitBackgroundY), portBackX * 2, portBackX * 2), portraitBackground);
-        GUI.DrawTexture(new Rect((3 * Screen.width / 8) - portBackX, Screen.height * (-1 + cameraPositionY + portraitBackgroundY), portBackX * 2, portBackX * 2), portraitBackground);
-        GUI.DrawTexture(new Rect((5 * Screen.width / 8) - portBackX, Screen.height * (-1 + cameraPositionY + portraitBackgroundY), portBackX * 2, portBackX * 2), portraitBackground);
-        GUI.DrawTexture(new Rect((7 * Screen.width / 8) - portBackX, Screen.height * (-1 + cameraPositionY + portraitBackgroundY), portBackX * 2, portBackX * 2), portraitBackground);
+        GUI.DrawTexture(new Rect((Screen.width / 8) - (portBackX / 2), Screen.height * (-1 + cameraPositionY + portBackSpace + playerTextY) + playerTextHeight, portBackX, portBackY), backgrounds[0]);
+        GUI.DrawTexture(new Rect((3 * Screen.width / 8) - (portBackX / 2), Screen.height * (-1 + cameraPositionY + portBackSpace + playerTextY) + playerTextHeight, portBackX, portBackY), backgrounds[1]);
+        GUI.DrawTexture(new Rect((5 * Screen.width / 8) - (portBackX / 2), Screen.height * (-1 + cameraPositionY + portBackSpace + playerTextY) + playerTextHeight, portBackX, portBackY), backgrounds[3]);
+        GUI.DrawTexture(new Rect((7 * Screen.width / 8) - (portBackX / 2), Screen.height * (-1 + cameraPositionY + portBackSpace + playerTextY) + playerTextHeight, portBackX, portBackY), backgrounds[2]);
 
         //heads
         GUI.DrawTexture(new Rect((Screen.width / 8) - (headWidth / 2.0f), Screen.height * (-1 + cameraPositionY + headYPosition), headWidth, headHeight), heads[p1Class]);
@@ -281,7 +281,9 @@ public class MainMenu : MonoBehaviour {
             selectedMode = 2;
         }
 
+        //input field
         string tmp = inputValue;
+        inputField.fontSize = Screen.height / 25;
         inputValue = GUI.TextField(new Rect((Screen.width / 4) - (inputWidth / 2.0f), Screen.height * (-1 + cameraPositionY) + mapSelectYPos, inputWidth, mapSelectHeight), inputValue, 3, inputField);
         if (!containsOnlyNumeric(inputValue))
         {
@@ -296,6 +298,7 @@ public class MainMenu : MonoBehaviour {
             inputValue = PreviousInputValue(inputValue);
         }
 
+        //map sleect
         GUI.DrawTexture(new Rect((3 * Screen.width / 4) - (activeMapWidth / 2.0f), Screen.height * (-1 + cameraPositionY + selectYPosition + activeMapYPos), activeMapWidth, activeMapHeigh), maps[selectedMap]);
         GUI.DrawTexture(new Rect((3 * Screen.width / 4) - (mapSelectWidth / 2.0f), Screen.height * (-1 + cameraPositionY) + mapSelectYPos, mapSelectWidth, mapSelectHeight), mapSelect[selectedMap]);
         if (GUI.Button(new Rect((3 * Screen.width / 4) + nextMapXPos, Screen.height * (-1 + cameraPositionY) + mapSelectYPos + nextMapYDif, nextWidth, nextHeight), "", nextTexture))
@@ -535,10 +538,10 @@ public class MainMenu : MonoBehaviour {
             return (CharacterEnum) p;
         }
         if (p == 5){
-            return GetCharacter(Random.Range(0, 4));
+            return GetCharacter(Random.Range(0, 5));
         }
         Debug.Log("invalid character enum number " + p);
-        return GetCharacter(Random.Range(0, 4));
+        return GetCharacter(Random.Range(0, 5));
     }
 
     public PlayerTypeEnum GetTypeOfPlayer(PlayerEnum p)
