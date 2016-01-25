@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -20,15 +21,23 @@ public class WeaponHandling : MonoBehaviour {
 
     public void FixedUpdate() {
 
-        
+        /*
         if(activeWeapon == null)
             Debug.Log("activeWeapon");
         if (activeWeapon.weaponSprites == null)
             Debug.Log("weaponSprites");
-        
-        if (activeWeapon.weaponSprites[player.directionMapping[player.direction]] == null)
-            Debug.Log("direction");
-        
+        */
+
+        try
+        {
+            weaponRenderer.sprite = activeWeapon.weaponSprites[player.directionMapping[player.direction]];
+            
+        }
+        catch (Exception)
+        {
+            Debug.Log(player.direction);
+        }
+
         weaponRenderer.sprite = activeWeapon.weaponSprites[player.directionMapping[player.direction]];
         
         foreach (var weap in inventory) {
@@ -92,55 +101,75 @@ public class WeaponHandling : MonoBehaviour {
         if (!activeWeapon.readyToFire || !activeWeapon.kadReady) return;
         activeWeapon.kadReady = false;
 
-        
-                SoundManager.instance.RandomizeSfx(activeWeapon.fireSound_01);
-                //handle if active weapon is pistol (character is not specified in WeaponEnum)
-                string weapon;
-                if (activeWeapon.ToString() == "pistol")
-                    weapon = player.playInfo.charEnum.ToString() + "Pistol";
-                else
-                    weapon = activeWeapon.ToString();
-        
-        FireProps fireProps = new FireProps(
-                new Vector2(direction.x, direction.y),
-                transform.position,
-                activeWeapon.animController,
-                activeWeapon.bulletSpeed,
-                activeWeapon.damage,
-                weapon);
 
-        int bulletsLeft = activeWeapon.fire(); 
-        if (activeWeapon.isSpecial)
-        {
-            specialWeapon.fire(fireProps, buletManager);
-        }
+        
+        //handle if active weapon is pistol (character is not specified in WeaponEnum)
+        string weapon;
+        if (activeWeapon.ToString() == "pistol")
+            weapon = player.playInfo.charEnum.ToString() + "Pistol";
         else
-        { 
-            buletManager.fire(
-                new Vector2(direction.x, direction.y),
-                transform.position,
-                activeWeapon.animController,
-                activeWeapon.bulletSpeed,
-                activeWeapon.damage,
-                weapon
-                );
-        }
+            weapon = activeWeapon.ToString();
 
-        if (bulletsLeft == 0)
+        FireProps fireProps = new FireProps(
+            new Vector2(direction.x, direction.y),
+            transform.position,
+            activeWeapon.animController,
+            activeWeapon.bulletSpeed,
+            activeWeapon.damage,
+            weapon,
+            activeWeapon.weaponType
+            );
+
+        int bulletsLeft = activeWeapon.ammo;
+
+        if (bulletsLeft > 0)
         {
-            if (activeWeapon.weaponType == WeaponEnum.pistol)
+            SoundManager.instance.RandomizeSfx(activeWeapon.fireSound_01);
+            if (activeWeapon.isSpecial)
             {
-                activeWeapon.reload();
-                activeWeapon.readyToFire = false;
+                specialWeapon.fire(fireProps, buletManager);
+                bulletsLeft = activeWeapon.fire();
             }
             else
             {
-                WeaponBase toDel = activeWeapon;
-                SwitchWeapon();
-                inventory.Remove(toDel);
+                buletManager.fire(fireProps);
+                bulletsLeft = activeWeapon.fire();
             }
         }
+        if (bulletsLeft == 0) { 
+            RemoveFromInv();
+        }
 
+
+    }
+
+    private void RemoveFromInv()
+    {
+        if (activeWeapon.weaponType == WeaponEnum.pistol)
+        {
+            activeWeapon.reload();
+            activeWeapon.readyToFire = false;
+        }
+        else if (activeWeapon.isSpecial)
+        {
+            switch (activeWeapon.weaponType)
+            {
+                case WeaponEnum.specialCurie:
+                    activeWeapon.reload();
+                    break;
+                case WeaponEnum.specialEinstein:
+                    activeWeapon.reload();
+                    break;
+                case WeaponEnum.specialNobel:
+                    break;
+            }
+        }
+        else
+        {
+            WeaponBase toDel = activeWeapon;
+            SwitchWeapon();
+            inventory.Remove(toDel);
+        }
     }
 
     public void tranActiveWeapon()

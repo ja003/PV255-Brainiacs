@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class WeaponMine : WeaponBase
+public class WeaponNobelSpecial : WeaponBase
 {
-    public WeaponMine()
+    public WeaponNobelSpecial()
     {
+        isSpecial = true;
+
         base.damage = 50;
         base.weaponType = WeaponEnum.mine;
 

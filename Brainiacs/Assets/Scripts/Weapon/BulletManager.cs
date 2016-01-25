@@ -30,20 +30,6 @@ public class BulletManager : MonoBehaviour {
             Bullet bulletClass = obj.GetComponent<Bullet>();
             bulletClass.owner = owner;
         }
-
-        bullet = (GameObject)Resources.Load("Prefabs/SpecialProjectile");
-        for (int i = 0; i < 5; i++)
-        {
-            GameObject obj = (GameObject)Instantiate(bullet);
-            prefabSpecialBullets.Add(obj);
-            obj.transform.parent = gameObject.transform;
-            obj.SetActive(false);
-
-            Bullet bulletClass = obj.GetComponent<Bullet>();
-            bulletClass.owner = owner;
-        }
-        //Debug.Log(prefabBullets.Count);
-        //Debug.Log(prefabBullets[indexUsedBullet]);
     }
 
     public void fire(Vector2 direction, Vector2 position, RuntimeAnimatorController animController, float bulletSpeed, int damage, string weapon)
@@ -58,6 +44,16 @@ public class BulletManager : MonoBehaviour {
             );
 
         indexUsedBullet = (indexUsedBullet + 1) % maxBullets;
+    }
+
+    public Bullet fire(FireProps fp)
+    {
+        Bullet b = prefabBullets[indexUsedBullet].GetComponent<Bullet>().iniciate(
+           fp
+            );
+
+        indexUsedBullet = (indexUsedBullet + 1) % maxBullets;
+        return b;
     }
 
 }

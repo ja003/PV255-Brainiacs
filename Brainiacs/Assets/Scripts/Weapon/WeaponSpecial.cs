@@ -8,12 +8,14 @@ public class WeaponSpecial : MonoBehaviour
     private GameObject specialPrefab;
     private GameObject specialInstance;
     private PlayerBase playerBase;
+    private WeaponBase weaponBase;
 
-    public void SetUp(PlayerInfo pi, BulletManager bm, PlayerBase pb)
+    public void SetUp(PlayerInfo pi, BulletManager bm, PlayerBase pb, WeaponBase wb)
     {
         playerBase = pb;
         playerInfo = pi;
         bulletManager = bm;
+        weaponBase = wb;
         LoadSpecials();
     }
 
@@ -28,11 +30,13 @@ public class WeaponSpecial : MonoBehaviour
                 LoadGameObject("WeaponSpecial" + CharacterEnum.Curie.ToString());
                 break;
             case CharacterEnum.DaVinci:
-                LoadGameObject("WeaponSpecial" + CharacterEnum.Einstein.ToString());
-                Debug.Log("WeaponSpecial" + CharacterEnum.Einstein.ToString());
+                LoadGameObject("WeaponSpecial" + CharacterEnum.Nobel.ToString());
                 break;
             case CharacterEnum.Einstein:
                 LoadGameObject("WeaponSpecial" + CharacterEnum.Einstein.ToString());
+                break;
+            case CharacterEnum.Nobel:
+                LoadGameObject("WeaponSpecial" + CharacterEnum.Nobel.ToString());
                 break;
         }
     }
@@ -44,29 +48,27 @@ public class WeaponSpecial : MonoBehaviour
         Debug.Log(specialPrefab);
         specialInstance = (GameObject)Instantiate(specialPrefab);
         specialInstance.transform.parent = gameObject.transform.parent;
-        specialInstance.SetActive(false);
+       
 
         switch (playerInfo.charEnum)
         {
             case CharacterEnum.Tesla:
-                //specialInstance.SetActive(true);
-                //specialInstance.GetComponent<WeaponSpecialCurieLogic>().SetUpGraphics();
                 specialInstance.GetComponent<WeaponSpecialCurieLogic>().SetUpVariables(playerBase, bulletManager);
+                specialInstance.SetActive(false);
                 break;
             case CharacterEnum.Curie:
-               // specialInstance.SetActive(true);
-               // specialInstance.GetComponent<WeaponSpecialCurieLogic>().SetUpGraphics();
                 specialInstance.GetComponent<WeaponSpecialCurieLogic>().SetUpVariables(playerBase, bulletManager);
+                specialInstance.SetActive(false);
                 break;
             case CharacterEnum.DaVinci:
-                //specialInstance.SetActive(true);
-              //  specialInstance.GetComponent<WeaponSpecialCurieLogic>().SetUpGraphics();
-                specialInstance.GetComponent<WeaponSpecialEinsteinLogic>().SetUpVariables(playerBase, bulletManager);
+                specialInstance.GetComponent<WeaponSpecialNobelLogic>().SetUpVariables(playerBase, bulletManager, weaponBase);
                 break;
             case CharacterEnum.Einstein:
-                //specialInstance.SetActive(true);
-           //     specialInstance.GetComponent<WeaponSpecialCurieLogic>().SetUpGraphics();
                 specialInstance.GetComponent<WeaponSpecialEinsteinLogic>().SetUpVariables(playerBase, bulletManager);
+                specialInstance.SetActive(false);
+                break;
+            case CharacterEnum.Nobel:
+                specialInstance.GetComponent<WeaponSpecialNobelLogic>().SetUpVariables(playerBase, bulletManager, weaponBase);
                 break;
         }
     }
@@ -89,11 +91,15 @@ public class WeaponSpecial : MonoBehaviour
                 break;
             case CharacterEnum.DaVinci:
                 specialInstance.SetActive(true);
-                specialInstance.GetComponent<WeaponSpecialEinsteinLogic>().fire(fireProps);
+                specialInstance.GetComponent<WeaponSpecialNobelLogic>().fire(fireProps);
                 break;
             case CharacterEnum.Einstein:
                 specialInstance.SetActive(true);
                 specialInstance.GetComponent<WeaponSpecialCurieLogic>().fire(fireProps);
+                break;
+            case CharacterEnum.Nobel:
+                specialInstance.SetActive(true);
+                specialInstance.GetComponent<WeaponSpecialNobelLogic>().fire(fireProps);
                 break;
         }
     }

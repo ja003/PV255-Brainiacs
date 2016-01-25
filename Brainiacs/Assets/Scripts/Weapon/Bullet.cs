@@ -10,8 +10,11 @@ public class Bullet : MonoBehaviour {
     public bool isActive = false;
     public PlayerBase owner;
     public AudioClip hitSound;
+    private FireProps fp;
 
     public void iniciate(Vector2 dir, Vector2 pos, RuntimeAnimatorController animController, float bulletSpd, int dmg, string weapon) {
+
+
         damage = dmg;
         direction = new Vector2(dir.x, dir.y);
         bulletSpeed = bulletSpd;
@@ -31,6 +34,7 @@ public class Bullet : MonoBehaviour {
         //Debug.Log(animController);
         animator = GetComponent<Animator>();
         animator.runtimeAnimatorController = animController;
+        animator.SetBool("explode", false);
         //load hitSound
 
         string soundLoaderString = "Sounds/Weapon/";
@@ -42,7 +46,62 @@ public class Bullet : MonoBehaviour {
         gameObject.SetActive(true);
         isActive = true;
     }
-    
+
+
+    public Bullet iniciate(FireProps fp)
+    {
+        this.fp = fp;
+        damage = fp.damage;
+        direction = new Vector2(fp.direction.x, fp.direction.y);
+        bulletSpeed = fp.bulletSpeed;
+
+        if (fp.weapEnum != WeaponEnum.mine)
+        {
+            if (fp.direction == Vector2.up)
+            {
+                transform.position = fp.position + new Vector2(0.1f, 0.35f);
+                transform.rotation = Quaternion.Euler(0, 0, 90);
+            }
+            else if (fp.direction == Vector2.down)
+            {
+                transform.position = fp.position + new Vector2(-0.1f, -0.75f);
+                transform.rotation = Quaternion.Euler(0, 0, 90);
+            }
+            else
+            {
+                transform.position = fp.position + new Vector2(direction.normalized.x*0.5f, -0.17f);
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+
+            }
+        }
+        else
+        {
+            transform.position = fp.position;
+            Collider2D c2D = GetComponent<Collider2D>();
+            Vector2 ofset = c2D.offset;
+            ofset.y -= 0.42f;
+            c2D.offset = ofset;
+        }
+
+        //Debug.Log(animController);
+        animator = GetComponent<Animator>();
+        animator.runtimeAnimatorController = fp.animController;
+        //load hitSound
+
+        string soundLoaderString = "Sounds/Weapon/";
+        string hitSoundString = fp.weapon + "Hit";
+
+        if (Resources.Load(soundLoaderString + hitSoundString) != null)
+            hitSound = Resources.Load(soundLoaderString + hitSoundString) as AudioClip;
+
+        gameObject.SetActive(true);
+        isActive = true;
+
+        StartCoroutine(delayOnPlant());
+        return this;
+    }
+
+
     // Use this for initialization
     void Start () {
         
@@ -64,6 +123,7 @@ public class Bullet : MonoBehaviour {
             if (coll.gameObject.tag == "Player")
             {
                 //Debug.Log(coll.name);
+                animator.SetBool("explode", true);
                 coll.gameObject.GetComponent<PlayerBase>().ApplyDamage(damage, owner);
                 SoundManager.instance.RandomizeSfx(hitSound);
             }
@@ -72,8 +132,39 @@ public class Bullet : MonoBehaviour {
                 SoundManager.instance.RandomizeSfx(hitSound); //todo barrier hitSound..maybe
             }
             //Debug.Log(coll.name);
-            gameObject.SetActive(false);
-            isActive = false;
+
+           
+          StartCoroutine(playExplosion());
+            
+
+            
         }
     }
+
+    IEnumerator playExplosion()
+    {
+        if (fp.weapEnum == WeaponEnum.mine)
+        {
+            GetComponent<Collider2D>().enabled = false;
+            yield return new WaitForSeconds(0.5f);
+            GetComponent<Collider2D>().enabled = true;
+        }
+        animator.SetBool("explode", false);
+        gameObject.SetActive(false);
+        isActive = false;
+    }
+
+
+    IEnumerator delayOnPlant()
+    {
+        if (fp.weapEnum == WeaponEnum.mine)
+        {
+            GetComponent<Collider2D>().enabled = false;
+            yield return new WaitForSeconds(2f);
+            GetComponent<Collider2D>().enabled = true;
+        }
+
+    }
+
+
 }

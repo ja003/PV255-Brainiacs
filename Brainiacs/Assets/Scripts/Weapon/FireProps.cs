@@ -9,8 +9,9 @@ public class FireProps
     public float bulletSpeed { get; set; }
     public int damage { get; set; }
     public string weapon { get; set; }
+    public WeaponEnum weapEnum;
 
-    public FireProps(Vector2 direction, Vector2 position, RuntimeAnimatorController animController, float bulletSpeed, int damage, string weapon)
+    public FireProps(Vector2 direction, Vector2 position, RuntimeAnimatorController animController, float bulletSpeed, int damage, string weapon, WeaponEnum weapEnum)
     {
         this.direction = direction;
         this.position = position;
@@ -18,5 +19,6 @@ public class FireProps
         this.bulletSpeed = bulletSpeed;
         this.damage = damage;
         this.weapon = weapon;
+        this.weapEnum = weapEnum;
     }
 }

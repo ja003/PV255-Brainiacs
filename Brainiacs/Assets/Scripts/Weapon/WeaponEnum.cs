@@ -11,5 +11,6 @@
     specialTesla,
     specialEinstein,
     specialCurie,
-    specialDaVinci
+    specialDaVinci,
+    specialNobel
 }
