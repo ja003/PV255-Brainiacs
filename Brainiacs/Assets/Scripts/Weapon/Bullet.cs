@@ -151,6 +151,7 @@ public class Bullet : MonoBehaviour {
         }
         animator.SetBool("explode", false);
         gameObject.SetActive(false);
+        animator.runtimeAnimatorController = null;
         isActive = false;
     }
 

@@ -34,6 +34,7 @@ public class BulletManager : MonoBehaviour {
 
     public void fire(Vector2 direction, Vector2 position, RuntimeAnimatorController animController, float bulletSpeed, int damage, string weapon)
     {
+
         prefabBullets[indexUsedBullet].GetComponent<Bullet>().iniciate(
             direction, 
             position, 
@@ -48,6 +49,12 @@ public class BulletManager : MonoBehaviour {
 
     public Bullet fire(FireProps fp)
     {
+        if (prefabBullets[indexUsedBullet].activeInHierarchy)
+        {
+            indexUsedBullet = (indexUsedBullet + 1) % maxBullets;
+            return fire(fp);
+        }
+
         Bullet b = prefabBullets[indexUsedBullet].GetComponent<Bullet>().iniciate(
            fp
             );
