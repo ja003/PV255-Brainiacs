@@ -21,6 +21,8 @@ public class WeaponHandling : MonoBehaviour {
     public bool prevKeyUp;
     public bool switchedWeapon = false;
 
+    public bool shootingEnabled = true;
+
     public void FixedUpdate() {
 
         if (activeWeapon.ammo <= 0 && activeWeapon.weaponType == WeaponEnum.flamethrower)
@@ -49,6 +51,10 @@ public class WeaponHandling : MonoBehaviour {
                 }
                 else
                 {
+                    if (weap.weaponType == WeaponEnum.specialDaVinci)
+                    {
+                        Debug.Log("WeaponDaVinciSpecial reload");
+                    }
                     weap.time += Time.deltaTime;
                 }
             }
@@ -110,6 +116,7 @@ public class WeaponHandling : MonoBehaviour {
 
     public void fire(Vector2 direction)
     {
+        if (!shootingEnabled) return;
         if (!activeWeapon.readyToFire || !activeWeapon.kadReady) return;
         activeWeapon.kadReady = false;
 
@@ -139,7 +146,7 @@ public class WeaponHandling : MonoBehaviour {
             SoundManager.instance.RandomizeSfx(activeWeapon.fireSound_01);
             if (activeWeapon.isSpecial)
             {
-                specialWeapon.fire(fireProps, buletManager);
+                specialWeapon.fire(fireProps, buletManager, this);
                 bulletsLeft = activeWeapon.fire();
             }
             else
@@ -175,11 +182,15 @@ public class WeaponHandling : MonoBehaviour {
             {
                 case WeaponEnum.specialCurie:
                     activeWeapon.reload();
+                    activeWeapon.readyToFire = false;
                     break;
                 case WeaponEnum.specialEinstein:
                     activeWeapon.reload();
+                    activeWeapon.readyToFire = false;
                     break;
-                case WeaponEnum.specialNobel:
+                case WeaponEnum.specialDaVinci:
+                    activeWeapon.reload();
+                    activeWeapon.readyToFire = false;
                     break;
             }
         }else if (activeWeapon.weaponType == WeaponEnum.flamethrower)

@@ -169,14 +169,14 @@ public abstract class PlayerBase : MonoBehaviour
         WeaponBase MP40 = new WeaponMP40();
         WeaponBase mine = new WeaponMine();
         WeaponBase flame = new WeaponFlamethrower();
-        WeaponBase specialE = new WeaponNobelSpecial();
+        WeaponBase specialE = new WeaponDaVinciSpecial();
 
         weaponHandling.specialWeapon.SetUp(pi, transform.parent.GetComponent<BulletManager>(), this, specialE);
         Transform childFlame = transform.Find("Flame");
         weaponHandling.flamethrower = childFlame.GetComponent<WeaponFlamethrowerLogic>();
         // Tu sa vytvoria vsetky zbrane ktore sa priradia do weapon handling aby sa nemusel volat zbytocne load na sprajtoch
         //weaponHandling.weapons.Add(WeaponEnum.specialCurie, special);
-        weaponHandling.weapons.Add(WeaponEnum.specialEinstein, specialE);
+        weaponHandling.weapons.Add(WeaponEnum.specialDaVinci, specialE);
         weaponHandling.weapons.Add(WeaponEnum.sniper, sniper);
         weaponHandling.weapons.Add(WeaponEnum.pistol, pistol);
         weaponHandling.weapons.Add(WeaponEnum.biogun, biogun);
@@ -186,9 +186,9 @@ public abstract class PlayerBase : MonoBehaviour
 
 
         // Inicializacia prvej zbrane
-        weaponHandling.inventory.Add(flame);
         weaponHandling.inventory.Add(specialE);
-       // weaponHandling.inventory.Add(special);
+        weaponHandling.inventory.Add(flame);
+        // weaponHandling.inventory.Add(special);
         weaponHandling.inventory.Add(pistol);
         weaponHandling.inventory.Add(sniper);
         weaponHandling.inventory.Add(biogun);

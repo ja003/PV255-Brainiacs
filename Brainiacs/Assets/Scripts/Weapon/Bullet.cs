@@ -133,11 +133,26 @@ public class Bullet : MonoBehaviour {
             }
             //Debug.Log(coll.name);
 
-           
-          StartCoroutine(playExplosion());
-            
 
-            
+            StartCoroutine(playExplosion());
+
+        }
+
+        if (coll.gameObject.tag == "Tank")
+        {
+            if (fp.weapEnum == WeaponEnum.mine || fp.weapEnum == WeaponEnum.specialNobel)
+            {
+                animator.SetBool("explode", true);
+                coll.gameObject.GetComponent<WeaponSpecialDaVinciLogic>().HitTank(100);
+                coll.transform.parent.FindChild("Player1").GetComponent<PlayerBase>().ApplyDamage(100, owner);
+                SoundManager.instance.RandomizeSfx(hitSound);
+                StartCoroutine(playExplosion());
+            }
+            else
+            {
+                coll.gameObject.GetComponent<WeaponSpecialDaVinciLogic>().HitTank(damage);
+                StartCoroutine(playExplosion());
+            }
         }
     }
 

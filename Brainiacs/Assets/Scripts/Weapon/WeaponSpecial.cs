@@ -30,7 +30,7 @@ public class WeaponSpecial : MonoBehaviour
                 LoadGameObject("WeaponSpecial" + CharacterEnum.Curie.ToString());
                 break;
             case CharacterEnum.DaVinci:
-                LoadGameObject("WeaponSpecial" + CharacterEnum.Nobel.ToString());
+                LoadGameObject("WeaponSpecial" + CharacterEnum.DaVinci.ToString());
                 break;
             case CharacterEnum.Einstein:
                 LoadGameObject("WeaponSpecial" + CharacterEnum.Einstein.ToString());
@@ -61,7 +61,7 @@ public class WeaponSpecial : MonoBehaviour
                 specialInstance.SetActive(false);
                 break;
             case CharacterEnum.DaVinci:
-                specialInstance.GetComponent<WeaponSpecialNobelLogic>().SetUpVariables(playerBase, bulletManager, weaponBase);
+                specialInstance.GetComponent<WeaponSpecialDaVinciLogic>().SetUpVariables(playerBase, bulletManager, weaponBase);
                 break;
             case CharacterEnum.Einstein:
                 specialInstance.GetComponent<WeaponSpecialEinsteinLogic>().SetUpVariables(playerBase, bulletManager);
@@ -77,7 +77,7 @@ public class WeaponSpecial : MonoBehaviour
     {
     }
 
-    public void fire(FireProps fireProps, BulletManager bm)
+    public void fire(FireProps fireProps, BulletManager bm, WeaponHandling wh)
     {
         switch (playerInfo.charEnum)
         {
@@ -91,7 +91,7 @@ public class WeaponSpecial : MonoBehaviour
                 break;
             case CharacterEnum.DaVinci:
                 specialInstance.SetActive(true);
-                specialInstance.GetComponent<WeaponSpecialNobelLogic>().fire(fireProps);
+                specialInstance.GetComponent<WeaponSpecialDaVinciLogic>().fire(fireProps, wh);
                 break;
             case CharacterEnum.Einstein:
                 specialInstance.SetActive(true);
