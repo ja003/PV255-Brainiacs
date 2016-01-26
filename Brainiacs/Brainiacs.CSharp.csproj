@@ -124,6 +124,7 @@
     <Compile Include="Assets\Scripts\Weapon\WeaponEinsteinSpecial.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponEnum.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponFlamethrower.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponFlamethrowerLogic.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponHandling.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponMP40.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponMine.cs" />

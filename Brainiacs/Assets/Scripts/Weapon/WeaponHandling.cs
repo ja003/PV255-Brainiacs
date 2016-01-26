@@ -10,23 +10,24 @@ public class WeaponHandling : MonoBehaviour {
     public List<WeaponBase> inventory = new List<WeaponBase>();
     public Dictionary<WeaponEnum, WeaponBase> weapons = new Dictionary<WeaponEnum, WeaponBase>();
     public WeaponSpecial specialWeapon;
-
+    public WeaponFlamethrowerLogic flamethrower;
 
     public WeaponBase activeWeapon { get; set; }
     public float lastFired { get; set; }
     public SpriteRenderer weaponRenderer;
     public BulletManager buletManager;
 
+    public bool fireKeyUp = true;
+    public bool prevKeyUp;
     public bool switchedWeapon = false;
 
     public void FixedUpdate() {
 
-        /*
-        if(activeWeapon == null)
-            Debug.Log("activeWeapon");
-        if (activeWeapon.weaponSprites == null)
-            Debug.Log("weaponSprites");
-        */
+        if (activeWeapon.ammo <= 0 && activeWeapon.weaponType == WeaponEnum.flamethrower)
+        {
+            flamethrower.stopFire();
+            RemoveFromInv();
+        }
 
         try
         {
@@ -64,6 +65,16 @@ public class WeaponHandling : MonoBehaviour {
                 }
             }
         }
+        prevKeyUp = fireKeyUp;
+    }
+
+    public void fireKeyGotUp()
+    {
+        if (activeWeapon.weaponType == WeaponEnum.flamethrower)
+        {
+            flamethrower.stopFire();
+        }
+
     }
 
     public void SwitchWeapon()
@@ -133,7 +144,14 @@ public class WeaponHandling : MonoBehaviour {
             }
             else
             {
-                buletManager.fire(fireProps);
+                if (activeWeapon.weaponType == WeaponEnum.flamethrower)
+                {
+                    flamethrower.fire(fireProps, player, activeWeapon);
+                }
+                else
+                {
+                    buletManager.fire(fireProps);
+                }
                 bulletsLeft = activeWeapon.fire();
             }
         }
@@ -141,7 +159,7 @@ public class WeaponHandling : MonoBehaviour {
             RemoveFromInv();
         }
 
-
+    
     }
 
     private void RemoveFromInv()
@@ -164,6 +182,12 @@ public class WeaponHandling : MonoBehaviour {
                 case WeaponEnum.specialNobel:
                     break;
             }
+        }else if (activeWeapon.weaponType == WeaponEnum.flamethrower)
+        {
+            flamethrower.stopFire();
+            WeaponBase toDel = activeWeapon;
+            SwitchWeapon();
+            inventory.Remove(toDel);
         }
         else
         {

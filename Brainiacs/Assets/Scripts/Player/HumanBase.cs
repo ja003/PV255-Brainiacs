@@ -54,13 +54,18 @@ public class HumanBase : PlayerBase {
     {
         if (Input.GetKeyDown(keyFire)) {
             weaponHandling.fire(direction);
+            weaponHandling.fireKeyUp = false;
         }
         if (Input.GetKey(keyFire))
         {
-            if (weaponHandling.activeWeapon.weaponType == WeaponEnum.MP40)
+            if (weaponHandling.activeWeapon.weaponType == WeaponEnum.MP40 )
             {
                 weaponHandling.fire(direction);
             }
+        }
+        if (Input.GetKeyUp(keyFire))
+        {
+            weaponHandling.fireKeyGotUp();
         }
 
         if (Input.GetKeyDown(keySwitchWeapon))
