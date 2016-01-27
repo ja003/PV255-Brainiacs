@@ -18,6 +18,8 @@ public class AiKillingLogic {
     //public WeaponHandling weaponHandling;
     bool rdyToShoot;
     int frameToShoot;
+    bool safeFromMine = true;
+    Vector2 safeLocation = new Vector2(0, 0);
 
     GameObject targetObject;
 
@@ -54,7 +56,8 @@ public class AiKillingLogic {
 
 
         while (bestHorizontalDown.y > aiBase.mapMinY 
-            && !aiMovementLogic.CharacterCollidesBarrier(bestHorizontalDown) 
+            && !aiMovementLogic.CharacterCollidesBarrier(bestHorizontalDown)
+            && !aiMovementLogic.CharacterCollidesMine(bestHorizontalDown) 
             && bestHorizontalDown.y > aiBase.posY 
             || aiMovementLogic.CharacterCollidesNotproofBarrier(bestHorizontalDown))
         {
@@ -64,6 +67,7 @@ public class AiKillingLogic {
 
         while (bestHorizontalUp.y < aiBase.mapMaxY 
             && !aiMovementLogic.CharacterCollidesBarrier(bestHorizontalUp) 
+            && !aiMovementLogic.CharacterCollidesMine(bestHorizontalUp)
             && bestHorizontalUp.y < aiBase.posY
             || aiMovementLogic.CharacterCollidesNotproofBarrier(bestHorizontalUp))
         {
@@ -71,7 +75,8 @@ public class AiKillingLogic {
         }
         while (
             (bestVerticalLeft.x > aiBase.mapMinX 
-            && !aiMovementLogic.CharacterCollidesBarrier(bestVerticalLeft) 
+            && !aiMovementLogic.CharacterCollidesBarrier(bestVerticalLeft)
+            && !aiMovementLogic.CharacterCollidesMine(bestVerticalLeft)
             && bestVerticalLeft.x > aiBase.posX)
             || aiMovementLogic.CharacterCollidesNotproofBarrier(bestVerticalLeft))
         {
@@ -79,7 +84,8 @@ public class AiKillingLogic {
             //Debug.Log(bestVerticalLeft);
         }
         while (bestVerticalRight.x < aiBase.mapMaxX 
-            && !aiMovementLogic.CharacterCollidesBarrier(bestVerticalRight) 
+            && !aiMovementLogic.CharacterCollidesBarrier(bestVerticalRight)
+            && !aiMovementLogic.CharacterCollidesMine(bestVerticalRight)
             && bestVerticalRight.x < aiBase.posX
             || aiMovementLogic.CharacterCollidesNotproofBarrier(bestVerticalRight))
         {
@@ -106,7 +112,7 @@ public class AiKillingLogic {
         }
 
         //Debug.Log("move to: " + possibleShootSpots[spotIndex]);
-        Debug.DrawRay(possibleShootSpots[spotIndex], aiBase.up, Color.cyan);
+        Debug.DrawRay(possibleShootSpots[spotIndex], aiBase.up, Color.green);
         //MoveTo(possibleShootSpots[spotIndex]);
 
 
@@ -114,8 +120,12 @@ public class AiKillingLogic {
 
         //if (AlmostEqual(aiBase.posX, player.aiBase.posX, 0.1) || AlmostEqual(aiBase.posY, player.aiBase.posY, 0.1))
         
-
-        if (aiMovementLogic.MoveTo(possibleShootSpots[spotIndex]))
+        if (!safeFromMine)
+        {
+            safeFromMine = aiMovementLogic.MoveTo(safeLocation);
+            //Debug.Log(safeFromMine);
+        }
+        else if (aiMovementLogic.MoveTo(possibleShootSpots[spotIndex]))
         {
             //Debug.Log("i can shoot");
             //look at him (if you are not already looking at him)
@@ -167,7 +177,7 @@ public class AiKillingLogic {
                 //CheckAmmo();
                 if(rdyToShoot && Time.frameCount > frameToShoot)
                 {
-                    //Debug.Log(Time.frameCount);
+                    Debug.Log(Time.frameCount);
                     //if you fire last bullet, wait a second, then you can shoot again
                     if (aiBase.weaponHandling.activeWeapon.ammo == 1)
                     {
@@ -176,7 +186,18 @@ public class AiKillingLogic {
                     }
 
                     aiBase.weaponHandling.fire(aiBase.direction);
+                    //if you land mine, move 
+                    if(safeFromMine && aiBase.weaponHandling.activeWeapon.weaponType == WeaponEnum.mine)
+                    {
+                        Debug.Log("MINE run");
+                        frameToShoot = Time.frameCount + 30;
+                        safeFromMine = false;
+                        safeLocation.x = aiBase.posX;
+                        safeLocation.y = aiBase.posY+1;
+                    }
+                    
                 }
+                
             }
         }
 

@@ -23,7 +23,7 @@ public class AiBase : PlayerBase
     /// //////////////////////////////////// MASKS /////////////////////////////
     //detect only collision with barriers and borders (assigned manually to prefab)
     public LayerMask barrierMask;
-    public LayerMask bulletMask;
+    public LayerMask bulletMask; //assigned manualy, but..,  mask = 1 << 12;
     public LayerMask itemMask;
 
 
@@ -170,8 +170,7 @@ public class AiBase : PlayerBase
             }
 
             //Debug.Log("!");
-            //aiPriorityLogic.PrintPriorities();
-            //UpdateCurrentAction(); //has to be checked faster
+            aiPriorityLogic.PrintPriorities();
             aiActionLogic.UpdateCurrentAction();
 
 

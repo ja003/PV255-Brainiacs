@@ -30,6 +30,7 @@ public class WeaponHandling : MonoBehaviour {
             flamethrower.stopFire();
             RemoveFromInv();
         }
+        
 
         try
         {
@@ -38,10 +39,11 @@ public class WeaponHandling : MonoBehaviour {
         }
         catch (Exception)
         {
-            Debug.Log(player.direction);
+            //Debug.Log(player);
+            //Debug.Log(player.direction);
         }
 
-        weaponRenderer.sprite = activeWeapon.weaponSprites[player.directionMapping[player.direction]];
+        //weaponRenderer.sprite = activeWeapon.weaponSprites[player.directionMapping[player.direction]];
         
         foreach (var weap in inventory) {
             if (!weap.readyToFire) {
@@ -53,7 +55,7 @@ public class WeaponHandling : MonoBehaviour {
                 {
                     if (weap.weaponType == WeaponEnum.specialDaVinci)
                     {
-                        Debug.Log("WeaponDaVinciSpecial reload");
+                        //Debug.Log("WeaponDaVinciSpecial reload");
                     }
                     weap.time += Time.deltaTime;
                 }

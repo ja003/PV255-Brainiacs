@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class AiMovementLogic {
 
@@ -173,13 +174,13 @@ public class AiMovementLogic {
                 PathNode nodeRight = new PathNode(new Vector2(currentNode.node.x + step, currentNode.node.y), i);
                 PathNode nodeDown = new PathNode(new Vector2(currentNode.node.x, currentNode.node.y - step), i);
                 //add to list if there is no collision and they are not already in list
-                if (!CharacterCollidesBarrier(nodeLeft.node) && !visitedNodes.Contains(nodeLeft))
+                if (!CharacterCollidesBarrier(nodeLeft.node) && !visitedNodes.Contains(nodeLeft) &&!CharacterCollidesMine(nodeLeft.node))
                 { visitedNodes.Add(nodeLeft); }
-                if (!CharacterCollidesBarrier(nodeUp.node) && !visitedNodes.Contains(nodeUp))
+                if (!CharacterCollidesBarrier(nodeUp.node) && !visitedNodes.Contains(nodeUp) && !CharacterCollidesMine(nodeUp.node))
                 { visitedNodes.Add(nodeUp); }
-                if (!CharacterCollidesBarrier(nodeRight.node) && !visitedNodes.Contains(nodeRight))
+                if (!CharacterCollidesBarrier(nodeRight.node) && !visitedNodes.Contains(nodeRight) && !CharacterCollidesMine(nodeRight.node))
                 { visitedNodes.Add(nodeRight); }
-                if (!CharacterCollidesBarrier(nodeDown.node) && !visitedNodes.Contains(nodeDown))
+                if (!CharacterCollidesBarrier(nodeDown.node) && !visitedNodes.Contains(nodeDown) && !CharacterCollidesMine(nodeDown.node))
                 { visitedNodes.Add(nodeDown); }
 
 
@@ -223,6 +224,12 @@ public class AiMovementLogic {
             //Debug.Log("you there");
 
             return true;
+        }
+        else if (CharacterCollidesMine(new Vector2(x, y)))
+        {
+            Stop();
+            //Debug.Log("there is my mine, better stop");
+            return false;
         }
 
         //refresh path only when target moves
@@ -397,18 +404,45 @@ public class AiMovementLogic {
 
     public bool CharacterCollidesMine(Vector2 center)
     {
-        //Debug.Log("colCheck");
+        //Debug.Log("mine Check");
+
         float width = characterColliderWidth / 2;
         float height = characterColliderHeight / 2;
         Vector2 colliderOffset = aiBase.GetComponent<Collider2D>().offset / 2;
-        float offset = 0.1f;
+        float offset = 0.2f;
+
+        
 
         Vector2 botLeft = new Vector2(center.x - width - offset, center.y - height - offset);
         Vector2 botRight = new Vector2(center.x + width + offset, center.y - height - offset);
         Vector2 topLeft = new Vector2(center.x - width - offset, center.y + height + offset);
         Vector2 topRight = new Vector2(center.x + width + offset, center.y + height + offset);
 
+        //Debug.Log(topLeft + "," + botRight);
 
+        Collider2D[] bulletsColliders = Physics2D.OverlapAreaAll(topLeft, botRight, aiBase.bulletMask);
+        foreach(Collider2D c in bulletsColliders)
+        {
+            //Debug.Log("-" + c.GetComponentInParent<Bullet>().name);
+            try
+            {
+                Bullet b = c.GetComponentInParent<Bullet>();
+                if(b.owner.playerNumber == aiBase.playerNumber)
+                {
+                    //Debug.Log("my mine - avoid");
+                    return true;
+                }
+                else
+                {
+                    //Debug.Log("someone elses mine - proceed");
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.Log("bullet has no BULLET script");
+            }
+        }
+        return false;
 
         RaycastHit2D hitBotLeft;
         Ray rayBotLeft = new Ray(botLeft, aiBase.direction);

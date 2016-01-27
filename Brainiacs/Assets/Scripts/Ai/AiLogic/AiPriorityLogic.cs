@@ -27,7 +27,6 @@ public class AiPriorityLogic
     public AiMovementLogic aiMovementLogic;
     public AiAvoidBulletLogic aiAvoidBulletLogic;
     public AiActionLogic aiActionLogic;
-    //public AiPriorityLogic aiPriorityLogic;
     public AiMapLogic aiMapLogic;
 
     public AiPriorityLogic(AiBase aiBase)
@@ -79,7 +78,7 @@ public class AiPriorityLogic
             SetDeathPriority(666);
 
         //debuggig - just stand
-        standPriority = 666;
+        //standPriority = 666;
 
         //check bullets
         //CheckAmmo(); //has to be updated faster
@@ -157,6 +156,7 @@ public class AiPriorityLogic
 
     }
 
+    //pickup weapons
     public void SetWeaponsPriority()
     {
         List<int> weaponsPriorities = new List<int>();
@@ -225,8 +225,8 @@ public class AiPriorityLogic
 
 
     }
-
-
+    
+    //pickup powerups
     public void SetPowerUpsPriority()
     {
         List<int> powerUpsPriorities = new List<int>();

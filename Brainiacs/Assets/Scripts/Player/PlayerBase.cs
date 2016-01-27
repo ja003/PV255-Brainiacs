@@ -174,8 +174,11 @@ public abstract class PlayerBase : MonoBehaviour
         weaponHandling.specialWeapon.SetUp(pi, transform.parent.GetComponent<BulletManager>(), this, specialE);
         Transform childFlame = transform.Find("Flame");
         weaponHandling.flamethrower = childFlame.GetComponent<WeaponFlamethrowerLogic>();
+
+        //WeaponBase specialCurie = new WeaponSpecialCurieLogic();
         // Tu sa vytvoria vsetky zbrane ktore sa priradia do weapon handling aby sa nemusel volat zbytocne load na sprajtoch
         //weaponHandling.weapons.Add(WeaponEnum.specialCurie, special);
+        
         weaponHandling.weapons.Add(WeaponEnum.specialDaVinci, specialE);
         weaponHandling.weapons.Add(WeaponEnum.sniper, sniper);
         weaponHandling.weapons.Add(WeaponEnum.pistol, pistol);
