@@ -18,6 +18,7 @@ public class WeaponSpecialCurieLogic : MonoBehaviour
     private Animator animator;
 
     private FireProps fireProps;
+    private FireProps fireProps2;
     private bool update = false;
 
     private float traveledDistance = 0;
@@ -59,6 +60,8 @@ public class WeaponSpecialCurieLogic : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        fireProps2.position = transform.position;
         if (update)
         {
             transform.position = new Vector2(transform.position.x + (fireProps.direction.x/10),
@@ -72,17 +75,17 @@ public class WeaponSpecialCurieLogic : MonoBehaviour
 
                 if (fireProps.direction == Vector2.left || fireProps.direction == Vector2.right)
                 {
-                    bulletManager.fire(Vector2.up, transform.position, fireProps.animController, fireProps.bulletSpeed,
-                        fireProps.damage, "sniper");
-                    bulletManager.fire(Vector2.down, transform.position, fireProps.animController, fireProps.bulletSpeed,
-                        fireProps.damage, "sniper");
+                   fireProps2.direction = Vector2.up;
+                    bulletManager.fire(fireProps2);
+                    fireProps2.direction = Vector2.down;
+                    bulletManager.fire(fireProps2);
                 }
                 else
                 {
-                    bulletManager.fire(Vector2.left, transform.position, fireProps.animController, fireProps.bulletSpeed,
-                       fireProps.damage, "sniper");
-                    bulletManager.fire(Vector2.right, transform.position, fireProps.animController, fireProps.bulletSpeed,
-                        fireProps.damage, "sniper");
+                    fireProps2.direction = Vector2.left;
+                    bulletManager.fire(fireProps2);
+                    fireProps2.direction = Vector2.right;
+                    bulletManager.fire(fireProps2);
                 }
                 clicksShooted++;
             }
@@ -95,6 +98,7 @@ public class WeaponSpecialCurieLogic : MonoBehaviour
         nullAllAnimBools();
 
         fireProps = fp;
+        fireProps2 = new FireProps(fp);
         moveInShootingDirection();
         update = true;
         //renderer.sprite = spriteMapping[fp.direction];

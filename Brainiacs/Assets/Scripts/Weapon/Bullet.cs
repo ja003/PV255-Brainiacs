@@ -34,6 +34,7 @@ public class Bullet : MonoBehaviour {
         //Debug.Log(animController);
         animator = GetComponent<Animator>();
         animator.runtimeAnimatorController = animController;
+
         animator.SetBool("explode", false);
         //load hitSound
 
@@ -55,7 +56,7 @@ public class Bullet : MonoBehaviour {
         direction = new Vector2(fp.direction.x, fp.direction.y);
         bulletSpeed = fp.bulletSpeed;
 
-        if (fp.weapEnum != WeaponEnum.mine)
+        if (fp.weapEnum != WeaponEnum.mine && fp.weapEnum != WeaponEnum.specialNobel)
         {
             if (fp.direction == Vector2.up)
             {
@@ -122,8 +123,10 @@ public class Bullet : MonoBehaviour {
         {
             if (coll.gameObject.tag == "Player")
             {
+
+                if (fp.weapEnum == WeaponEnum.mine) animator.SetBool("explode", true);
+
                 //Debug.Log(coll.name);
-                animator.SetBool("explode", true);
                 coll.gameObject.GetComponent<PlayerBase>().ApplyDamage(damage, owner);
                 SoundManager.instance.RandomizeSfx(hitSound);
             }
@@ -142,7 +145,7 @@ public class Bullet : MonoBehaviour {
         {
             if (fp.weapEnum == WeaponEnum.mine || fp.weapEnum == WeaponEnum.specialNobel)
             {
-                animator.SetBool("explode", true);
+                if (fp.weapEnum == WeaponEnum.mine) animator.SetBool("explode", true);
                 coll.gameObject.GetComponent<WeaponSpecialDaVinciLogic>().HitTank(100);
                 coll.transform.parent.FindChild("Player1").GetComponent<PlayerBase>().ApplyDamage(100, owner);
                 SoundManager.instance.RandomizeSfx(hitSound);
@@ -164,7 +167,7 @@ public class Bullet : MonoBehaviour {
             yield return new WaitForSeconds(0.5f);
             GetComponent<Collider2D>().enabled = true;
         }
-        animator.SetBool("explode", false);
+        if (fp.weapEnum == WeaponEnum.mine) animator.SetBool("explode", false);
         gameObject.SetActive(false);
         animator.runtimeAnimatorController = null;
         isActive = false;

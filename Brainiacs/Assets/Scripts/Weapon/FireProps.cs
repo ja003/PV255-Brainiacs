@@ -21,4 +21,15 @@ public class FireProps
         this.weapon = weapon;
         this.weapEnum = weapEnum;
     }
+
+    public FireProps(FireProps fp)
+    {
+        this.direction = fp.direction;
+        this.position = fp.position;
+        this.animController = fp.animController;
+        this.bulletSpeed = fp.bulletSpeed;
+        this.damage = fp.damage;
+        this.weapon = fp.weapon;
+        this.weapEnum = fp.weapEnum;
+    }
 }

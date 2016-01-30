@@ -169,17 +169,43 @@ public abstract class PlayerBase : MonoBehaviour
         WeaponBase MP40 = new WeaponMP40();
         WeaponBase mine = new WeaponMine();
         WeaponBase flame = new WeaponFlamethrower();
-        WeaponBase specialE = new WeaponDaVinciSpecial();
-
-        weaponHandling.specialWeapon.SetUp(pi, transform.parent.GetComponent<BulletManager>(), this, specialE);
-        Transform childFlame = transform.Find("Flame");
+       Transform childFlame = transform.Find("Flame");
         weaponHandling.flamethrower = childFlame.GetComponent<WeaponFlamethrowerLogic>();
 
         //WeaponBase specialCurie = new WeaponSpecialCurieLogic();
         // Tu sa vytvoria vsetky zbrane ktore sa priradia do weapon handling aby sa nemusel volat zbytocne load na sprajtoch
         //weaponHandling.weapons.Add(WeaponEnum.specialCurie, special);
+        WeaponBase special = null;
+
+        switch (pi.charEnum)
+        {
+            case CharacterEnum.Tesla:
+                special = new WeaponCurieSpecial();
+                weaponHandling.specialWeapon.SetUp(pi, transform.parent.GetComponent<BulletManager>(), this, special);
+                weaponHandling.weapons.Add(WeaponEnum.specialCurie, special);
+                break;
+            case CharacterEnum.Curie:
+                special = new WeaponCurieSpecial();
+                weaponHandling.specialWeapon.SetUp(pi, transform.parent.GetComponent<BulletManager>(), this, special);
+                weaponHandling.weapons.Add(WeaponEnum.specialCurie, special);
+                break;
+            case CharacterEnum.DaVinci:
+                special = new WeaponDaVinciSpecial();
+                weaponHandling.specialWeapon.SetUp(pi, transform.parent.GetComponent<BulletManager>(), this, special);
+                weaponHandling.weapons.Add(WeaponEnum.specialDaVinci, special);
+                break;
+            case CharacterEnum.Einstein:
+                special = new WeaponEinsteinSpecial();
+                weaponHandling.specialWeapon.SetUp(pi, transform.parent.GetComponent<BulletManager>(), this, special);
+                weaponHandling.weapons.Add(WeaponEnum.specialEinstein, special);
+                break;
+            case CharacterEnum.Nobel:
+                special = new WeaponNobelSpecial();
+                weaponHandling.specialWeapon.SetUp(pi, transform.parent.GetComponent<BulletManager>(), this, special);
+                weaponHandling.weapons.Add(WeaponEnum.specialNobel, special);
+                break;
+        }
         
-        weaponHandling.weapons.Add(WeaponEnum.specialDaVinci, specialE);
         weaponHandling.weapons.Add(WeaponEnum.sniper, sniper);
         weaponHandling.weapons.Add(WeaponEnum.pistol, pistol);
         weaponHandling.weapons.Add(WeaponEnum.biogun, biogun);
@@ -189,7 +215,7 @@ public abstract class PlayerBase : MonoBehaviour
 
 
         // Inicializacia prvej zbrane
-        weaponHandling.inventory.Add(specialE);
+        weaponHandling.inventory.Add(special);
         weaponHandling.inventory.Add(flame);
         // weaponHandling.inventory.Add(special);
         weaponHandling.inventory.Add(pistol);

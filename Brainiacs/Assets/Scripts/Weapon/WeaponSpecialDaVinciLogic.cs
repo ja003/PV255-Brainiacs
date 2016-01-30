@@ -21,6 +21,11 @@ public class WeaponSpecialDaVinciLogic : MonoBehaviour
     private int hp = 100;
     private int exClicks;
 
+    void Start()
+    {
+        GetComponent<Collider2D>().enabled = false;
+    }
+    
     public void SetUpVariables(PlayerBase pb, BulletManager bm, WeaponBase wb)
     {
         transform.localScale = new Vector3(1.1f, 1.1f, 0);

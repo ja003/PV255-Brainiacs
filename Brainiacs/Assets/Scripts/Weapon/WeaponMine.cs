@@ -8,8 +8,8 @@ public class WeaponMine : WeaponBase
         base.damage = 50;
         base.weaponType = WeaponEnum.mine;
 
-        base.ammo = 5;
-        base.maxAmmo = 5;
+        base.ammo = 1;
+        base.maxAmmo = 1;
 
         base.reloadTime = 2f;
         base.readyToFire = true;
