@@ -189,14 +189,14 @@ public abstract class PlayerBase : MonoBehaviour
 
 
         // Inicializacia prvej zbrane
-        weaponHandling.inventory.Add(specialE);
-        weaponHandling.inventory.Add(flame);
+        //weaponHandling.inventory.Add(specialE);
+        //weaponHandling.inventory.Add(flame);
         // weaponHandling.inventory.Add(special);
         weaponHandling.inventory.Add(pistol);
-        weaponHandling.inventory.Add(sniper);
-        weaponHandling.inventory.Add(biogun);
-        weaponHandling.inventory.Add(MP40);
-        weaponHandling.inventory.Add(mine);
+        //weaponHandling.inventory.Add(sniper);
+        //weaponHandling.inventory.Add(biogun);
+        //weaponHandling.inventory.Add(MP40);
+        //weaponHandling.inventory.Add(mine);
 
         weaponHandling.activeWeapon = weaponHandling.inventory[0];
         

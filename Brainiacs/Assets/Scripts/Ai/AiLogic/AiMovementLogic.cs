@@ -216,6 +216,7 @@ public class AiMovementLogic {
     /// <param name="y"></param>
     public bool MoveTo(float x, float y)
     {
+        Debug.DrawRay(new Vector2(x, y), aiBase.up, Color.yellow);
         //Debug.Log("destination:" + x + "," + y);
         //Debug.Log(GetMyPosition());
         if (ValueEquals(aiBase.posX, x) && ValueEquals(aiBase.posY, y))
@@ -442,33 +443,6 @@ public class AiMovementLogic {
                 Debug.Log("bullet has no BULLET script");
             }
         }
-        return false;
-
-        RaycastHit2D hitBotLeft;
-        Ray rayBotLeft = new Ray(botLeft, aiBase.direction);
-        RaycastHit2D hitBotRight;
-        Ray rayBotRight = new Ray(botRight, aiBase.direction);
-        RaycastHit2D hitTopLeft;
-        Ray rayTopLeft = new Ray(topLeft, aiBase.direction);
-        RaycastHit2D hitTopRight;
-        Ray rayTopRight = new Ray(topRight, aiBase.direction);
-        
-        hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, aiBase.direction, 0.1f, barrierMask);
-        hitBotRight = Physics2D.Raycast(rayBotRight.origin, aiBase.direction, 0.1f, barrierMask);
-        hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, aiBase.direction, 0.1f, barrierMask);
-        hitTopRight = Physics2D.Raycast(rayTopRight.origin, aiBase.direction, 0.1f, barrierMask);
-
-        RaycastHit2D hitLeft;
-        hitLeft = Physics2D.Raycast(center, left, width, aiBase.bulletMask);
-
-
-
-        if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
-        {
-            return true;
-        }
-
-
         return false;
     }
 

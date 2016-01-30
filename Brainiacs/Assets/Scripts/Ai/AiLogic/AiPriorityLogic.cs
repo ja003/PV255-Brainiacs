@@ -41,10 +41,10 @@ public class AiPriorityLogic
         message += "pickWeaponPriority=" + pickWeaponPriority + ",\n";
         message += "pickPowerUpPriority=" + pickPowerUpPriority + ",\n";
 
-        message += "KillPlayer1=" + killPlayer1Priority;
-        message += ",KillPlayer2=" + killPlayer2Priority;
-        message += ",KillPlayer3=" + killPlayer3Priority;
-        message += ",KillPlayer4=" + killPlayer4Priority;
+        message += "Kill-1=" + killPlayer1Priority;
+        message += ",Kill-2=" + killPlayer2Priority;
+        message += ",Kill-3=" + killPlayer3Priority;
+        message += ",Kill-4=" + killPlayer4Priority;
         message += ",avoidBulletPriority=" + avoidBulletPriority;
 
         Debug.Log(message);
