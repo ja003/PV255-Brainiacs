@@ -15,10 +15,10 @@ public class WeaponSpecialTeslaLogic : MonoBehaviour {
     private WeaponBase wb;
     private WeaponHandling wh;
 
-    private float oldSpeed;
+    private Ai special;
+    private GameObject goSpecial;
 
-    private int hp = 100;
-    private int exClicks;
+    private int clicksExist;
 
     public void SetUpVariables(PlayerBase pb, BulletManager bm, WeaponBase wb)
     {
@@ -33,23 +33,42 @@ public class WeaponSpecialTeslaLogic : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void FixedUpdate () {
+
+	    if (update)
+	    {
+	        if (special.hitPoints <= 0)
+	        {
+	            update = false;
+	            Destroy(goSpecial);
+	        }
+	        if (clicksExist <= 0)
+	        {
+	            update = false;
+	            Destroy(goSpecial);
+	        }
+	        clicksExist--;
+	    }
 	}
 
     public void fire()
     {
+        update = true;
+        clicksExist = wb.ammo;
+
         GameObject aiPrefab = (GameObject)Resources.Load("Prefabs/AiManagement");
-        GameObject player1 = Instantiate(aiPrefab);
-        Ai special = player1.transform.GetChild(0).GetComponent<Ai>();
+        goSpecial = Instantiate(aiPrefab);
+        special = goSpecial.transform.GetChild(0).GetComponent<Ai>();
         PlayerInfo specialInfo = new PlayerInfo();
 
 
         specialInfo.playerNumber = playerBase.playInfo.playerNumber;
         specialInfo.charEnum = playerBase.playInfo.charEnum;
-        specialInfo.playerColor = "red";
+        specialInfo.playerColor = playerBase.playInfo.playerColor;
         specialInfo.lifes = playerBase.playInfo.lifes;
 
         special.SetUpPlayer(specialInfo);
+
+        special.weaponHandling.inventory.Remove(special.weaponHandling.weapons[WeaponEnum.specialTesla]);
     }
 }

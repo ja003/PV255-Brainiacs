@@ -94,7 +94,7 @@ public class WeaponSpecialEinsteinLogic : MonoBehaviour {
         impactPosition =
             GameObject.Find("PositionGenerator")
                 .transform.GetComponent<PositionGenerator>()
-                .GenerateRandomPosition(0.5f, 0.5f);
+                .GenerateRandomPosition(1.5f, 1.5f);
         transform.position = impactPosition + new Vector2(1, 7);
         prevPosition = new Vector2(transform.position.x, transform.position.y);
     }

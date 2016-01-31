@@ -190,12 +190,12 @@ public abstract class PlayerBase : MonoBehaviour
                 weaponHandling.weapons.Add(WeaponEnum.specialCurie, special);
                 break;
             case CharacterEnum.DaVinci:
-                //special = new WeaponDaVinciSpecial();
-                special = new WeaponTeslaSpecial();
-                //weaponHandling.specialWeapon.SetUp(pi, transform.parent.GetComponent<BulletManager>(), this, special);
-                //weaponHandling.weapons.Add(WeaponEnum.specialDaVinci, special);
+                special = new WeaponDaVinciSpecial();
+                //special = new WeaponTeslaSpecial();
                 weaponHandling.specialWeapon.SetUp(pi, transform.parent.GetComponent<BulletManager>(), this, special);
-                weaponHandling.weapons.Add(WeaponEnum.specialTesla, special);
+                weaponHandling.weapons.Add(WeaponEnum.specialDaVinci, special);
+                //weaponHandling.specialWeapon.SetUp(pi, transform.parent.GetComponent<BulletManager>(), this, special);
+                //weaponHandling.weapons.Add(WeaponEnum.specialTesla, special);
                 break;
             case CharacterEnum.Einstein:
                 special = new WeaponEinsteinSpecial();
@@ -219,8 +219,8 @@ public abstract class PlayerBase : MonoBehaviour
 
         // Inicializacia prvej zbrane
         //weaponHandling.inventory.Add(flame);
-         weaponHandling.inventory.Add(special);
-        //weaponHandling.inventory.Add(pistol);
+        weaponHandling.inventory.Add(pistol);
+        weaponHandling.inventory.Add(special);
         //weaponHandling.inventory.Add(sniper);
         //weaponHandling.inventory.Add(biogun);
         //weaponHandling.inventory.Add(MP40);

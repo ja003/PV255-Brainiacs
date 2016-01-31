@@ -11,8 +11,8 @@ public class WeaponTeslaSpecial : WeaponBase
 
         base.damage = 100;
 
-        base.ammo = 300;
-        base.maxAmmo = 300;
+        base.ammo = 500;
+        base.maxAmmo = 500;
 
         base.reloadTime = 3f;
         base.readyToFire = true;
