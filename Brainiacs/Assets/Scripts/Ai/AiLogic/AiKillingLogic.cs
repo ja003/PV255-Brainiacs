@@ -47,7 +47,7 @@ public class AiKillingLogic {
             direction.Normalize();
             //Debug.Log(direction);
             float offset = 0.1f;
-            Vector2 pointCenter = new Vector2(aiPos.x+0.1f, aiPos.y-0.3f);
+            Vector2 pointCenter = new Vector2(aiPos.x, aiPos.y);
             Vector2 pointUp = new Vector2(pointCenter.x, pointCenter.y + offset);
             Vector2 pointRight = new Vector2(pointCenter.x + offset, pointCenter.y);
             Vector2 pointDown = new Vector2(pointCenter.x, pointCenter.y - offset);
@@ -76,14 +76,17 @@ public class AiKillingLogic {
                 return true;
             else
             {
-                Debug.Log(aiBase.playerNumber + " not enough");
+                //Debug.Log(aiBase.playerNumber + " not enough");
                 return false;
             }
         }
         else
         {
             return false;
-            Debug.Log("Not same axis");
+            //Debug.Log("Not same axis");
+            //Debug.Log("enemy = " + target + ", me = " + aiPos);
+            return false;
+            
         }
     }
 
@@ -172,7 +175,7 @@ public class AiKillingLogic {
 
     public void KillPlayer(PlayerBase player)
     {
-        Vector2 targetPlayerPosition = player.transform.position;
+        Vector2 targetPlayerPosition = new Vector2(player.posX, player.posY) ;
         targetObject = player.gameObject;
         //targetPlayerPosition = targetObject.GetComponent<BoxCollider2D>().offset;
         //Debug.Log(targetPlayerPosition);
@@ -244,19 +247,20 @@ public class AiKillingLogic {
                         //Debug.Log("you can shoot again at " + frameToShoot);
                     }
 
+                    WeaponEnum lastActiveWeapon = aiBase.weaponHandling.activeWeapon.weaponType;
                     aiBase.weaponHandling.fire(aiBase.direction);
                     //if you land mine, move 
-                    if(safeFromMine && aiBase.weaponHandling.activeWeapon.weaponType == WeaponEnum.mine)
+                    if (safeFromMine && lastActiveWeapon == WeaponEnum.mine)
                     {
                         Debug.Log("MINE run");
                         frameToShoot = Time.frameCount + 30;
                         safeFromMine = false;
-                        List<Vector2> availableSpots = 
-                            aiMovementLogic.GetAvailableSpotsAround(new Vector2(aiBase.posX, aiBase.posY), 1f);
-                        
+                        List<Vector2> availableSpots =
+                            aiMovementLogic.GetAvailableSpotsAround(new Vector2(aiBase.posX, aiBase.posY), 2f);
+
                         int randomIndex = Random.Range(0, availableSpots.Count);
                         safeLocation = availableSpots[randomIndex];
-                    }                    
+                    }
                 }                
             }
         }

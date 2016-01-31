@@ -229,16 +229,17 @@ public class AiMovementLogic {
         else if (CharacterCollidesMine(new Vector2(x, y)))
         {
             Stop();
-            //Debug.Log("there is my mine, better stop");
-            return false;
+            Debug.Log("there is my mine, better stop");
         }
 
-        //refresh path only when target moves
-        if (!ValueEquals(currentTargetDestination.x, x, aiBase.characterWidth) || !ValueEquals(currentTargetDestination.y, y, characterColliderHeight))
+        //refresh path only when target moves or there is mine collision
+        if (!ValueEquals(currentTargetDestination.x, x, aiBase.characterWidth) ||
+            !ValueEquals(currentTargetDestination.y, y, characterColliderHeight) ||
+            CharacterCollidesMine(new Vector2(x, y)))
         {
             //Debug.Log("oldTarget:" + currentTargetDestination);
             //Debug.Log("newTarget:" + x + "," +y);
-            //Debug.Log("recalculating");
+            Debug.Log("recalculating");
             walkingFront = GetPathTo(new Vector2(x, y));
             currentTargetDestination = new Vector2(x, y);
         }
@@ -429,16 +430,10 @@ public class AiMovementLogic {
         float width = characterColliderWidth / 2;
         float height = characterColliderHeight / 2;
         Vector2 colliderOffset = aiBase.GetComponent<Collider2D>().offset / 2;
-        float offset = 0.2f;
-
+        float offset = 0.1f;
         
-
-        Vector2 botLeft = new Vector2(center.x - width - offset, center.y - height - offset);
         Vector2 botRight = new Vector2(center.x + width + offset, center.y - height - offset);
         Vector2 topLeft = new Vector2(center.x - width - offset, center.y + height + offset);
-        Vector2 topRight = new Vector2(center.x + width + offset, center.y + height + offset);
-
-        //Debug.Log(topLeft + "," + botRight);
 
         Collider2D[] bulletsColliders = Physics2D.OverlapAreaAll(topLeft, botRight, aiBase.bulletMask);
         foreach(Collider2D c in bulletsColliders)

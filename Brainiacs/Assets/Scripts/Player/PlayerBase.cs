@@ -389,7 +389,7 @@ public abstract class PlayerBase : MonoBehaviour
     public void UpdatePosition()
     {
         posX = gameObject.transform.position.x;
-        posY = gameObject.transform.position.y;
+        posY = gameObject.transform.position.y - 0.15f;
     }
 
     public void UpdateGameInfoDeaths(int playerNumber, int value)
