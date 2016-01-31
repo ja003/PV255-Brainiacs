@@ -24,13 +24,14 @@ public class WeaponSpecial : MonoBehaviour
         switch (playerInfo.charEnum)
         {
             case CharacterEnum.Tesla:
-                LoadGameObject("WeaponSpecial" + CharacterEnum.Curie.ToString());
+                LoadGameObject("WeaponSpecial" + CharacterEnum.Tesla.ToString());
                 break;
             case CharacterEnum.Curie:
                 LoadGameObject("WeaponSpecial" + CharacterEnum.Curie.ToString());
                 break;
             case CharacterEnum.DaVinci:
-                LoadGameObject("WeaponSpecial" + CharacterEnum.DaVinci.ToString());
+                //LoadGameObject("WeaponSpecial" + CharacterEnum.DaVinci.ToString());
+                LoadGameObject("WeaponSpecial" + CharacterEnum.Tesla.ToString());
                 break;
             case CharacterEnum.Einstein:
                 LoadGameObject("WeaponSpecial" + CharacterEnum.Einstein.ToString());
@@ -53,7 +54,7 @@ public class WeaponSpecial : MonoBehaviour
         switch (playerInfo.charEnum)
         {
             case CharacterEnum.Tesla:
-                specialInstance.GetComponent<WeaponSpecialCurieLogic>().SetUpVariables(playerBase, bulletManager);
+                specialInstance.GetComponent<WeaponSpecialTeslaLogic>().SetUpVariables(playerBase, bulletManager, weaponBase);
                 specialInstance.SetActive(false);
                 break;
             case CharacterEnum.Curie:
@@ -61,7 +62,8 @@ public class WeaponSpecial : MonoBehaviour
                 specialInstance.SetActive(false);
                 break;
             case CharacterEnum.DaVinci:
-                specialInstance.GetComponent<WeaponSpecialDaVinciLogic>().SetUpVariables(playerBase, bulletManager, weaponBase);
+                //specialInstance.GetComponent<WeaponSpecialDaVinciLogic>().SetUpVariables(playerBase, bulletManager, weaponBase);
+                specialInstance.GetComponent<WeaponSpecialTeslaLogic>().SetUpVariables(playerBase, bulletManager, weaponBase);
                 break;
             case CharacterEnum.Einstein:
                 specialInstance.GetComponent<WeaponSpecialEinsteinLogic>().SetUpVariables(playerBase, bulletManager);
@@ -83,7 +85,7 @@ public class WeaponSpecial : MonoBehaviour
         {
             case CharacterEnum.Tesla:
                 specialInstance.SetActive(true);
-                specialInstance.GetComponent<WeaponSpecialCurieLogic>().fire(fireProps);
+                specialInstance.GetComponent<WeaponSpecialTeslaLogic>().fire();
                 break;
             case CharacterEnum.Curie:
                 specialInstance.SetActive(true);
@@ -91,7 +93,8 @@ public class WeaponSpecial : MonoBehaviour
                 break;
             case CharacterEnum.DaVinci:
                 specialInstance.SetActive(true);
-                specialInstance.GetComponent<WeaponSpecialDaVinciLogic>().fire(fireProps, wh);
+                //specialInstance.GetComponent<WeaponSpecialDaVinciLogic>().fire(fireProps, wh);
+                specialInstance.GetComponent<WeaponSpecialTeslaLogic>().fire();
                 break;
             case CharacterEnum.Einstein:
                 specialInstance.SetActive(true);

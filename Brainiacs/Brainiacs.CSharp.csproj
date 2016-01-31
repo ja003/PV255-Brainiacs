@@ -137,6 +137,8 @@
     <Compile Include="Assets\Scripts\Weapon\WeaponSpecialDaVinciLogic.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponSpecialEinsteinLogic.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponSpecialNobelLogic.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponSpecialTeslaLogic.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponTeslaSpecial.cs" />
     <Compile Include="Assets\Scripts\unused\BulletManager2.cs" />
     <Compile Include="Assets\Scripts\unused\BulletShooter.cs" />
   </ItemGroup>
