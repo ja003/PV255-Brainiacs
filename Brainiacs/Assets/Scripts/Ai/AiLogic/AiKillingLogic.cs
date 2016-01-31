@@ -35,9 +35,66 @@ public class AiKillingLogic {
         
     }
 
+    public bool CanShootStraightTo(Vector2 target)
+    {
+        Vector2 aiPos = new Vector2(aiBase.posX, aiBase.posY);
+
+        if(aiMovementLogic.ValueEquals(target.x, aiPos.x) ||
+            (aiMovementLogic.ValueEquals(target.y, aiPos.y)))
+        {
+            float distance = Vector2.Distance(target, new Vector2(aiBase.posX, aiBase.posY));
+            Vector2 direction = target - aiPos;
+            direction.Normalize();
+            //Debug.Log(direction);
+            float offset = 0.1f;
+            Vector2 pointCenter = new Vector2(aiPos.x+0.1f, aiPos.y-0.3f);
+            Vector2 pointUp = new Vector2(pointCenter.x, pointCenter.y + offset);
+            Vector2 pointRight = new Vector2(pointCenter.x + offset, pointCenter.y);
+            Vector2 pointDown = new Vector2(pointCenter.x, pointCenter.y - offset);
+            Vector2 pointLeft = new Vector2(pointCenter.x - offset, pointCenter.y);
+
+            int availableDirectionsCount = 0;
+
+            if (!aiMovementLogic.CollidesBarrierFrom(pointCenter, direction, distance))
+                availableDirectionsCount++;
+            if (!aiMovementLogic.CollidesBarrierFrom(pointUp, direction, distance))
+                availableDirectionsCount++;
+            if (!aiMovementLogic.CollidesBarrierFrom(pointRight, direction, distance))
+                availableDirectionsCount++;
+            if (!aiMovementLogic.CollidesBarrierFrom(pointDown, direction, distance))
+                availableDirectionsCount++;
+            if (!aiMovementLogic.CollidesBarrierFrom(pointLeft, direction, distance))
+                availableDirectionsCount++;
+
+           /* Debug.Log(pointCenter + "," +
+                pointUp + "," +
+                pointRight + "," +
+                pointDown + "," +
+                pointLeft);*/
+
+            if (availableDirectionsCount > 2)
+                return true;
+            else
+            {
+                Debug.Log(aiBase.playerNumber + " not enough");
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+            Debug.Log("Not same axis");
+        }
+    }
 
     public Vector2 GetBestShootSpot(Vector2 targetPosition)
     {
+        //first try simplest way - due to collider offset bug
+        if (CanShootStraightTo(targetPosition))
+        {
+            return new Vector2(aiBase.posX, aiBase.posY);
+        }
+
         Vector2 bestHorizontal = new Vector2(targetPosition.x, targetPosition.y);
         Vector2 bestVertical = new Vector2(targetPosition.x, targetPosition.y);
 
@@ -179,7 +236,7 @@ public class AiKillingLogic {
                 //CheckAmmo();
                 if(rdyToShoot && Time.frameCount > frameToShoot)
                 {
-                    Debug.Log(Time.frameCount);
+                    //Debug.Log(Time.frameCount);
                     //if you fire last bullet, wait a second, then you can shoot again
                     if (aiBase.weaponHandling.activeWeapon.ammo == 1)
                     {
@@ -194,16 +251,15 @@ public class AiKillingLogic {
                         Debug.Log("MINE run");
                         frameToShoot = Time.frameCount + 30;
                         safeFromMine = false;
-                        safeLocation.x = aiBase.posX;
-                        safeLocation.y = aiBase.posY+1;
-                    }
-                    
-                }
-                
+                        List<Vector2> availableSpots = 
+                            aiMovementLogic.GetAvailableSpotsAround(new Vector2(aiBase.posX, aiBase.posY), 1f);
+                        
+                        int randomIndex = Random.Range(0, availableSpots.Count);
+                        safeLocation = availableSpots[randomIndex];
+                    }                    
+                }                
             }
         }
-
-
     }
     
     /*

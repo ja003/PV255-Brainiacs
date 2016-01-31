@@ -216,13 +216,13 @@ public class AiMovementLogic {
     /// <param name="y"></param>
     public bool MoveTo(float x, float y)
     {
-        Debug.DrawRay(new Vector2(x, y), aiBase.up, Color.yellow);
+        Debug.DrawRay(new Vector2(x, y), aiBase.up, Color.yellow, 0.2f);
         //Debug.Log("destination:" + x + "," + y);
         //Debug.Log(GetMyPosition());
         if (ValueEquals(aiBase.posX, x) && ValueEquals(aiBase.posY, y))
         {
             Stop();
-            //Debug.Log("you there");
+            //Debug.Log(aiBase.playerNumber + " you there");
 
             return true;
         }
@@ -292,6 +292,25 @@ public class AiMovementLogic {
             }
         }
         return false;
+    }
+
+    public List<Vector2> GetAvailableSpotsAround(Vector2 center, float distance)
+    {
+        Vector2 up = new Vector2(center.x, center.y + distance);
+        Vector2 right = new Vector2(center.x + distance, center.y );
+        Vector2 down = new Vector2(center.x, center.y - distance);
+        Vector2 left = new Vector2(center.x - distance, center.y);
+
+        List<Vector2> availableSpots = new List<Vector2>();
+        if (!CharacterCollidesBarrier(up))
+            availableSpots.Add(up);
+        if (!CharacterCollidesBarrier(right))
+            availableSpots.Add(right);
+        if (!CharacterCollidesBarrier(down))
+            availableSpots.Add(down);
+        if (!CharacterCollidesBarrier(left))
+            availableSpots.Add(left);
+        return availableSpots;
     }
 
 
@@ -537,8 +556,14 @@ public class AiMovementLogic {
 
         return false;
     }
-    
-    public bool Collides(Vector2 direction, float distance)
+
+    public bool CollidesBarrierFrom(Vector2 point, Vector2 direction, float distance)
+    {
+        LayerMask layerMask = barrierMask;
+        return Physics2D.Raycast(point, direction, distance, layerMask);
+    }
+
+    public bool CollidesBarrier(Vector2 direction, float distance)
     {
         LayerMask layerMask = barrierMask;
 
@@ -579,14 +604,14 @@ public class AiMovementLogic {
         return false;
     }
 
-    public bool Collides(Vector2 direction)
+    public bool CollidesBarrier(Vector2 direction)
     {
-        return Collides(direction, 0.1f);
+        return CollidesBarrier(direction, 0.1f);
     }
 
-    public bool Collides(float distance)
+    public bool CollidesBarrier(float distance)
     {
-        return Collides(left, distance) || Collides(up, distance) || Collides(right, distance) || Collides(down, distance);
+        return CollidesBarrier(left, distance) || CollidesBarrier(up, distance) || CollidesBarrier(right, distance) || CollidesBarrier(down, distance);
     }
 
     //old

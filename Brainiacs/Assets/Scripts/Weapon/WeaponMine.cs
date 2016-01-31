@@ -8,8 +8,8 @@ public class WeaponMine : WeaponBase
         base.damage = 50;
         base.weaponType = WeaponEnum.mine;
 
-        base.ammo = 1;
-        base.maxAmmo = 1;
+        base.ammo = 5;
+        base.maxAmmo = 5;
 
         base.reloadTime = 2f;
         base.readyToFire = true;
@@ -18,7 +18,7 @@ public class WeaponMine : WeaponBase
         base.bulletAnimControler = "Animations/bullets_animators/bullet_mine_animator";
         base.setUpSounds("mine");
 
-        kadency = 0.0f;
+        kadency = 1.0f;
         kadReady = true;
 
         bulletSpeed = 0f;

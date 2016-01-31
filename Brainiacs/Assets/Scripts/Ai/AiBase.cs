@@ -123,6 +123,8 @@ public class AiBase : PlayerBase
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(playerNumber + " pos=" + posX + "," + posY);
+
         frameCountSinceLvlLoad++;
 
         if (frameCountSinceLvlLoad == 5)

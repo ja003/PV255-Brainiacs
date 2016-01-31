@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Bullet : MonoBehaviour {
 
-    Animator animator;
+    public Animator animator;
     public Vector2 direction;
     public float bulletSpeed;
     int damage;
@@ -179,7 +179,7 @@ public class Bullet : MonoBehaviour {
         if (fp.weapEnum == WeaponEnum.mine)
         {
             GetComponent<Collider2D>().enabled = false;
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
             GetComponent<Collider2D>().enabled = true;
         }
 
