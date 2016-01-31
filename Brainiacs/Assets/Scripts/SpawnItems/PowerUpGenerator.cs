@@ -60,7 +60,7 @@ public class PowerUpGenerator : MonoBehaviour
         {
             if (!powerUps[i][j].activeInHierarchy)
             {
-                powerUps[i][j].transform.position = posGenerator.GenerateRandomPosition(1.0f, 1.0f);
+                powerUps[i][j].transform.position = posGenerator.GenerateRandomPosition(0.5f, 1.0f);
                 powerUps[i][j].SetActive(true);
                 break;
             }
