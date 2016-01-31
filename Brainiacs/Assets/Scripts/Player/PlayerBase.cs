@@ -520,7 +520,7 @@ public abstract class PlayerBase : MonoBehaviour
             //load player again (without old weapons,...)
 
             //Vector3 newRandomPosition = Vector3.zero;//= generator.GenerateRandomPosition();
-            Vector3 newRandomPosition = posGenerator.GenerateRandomPosition(mapHeight, mapWidth);
+            Vector3 newRandomPosition = posGenerator.GenerateRandomPosition(1.5f, 1.5f);
             posX = newRandomPosition.x;
             posY = newRandomPosition.y;
             transform.position = newRandomPosition;
