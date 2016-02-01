@@ -61,7 +61,7 @@ public class WeaponGenerator : MonoBehaviour
         for (int j = 0; j < pooledAmount; j++){
             if (!weapons[i][j].activeInHierarchy)
             {
-                weapons[i][j].transform.position = posGenerator.GenerateRandomPosition(1.0f, 1.0f);
+                weapons[i][j].transform.position = posGenerator.GenerateRandomPosition();
                 weapons[i][j].SetActive(true);
                 break;
             }

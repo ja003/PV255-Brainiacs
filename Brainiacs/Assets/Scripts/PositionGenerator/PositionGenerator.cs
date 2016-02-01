@@ -7,12 +7,13 @@ using System;
 //--MG
 public class PositionGenerator : MonoBehaviour
 {
-
     private float mapStartX;
     private float mapStartY;
     private float mapHeight;
     private float mapWidth;
     private List<Rect> barriers;
+    private List<Vector2> positions;
+    private const float range = 0.8f;
 
     public void Start()
     {
@@ -37,31 +38,32 @@ public class PositionGenerator : MonoBehaviour
 
 
         barriers = new List<Rect>();
+        positions = new List<Vector2>();
 
         for (int i = 0; i < borders.Length; i++)
         {
             if (borders[i].GetComponent<BoxCollider2D>().offset.x > 0)
             {
-                eastEdge = borders[i].GetComponent<BoxCollider2D>().offset.x - borders[i].GetComponent<BoxCollider2D>().size.x;
+                eastEdge = borders[i].GetComponent<BoxCollider2D>().offset.x - (borders[i].GetComponent<BoxCollider2D>().size.x / 2.0f);
             }
             if (borders[i].GetComponent<BoxCollider2D>().offset.x < 0)
             {
-                westEdge = borders[i].GetComponent<BoxCollider2D>().offset.x + borders[i].GetComponent<BoxCollider2D>().size.x;
+                westEdge = borders[i].GetComponent<BoxCollider2D>().offset.x + (borders[i].GetComponent<BoxCollider2D>().size.x / 2.0f);
             }
             if (borders[i].GetComponent<BoxCollider2D>().offset.y > 0)
             {
-                northEdge = borders[i].GetComponent<BoxCollider2D>().offset.y - borders[i].GetComponent<BoxCollider2D>().size.y;
+                northEdge = borders[i].GetComponent<BoxCollider2D>().offset.y - (borders[i].GetComponent<BoxCollider2D>().size.y / 2.0f);
             }
             if (borders[i].GetComponent<BoxCollider2D>().offset.y < 0)
             {
-                southEdge = borders[i].GetComponent<BoxCollider2D>().offset.y + borders[i].GetComponent<BoxCollider2D>().size.y;
+                southEdge = borders[i].GetComponent<BoxCollider2D>().offset.y + (borders[i].GetComponent<BoxCollider2D>().size.y / 2.0f);
             }
         }
 
-        mapStartX = westEdge + 1.0f;
-        mapStartY = southEdge + 1.0f;
-        mapHeight = northEdge - southEdge - 2.0f;
-        mapWidth = eastEdge - westEdge - 2.0f;
+        mapStartX = westEdge +1.0f;
+        mapStartY = southEdge +1.0f;
+        mapHeight = northEdge - southEdge -2.0f;
+        mapWidth = eastEdge - westEdge -2.0f;
 
         for (int i = 0; i < barrs.Length; i++)
         {
@@ -70,46 +72,63 @@ public class PositionGenerator : MonoBehaviour
             {
                 float width = boxcol.size.x;
                 float height = boxcol.size.y;
-                float x = boxcol.offset.x;
-                float y = boxcol.offset.y;
+                float x = barrs[i].transform.position.x - boxcol.offset.x;
+                float y = barrs[i].transform.position.y - boxcol.offset.y;
                 barriers.Add(new Rect(x, y, width, height));
             }
         }
+
+        for (int i = 0; i < mapHeight; i++)
+        {
+            for (int j = 0; j < mapWidth; j++)
+            {
+                Vector2 tmp = new Vector2(mapStartX + j, mapStartY + i);
+                bool contains = false;
+                for (int k = 0; k < barriers.Count; k++)
+                {
+                    if (barriers[k].Contains(tmp)
+                        || barriers[k].Contains(new Vector2(tmp.x + range, tmp.y + range))
+                        || barriers[k].Contains(new Vector2(tmp.x + range, tmp.y - range))
+                        || barriers[k].Contains(new Vector2(tmp.x - range, tmp.y + range))
+                        || barriers[k].Contains(new Vector2(tmp.x - range, tmp.y - range))
+                        || barriers[k].Contains(new Vector2(tmp.x + range / 2.0f, tmp.y + range))
+                        || barriers[k].Contains(new Vector2(tmp.x + range / 2.0f, tmp.y - range))
+                        || barriers[k].Contains(new Vector2(tmp.x - range / 2.0f, tmp.y + range))
+                        || barriers[k].Contains(new Vector2(tmp.x - range / 2.0f, tmp.y - range))
+                        || barriers[k].Contains(new Vector2(tmp.x + range, tmp.y + range / 2.0f))
+                        || barriers[k].Contains(new Vector2(tmp.x + range, tmp.y - range / 2.0f))
+                        || barriers[k].Contains(new Vector2(tmp.x - range, tmp.y + range / 2.0f))
+                        || barriers[k].Contains(new Vector2(tmp.x - range, tmp.y - range / 2.0f))
+                        || barriers[k].Contains(new Vector2(tmp.x + range / 2.0f, tmp.y + range / 2.0f))
+                        || barriers[k].Contains(new Vector2(tmp.x + range / 2.0f, tmp.y - range / 2.0f))
+                        || barriers[k].Contains(new Vector2(tmp.x - range / 2.0f, tmp.y + range / 2.0f))
+                        || barriers[k].Contains(new Vector2(tmp.x - range / 2.0f, tmp.y - range / 2.0f)))
+                    {
+                        contains = true;
+                        break;
+                    }
+                }
+                if (!contains)
+                {
+                    positions.Add(tmp);
+                }
+            }
+        }
+        /*
+        List<GameObject> weapons = new List<GameObject>();
+        GameObject tmp2 = (GameObject)Resources.Load("Prefabs/SpawnItems/PowerUps/square");
+        for (int j = 0; j < positions.Count; j++)
+        {
+            GameObject obj = (GameObject)Instantiate(tmp2);
+            obj.transform.position = positions[j];
+            obj.SetActive(true);
+            weapons.Add(obj);
+        }
+        */
     }
 
-    /* height = height of items sprite in scene (height in pixels / 100) 
-     * width = width of items sprite in scene (width in pixels / 100)
-     */
-    public Vector2 GenerateRandomPosition(float height, float width)
+    public Vector2 GenerateRandomPosition()
     {
-        bool badPosition = false;
-        Vector2 vec = new Vector2();
-        System.Random rnd = new System.Random();
-
-        float randX = (float)rnd.NextDouble() * mapWidth;
-        vec.x = randX + mapStartX;
-
-        float randY = (float)rnd.NextDouble() * mapHeight;
-        vec.y = randY + mapStartY;
-
-        for (int i = 0; i < barriers.Count; i++)
-        {
-            if (barriers[i].Contains(vec)
-                || barriers[i].Contains(new Vector2(vec.x + (width / 2.0f), vec.y + (height / 2.0f)))
-                || barriers[i].Contains(new Vector2(vec.x + (width / 2.0f), vec.y - (height / 2.0f)))
-                || barriers[i].Contains(new Vector2(vec.x - (width / 2.0f), vec.y + (height / 2.0f)))
-                || barriers[i].Contains(new Vector2(vec.x - (width / 2.0f), vec.y - (height / 2.0f))))
-            {
-                badPosition = true;
-                break;
-            }
-
-        }
-
-        if (badPosition)
-        {
-            return GenerateRandomPosition(height, width);
-        }
-        return vec;
+        return positions[UnityEngine.Random.Range(0, positions.Count)];
     }
 }
