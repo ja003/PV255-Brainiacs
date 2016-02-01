@@ -78,7 +78,7 @@ public class AiPriorityLogic
             SetDeathPriority(666);
 
         //debuggig - just stand
-        //standPriority = 666;
+        standPriority = 666;
 
         //check bullets
         //CheckAmmo(); //has to be updated faster

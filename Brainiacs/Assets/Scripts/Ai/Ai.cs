@@ -11,14 +11,10 @@ public class Ai : AiBase {
     void Start()
     {
         frameCountSinceLvlLoad = 0;
-        //playerNumber = 3;
-        /*
-        base.aiPriorityLogic.killPlayer1Priority = 0;
-        base.aiPriorityLogic.killPlayer2Priority = 0;
-        base.aiPriorityLogic.killPlayer3Priority = 0;
-        base.aiPriorityLogic.killPlayer4Priority = 0;
-        */
+        RandomizeDirection();
+        RefreshAnimatorState();
 
+        UpdateAnimatorState(AnimatorStateEnum.stop);
 
 
         rb2d = gameObject.GetComponent<Rigidbody2D>();

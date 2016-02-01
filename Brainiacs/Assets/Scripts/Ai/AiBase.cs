@@ -127,10 +127,13 @@ public class AiBase : PlayerBase
 
         frameCountSinceLvlLoad++;
 
-        if (frameCountSinceLvlLoad == 5)
+        if (frameCountSinceLvlLoad == playerNumber)
         {
             SetPlayers();
-            
+
+            RandomizeDirection();
+
+            RefreshAnimatorState();
 
             weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[weaponHandling.player.directionMapping[weaponHandling.player.direction]];
         }
@@ -172,7 +175,7 @@ public class AiBase : PlayerBase
             }
 
             //Debug.Log("!");
-            aiPriorityLogic.PrintPriorities();
+            //aiPriorityLogic.PrintPriorities();
             aiActionLogic.UpdateCurrentAction();
 
 

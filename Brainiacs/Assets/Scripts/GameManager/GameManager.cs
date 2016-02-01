@@ -224,12 +224,7 @@ public class GameManager : MonoBehaviour {
                 player4.SetActive(false);
 
                 break;
-        }
-        
-
-        
-        
-        
+        } 
     }
 
     public void SetUpPlayer(int playerNumber, CharacterEnum charEnum)

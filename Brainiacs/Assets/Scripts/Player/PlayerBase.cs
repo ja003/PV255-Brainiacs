@@ -283,12 +283,35 @@ public abstract class PlayerBase : MonoBehaviour
     {
         SpeedBuffChecker();
         UpdatePosition();
+        //Debug.Log(characterAnimator.GetCurrentAnimatorStateInfo(0).length);
+        //Debug.Log(playerNumber + ":" + direction);
     }
 
 
+    public void RefreshAnimatorState()
+    {
+        if(direction == up)
+        {
+            UpdateAnimatorState(AnimatorStateEnum.walkUp);
+        }
+        else if (direction == right)
+        {
+            UpdateAnimatorState(AnimatorStateEnum.walkRight);
+        }
+        else if (direction == down)
+        {
+            UpdateAnimatorState(AnimatorStateEnum.walkDown);
+        }
+        else if (direction == left)
+        {
+            UpdateAnimatorState(AnimatorStateEnum.walkLeft);
+        }
+        //Debug.Log("refreshing " + playerNumber + " to " + direction);
+    }
 
     public void UpdateAnimatorState(AnimatorStateEnum state)
     {
+        //Debug.Log(playerNumber + "to : " + state);
         switch (state)
         {
             case AnimatorStateEnum.walkUp:
@@ -335,17 +358,47 @@ public abstract class PlayerBase : MonoBehaviour
         characterAnimator.SetBool("walkLeft", walkLeft);
         characterAnimator.SetBool("dead", dead);
 
-        /*Debug.Log(
+        if (dead)
+        {
+            //Debug.Log("dead");
+        }
+        /*
+        Debug.Log(
             "walkUp:" + walkUp +
             ",walkDown:" + walkDown +
             ",walkRight:" + walkDown +
             ",walkLeft:" + walkLeft +
             ",dead:" + dead
-            );
-            */
+            );*/
+            
 
     }
     
+
+    public void RandomizeDirection()
+    {
+        System.Random rnd = new System.Random();
+        int randomInt = rnd.Next(1, 4);
+        //Debug.Log(playerNumber + "rndDir:" + randomInt);
+        switch (randomInt)
+        {
+            case 1:
+                direction = up;
+                break;
+            case 2:
+                direction = right;
+                break;
+            case 3:
+                direction = down;
+                break;
+            case 4:
+                direction = left;
+                break;
+            default:
+                direction = left;
+                break;
+        }
+    }
 
     /// <summary>
     /// momenátlně pouze na ruce + sortění LAYERS
@@ -494,10 +547,11 @@ public abstract class PlayerBase : MonoBehaviour
         left = stop;
         //disable weapon
         //....
+        
 
         float deadTime = characterAnimator.GetCurrentAnimatorStateInfo(0).length;
         
-        yield return new WaitForSeconds(deadTime + 0.1f);
+        yield return new WaitForSeconds(deadTime);
         lifes--;
 
         transform.position = new Vector2(-666, 666);//move to hell
@@ -509,10 +563,11 @@ public abstract class PlayerBase : MonoBehaviour
         }
         else
         {
+            dead = false;
             yield return new WaitForSeconds(1f);
 
             hitPoints = maxHP;
-            dead = false;
+            
             Debug.Log("alive");
             //UpdateAnimatorState(AnimatorStateEnum.walkRight);
 
@@ -521,8 +576,7 @@ public abstract class PlayerBase : MonoBehaviour
 
             //Vector3 newRandomPosition = Vector3.zero;//= generator.GenerateRandomPosition();
             Vector3 newRandomPosition = posGenerator.GenerateRandomPosition();
-            posX = newRandomPosition.x;
-            posY = newRandomPosition.y;
+            UpdatePosition();
             transform.position = newRandomPosition;
             //Debug.Log("X " + newRandomPosition.x);
             //Debug.Log("Y " + newRandomPosition.y);
@@ -534,7 +588,10 @@ public abstract class PlayerBase : MonoBehaviour
             right = Vector2.right;
 
             //update weapon direction and stop player animation(AI reasons)
-            UpdateAnimatorState(AnimatorStateEnum.stop);
+            RandomizeDirection();
+            RefreshAnimatorState();
+            UpdateDirection();
+            //UpdateAnimatorState(AnimatorStateEnum.stop);
             //weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[weaponHandling.player.directionMapping[direction]];
             //TODO - ^ udělat metodu
         }

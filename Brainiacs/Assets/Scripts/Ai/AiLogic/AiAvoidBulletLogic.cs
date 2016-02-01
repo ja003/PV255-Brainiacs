@@ -74,12 +74,12 @@ public class AiAvoidBulletLogic {
 
                 if (sr.sprite.ToString().Contains("mine"))
                 {
-                    Debug.Log("its mine");
+                    //Debug.Log("its mine");
                     listColliders.RemoveAt(i);
                 }
                 else
                 {
-                    Debug.Log("its not mine");
+                    //Debug.Log("its not mine");
                 }
             }
             catch (Exception e)

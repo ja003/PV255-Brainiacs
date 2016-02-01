@@ -39,6 +39,7 @@ public class TimeManager : MonoBehaviour {
         }
 
         stopWatch = Stopwatch.StartNew();
+        UnityEngine.Debug.Log(gameInfo.time);
         countdown = TimeSpan.FromSeconds(gameInfo.time);
         InvokeRepeating("Count1SecDown", 0, 1.0f);
         //UnityEngine.Debug.Log("tick");
@@ -88,10 +89,11 @@ public class TimeManager : MonoBehaviour {
         //UnityEngine.Debug.Log(y);
 
 
-        int seconds = countdown.Seconds;
+        int seconds = (int)countdown.TotalSeconds;
 
         textDisplay.ShowTime(seconds);
 
+        //obsolete
         var stopWatchStr = String.Format("{0:0}:{1:00}", Mathf.Floor(seconds / 60), seconds % 60);
         
         if(seconds <= 0)
