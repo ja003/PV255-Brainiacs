@@ -72,8 +72,8 @@ public class PositionGenerator : MonoBehaviour
             {
                 float width = boxcol.size.x;
                 float height = boxcol.size.y;
-                float x = barrs[i].transform.position.x - boxcol.offset.x;
-                float y = barrs[i].transform.position.y - boxcol.offset.y;
+                float x = barrs[i].transform.position.x + boxcol.offset.x - (width / 2.0f);
+                float y = barrs[i].transform.position.y + boxcol.offset.y - (height / 2.0f);
                 barriers.Add(new Rect(x, y, width, height));
             }
         }

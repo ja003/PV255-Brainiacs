@@ -125,6 +125,7 @@ public class MainMenu : MonoBehaviour {
         float portBackX = backgrounds[0].width * 1.2f * Screen.width / 1920.0f;
         float portBackY = backgrounds[0].height * 1.2f * Screen.height / 1080.0f;
         float portBackSpace = (classYPosition - (playerTextY + (p1Text.height / 1080.0f)) - (backgrounds[0].height * 1.2f / 1080.0f)) / 2.0f;
+        float headBackSpace = (classYPosition - (playerTextY + (p1Text.height / 1080.0f)) - (heads[0].height / 1080.0f)) / 2.0f;
         float playerTX = playerTextX * Screen.width;
         float playerTextWidth = p1Text.width * Screen.width / 1920.0f;
         float playerTextHeight = p1Text.height * Screen.height / 1080.0f;
@@ -166,10 +167,10 @@ public class MainMenu : MonoBehaviour {
         GUI.DrawTexture(new Rect((7 * Screen.width / 8) - (portBackX / 2), Screen.height * (-1 + cameraPositionY + portBackSpace + playerTextY) + playerTextHeight, portBackX, portBackY), backgrounds[2]);
 
         //heads
-        GUI.DrawTexture(new Rect((Screen.width / 8) - (headWidth / 2.0f), Screen.height * (-1 + cameraPositionY + headYPosition), headWidth, headHeight), heads[p1Class]);
-        GUI.DrawTexture(new Rect((3 * Screen.width / 8) - (headWidth / 2.0f), Screen.height * (-1 + cameraPositionY + headYPosition), headWidth, headHeight), heads[p2Class]);
-        GUI.DrawTexture(new Rect((5 * Screen.width / 8) - (headWidth / 2.0f), Screen.height * (-1 + cameraPositionY + headYPosition), headWidth, headHeight), heads[p3Class]);
-        GUI.DrawTexture(new Rect((7 * Screen.width / 8) - (headWidth / 2.0f), Screen.height * (-1 + cameraPositionY + headYPosition), headWidth, headHeight), heads[p4Class]);
+        GUI.DrawTexture(new Rect((Screen.width / 8) - (headWidth / 2.0f), Screen.height * (-1 + cameraPositionY + headBackSpace + playerTextY) + playerTextHeight, headWidth, headHeight), heads[p1Class]);
+        GUI.DrawTexture(new Rect((3 * Screen.width / 8) - (headWidth / 2.0f), Screen.height * (-1 + cameraPositionY + headBackSpace + playerTextY) + playerTextHeight, headWidth, headHeight), heads[p2Class]);
+        GUI.DrawTexture(new Rect((5 * Screen.width / 8) - (headWidth / 2.0f), Screen.height * (-1 + cameraPositionY + headBackSpace + playerTextY) + playerTextHeight, headWidth, headHeight), heads[p3Class]);
+        GUI.DrawTexture(new Rect((7 * Screen.width / 8) - (headWidth / 2.0f), Screen.height * (-1 + cameraPositionY + headBackSpace + playerTextY) + playerTextHeight, headWidth, headHeight), heads[p4Class]);
 
         //classes
         GUI.DrawTexture(new Rect((Screen.width / 8) - (classWidth / 2.0f), Screen.height * (-1 + cameraPositionY + classYPosition), classWidth, classHeight), classes[p1Class]);
