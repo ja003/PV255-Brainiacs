@@ -11,6 +11,8 @@ public class WeaponTeslaSpecial : WeaponBase
 
         base.damage = 100;
 
+        existingClicks = 300;
+
         base.ammo = 1;
         base.maxAmmo = 1;
 

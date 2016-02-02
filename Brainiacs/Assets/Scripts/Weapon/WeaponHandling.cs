@@ -194,6 +194,10 @@ public class WeaponHandling : MonoBehaviour {
                     activeWeapon.reload();
                     activeWeapon.readyToFire = false;
                     break;
+                case WeaponEnum.specialTesla:
+                    activeWeapon.reload();
+                    activeWeapon.readyToFire = false;
+                    break;
             }
         }else if (activeWeapon.weaponType == WeaponEnum.flamethrower)
         {

@@ -54,7 +54,7 @@ public class WeaponSpecialTeslaLogic : MonoBehaviour {
     public void fire()
     {
         update = true;
-        clicksExist = wb.ammo;
+        clicksExist = wb.existingClicks;
 
         GameObject aiPrefab = (GameObject)Resources.Load("Prefabs/AiManagement");
         goSpecial = Instantiate(aiPrefab);
