@@ -218,12 +218,12 @@ public abstract class PlayerBase : MonoBehaviour
 
 
         // Inicializacia prvej zbrane
-        //weaponHandling.inventory.Add(flame);
+        weaponHandling.inventory.Add(flame);
         weaponHandling.inventory.Add(pistol);
         weaponHandling.inventory.Add(special);
-        //weaponHandling.inventory.Add(sniper);
-        //weaponHandling.inventory.Add(biogun);
-        //weaponHandling.inventory.Add(MP40);
+       weaponHandling.inventory.Add(sniper);
+        weaponHandling.inventory.Add(biogun);
+        weaponHandling.inventory.Add(MP40);
         //weaponHandling.inventory.Add(mine);
 
         weaponHandling.activeWeapon = weaponHandling.inventory[0];
@@ -283,6 +283,7 @@ public abstract class PlayerBase : MonoBehaviour
     {
         SpeedBuffChecker();
         UpdatePosition();
+        GetComponent<SpriteRenderer>().color = Color.white;
         //Debug.Log(characterAnimator.GetCurrentAnimatorStateInfo(0).length);
         //Debug.Log(playerNumber + ":" + direction);
     }
@@ -518,14 +519,17 @@ public abstract class PlayerBase : MonoBehaviour
                 {
                     gameManager.EndGame();
                 }
-                                
-                if(!dead)
+
+                if (!dead)
+                {
                     StartCoroutine(Die());
-                
+                }
+
             }
             else
             {
                 hitPoints -= dmg;
+                GetComponent<SpriteRenderer>().color = Color.red;
             }
         }
         //Debug.Log(hitPoints);

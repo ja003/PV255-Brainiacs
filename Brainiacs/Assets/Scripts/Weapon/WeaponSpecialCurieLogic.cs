@@ -23,32 +23,7 @@ public class WeaponSpecialCurieLogic : MonoBehaviour
 
     private float traveledDistance = 0;
     private float clicksShooted = 0;
-    private float shootEveryDst = 0.75f;
-
-    /*
-    public void SetUpGraphics()
-    {
-        renderer = GetComponent<SpriteRenderer>();
-        
-        RuntimeAnimatorController rtac;
-
-        Debug.Log("Start from curie special");
-        spriteMapping.Add(Vector2.up, Resources.LoadAll<Sprite>("Sprites/Special/bullet_curieSpecial_up")[0]);
-        rtac = Resources.Load<RuntimeAnimatorController>("Animations/Special/bullet_curieSpecial_left_crash") as RuntimeAnimatorController;
-        crashMapping.Add(Vector2.up, rtac);
-
-        spriteMapping.Add(Vector2.left, Resources.LoadAll<Sprite>("Sprites/Special/bullet_curieSpecial_left")[0]);
-        rtac = Resources.Load<RuntimeAnimatorController>("Animations/Special/bullet_curieSpecial_left_crash") as RuntimeAnimatorController;
-        crashMapping.Add(Vector2.left, rtac);
-
-        spriteMapping.Add(Vector2.right, Resources.LoadAll<Sprite>("Sprites/Special/bullet_curieSpecial_right")[0]);
-        rtac = Resources.Load<RuntimeAnimatorController>("Animations/Special/bullet_curieSpecial_left_crash") as RuntimeAnimatorController;
-        crashMapping.Add(Vector2.right, rtac);
-
-        spriteMapping.Add(Vector2.down, Resources.LoadAll<Sprite>("Sprites/Special/bullet_curieSpecial_down")[0]);
-        rtac = Resources.Load<RuntimeAnimatorController>("Animations/Special/bullet_curieSpecial_left_crash") as RuntimeAnimatorController;
-        crashMapping.Add(Vector2.down, rtac);
-    }*/
+    private float shootEveryDst = 0.5f;
 
     public void SetUpVariables(PlayerBase pb, BulletManager bm)
     {

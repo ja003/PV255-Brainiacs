@@ -92,13 +92,14 @@ public class WeaponSpecial : MonoBehaviour
                 specialInstance.GetComponent<WeaponSpecialCurieLogic>().fire(fireProps);
                 break;
             case CharacterEnum.DaVinci:
-                specialInstance.SetActive(true);
+                
                 specialInstance.GetComponent<WeaponSpecialDaVinciLogic>().fire(fireProps, wh);
+                specialInstance.SetActive(true);
                 //specialInstance.GetComponent<WeaponSpecialTeslaLogic>().fire();
                 break;
             case CharacterEnum.Einstein:
                 specialInstance.SetActive(true);
-                specialInstance.GetComponent<WeaponSpecialCurieLogic>().fire(fireProps);
+                specialInstance.GetComponent<WeaponSpecialEinsteinLogic>().fire(fireProps);
                 break;
             case CharacterEnum.Nobel:
                 specialInstance.SetActive(true);

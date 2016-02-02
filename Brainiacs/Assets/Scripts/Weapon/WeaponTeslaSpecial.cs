@@ -11,10 +11,10 @@ public class WeaponTeslaSpecial : WeaponBase
 
         base.damage = 100;
 
-        base.ammo = 500;
-        base.maxAmmo = 500;
+        base.ammo = 1;
+        base.maxAmmo = 1;
 
-        base.reloadTime = 3f;
+        base.reloadTime = 60f;
         base.readyToFire = true;
 
         base.sprite = "Sprites/Special/einsteinSpecial";

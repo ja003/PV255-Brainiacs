@@ -17,7 +17,7 @@ public class WeaponDaVinciSpecial : WeaponBase
         base.ammo = 1;
         base.maxAmmo = 1;
 
-        base.reloadTime = 5f;
+        base.reloadTime = 60f;
         base.readyToFire = true;
 
         base.sprite = "Sprites/Special/davinciSpecial_plan";
@@ -25,7 +25,7 @@ public class WeaponDaVinciSpecial : WeaponBase
 
         base.setUpSounds("sniper");
 
-        kadency = 3.0f;
+        kadency = 0.0f;
         kadReady = true;
 
         bulletSpeed = 3f;

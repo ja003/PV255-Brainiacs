@@ -72,6 +72,7 @@ public class WeaponSpecialDaVinciLogic : MonoBehaviour
 
     public void fire(FireProps fp, WeaponHandling wh)
     {
+        transform.position = fp.position;
         this.wh = wh;
         nullAllAnimBools();
         animator.SetBool("returnToOrig", true);

@@ -17,6 +17,7 @@ public class WeaponSpecialEinsteinLogic : MonoBehaviour {
     private bool update = false;
 
     private Vector2 impactPosition;
+    private Vector2 firstPosition;
     private bool impact = false;
     private Vector2 prevPosition = new Vector2();
     private float x;
@@ -43,7 +44,12 @@ public class WeaponSpecialEinsteinLogic : MonoBehaviour {
     {
         if (update && !impact)
         {
-            transform.position = new Vector2(x, ComputeDescendiing(x));
+            
+            Vector2 temp = new Vector2(x, ComputeDescendiing(x));
+            Vector2 temp2 = new Vector2(transform.position.x, transform.position.y);
+
+            transform.position = firstPosition - new Vector2(1 - temp.x, 4.94f - temp.y);
+
 
             Vector2 movmentVector = new Vector2(transform.position.x - prevPosition.x, transform.position.y - prevPosition.y);
             float angle = Vector2.Angle(movmentVector, new Vector2(0, -1));
@@ -76,14 +82,15 @@ public class WeaponSpecialEinsteinLogic : MonoBehaviour {
         impact = false;
         alpha = 1;
         x = 1;
-
+        SetIniciatePosition();
+        transform.rotation = Quaternion.Euler(0, 0, -90);
         // set animator state to begin
         nullAllAnimBools();
         animator.SetBool("exitBoom", true);
         
 
         // set iniciate position
-        SetIniciatePosition();
+        
         setBoolAnimator("iniciate", true);
 
 
@@ -95,7 +102,8 @@ public class WeaponSpecialEinsteinLogic : MonoBehaviour {
             GameObject.Find("PositionGenerator")
                 .transform.GetComponent<PositionGenerator>()
                 .GenerateRandomPosition();
-        transform.position = impactPosition + new Vector2(1, 7);
+        transform.position = impactPosition + new Vector2(1, 4.94f);
+        firstPosition = transform.position;
         prevPosition = new Vector2(transform.position.x, transform.position.y);
     }
 
@@ -126,7 +134,7 @@ public class WeaponSpecialEinsteinLogic : MonoBehaviour {
 
             if (dst <= 4.0)
             {
-                fooObj.GetComponent<PlayerBase>().ApplyDamage((int)((1 - dst / 4.0f) * 101.0f), playerBase);
+                fooObj.GetComponent<PlayerBase>().ApplyDamage(((int)((1 - dst / 4.0f) * 101.0f) + 20), playerBase);
             }
         }
     }

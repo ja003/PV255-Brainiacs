@@ -5,15 +5,15 @@ public class WeaponEinsteinSpecial : WeaponBase {
 
     public WeaponEinsteinSpecial()
     {
-        base.weaponType = WeaponEnum.specialCurie;
+        base.weaponType = WeaponEnum.specialEinstein;
         isSpecial = true;
 
         base.damage = 100;
 
-        base.ammo = 300;
-        base.maxAmmo = 300;
+        base.ammo = 1;
+        base.maxAmmo = 1;
 
-        base.reloadTime = 3f;
+        base.reloadTime = 60f;
         base.readyToFire = true;
 
         base.sprite = "Sprites/Special/einsteinSpecial";

@@ -9,12 +9,12 @@ public class WeaponCurieSpecial : WeaponBase{
         isSpecial = true;
 
 
-        base.damage = 75;
+        base.damage = 85;
         
-        base.ammo = 300;
-        base.maxAmmo = 300;
+        base.ammo = 1;
+        base.maxAmmo = 1;
 
-        base.reloadTime = 3f;
+        base.reloadTime = 60f;
         base.readyToFire = true;
 
         base.sprite = "Sprites/Special/curieSpecial";

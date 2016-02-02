@@ -11,11 +11,11 @@ public class GameInfo : MonoBehaviour {
     public int lifes = 1;
 
     public PlayerTypeEnum player1type = PlayerTypeEnum.Player;
-    public PlayerTypeEnum player2type = PlayerTypeEnum.AI;
-    public PlayerTypeEnum player3type = PlayerTypeEnum.AI ;
-    public PlayerTypeEnum player4type = PlayerTypeEnum.AI;
+    public PlayerTypeEnum player2type = PlayerTypeEnum.Player;
+    public PlayerTypeEnum player3type = PlayerTypeEnum.Player;
+    public PlayerTypeEnum player4type = PlayerTypeEnum.Player;
 
-    public CharacterEnum player1char = CharacterEnum.DaVinci;
+    public CharacterEnum player1char = CharacterEnum.Einstein;
     public CharacterEnum player2char = CharacterEnum.Curie;
     public CharacterEnum player3char = CharacterEnum.Nobel;
     public CharacterEnum player4char = CharacterEnum.Tesla;

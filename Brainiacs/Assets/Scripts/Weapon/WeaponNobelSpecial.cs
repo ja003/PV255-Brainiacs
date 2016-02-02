@@ -5,6 +5,7 @@ public class WeaponNobelSpecial : WeaponBase
 {
     public WeaponNobelSpecial()
     {
+        base.weaponType = WeaponEnum.specialNobel;
         isSpecial = true;
 
         base.damage = 50;
@@ -20,7 +21,7 @@ public class WeaponNobelSpecial : WeaponBase
         base.bulletAnimControler = "Animations/bullets_animators/bullet_mine_animator";
         base.setUpSounds("mine");
 
-        kadency = 0.0f;
+        kadency = 0.5f;
         kadReady = true;
 
         bulletSpeed = 0f;

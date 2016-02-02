@@ -61,17 +61,23 @@ public class Bullet : MonoBehaviour {
             if (fp.direction == Vector2.up)
             {
                 transform.position = fp.position + new Vector2(0.1f, 0.35f);
-                transform.rotation = Quaternion.Euler(0, 0, 90);
+                transform.rotation = Quaternion.Euler(0, 0, -90);
             }
             else if (fp.direction == Vector2.down)
             {
                 transform.position = fp.position + new Vector2(-0.1f, -0.75f);
                 transform.rotation = Quaternion.Euler(0, 0, 90);
             }
-            else
+            else if (fp.direction == Vector2.left)
             {
                 transform.position = fp.position + new Vector2(direction.normalized.x*0.5f, -0.17f);
                 transform.rotation = Quaternion.Euler(0, 0, 0);
+
+            }
+            else if (fp.direction == Vector2.right)
+            {
+                transform.position = fp.position + new Vector2(direction.normalized.x * 0.5f, -0.22f);
+                transform.rotation = Quaternion.Euler(0, 0, 180);
 
             }
         }
