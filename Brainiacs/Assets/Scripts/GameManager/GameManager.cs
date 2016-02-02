@@ -402,7 +402,7 @@ public class GameManager : MonoBehaviour {
 
     public void EndGame()
     {
-        Debug.Log("END");
+        //Debug.Log("END");
         //int currentFrameCount = Time.frameCount;
         endGame = true;
 
@@ -422,7 +422,7 @@ public class GameManager : MonoBehaviour {
 
         if (endGame && fadeCounter < 1.1f)
         {
-            fadeCounter += 0.1f;
+            fadeCounter += 0.01f;
 
             screenFaderColor = GameObject.Find("ScreenFader").GetComponent<SpriteRenderer>().color;
             screenFaderColor.a = fadeCounter;

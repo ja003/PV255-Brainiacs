@@ -20,20 +20,20 @@ public class GameInfo : MonoBehaviour {
     public CharacterEnum player3char = CharacterEnum.Nobel;
     public CharacterEnum player4char = CharacterEnum.Tesla;
 
-    public int player1score = 1;
-    public int player2score = 5;
-    public int player3score = 4;
-    public int player4score = 1;
+    public int player1score = 6;
+    public int player2score = 0;
+    public int player3score = 0;
+    public int player4score = 0;
 
     public int player1lifes = 0;
     public int player2lifes = 0;
     public int player3lifes = 0;
     public int player4lifes = 0;
 
-    public int player1deaths = 0;
-    public int player2deaths = 0;
-    public int player3deaths = 0;
-    public int player4deaths = 1;
+    public int player1deaths = 6;
+    public int player2deaths = 7;
+    public int player3deaths = 8;
+    public int player4deaths = 2;
 
 
 

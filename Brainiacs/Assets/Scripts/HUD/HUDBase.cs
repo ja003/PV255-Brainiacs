@@ -92,7 +92,7 @@ public class HUDBase : MonoBehaviour {
 	void Update () {
 	    if (ready)
 	    {
-	        if (weaponHandling.activeWeapon.readyToFire)
+            if (weaponHandling.activeWeapon.readyToFire)
 	        {
 	            ammo.color = Color.black;
 	            ammo.text = weaponHandling.activeWeapon.ammo.ToString();
@@ -104,8 +104,12 @@ public class HUDBase : MonoBehaviour {
 	            string temp = (weaponHandling.activeWeapon.reloadTime - weaponHandling.activeWeapon.time).ToString();
 
 	            float reloadingProcess = weaponHandling.activeWeapon.reloadTime - weaponHandling.activeWeapon.time;
-	            //Debug.Log(reloadingProcess);
-	            int reloadinProcessInt = (int) (reloadingProcess*10);
+                //Debug.Log(reloadingProcess);
+                int reloadinProcessInt = (int)(reloadingProcess);
+                if (weaponHandling.activeWeapon.weaponType == WeaponEnum.pistol)
+                {
+                    reloadinProcessInt = (int)(reloadingProcess * 10);
+                }
 	            //Debug.Log(reloadinProcessInt);
 
 	            if (reloadinProcessInt < 100)

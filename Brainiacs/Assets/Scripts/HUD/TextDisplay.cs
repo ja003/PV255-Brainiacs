@@ -218,7 +218,7 @@ public class TextDisplay {
 
     public void SetClipValue(Colors color, int value)
     {
-        if(value < 10 && value > -1)
+        if (value < 10 && value > -1)
         {
             HideDoubleClip(color);
             switch (color)
