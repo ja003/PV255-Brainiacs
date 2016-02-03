@@ -498,7 +498,7 @@ public class MainMenu : MonoBehaviour {
 
     private string NextInputValue(string s)
     {
-        if (s.Equals("999"))
+        if (s.Equals("99"))
         {
             return "1";
         }
@@ -509,7 +509,7 @@ public class MainMenu : MonoBehaviour {
     {
         if (s.Equals("1"))
         {
-            return "999";
+            return "99";
         }
         return (int.Parse(s) - 1).ToString();
     }
