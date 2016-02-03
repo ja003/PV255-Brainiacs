@@ -26,8 +26,8 @@ public class MainMenu : MonoBehaviour {
     //0 - player, 1 - AI, 2 - none
     public List<Texture> playerType;
     //0 - time, 1 - score, 2 - deathmatch
-    public List<Texture2D> gameMode;
-    public List<Texture2D> activeGameMode;
+    public List<GUIStyle> gameMode;
+    public List<GUIStyle> activeGameMode;
     //0 - steampunk, 1 - wonderland
     public List<Texture> maps;
     public List<Texture> mapSelect;
@@ -100,9 +100,9 @@ public class MainMenu : MonoBehaviour {
         activeTimeText = new GUIStyle();
         activeScoreText = new GUIStyle();
         activeDeathText = new GUIStyle();
-        activeTimeText.normal.background = activeGameMode[0];
-        activeScoreText.normal.background = gameMode[1];
-        activeDeathText.normal.background = gameMode[2];
+        activeTimeText = activeGameMode[0];
+        activeScoreText = gameMode[1];
+        activeDeathText = gameMode[2];
         inputField.fontSize = inputField.normal.background.height / 3;
 
         //for now
@@ -262,23 +262,23 @@ public class MainMenu : MonoBehaviour {
 
         if (GUI.Button(new Rect((Screen.width / 4) - (selectOptionWidth / 2.0f), Screen.height * (-1 + cameraPositionY + selectYPosition + (1 * selectOptionYDistance)), selectOptionWidth, selectOptionHeight), "", activeTimeText))
         {
-            activeTimeText.normal.background = activeGameMode[0];
-            activeScoreText.normal.background = gameMode[1];
-            activeDeathText.normal.background = gameMode[2];
+            activeTimeText = activeGameMode[0];
+            activeScoreText = gameMode[1];
+            activeDeathText = gameMode[2];
             selectedMode = 0;
         }
         if (GUI.Button(new Rect((Screen.width / 4) - (selectOptionWidth / 2.0f), Screen.height * (-1 + cameraPositionY + selectYPosition + (2 * selectOptionYDistance) + (selectOptionHeight / Screen.height)), selectOptionWidth, selectOptionHeight), "", activeScoreText))
         {
-            activeTimeText.normal.background = gameMode[0];
-            activeScoreText.normal.background = activeGameMode[1];
-            activeDeathText.normal.background = gameMode[2];
+            activeTimeText = gameMode[0];
+            activeScoreText = activeGameMode[1];
+            activeDeathText = gameMode[2];
             selectedMode = 1;
         }
         if (GUI.Button(new Rect((Screen.width / 4) - (selectOptionWidth / 2.0f), Screen.height * (-1 + cameraPositionY + selectYPosition + (3 * selectOptionYDistance) + (2 * selectOptionHeight / Screen.height)), selectOptionWidth, selectOptionHeight), "", activeDeathText))
         {
-            activeTimeText.normal.background = gameMode[0];
-            activeScoreText.normal.background = gameMode[1];
-            activeDeathText.normal.background = activeGameMode[2];
+            activeTimeText = gameMode[0];
+            activeScoreText = gameMode[1];
+            activeDeathText = activeGameMode[2];
             selectedMode = 2;
         }
 
@@ -299,7 +299,7 @@ public class MainMenu : MonoBehaviour {
             inputValue = PreviousInputValue(inputValue);
         }
 
-        //map sleect
+        //map select
         GUI.DrawTexture(new Rect((3 * Screen.width / 4) - (activeMapWidth / 2.0f), Screen.height * (-1 + cameraPositionY + selectYPosition + activeMapYPos), activeMapWidth, activeMapHeigh), maps[selectedMap]);
         GUI.DrawTexture(new Rect((3 * Screen.width / 4) - (mapSelectWidth / 2.0f), Screen.height * (-1 + cameraPositionY) + mapSelectYPos, mapSelectWidth, mapSelectHeight), mapSelect[selectedMap]);
         if (GUI.Button(new Rect((3 * Screen.width / 4) + nextMapXPos, Screen.height * (-1 + cameraPositionY) + mapSelectYPos + nextMapYDif, nextWidth, nextHeight), "", nextTexture))
@@ -311,11 +311,18 @@ public class MainMenu : MonoBehaviour {
             selectedMap = PreviousMap(selectedMap);
         }
 
+        //startgame
         if (GUI.Button(new Rect(buttonX - (Screen.width / 4), Screen.height * (-1 + cameraPositionY + backButtonPlacementY), buttonWidth, buttonHeight), "", startTexture))
         {
-            //startgame
-            string selectedMapName = "" + (MapEnum)selectedMap;
-            StartGame(selectedMapName);
+            if (countInactivePlayers() > 2)
+            {
+                //play sound
+            }
+            else
+            {
+                string selectedMapName = "" + (MapEnum)selectedMap;
+                StartGame(selectedMapName);
+            }
         }
         if (GUI.Button(new Rect(buttonX + (Screen.width / 4), Screen.height * (-1 + cameraPositionY + backButtonPlacementY), buttonWidth, buttonHeight), "", backTexture))
         {
@@ -624,5 +631,27 @@ public class MainMenu : MonoBehaviour {
             }
         }
         return true;
+    }
+
+    private int countInactivePlayers()
+    {
+        int i = 0;
+        if (GetTypeOfPlayer(PlayerEnum.Player1) == PlayerTypeEnum.None)
+        {
+            i++;
+        }
+        if (GetTypeOfPlayer(PlayerEnum.Player2) == PlayerTypeEnum.None)
+        {
+            i++;
+        }
+        if (GetTypeOfPlayer(PlayerEnum.Player3) == PlayerTypeEnum.None)
+        {
+            i++;
+        }
+        if (GetTypeOfPlayer(PlayerEnum.Player4) == PlayerTypeEnum.None)
+        {
+            i++;
+        }
+        return i;
     }
 }
