@@ -17,9 +17,9 @@ public class HUDBase : MonoBehaviour {
 
     private TextDisplay textDisplay;
 
-    private Text name;
-    private Text hp;
-    private Text ammo;
+    //private Text name;
+    //private Text hp;
+    //private Text ammo;
 
     public int health;
     public int ammoActiveWeapon;
@@ -70,11 +70,11 @@ public class HUDBase : MonoBehaviour {
         SetupAvatar(sprite);
         ready = true;
 
-        name = GameObject.Find("name_"+color).GetComponent<Text>();
-        hp = GameObject.Find("hp_" + color).GetComponent<Text>();
-        ammo = GameObject.Find("ammo_" + color).GetComponent<Text>();
+        //name = GameObject.Find("name_"+color).GetComponent<Text>();
+        //hp = GameObject.Find("hp_" + color).GetComponent<Text>();
+        //ammo = GameObject.Find("ammo_" + color).GetComponent<Text>();
 
-        name.text = p.playInfo.playerName;
+        //name.text = p.playInfo.playerName;
 
         iconRenderer = transform.Find("weaponI_" + p.playInfo.playerColor).gameObject.GetComponent<SpriteRenderer>();
         iconRenderer.sprite = Resources.Load<Sprite>("Sprites/HUD/" + "icon_" + p.playInfo.charEnum.ToString().ToLower() + "Pistol");
@@ -85,7 +85,7 @@ public class HUDBase : MonoBehaviour {
         avatar = transform.Find("Avatar_" + color).gameObject;
         renderer = avatar.GetComponent<SpriteRenderer>();
 	    renderer.sprite = Resources.Load<Sprite>("Sprites/HUD/" + sprite);
-        Debug.Log(sprite);
+        //Debug.Log(sprite);
     }
 	
 	// Update is called once per frame
@@ -94,13 +94,13 @@ public class HUDBase : MonoBehaviour {
 	    {
             if (weaponHandling.activeWeapon.readyToFire)
 	        {
-	            ammo.color = Color.black;
-	            ammo.text = weaponHandling.activeWeapon.ammo.ToString();
+	            //ammo.color = Color.black;
+	            //ammo.text = weaponHandling.activeWeapon.ammo.ToString();
 	            textDisplay.SetClipValue(playerColor, weaponHandling.activeWeapon.ammo);
 	        }
 	        else
 	        {
-	            ammo.color = Color.red;
+	            //ammo.color = Color.red;
 	            string temp = (weaponHandling.activeWeapon.reloadTime - weaponHandling.activeWeapon.time).ToString();
 
 	            float reloadingProcess = weaponHandling.activeWeapon.reloadTime - weaponHandling.activeWeapon.time;
@@ -122,12 +122,12 @@ public class HUDBase : MonoBehaviour {
 
 	            if (l <= 3)
 	            {
-	                ammo.text = temp;
+	                //ammo.text = temp;
 	                //textDisplay.SetClipValue(playerColor, 10);
 	            }
 	            else
 	            {
-	                ammo.text = temp.Substring(0, 3);
+	                //ammo.text = temp.Substring(0, 3);
 	                //textDisplay.SetClipValue(playerColor, 20);
 
 	            }
@@ -154,7 +154,7 @@ public class HUDBase : MonoBehaviour {
 	        }
 
 
-	        hp.text = player.hitPoints.ToString();
+	        //hp.text = player.hitPoints.ToString();
             textDisplay.SetHpValue(playerColor, player.hitPoints);
 	    }
 	}

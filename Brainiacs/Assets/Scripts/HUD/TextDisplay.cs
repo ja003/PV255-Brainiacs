@@ -4,6 +4,7 @@ using System;
 
 public class TextDisplay {
 
+    ///HUD
     SpriteRenderer redClipSingle;
     SpriteRenderer redClipTenField;
     SpriteRenderer redClipUnitField;
@@ -36,35 +37,8 @@ public class TextDisplay {
     SpriteRenderer timeMinutesUnit;
     SpriteRenderer timeSecondsTen;
     SpriteRenderer timeSecondsUnit;
-
-
-    SpriteRenderer firstScoreSingle;
-    SpriteRenderer firstScoreTenField;
-    SpriteRenderer firstScoreUnitField;
-    SpriteRenderer firstDeathSingle;
-    SpriteRenderer firstDeathTenField;
-    SpriteRenderer firstDeathUnitField;
-
-    SpriteRenderer secondScoreSingle;
-    SpriteRenderer secondScoreTenField;
-    SpriteRenderer secondScoreUnitField;
-    SpriteRenderer secondDeathSingle;
-    SpriteRenderer secondDeathTenField;
-    SpriteRenderer secondDeathUnitField;
-
-    SpriteRenderer thirdScoreSingle;
-    SpriteRenderer thirdScoreTenField;
-    SpriteRenderer thirdScoreUnitField;
-    SpriteRenderer thirdDeathSingle;
-    SpriteRenderer thirdDeathTenField;
-    SpriteRenderer thirdDeathUnitField;
-
-    SpriteRenderer fourthScoreSingle;
-    SpriteRenderer fourthScoreTenField;
-    SpriteRenderer fourthScoreUnitField;
-    SpriteRenderer fourthDeathSingle;
-    SpriteRenderer fourthDeathTenField;
-    SpriteRenderer fourthDeathUnitField;
+    
+    
 
     public TextDisplay()
     {
@@ -85,30 +59,18 @@ public class TextDisplay {
 
     }
 
-    public void SetEndGameValues(
-        int firstScore, int firstDeaths, 
-        int secondScore, int secondDeaths,
-        int thirdScore, int thirdDeaths,
-        int fourthScore, int fourthDeaths)
-    {
-        DisplayNumberOn(firstScoreSingle, firstScoreTenField, firstScoreUnitField, firstScore);
-        DisplayNumberOn(firstDeathSingle, firstDeathTenField, firstDeathUnitField, firstDeaths);
-        
-        DisplayNumberOn(secondScoreSingle, secondScoreTenField, secondScoreUnitField, secondScore);
-        DisplayNumberOn(secondDeathSingle, secondDeathTenField, secondDeathUnitField, secondDeaths);
-
-        DisplayNumberOn(thirdScoreSingle, thirdScoreTenField, thirdScoreUnitField, thirdScore);
-        DisplayNumberOn(thirdDeathSingle, thirdDeathTenField, thirdDeathUnitField, thirdDeaths);
-
-        DisplayNumberOn(fourthScoreSingle, fourthScoreTenField, fourthScoreUnitField, fourthScore);
-        DisplayNumberOn(fourthDeathSingle, fourthDeathTenField, fourthDeathUnitField, fourthDeaths);
-        
-    }
+    
 
     public void DisplayNumberOn(SpriteRenderer singleField, SpriteRenderer tenField, SpriteRenderer unitField, int value)
     {
         //Debug.Log("displaying " + value);
-        if (value < 10 && value > -1)
+        if(value < 0)
+        {
+            tenField.sprite = null;
+            unitField.sprite = null;
+            singleField.sprite = GetNumberSprite("number_single_field"); //blank
+        }
+        else if (value < 10)
         {
             tenField.sprite = null;
             unitField.sprite = null;
@@ -123,38 +85,6 @@ public class TextDisplay {
             tenField.sprite = GetNumberSprite("number_double_" + ten);
             unitField.sprite = GetNumberSprite("number_double_" + unit);
         }
-    }
-
-    public void InitializeEndGameVariables()
-    {
-        firstScoreSingle = GameObject.Find("first_score_single_field").GetComponent<SpriteRenderer>();
-        firstScoreTenField = GameObject.Find("first_score_ten_field").GetComponent<SpriteRenderer>();
-        firstScoreUnitField = GameObject.Find("first_score_unit_field").GetComponent<SpriteRenderer>();
-        firstDeathSingle = GameObject.Find("first_death_single_field").GetComponent<SpriteRenderer>();
-        firstDeathTenField = GameObject.Find("first_death_ten_field").GetComponent<SpriteRenderer>();
-        firstDeathUnitField = GameObject.Find("first_death_unit_field").GetComponent<SpriteRenderer>();
-        
-        secondScoreSingle = GameObject.Find("second_score_single_field").GetComponent<SpriteRenderer>();
-        secondScoreTenField = GameObject.Find("second_score_ten_field").GetComponent<SpriteRenderer>();
-        secondScoreUnitField = GameObject.Find("second_score_unit_field").GetComponent<SpriteRenderer>();
-        secondDeathSingle = GameObject.Find("second_death_single_field").GetComponent<SpriteRenderer>();
-        secondDeathTenField = GameObject.Find("second_death_ten_field").GetComponent<SpriteRenderer>();
-        secondDeathUnitField = GameObject.Find("second_death_unit_field").GetComponent<SpriteRenderer>();
-        
-        thirdScoreSingle = GameObject.Find("third_score_single_field").GetComponent<SpriteRenderer>();
-        thirdScoreTenField = GameObject.Find("third_score_ten_field").GetComponent<SpriteRenderer>();
-        thirdScoreUnitField = GameObject.Find("third_score_unit_field").GetComponent<SpriteRenderer>();
-        thirdDeathSingle = GameObject.Find("third_death_single_field").GetComponent<SpriteRenderer>();
-        thirdDeathTenField = GameObject.Find("third_death_ten_field").GetComponent<SpriteRenderer>();
-        thirdDeathUnitField = GameObject.Find("third_death_unit_field").GetComponent<SpriteRenderer>();
-
-        fourthScoreSingle = GameObject.Find("fourth_score_single_field").GetComponent<SpriteRenderer>();
-        fourthScoreTenField = GameObject.Find("fourth_score_ten_field").GetComponent<SpriteRenderer>();
-        fourthScoreUnitField = GameObject.Find("fourth_score_unit_field").GetComponent<SpriteRenderer>();
-        fourthDeathSingle = GameObject.Find("fourth_death_single_field").GetComponent<SpriteRenderer>();
-        fourthDeathTenField = GameObject.Find("fourth_death_ten_field").GetComponent<SpriteRenderer>();
-        fourthDeathUnitField = GameObject.Find("fourth_death_unit_field").GetComponent<SpriteRenderer>();
-        
     }
 
     public void InitializeTimeVariable()
@@ -456,221 +386,5 @@ public class TextDisplay {
         }
     }
 
-    public void SetEndGameScoreValue(Rank rank, int value)
-    {
-        if (value < 10 && value > -1)
-        {
-            HideDoubleScore(rank);
-            switch (rank)
-            {
-                case Rank.First:
-                    firstScoreSingle.sprite = GetNumberSprite("number_single_" + value);
-                    break;
-                case Rank.Second:
-                    secondScoreSingle.sprite = GetNumberSprite("number_single_" + value);
-                    break;
-                case Rank.Third:
-                    thirdScoreSingle.sprite = GetNumberSprite("number_single_" + value);
-                    break;
-                case Rank.Fourth:
-                    fourthScoreSingle.sprite = GetNumberSprite("number_single_" + value);
-                    break;
-            }
-        }
-        else if (value >= 10 && value < 100)
-        {
-            int ten = value / 10;
-            int unit = value % 10;
-            HideSingleScore(rank);
-            switch (rank)
-            {
-                case Rank.First:
-                    firstScoreTenField.sprite = GetNumberSprite("number_double_" + ten);
-                    firstScoreUnitField.sprite = GetNumberSprite("number_double_" + unit);
-                    break;
-                case Rank.Second:
-                    secondScoreTenField.sprite = GetNumberSprite("number_double_" + ten);
-                    secondScoreUnitField.sprite = GetNumberSprite("number_double_" + unit);
-                    break;
-                case Rank.Third:
-                    thirdScoreTenField.sprite = GetNumberSprite("number_double_" + ten);
-                    thirdScoreUnitField.sprite = GetNumberSprite("number_double_" + unit);
-                    break;
-                case Rank.Fourth:
-                    fourthScoreTenField.sprite = GetNumberSprite("number_double_" + ten);
-                    fourthScoreUnitField.sprite = GetNumberSprite("number_double_" + unit);
-                    break;
-            }
-        }
-        else if (value >= 100)
-        {
-            HideDoubleScore(rank);
-            switch (rank)
-            {
-                case Rank.First:
-                    firstScoreSingle.sprite = GetNumberSprite("number_single_100");
-                    break;
-                case Rank.Second:
-                    secondScoreSingle.sprite = GetNumberSprite("number_single_100");
-                    break;
-                case Rank.Third:
-                    thirdScoreSingle.sprite = GetNumberSprite("number_single_100");
-                    break;
-                case Rank.Fourth:
-                    fourthScoreSingle.sprite = GetNumberSprite("number_single_100");
-                    break;
-            }
-        }
-    }
-
-    public void SetEndDeathValue(Rank rank, int value)
-    {
-        if (value < 10 && value > -1)
-        {
-            HideDoubleDeath(rank);
-            switch (rank)
-            {
-                case Rank.First:
-                    firstDeathSingle.sprite = GetNumberSprite("number_single_" + value);
-                    break;
-                case Rank.Second:
-                    secondDeathSingle.sprite = GetNumberSprite("number_single_" + value);
-                    break;
-                case Rank.Third:
-                    thirdDeathSingle.sprite = GetNumberSprite("number_single_" + value);
-                    break;
-                case Rank.Fourth:
-                    fourthDeathSingle.sprite = GetNumberSprite("number_single_" + value);
-                    break;
-            }
-        }
-        else if (value >= 10 && value < 100)
-        {
-            HideSingleDeath(rank);
-            int ten = value / 10;
-            int unit = value % 10;
-            switch (rank)
-            {
-                case Rank.First:
-                    firstDeathTenField.sprite = GetNumberSprite("number_double_" + ten);
-                    firstDeathUnitField.sprite = GetNumberSprite("number_double_" + unit);
-                    break;
-                case Rank.Second:
-                    secondDeathTenField.sprite = GetNumberSprite("number_double_" + ten);
-                    secondDeathUnitField.sprite = GetNumberSprite("number_double_" + unit);
-                    break;
-                case Rank.Third:
-                    thirdDeathTenField.sprite = GetNumberSprite("number_double_" + ten);
-                    thirdDeathUnitField.sprite = GetNumberSprite("number_double_" + unit);
-                    break;
-                case Rank.Fourth:
-                    fourthDeathTenField.sprite = GetNumberSprite("number_double_" + ten);
-                    fourthDeathUnitField.sprite = GetNumberSprite("number_double_" + unit);
-                    break;
-            }
-        }
-        else if (value >= 100)
-        {
-            HideDoubleDeath(rank);
-            switch (rank)
-            {
-                case Rank.First:
-                    firstDeathSingle.sprite = GetNumberSprite("number_single_100");
-                    break;
-                case Rank.Second:
-                    secondDeathSingle.sprite = GetNumberSprite("number_single_100");
-                    break;
-                case Rank.Third:
-                    thirdDeathSingle.sprite = GetNumberSprite("number_single_100");
-                    break;
-                case Rank.Fourth:
-                    fourthDeathSingle.sprite = GetNumberSprite("number_single_100");
-                    break;
-            }
-        }
-    }
-
-    public void HideDoubleScore(Rank rank)
-    {
-        switch (rank)
-        {
-            case Rank.First:
-                firstScoreTenField.sprite = null;
-                firstScoreUnitField.sprite = null;
-                break;
-            case Rank.Second:
-                secondScoreTenField.sprite = null;
-                secondScoreUnitField.sprite = null;
-                break;
-            case Rank.Third:
-                thirdScoreTenField.sprite = null;
-                thirdScoreUnitField.sprite = null;
-                break;
-            case Rank.Fourth:
-                fourthScoreTenField.sprite = null;
-                fourthScoreUnitField.sprite = null;
-                break;
-        }
-    }
-
-    public void HideSingleScore(Rank rank)
-    {
-        switch (rank)
-        {
-            case Rank.First:
-                firstScoreSingle.sprite = null;
-                break;
-            case Rank.Second:
-                secondScoreSingle.sprite = null;
-                break;
-            case Rank.Third:
-                thirdScoreSingle.sprite = null;
-                break;
-            case Rank.Fourth:
-                fourthScoreSingle.sprite = null;
-                break;
-        }
-    }
-
-    public void HideDoubleDeath(Rank rank)
-    {
-        switch (rank)
-        {
-            case Rank.First:
-                firstDeathTenField.sprite = null;
-                firstDeathUnitField.sprite = null;
-                break;
-            case Rank.Second:
-                secondDeathTenField.sprite = null;
-                secondDeathUnitField.sprite = null;
-                break;
-            case Rank.Third:
-                thirdDeathTenField.sprite = null;
-                thirdDeathUnitField.sprite = null;
-                break;
-            case Rank.Fourth:
-                fourthDeathTenField.sprite = null;
-                fourthDeathUnitField.sprite = null;
-                break;
-        }
-    }
-
-    public void HideSingleDeath(Rank rank)
-    {
-        switch (rank)
-        {
-            case Rank.First:
-                firstDeathSingle.sprite = null;
-                break;
-            case Rank.Second:
-                secondDeathSingle.sprite = null;
-                break;
-            case Rank.Third:
-                thirdDeathSingle.sprite = null;
-                break;
-            case Rank.Fourth:
-                fourthDeathSingle.sprite = null;
-                break;
-        }
-    }
+   
 }

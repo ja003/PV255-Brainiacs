@@ -39,7 +39,7 @@ public class TimeManager : MonoBehaviour {
         }
 
         stopWatch = Stopwatch.StartNew();
-        UnityEngine.Debug.Log(gameInfo.time);
+        //UnityEngine.Debug.Log(gameInfo.time);
         countdown = TimeSpan.FromSeconds(gameInfo.time);
         InvokeRepeating("Count1SecDown", 0, 1.0f);
         //UnityEngine.Debug.Log("tick");

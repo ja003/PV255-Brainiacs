@@ -46,7 +46,7 @@ public class WeaponSpecial : MonoBehaviour
     {
 
         specialPrefab = (GameObject)Resources.Load("Prefabs/" + name);
-        Debug.Log(specialPrefab);
+        //Debug.Log(specialPrefab);
         specialInstance = (GameObject)Instantiate(specialPrefab);
         specialInstance.transform.parent = gameObject.transform.parent;
        

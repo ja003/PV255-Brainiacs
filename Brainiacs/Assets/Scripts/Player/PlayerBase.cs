@@ -468,8 +468,15 @@ public abstract class PlayerBase : MonoBehaviour
         }
     }
 
-    public void UpdateGameInfoScore(int playerNumber, int value)
-    {
+    ScoreboardManager scoreboard;
+
+    public void IncreaseGameInfoScore(int playerNumber, int value)
+    {        
+        if(scoreboard == null)
+        {
+            scoreboard = GameObject.Find("Scoreboard").GetComponent<ScoreboardManager>();
+        }
+
         switch (playerNumber)
         {
             case 1:
@@ -487,6 +494,11 @@ public abstract class PlayerBase : MonoBehaviour
             default:
                 Debug.Log("playerNumber not valid");
                 break;
+        }
+
+        if(scoreboard != null)
+        {
+            scoreboard.RefreshStats();
         }
     }
 
@@ -511,7 +523,7 @@ public abstract class PlayerBase : MonoBehaviour
 
                 //add score to owner of bullet
                 owner.score++;
-                UpdateGameInfoScore(owner.playerNumber, 1);
+                IncreaseGameInfoScore(owner.playerNumber, 1);
 
                 Debug.Log(owner.playerNumber + ": " + owner.score);
                 //check score

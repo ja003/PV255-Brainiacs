@@ -388,12 +388,42 @@ public class MainMenu : MonoBehaviour {
         gameInfo.player4char = GetPlayersCharacter(PlayerEnum.Player4);
         gameInfo.player4type = GetTypeOfPlayer(PlayerEnum.Player4);
 
+        DisableInactivePlayers(gameInfo);
+
         gameInfo.gameMode = GetGameMode();
 
         gameInfo.time = GetInputValue() * 60; //minutes
         gameInfo.winScore = GetInputValue();
         gameInfo.lifes = GetInputValue();
         
+    }
+    
+    void DisableInactivePlayers(GameInfo gameInfo)
+    {
+        if (gameInfo.player1type == PlayerTypeEnum.None)
+        {
+            gameInfo.player1char = CharacterEnum.None;
+            gameInfo.player1score = -1;
+            gameInfo.player1deaths = -1;
+        }
+        if (gameInfo.player2type == PlayerTypeEnum.None)
+        {
+            gameInfo.player2char = CharacterEnum.None;
+            gameInfo.player2score = -1;
+            gameInfo.player2deaths = -1;
+        }
+        if (gameInfo.player3type == PlayerTypeEnum.None)
+        {
+            gameInfo.player3char = CharacterEnum.None;
+            gameInfo.player3score = -1;
+            gameInfo.player3deaths = -1;
+        }
+        if (gameInfo.player4type == PlayerTypeEnum.None)
+        {
+            gameInfo.player4char = CharacterEnum.None;
+            gameInfo.player4score = -1;
+            gameInfo.player4deaths = -1;
+        }
     }
 
     void FixedUpdate()
