@@ -76,6 +76,7 @@ public class WeaponSpecialDaVinciLogic : MonoBehaviour
         this.wh = wh;
         nullAllAnimBools();
         animator.SetBool("returnToOrig", true);
+        nullAllAnimBools();
         animator.SetBool("startTank", true);
         hp = 100;
         fireProps = fp;
@@ -104,6 +105,7 @@ public class WeaponSpecialDaVinciLogic : MonoBehaviour
 
     IEnumerator PlayCrash()
     {
+        nullAllAnimBools();
         animator.SetBool("stopTank", true);
         yield return new WaitForSeconds(1.0f);
         nullAllAnimBools();

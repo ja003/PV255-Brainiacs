@@ -115,9 +115,11 @@ public class WeaponSpecialEinsteinLogic : MonoBehaviour {
 
     IEnumerator PlayCrash()
     {
+        nullAllAnimBools();
         setBoolAnimator("boom", true);
         KillInRange();
-        yield return new WaitForSeconds(0.5f);                                               // tento prikaz kurvy cely kod
+        yield return new WaitForSeconds(0.5f);
+        nullAllAnimBools();
         animator.SetBool("exitBoom", true);
         nullAllAnimBools();
         WhiteT.gameObject.SetActive(false);
