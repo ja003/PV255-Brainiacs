@@ -97,6 +97,7 @@
     <Compile Include="Assets\Scripts\GameManager\PlayerResult.cs" />
     <Compile Include="Assets\Scripts\HUD\EndGameBackButton.cs" />
     <Compile Include="Assets\Scripts\HUD\HUDBase.cs" />
+    <Compile Include="Assets\Scripts\HUD\QuitInGameButton.cs" />
     <Compile Include="Assets\Scripts\HUD\ScoreboardManager.cs" />
     <Compile Include="Assets\Scripts\HUD\TextDisplay.cs" />
     <Compile Include="Assets\Scripts\Player\Components.cs" />
