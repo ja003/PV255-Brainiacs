@@ -84,8 +84,9 @@ public class EndGameManager : MonoBehaviour
             gameInfo = gameInfoObj.GetComponent<GameInfo>();
         }
 
+        Debug.Log("EndgameInfo");
         Debug.Log(gameInfo);
-        gameInfo.RefreshStats();
+        gameInfo.RefreshInactiveStats();
 
         textDisplay = new TextDisplay();
         InitializeEndGameVariables();
@@ -118,10 +119,10 @@ public class EndGameManager : MonoBehaviour
 
         playersOrder.Sort();
 
-        //Debug.Log(playersOrder[0]);
-        //Debug.Log(playersOrder[1]);
-        //Debug.Log(playersOrder[2]);
-        //Debug.Log(playersOrder[3]);
+        Debug.Log(playersOrder[0]);
+        Debug.Log(playersOrder[1]);
+        Debug.Log(playersOrder[2]);
+        Debug.Log(playersOrder[3]);
 
         switch (playersOrder[0].playerNumber)
         {
@@ -270,19 +271,19 @@ public class EndGameManager : MonoBehaviour
     public void SetupPlayerPositions()
     {
         Vector2 firstPlaceposition = new Vector2(-0.75f, 1.1f);
-        if (gameInfo.player1type != PlayerTypeEnum.None)
+        //if (gameInfo.player1type != PlayerTypeEnum.None)
             firstPlace.transform.position = firstPlaceposition;
 
         Vector2 secondPlaceposition = new Vector2(-2.9f, 0.1f);
-        if (gameInfo.player2type != PlayerTypeEnum.None)
+        //if (gameInfo.player2type != PlayerTypeEnum.None)
             secondPlace.transform.position = secondPlaceposition;
 
         Vector2 thirdPlaceposition = new Vector2(1.45f, -0.9f);
-        if (gameInfo.player3type != PlayerTypeEnum.None)
+        //if (gameInfo.player3type != PlayerTypeEnum.None)
             thirdPlace.transform.position = thirdPlaceposition;
 
         Vector2 fourthPlaceposition = new Vector2(3.6f, -1.9f);
-        if (gameInfo.player4type != PlayerTypeEnum.None)
+        //if (gameInfo.player4type != PlayerTypeEnum.None)
             fourthPlace.transform.position = fourthPlaceposition;
     }
 

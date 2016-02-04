@@ -28,7 +28,7 @@ public class SoundManager : MonoBehaviour
 
     public void StartBackgroundMusic(AudioClip clip)
     {
-        PlaySingle(clip, true, 1f, 1);
+        PlaySingle(clip, true, 0.1f, 1); //0.1 => 1 
     }
 
     public void PlaySingle(AudioClip clip)
@@ -89,8 +89,7 @@ public class SoundManager : MonoBehaviour
             newAS.Play();
         }
     }
-
-
+    
     //RandomizeSfx chooses randomly between various audio clips and slightly changes their pitch.
     public void RandomizeSfx(params AudioClip[] clips)
     {
@@ -114,4 +113,5 @@ public class SoundManager : MonoBehaviour
         //taky nahovno
         //efxSource.PlayOneShot(efxSource.clip);
     }
+    
 }

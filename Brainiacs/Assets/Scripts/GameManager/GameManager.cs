@@ -411,11 +411,7 @@ public class GameManager : MonoBehaviour {
 
     public void EndGame()
     {
-        //Debug.Log("END");
-        //int currentFrameCount = Time.frameCount;
         endGame = true;
-
-        //Application.LoadLevel("MainMenu");
     }
 
 

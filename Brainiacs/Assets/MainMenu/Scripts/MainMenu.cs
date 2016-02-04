@@ -117,6 +117,7 @@ public class MainMenu : MonoBehaviour {
 
         gameInfoObj = GameObject.Find("GameInfo");
         
+        
     }
 
     public void SetupSounds()
@@ -296,6 +297,7 @@ public class MainMenu : MonoBehaviour {
             activeScoreText = gameMode[1];
             activeDeathText = gameMode[2];
             selectedMode = 0;
+            SoundManager.instance.PlaySingle(button_click);
         }
         if (GUI.Button(new Rect((Screen.width / 4) - (selectOptionWidth / 2.0f), Screen.height * (-1 + cameraPositionY + selectYPosition + (2 * selectOptionYDistance) + (selectOptionHeight / Screen.height)), selectOptionWidth, selectOptionHeight), "", activeScoreText))
         {
@@ -303,6 +305,7 @@ public class MainMenu : MonoBehaviour {
             activeScoreText = activeGameMode[1];
             activeDeathText = gameMode[2];
             selectedMode = 1;
+            SoundManager.instance.PlaySingle(button_click);
         }
         if (GUI.Button(new Rect((Screen.width / 4) - (selectOptionWidth / 2.0f), Screen.height * (-1 + cameraPositionY + selectYPosition + (3 * selectOptionYDistance) + (2 * selectOptionHeight / Screen.height)), selectOptionWidth, selectOptionHeight), "", activeDeathText))
         {
@@ -310,6 +313,7 @@ public class MainMenu : MonoBehaviour {
             activeScoreText = gameMode[1];
             activeDeathText = activeGameMode[2];
             selectedMode = 2;
+            SoundManager.instance.PlaySingle(button_click);
         }
 
         //input field
@@ -323,10 +327,12 @@ public class MainMenu : MonoBehaviour {
         if (GUI.Button(new Rect((Screen.width / 4) + nextInputXPos, Screen.height * (-1 + cameraPositionY) + mapSelectYPos + nextMapYDif, nextWidth, nextHeight), "", nextTexture))
         {
             inputValue = NextInputValue(inputValue);
+            SoundManager.instance.PlaySingle(button_click);
         }
         if (GUI.Button(new Rect((Screen.width / 4) - nextInputXPos - nextWidth, Screen.height * (-1 + cameraPositionY) + mapSelectYPos + nextMapYDif, nextWidth, nextHeight), "", previousTexture))
         {
             inputValue = PreviousInputValue(inputValue);
+            SoundManager.instance.PlaySingle(button_click);
         }
 
         //map select
@@ -335,10 +341,12 @@ public class MainMenu : MonoBehaviour {
         if (GUI.Button(new Rect((3 * Screen.width / 4) + nextMapXPos, Screen.height * (-1 + cameraPositionY) + mapSelectYPos + nextMapYDif, nextWidth, nextHeight), "", nextTexture))
         {
             selectedMap = NextMap(selectedMap);
+            SoundManager.instance.PlaySingle(button_click);
         }
         if (GUI.Button(new Rect((3 * Screen.width / 4) - nextMapXPos - nextWidth, Screen.height * (-1 + cameraPositionY) + mapSelectYPos + nextMapYDif, nextWidth, nextHeight), "", previousTexture))
         {
             selectedMap = PreviousMap(selectedMap);
+            SoundManager.instance.PlaySingle(button_click);
         }
 
         //startgame
@@ -351,6 +359,7 @@ public class MainMenu : MonoBehaviour {
             }
             else
             {
+                SoundManager.instance.PlaySingle(button_click);
                 string selectedMapName = "" + (MapEnum)selectedMap;
                 StartGame(selectedMapName);
             }
@@ -361,6 +370,7 @@ public class MainMenu : MonoBehaviour {
             moveToNewGame = false;
             moveDownToMenu = true;
             moveUpToMenu = false;
+            SoundManager.instance.PlaySingle(button_click);
         }
 
         //-------------------------------MENU SCREEN-----------------------------------
@@ -385,9 +395,11 @@ public class MainMenu : MonoBehaviour {
             moveToNewGame = false;
             moveDownToMenu = false;
             moveUpToMenu = false;
+            SoundManager.instance.PlaySingle(button_click);
         }
         if (GUI.Button(new Rect(buttonX, Screen.height * (newGameButtonY + 2 * distanceBetweenButtons), buttonWidth, buttonHeight), "", quitTexture))
         {
+            SoundManager.instance.PlaySingle(button_click);
             Application.Quit();
         }
 
@@ -402,11 +414,13 @@ public class MainMenu : MonoBehaviour {
             moveToNewGame = false;
             moveDownToMenu = false;
             moveUpToMenu = true;
+            SoundManager.instance.PlaySingle(button_click);
         }
     }
 
     void StartGame(string mapName)
     {
+
         SetUpGameInfo();
 
         Application.LoadLevel("Loading");
@@ -416,7 +430,8 @@ public class MainMenu : MonoBehaviour {
     {
         Object.DontDestroyOnLoad(gameInfoObj);
         GameInfo gameInfo = gameInfoObj.GetComponent<GameInfo>();
-
+        gameInfo.RefreshGameInfo();
+        
         gameInfo.mapName = "" + (MapEnum)selectedMap;
 
         gameInfo.player1char = GetPlayersCharacter(PlayerEnum.Player1);
@@ -427,45 +442,19 @@ public class MainMenu : MonoBehaviour {
         gameInfo.player3type = GetTypeOfPlayer(PlayerEnum.Player3);
         gameInfo.player4char = GetPlayersCharacter(PlayerEnum.Player4);
         gameInfo.player4type = GetTypeOfPlayer(PlayerEnum.Player4);
-
-        DisableInactivePlayers(gameInfo);
+        
+        gameInfo.RefreshInactiveStats();
 
         gameInfo.gameMode = GetGameMode();
 
         gameInfo.time = GetInputValue() * 60; //minutes
         gameInfo.winScore = GetInputValue();
         gameInfo.lifes = GetInputValue();
-        
+
+        Debug.Log("Start GAMEINFO");
+        Debug.Log(gameInfo);
     }
     
-    void DisableInactivePlayers(GameInfo gameInfo)
-    {
-        if (gameInfo.player1type == PlayerTypeEnum.None)
-        {
-            gameInfo.player1char = CharacterEnum.None;
-            gameInfo.player1score = -1;
-            gameInfo.player1deaths = -1;
-        }
-        if (gameInfo.player2type == PlayerTypeEnum.None)
-        {
-            gameInfo.player2char = CharacterEnum.None;
-            gameInfo.player2score = -1;
-            gameInfo.player2deaths = -1;
-        }
-        if (gameInfo.player3type == PlayerTypeEnum.None)
-        {
-            gameInfo.player3char = CharacterEnum.None;
-            gameInfo.player3score = -1;
-            gameInfo.player3deaths = -1;
-        }
-        if (gameInfo.player4type == PlayerTypeEnum.None)
-        {
-            gameInfo.player4char = CharacterEnum.None;
-            gameInfo.player4score = -1;
-            gameInfo.player4deaths = -1;
-        }
-    }
-
     void FixedUpdate()
     {
         if (moveToControls)

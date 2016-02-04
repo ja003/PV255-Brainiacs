@@ -12,31 +12,59 @@ public class GameInfo : MonoBehaviour {
 
     public PlayerTypeEnum player1type = PlayerTypeEnum.Player;
     public PlayerTypeEnum player2type = PlayerTypeEnum.Player;
-    public PlayerTypeEnum player3type = PlayerTypeEnum.Player;
-    public PlayerTypeEnum player4type = PlayerTypeEnum.Player;
+    public PlayerTypeEnum player3type = PlayerTypeEnum.None;
+    public PlayerTypeEnum player4type = PlayerTypeEnum.AI;
 
-    public CharacterEnum player1char = CharacterEnum.Einstein;
-    public CharacterEnum player2char = CharacterEnum.Curie;
-    public CharacterEnum player3char = CharacterEnum.DaVinci;
-    public CharacterEnum player4char = CharacterEnum.Nobel;
+    public CharacterEnum player1char = CharacterEnum.Tesla;
+    public CharacterEnum player2char = CharacterEnum.Tesla;
+    public CharacterEnum player3char = CharacterEnum.Tesla;
+    public CharacterEnum player4char = CharacterEnum.Tesla;
 
     public int player1score = 0;
-    public int player2score = 3;
-    public int player3score = 1;
-    public int player4score = 2;
+    public int player2score = 0;
+    public int player3score = 0;
+    public int player4score = 0;
 
-    public int player1lifes = 3;
-    public int player2lifes = 3;
-    public int player3lifes = 3;
-    public int player4lifes = 3;
+    public int player1lifes = 0;
+    public int player2lifes = 0;
+    public int player3lifes = 0;
+    public int player4lifes = 0;
 
     public int player1deaths = 0;
     public int player2deaths = 0;
     public int player3deaths = 0;
     public int player4deaths = 0;
 
-    //assign negative values to inactive players
-    public void RefreshStats()
+    public void RefreshGameInfo()
+    {
+        player1type = PlayerTypeEnum.None;
+        player2type = PlayerTypeEnum.None;
+        player3type = PlayerTypeEnum.None;
+        player4type = PlayerTypeEnum.None;
+
+        player1char = CharacterEnum.None;
+        player2char = CharacterEnum.None;
+        player3char = CharacterEnum.None;
+        player4char = CharacterEnum.None;
+
+        player1score = -1;
+        player2score = -1;
+        player3score = -1;
+        player4score = -1;
+
+        player1lifes = -1;
+        player2lifes = -1;
+        player3lifes = -1;
+        player4lifes = -1;
+
+        player1deaths = -1;
+        player2deaths = -1;
+        player3deaths = -1;
+        player4deaths = -1;
+}
+
+
+    public void RefreshInactiveStats()
     {
         if (player1type == PlayerTypeEnum.None)
         {
@@ -64,10 +92,72 @@ public class GameInfo : MonoBehaviour {
         }
     }
 
+    public void RefreshStats()
+    {
+        if (player1type == PlayerTypeEnum.None)
+        {
+            player1score = -1;
+            player1deaths = -1;
+            player1lifes = -1;
+        }
+        else
+        {
+            player1score = 0;
+            player1deaths = 0;
+            player1lifes = lifes;
+        }
+        if (player2type == PlayerTypeEnum.None)
+        {
+            player2score = -1;
+            player2deaths = -1;
+            player2lifes = -1;
+        }
+        else
+        {
+            player2score = 0;
+            player2deaths = 0;
+            player2lifes = lifes;
+        }
+        if (player3type == PlayerTypeEnum.None)
+        {
+            player3score = -1;
+            player3deaths = -1;
+            player3lifes = -1;
+        }
+        else
+        {
+            player3score = 0;
+            player3deaths = 0;
+            player3lifes = lifes;
+        }
+        if (player4type == PlayerTypeEnum.None)
+        {
+            player4score = -1;
+            player4deaths = -1;
+            player4lifes = -1;
+        }
+        else
+        {
+            player4score = 0;
+            player4deaths = 0;
+            player4lifes = lifes;
+        }
+    }
+
     public override string ToString()
     {
         string s = "";
         s += "gameMode = " + gameMode+"\n";
+
+        s += "player1score = " + player1score + "\n";
+        s += "player2score = " + player2score + "\n";
+        s += "player3score = " + player3score + "\n";
+        s += "player4score = " + player4score + "\n";
+
+        s += "player1deaths = " + player1deaths + "\n";
+        s += "player2deaths = " + player2deaths + "\n";
+        s += "player3deaths = " + player3deaths + "\n";
+        s += "player4deaths = " + player4deaths + "\n";
 
         s += "time = " + time + "\n";
         s += "score = " + winScore + "\n";

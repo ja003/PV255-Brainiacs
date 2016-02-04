@@ -42,7 +42,8 @@ public class TextDisplay {
 
     public TextDisplay()
     {
-        try {
+        try
+        {
             InitializeGameVariables();
             HidePlayerInfo(Colors.Red);
             HidePlayerInfo(Colors.Green);
@@ -53,6 +54,7 @@ public class TextDisplay {
         catch(NullReferenceException e)
         {
             Debug.Log("GameVariables not found");
+            Debug.Log("error: " + e);
         }
 
         

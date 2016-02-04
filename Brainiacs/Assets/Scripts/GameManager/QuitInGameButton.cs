@@ -13,7 +13,9 @@ public class QuitInGameButton : MonoBehaviour {
 
         if (GUI.Button(new Rect(buttonX, 0.0f, buttonWidth, buttonHeight), "", backTexture))
         {
-            Application.LoadLevel("MainMenu");
+            //Application.LoadLevel("EndGame");
+            GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            gameManager.EndGame();
         }
     }
 }
