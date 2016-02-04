@@ -16,9 +16,15 @@ public class TimeManager : MonoBehaviour {
 
     private TextDisplay textDisplay;
 
+    void Awake()
+    {
+        CheckGameManager();
+    }
 
     void Start()
     {
+        
+
         textDisplay = new TextDisplay();
         textDisplay.InitializeTimeVariable();
 
@@ -46,6 +52,30 @@ public class TimeManager : MonoBehaviour {
 
     }
     
+    void CheckGameManager()
+    {
+        GameObject gmObject = GameObject.Find("GameManager");
+        GameManager gameManager;
+        try
+        {
+            gameManager = gmObject.GetComponent<GameManager>();
+            if (gameManager != null)
+            {
+                UnityEngine.Debug.Log("GameManager is OK");
+            }
+            else
+            {
+                UnityEngine.Debug.Log("GameManager script not assigned!");
+                gmObject.AddComponent<GameManager>();
+            }
+
+        }
+        catch (Exception e)
+        {
+            UnityEngine.Debug.Log("GameManager script not assigned!");
+            gmObject.AddComponent<GameManager>();
+        }
+    }
 
     void Count1SecDown()
     {

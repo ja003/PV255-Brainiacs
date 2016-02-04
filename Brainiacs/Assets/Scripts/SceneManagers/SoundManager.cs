@@ -28,7 +28,7 @@ public class SoundManager : MonoBehaviour
 
     public void StartBackgroundMusic(AudioClip clip)
     {
-        PlaySingle(clip, true);
+        PlaySingle(clip, true, 1f, 1);
     }
 
     public void PlaySingle(AudioClip clip)
@@ -36,8 +36,13 @@ public class SoundManager : MonoBehaviour
         PlaySingle(clip, false);
     }
 
-    //Used to play single sound clips.
     public void PlaySingle(AudioClip clip, bool loop)
+    {
+        PlaySingle(clip, loop, 0.9f, 128);
+    }
+
+    //Used to play single sound clips.
+    public void PlaySingle(AudioClip clip, bool loop, float volume, int priority)
     {
         //Set the clip of our efxSource audio source to the clip passed in as a parameter.
         //efxSource.clip = clip;
@@ -67,6 +72,7 @@ public class SoundManager : MonoBehaviour
             availableAS.clip = clip;
             availableAS.pitch = randomPitch;
             availableAS.volume = volume;
+            availableAS.priority = priority;
             availableAS.Play();
         }
         else
@@ -79,6 +85,7 @@ public class SoundManager : MonoBehaviour
             newAS.clip = clip;
             newAS.pitch = randomPitch;
             newAS.volume = volume;
+            newAS.priority = priority;
             newAS.Play();
         }
     }

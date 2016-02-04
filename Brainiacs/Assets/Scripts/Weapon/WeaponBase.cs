@@ -89,7 +89,6 @@ public class WeaponBase
         string soundLoaderString = "Sounds/Weapon/";
 
         fireSound_01 = Resources.Load(soundLoaderString + fireSound_01_string) as AudioClip;
-
     }
 
     public override string ToString()

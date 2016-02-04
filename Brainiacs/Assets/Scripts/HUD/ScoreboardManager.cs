@@ -59,11 +59,11 @@ public class ScoreboardManager : MonoBehaviour {
             gameInfo = gameInfoObj.GetComponent<GameInfo>();
         }
 
-        Debug.Log(gameInfo);
+        gameInfo.RefreshStats();
         InitializeScoreboardVariables();
 
         textDisplay = new TextDisplay();
-
+        
         RefreshStats();
         DisplayPortraits();
     }

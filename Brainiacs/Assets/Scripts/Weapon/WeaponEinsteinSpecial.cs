@@ -19,7 +19,7 @@ public class WeaponEinsteinSpecial : WeaponBase {
         base.sprite = "Sprites/Special/einsteinSpecial";
         //base.bulletAnimControler = "Animations/bullets_animators/bullet_curie_animator";
 
-        base.setUpSounds("sniper");
+        base.setUpSounds("einsteinSpecial");
 
         kadency = 3.0f;
         kadReady = true;

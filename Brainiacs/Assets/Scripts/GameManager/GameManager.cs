@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour {
 
         try {
             gameInfo = GameObject.Find("GameInfo").GetComponent<GameInfo>();
-            Debug.Log(gameInfo);
+            //Debug.Log(gameInfo);
         }catch(Exception e)
         {
             Debug.Log("NO GAME INFO OBJECT - setting default values");
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour {
 
         //Debug.Log(gameInfo);
 
-        SetUpBackgroundMusic("steampunk");
+        SetUpBackgroundMusic("map");
         
         LoadPlayersTypes();
 
@@ -142,11 +142,20 @@ public class GameManager : MonoBehaviour {
 
     public void SetUpBackgroundMusic(string mapName)
     {
-        //GameObject sm = GameObject.Find("SoundManager");
-        //AudioSource[] audioSources = sm.GetComponents<AudioSource>();
-        //0 = sound FX, 1 = bg music
-        //AudioSource bgMusicAudioSource = audioSources[1];
-        AudioClip bgMusic = Resources.Load("Sounds/BackgroundMusic/map_" + mapName) as AudioClip;        
+        GameObject sm = GameObject.Find("SoundManager");
+        AudioSource[] audioSources = sm.GetComponents<AudioSource>();
+        //0 = menu
+
+        try {
+            Debug.Log("muting menu music");
+            AudioSource menuMusicAudioSource = audioSources[0];
+            menuMusicAudioSource.volume = 0;
+        }catch(Exception e)
+        {
+            Debug.Log("Menu music not set");
+        }
+
+        AudioClip bgMusic = Resources.Load("Sounds/BackgroundMusic/music_" + mapName) as AudioClip;        
         //bgMusicAudioSource.clip = bgMusic;
         //play it
         SoundManager.instance.StartBackgroundMusic(bgMusic);

@@ -38,6 +38,7 @@ public class EndGameManager : MonoBehaviour
     SpriteRenderer firstDeathSingle;
     SpriteRenderer firstDeathTenField;
     SpriteRenderer firstDeathUnitField;
+    SpriteRenderer firstSlash;
 
     SpriteRenderer secondScoreSingle;
     SpriteRenderer secondScoreTenField;
@@ -45,13 +46,15 @@ public class EndGameManager : MonoBehaviour
     SpriteRenderer secondDeathSingle;
     SpriteRenderer secondDeathTenField;
     SpriteRenderer secondDeathUnitField;
-
+    SpriteRenderer secondSlash;
+    
     SpriteRenderer thirdScoreSingle;
     SpriteRenderer thirdScoreTenField;
     SpriteRenderer thirdScoreUnitField;
     SpriteRenderer thirdDeathSingle;
     SpriteRenderer thirdDeathTenField;
     SpriteRenderer thirdDeathUnitField;
+    SpriteRenderer thirdSlash;
 
     SpriteRenderer fourthScoreSingle;
     SpriteRenderer fourthScoreTenField;
@@ -59,6 +62,7 @@ public class EndGameManager : MonoBehaviour
     SpriteRenderer fourthDeathSingle;
     SpriteRenderer fourthDeathTenField;
     SpriteRenderer fourthDeathUnitField;
+    SpriteRenderer fourthSlash;
 
     // Use this for initialization
     void Start()
@@ -81,6 +85,7 @@ public class EndGameManager : MonoBehaviour
         }
 
         Debug.Log(gameInfo);
+        gameInfo.RefreshStats();
 
         textDisplay = new TextDisplay();
         InitializeEndGameVariables();
@@ -186,7 +191,6 @@ public class EndGameManager : MonoBehaviour
 
     void DisplayResults()
     {
-        FixSlashes();
 
         int firstScore = playersOrder[0].score;
         int firstDeaths = playersOrder[0].deaths;
@@ -207,10 +211,33 @@ public class EndGameManager : MonoBehaviour
             thirdScore, thirdDeaths, 
             fourthScore, fourthDeaths);
 
+        RefreshSlashes();
+
     }
 
-    public void FixSlashes()
+    public void RefreshSlashes()
     {
+        Sprite slash = Resources.Load<Sprite>("Sprites/HUD/numbers/number_score_field");
+
+        if (playersOrder[0].score < 0)
+            firstSlash.sprite = null;
+        else
+            firstSlash.sprite = slash;
+
+        if (playersOrder[1].score < 0)
+            secondSlash.sprite = null;
+        else
+            secondSlash.sprite = slash;
+
+        if (playersOrder[2].score < 0)
+            thirdSlash.sprite = null;
+        else
+            thirdSlash.sprite = slash;
+
+        if (playersOrder[3].score < 0)
+            fourthSlash.sprite = null;
+        else
+            fourthSlash.sprite = slash;
 
     }
 
@@ -377,6 +404,7 @@ public class EndGameManager : MonoBehaviour
         firstDeathSingle = GameObject.Find("first_death_single_field").GetComponent<SpriteRenderer>();
         firstDeathTenField = GameObject.Find("first_death_ten_field").GetComponent<SpriteRenderer>();
         firstDeathUnitField = GameObject.Find("first_death_unit_field").GetComponent<SpriteRenderer>();
+        firstSlash = GameObject.Find("first_slash").GetComponent<SpriteRenderer>();
 
         secondScoreSingle = GameObject.Find("second_score_single_field").GetComponent<SpriteRenderer>();
         secondScoreTenField = GameObject.Find("second_score_ten_field").GetComponent<SpriteRenderer>();
@@ -384,6 +412,7 @@ public class EndGameManager : MonoBehaviour
         secondDeathSingle = GameObject.Find("second_death_single_field").GetComponent<SpriteRenderer>();
         secondDeathTenField = GameObject.Find("second_death_ten_field").GetComponent<SpriteRenderer>();
         secondDeathUnitField = GameObject.Find("second_death_unit_field").GetComponent<SpriteRenderer>();
+        secondSlash = GameObject.Find("second_slash").GetComponent<SpriteRenderer>();
 
         thirdScoreSingle = GameObject.Find("third_score_single_field").GetComponent<SpriteRenderer>();
         thirdScoreTenField = GameObject.Find("third_score_ten_field").GetComponent<SpriteRenderer>();
@@ -391,6 +420,7 @@ public class EndGameManager : MonoBehaviour
         thirdDeathSingle = GameObject.Find("third_death_single_field").GetComponent<SpriteRenderer>();
         thirdDeathTenField = GameObject.Find("third_death_ten_field").GetComponent<SpriteRenderer>();
         thirdDeathUnitField = GameObject.Find("third_death_unit_field").GetComponent<SpriteRenderer>();
+        thirdSlash = GameObject.Find("third_slash").GetComponent<SpriteRenderer>();
 
         fourthScoreSingle = GameObject.Find("fourth_score_single_field").GetComponent<SpriteRenderer>();
         fourthScoreTenField = GameObject.Find("fourth_score_ten_field").GetComponent<SpriteRenderer>();
@@ -398,6 +428,7 @@ public class EndGameManager : MonoBehaviour
         fourthDeathSingle = GameObject.Find("fourth_death_single_field").GetComponent<SpriteRenderer>();
         fourthDeathTenField = GameObject.Find("fourth_death_ten_field").GetComponent<SpriteRenderer>();
         fourthDeathUnitField = GameObject.Find("fourth_death_unit_field").GetComponent<SpriteRenderer>();
+        fourthSlash = GameObject.Find("fourth_slash").GetComponent<SpriteRenderer>();
 
     }
 
@@ -420,5 +451,7 @@ public class EndGameManager : MonoBehaviour
         textDisplay.DisplayNumberOn(fourthDeathSingle, fourthDeathTenField, fourthDeathUnitField, fourthDeaths);
 
     }
+
+
 
 }

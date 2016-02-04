@@ -90,10 +90,16 @@ public class MainMenu : MonoBehaviour {
 
     private string inputValue = "10";
 
-    private AudioClip bgMusic;
+    
 
     //Game info
     private GameObject gameInfoObj;
+
+    //Sounds
+    AudioClip bgMusic;
+    AudioClip button_click;
+    AudioClip button_wrong;
+
 
     void Start()
     {
@@ -104,17 +110,25 @@ public class MainMenu : MonoBehaviour {
         activeScoreText = gameMode[1];
         activeDeathText = gameMode[2];
         inputField.fontSize = inputField.normal.background.height / 3;
-
-        //for now
-        bgMusic = Resources.Load("Sounds/BackgroundMusic/map_" + "steampunk") as AudioClip;
+        
+        SetupSounds();
 
         SoundManager.instance.StartBackgroundMusic(bgMusic);
 
         gameInfoObj = GameObject.Find("GameInfo");
+        
+    }
+
+    public void SetupSounds()
+    {
+        bgMusic = Resources.Load("Sounds/BackgroundMusic/music_" + "menu") as AudioClip;
+        button_click = Resources.Load<AudioClip>("Sounds/Menu/button_click");
+        button_wrong = Resources.Load<AudioClip>("Sounds/Menu/button_wrong");
     }
 
     void OnGUI()
     {
+
         //displays background texture
         GUI.DrawTexture(new Rect(0, (cameraPositionY - 1) * Screen.height, Screen.width, 3 * Screen.height), backgroundTexture);
 
@@ -182,36 +196,44 @@ public class MainMenu : MonoBehaviour {
         if (GUI.Button(new Rect((Screen.width / 8) + nextClassPosX, Screen.height * (-1 + cameraPositionY + classYPosition + nextClassPosY), nextWidth, nextHeight), "", nextTexture))
         {
             p1Class = NextClass(p1Class);
+            SoundManager.instance.PlaySingle(button_click);
         }
         if (GUI.Button(new Rect((3 * Screen.width / 8) + nextClassPosX, Screen.height * (-1 + cameraPositionY + classYPosition + nextClassPosY), nextWidth, nextHeight), "", nextTexture))
         {
             p2Class = NextClass(p2Class);
+            SoundManager.instance.PlaySingle(button_click);
         }
         if (GUI.Button(new Rect((5 * Screen.width / 8) + nextClassPosX, Screen.height * (-1 + cameraPositionY + classYPosition + nextClassPosY), nextWidth, nextHeight), "", nextTexture))
         {
             p3Class = NextClass(p3Class);
+            SoundManager.instance.PlaySingle(button_click);
         }
         if (GUI.Button(new Rect((7 * Screen.width / 8) + nextClassPosX, Screen.height * (-1 + cameraPositionY + classYPosition + nextClassPosY), nextWidth, nextHeight), "", nextTexture))
         {
             p4Class = NextClass(p4Class);
+            SoundManager.instance.PlaySingle(button_click);
         }
 
         //previous classes
         if (GUI.Button(new Rect((Screen.width / 8) - nextClassPosX - nextWidth, Screen.height * (-1 + cameraPositionY + classYPosition + nextClassPosY), nextWidth, nextHeight), "", previousTexture))
         {
             p1Class = PreviousClass(p1Class);
+            SoundManager.instance.PlaySingle(button_click);
         }
         if (GUI.Button(new Rect((3 * Screen.width / 8) - nextClassPosX - nextWidth, Screen.height * (-1 + cameraPositionY + classYPosition + nextClassPosY), nextWidth, nextHeight), "", previousTexture))
         {
             p2Class = PreviousClass(p2Class);
+            SoundManager.instance.PlaySingle(button_click);
         }
         if (GUI.Button(new Rect((5 * Screen.width / 8) - nextClassPosX - nextWidth, Screen.height * (-1 + cameraPositionY + classYPosition + nextClassPosY), nextWidth, nextHeight), "", previousTexture))
         {
             p3Class = PreviousClass(p3Class);
+            SoundManager.instance.PlaySingle(button_click);
         }
         if (GUI.Button(new Rect((7 * Screen.width / 8) - nextClassPosX - nextWidth, Screen.height * (-1 + cameraPositionY + classYPosition + nextClassPosY), nextWidth, nextHeight), "", previousTexture))
         {
             p4Class = PreviousClass(p4Class);
+            SoundManager.instance.PlaySingle(button_click);
         }
 
         //player types
@@ -223,37 +245,45 @@ public class MainMenu : MonoBehaviour {
         //next player types
         if (GUI.Button(new Rect((Screen.width / 8) + nextClassPosX, Screen.height * (-1 + cameraPositionY + typeYPosition + nextClassPosY), nextWidth, nextHeight), "", nextTexture))
         {
-            p1Type = NextPlayerType(p1Type);
+            p1Type = NextPlayerType(p1Type);            
+            SoundManager.instance.PlaySingle(button_click);
         }
         if (GUI.Button(new Rect((3 * Screen.width / 8) + nextClassPosX, Screen.height * (-1 + cameraPositionY + typeYPosition + nextClassPosY), nextWidth, nextHeight), "", nextTexture))
         {
             p2Type = NextPlayerType(p2Type);
+            SoundManager.instance.PlaySingle(button_click);
         }
         if (GUI.Button(new Rect((5 * Screen.width / 8) + nextClassPosX, Screen.height * (-1 + cameraPositionY + typeYPosition + nextClassPosY), nextWidth, nextHeight), "", nextTexture))
         {
             p3Type = NextPlayerType(p3Type);
+            SoundManager.instance.PlaySingle(button_click);
         }
         if (GUI.Button(new Rect((7 * Screen.width / 8) + nextClassPosX, Screen.height * (-1 + cameraPositionY + typeYPosition + nextClassPosY), nextWidth, nextHeight), "", nextTexture))
         {
             p4Type = NextPlayerType(p4Type);
+            SoundManager.instance.PlaySingle(button_click);
         }
 
         //previous player types
         if (GUI.Button(new Rect((Screen.width / 8) - nextClassPosX - nextWidth, Screen.height * (-1 + cameraPositionY + typeYPosition + nextClassPosY), nextWidth, nextHeight), "", previousTexture))
         {
             p1Type = PreviousPlayerType(p1Type);
+            SoundManager.instance.PlaySingle(button_click);
         }
         if (GUI.Button(new Rect((3 * Screen.width / 8) - nextClassPosX - nextWidth, Screen.height * (-1 + cameraPositionY + typeYPosition + nextClassPosY), nextWidth, nextHeight), "", previousTexture))
         {
             p2Type = PreviousPlayerType(p2Type);
+            SoundManager.instance.PlaySingle(button_click);
         }
         if (GUI.Button(new Rect((5 * Screen.width / 8) - nextClassPosX - nextWidth, Screen.height * (-1 + cameraPositionY + typeYPosition + nextClassPosY), nextWidth, nextHeight), "", previousTexture))
         {
             p3Type = PreviousPlayerType(p3Type);
+            SoundManager.instance.PlaySingle(button_click);
         }
         if (GUI.Button(new Rect((7 * Screen.width / 8) - nextClassPosX - nextWidth, Screen.height * (-1 + cameraPositionY + typeYPosition + nextClassPosY), nextWidth, nextHeight), "", previousTexture))
         {
             p4Type = PreviousPlayerType(p4Type);
+            SoundManager.instance.PlaySingle(button_click);
         }
 
         //selects
@@ -317,6 +347,7 @@ public class MainMenu : MonoBehaviour {
             if (countInactivePlayers() > 2)
             {
                 //play sound
+                SoundManager.instance.PlaySingle(button_wrong);
             }
             else
             {
@@ -345,6 +376,8 @@ public class MainMenu : MonoBehaviour {
             moveToNewGame = true;
             moveDownToMenu = false;
             moveUpToMenu = false;
+
+            SoundManager.instance.PlaySingle(button_click);
         }
         if (GUI.Button(new Rect(buttonX, Screen.height * (newGameButtonY + distanceBetweenButtons), buttonWidth, buttonHeight), "", controlsTexture))
         {

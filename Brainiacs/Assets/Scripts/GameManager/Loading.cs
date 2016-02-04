@@ -75,7 +75,7 @@ public class Loading : MonoBehaviour {
         }
 
         //chvilku trvá...případně posunout
-        if(frameCountSinceLvlLoad == 20)//fastload, normal == 200
+        if(frameCountSinceLvlLoad == 200)//fastload, normal == 200
         {
             Application.LoadLevel(mapName);
         }

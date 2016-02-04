@@ -146,6 +146,7 @@ public class WeaponHandling : MonoBehaviour {
         if (bulletsLeft > 0)
         {
             SoundManager.instance.RandomizeSfx(activeWeapon.fireSound_01);
+
             if (activeWeapon.isSpecial)
             {
                 specialWeapon.fire(fireProps, buletManager, this);
