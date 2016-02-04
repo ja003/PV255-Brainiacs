@@ -156,10 +156,10 @@ public abstract class PlayerBase : MonoBehaviour
 
     public void setUpWeapons(PlayerInfo pi)
     {
-        
+
         weaponHandling.player = GetComponent<PlayerBase>();
         weaponHandling.specialWeapon = GetComponent<WeaponSpecial>();
-        
+
         //Debug.Log(pi);
         //Debug.Log(pi.charEnum);
         WeaponBase pistol = new WeaponPistol(pi.charEnum);
@@ -169,7 +169,7 @@ public abstract class PlayerBase : MonoBehaviour
         WeaponBase MP40 = new WeaponMP40();
         WeaponBase mine = new WeaponMine();
         WeaponBase flame = new WeaponFlamethrower();
-       Transform childFlame = transform.Find("Flame");
+        Transform childFlame = transform.Find("Flame");
         weaponHandling.flamethrower = childFlame.GetComponent<WeaponFlamethrowerLogic>();
 
         //WeaponBase specialCurie = new WeaponSpecialCurieLogic();
@@ -208,7 +208,7 @@ public abstract class PlayerBase : MonoBehaviour
                 weaponHandling.weapons.Add(WeaponEnum.specialNobel, special);
                 break;
         }
-        
+
         weaponHandling.weapons.Add(WeaponEnum.sniper, sniper);
         weaponHandling.weapons.Add(WeaponEnum.pistol, pistol);
         weaponHandling.weapons.Add(WeaponEnum.biogun, biogun);
@@ -218,16 +218,16 @@ public abstract class PlayerBase : MonoBehaviour
 
 
         // Inicializacia prvej zbrane
-        weaponHandling.inventory.Add(flame);
         weaponHandling.inventory.Add(pistol);
+        weaponHandling.inventory.Add(flame);
         weaponHandling.inventory.Add(special);
-       weaponHandling.inventory.Add(sniper);
+        weaponHandling.inventory.Add(sniper);
         weaponHandling.inventory.Add(biogun);
         weaponHandling.inventory.Add(MP40);
-        //weaponHandling.inventory.Add(mine);
+        weaponHandling.inventory.Add(mine);
 
         weaponHandling.activeWeapon = weaponHandling.inventory[0];
-        
+
 
         //Debug.Log("rend:" + weaponHandling.weaponRenderer);
 
