@@ -6,9 +6,9 @@ public class GameInfo : MonoBehaviour {
     public string mapName = "BackgroundWonderland";
     public GameModeEnum gameMode = GameModeEnum.Score;
 
-    public int time = 2;
-    public int winScore = 1;
-    public int lifes = 1;
+    public int time = 10;
+    public int winScore = 10;
+    public int lifes = 10;
 
     public PlayerTypeEnum player1type = PlayerTypeEnum.Player;
     public PlayerTypeEnum player2type = PlayerTypeEnum.Player;

@@ -109,8 +109,7 @@ public class WeaponFlamethrowerLogic : MonoBehaviour
         }
 
     }
-    /*
-    void OnTriggerStay2D(Collider2D coll)
+    void OnTriggerEnter2D(Collider2D coll)
     {
         if ((coll.gameObject.tag == "Player"))
         {
@@ -119,5 +118,6 @@ public class WeaponFlamethrowerLogic : MonoBehaviour
 
         }
 
-    }*/
+    }
+
 }

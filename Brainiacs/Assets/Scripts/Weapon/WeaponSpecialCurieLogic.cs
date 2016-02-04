@@ -20,6 +20,7 @@ public class WeaponSpecialCurieLogic : MonoBehaviour
     private FireProps fireProps;
     private FireProps fireProps2;
     private bool update = false;
+    private bool fall = false;
 
     private float traveledDistance = 0;
     private float clicksShooted = 0;
@@ -46,7 +47,6 @@ public class WeaponSpecialCurieLogic : MonoBehaviour
 
             if (traveledDistance > (clicksShooted * shootEveryDst))
             {
-                Debug.Log("Cecky");
 
                 if (fireProps.direction == Vector2.left || fireProps.direction == Vector2.right)
                 {
@@ -65,16 +65,29 @@ public class WeaponSpecialCurieLogic : MonoBehaviour
                 clicksShooted++;
             }
         }
+        if (fall)
+        {
+            transform.position = new Vector2(transform.position.x + (fireProps.direction.x / 10),
+               transform.position.y + (fireProps.direction.y / 10));
+
+            transform.localScale -= new Vector3(0.03f,0.03f,0.03f);
+            if (transform.localScale.x <= 0.5f)
+            {
+                fall = false;
+                StartCoroutine(PlayCrash());
+            }
+        }
     }
 
     public void fire(FireProps fp)
     {
         animator.SetBool("returnToOrig", true);
         nullAllAnimBools();
-
+        transform.localScale = new Vector3(1,1,1);
         fireProps = fp;
         fireProps2 = new FireProps(fp);
         moveInShootingDirection();
+        fall = false;
         update = true;
         //renderer.sprite = spriteMapping[fp.direction];
         setBoolAnimator(animatorDirectionMapping[fp.direction], true);
@@ -113,6 +126,11 @@ public class WeaponSpecialCurieLogic : MonoBehaviour
         {
             coll.gameObject.GetComponent<PlayerBase>().ApplyDamage(1000, playerBase);
             StartCoroutine(PlayCrash());
+        }
+        if ((coll.gameObject.tag == "Barrier_notproof"))
+        {
+            update = false;
+            fall = true;
         }
     }
 
