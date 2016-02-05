@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class WeaponFlamethrowerLogic : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class WeaponFlamethrowerLogic : MonoBehaviour
 
     private bool fired = false;
     private int ticks = 0;
+
+    private List<PlayerBase> inCollider = new List<PlayerBase>();
 
     void Start()
     {
@@ -64,6 +67,10 @@ public class WeaponFlamethrowerLogic : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 180, 0);
             }
 
+            foreach (var ic in inCollider)
+            {
+                ic.ApplyDamage(1, pb);
+            }
 
             if (wb.ammo > 0)
             {
@@ -116,6 +123,7 @@ public class WeaponFlamethrowerLogic : MonoBehaviour
         setBoolAnimator("flameEnd", true);
         colider.enabled = false;
         fired = false;
+        inCollider.Clear();
     }
 
     private void setBoolAnimator(string boolName, bool value)
@@ -130,7 +138,7 @@ public class WeaponFlamethrowerLogic : MonoBehaviour
         animator.SetBool("flameEnd", false);
 
     }
-
+    /*
     void OnTriggerStay2D(Collider2D coll)
     {
         if ((coll.gameObject.tag == "Player"))
@@ -140,16 +148,26 @@ public class WeaponFlamethrowerLogic : MonoBehaviour
 
         }
 
-    }
+    }*/
     void OnTriggerEnter2D(Collider2D coll)
     {
         if ((coll.gameObject.tag == "Player"))
         {
-
-            coll.gameObject.GetComponent<PlayerBase>().ApplyDamage(1, pb);
+            coll.gameObject.GetComponent<PlayerBase>().ApplyDamage(2,pb);
+            inCollider.Add(coll.gameObject.GetComponent<PlayerBase>());
 
         }
-
     }
+
+
+    void OnTriggerExit2D(Collider2D coll)
+    {
+        if ((coll.gameObject.tag == "Player"))
+        {
+            inCollider.Remove(coll.gameObject.GetComponent<PlayerBase>());
+        }
+    }
+
+
 
 }
