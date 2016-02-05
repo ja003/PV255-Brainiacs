@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour {
     public bool isActive = false;
     public PlayerBase owner;
     public AudioClip hitSound;
-    private FireProps fp;
+    public FireProps fp;
 
     public void iniciate(Vector2 dir, Vector2 pos, RuntimeAnimatorController animController, float bulletSpd, int dmg, string weapon) {
 

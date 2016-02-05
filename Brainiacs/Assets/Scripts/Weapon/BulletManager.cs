@@ -49,10 +49,17 @@ public class BulletManager : MonoBehaviour {
 
     public Bullet fire(FireProps fp)
     {
-        if (prefabBullets[indexUsedBullet].activeInHierarchy)
+        while (prefabBullets[indexUsedBullet].activeInHierarchy)
         {
-            indexUsedBullet = (indexUsedBullet + 1) % maxBullets;
-            return fire(fp);
+            if (prefabBullets[indexUsedBullet].GetComponent<Bullet>().fp.weapEnum == WeaponEnum.mine ||
+                prefabBullets[indexUsedBullet].GetComponent<Bullet>().fp.weapEnum == WeaponEnum.specialNobel)
+            {
+                indexUsedBullet = (indexUsedBullet + 1)%maxBullets;
+            }
+            else
+            {
+                break;
+            }
         }
 
         Bullet b = prefabBullets[indexUsedBullet].GetComponent<Bullet>().iniciate(
