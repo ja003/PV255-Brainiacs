@@ -42,7 +42,16 @@ public abstract class PlayerBase : MonoBehaviour
 
 
     //////////////////////AUDIO SOURCE/////////////////////////
-    public AudioClip deathSound_01;
+    public AudioClip playerEliminatedSound;
+    public AudioClip playerHitSound;
+    public AudioClip playerHitShieldSound;
+
+    AudioClip powerupShieldSound;
+    AudioClip powerupHealSound;
+    AudioClip powerupAmmoSound;
+    AudioClip powerupSpeedSound;
+    AudioClip powerupSlowSpeedSound;
+    AudioClip powerupDealDamageSound;
 
     //////////////////////ANIMATOR VARIABLES/////////////////////////
     public Animator characterAnimator;
@@ -147,13 +156,21 @@ public abstract class PlayerBase : MonoBehaviour
     public void setUpSounds()
     {
         //string soundLoaderString = "Sounds/Player/" + playInfo.charEnum.ToString().ToLower() + "/";
-        string soundLoaderString = "Sounds/Player/" + "davinci" + "/"; //for now
+        string soundLoaderString = "Sounds/Player/"; //for now
+        
+        playerEliminatedSound = 
+            Resources.Load(soundLoaderString + "player_eliminated") as AudioClip;
+        playerHitSound =
+            Resources.Load(soundLoaderString + "player_hit") as AudioClip;
+        playerHitShieldSound =
+            Resources.Load(soundLoaderString + "player_shield_hit") as AudioClip;
 
-        deathSound_01 = Resources.Load(soundLoaderString + "death_01") as AudioClip;
-
-        //Debug.Log(soundLoaderString + "death_01");
-
-        //Debug.Log("loaded sound: " + deathSound_01.name);
+        powerupShieldSound = Resources.Load<AudioClip>("Sounds/Items/powerup_shield");
+        powerupHealSound = Resources.Load<AudioClip>("Sounds/Items/powerup_heal");
+        powerupAmmoSound = Resources.Load<AudioClip>("Sounds/Items/powerup_ammo");
+        powerupSpeedSound = Resources.Load<AudioClip>("Sounds/Items/powerup_speed");
+        powerupSlowSpeedSound= Resources.Load<AudioClip>("Sounds/Items/powerup_slowSpeed");
+        powerupDealDamageSound = Resources.Load<AudioClip>("Sounds/Items/powerup_dealDamage");
     }
 
     public void setUpWeapons(PlayerInfo pi)
@@ -222,11 +239,11 @@ public abstract class PlayerBase : MonoBehaviour
         // Inicializacia prvej zbrane
         weaponHandling.inventory.Add(pistol);
         weaponHandling.inventory.Add(special);
-        //weaponHandling.inventory.Add(flame);
-        //weaponHandling.inventory.Add(sniper);
-        //weaponHandling.inventory.Add(biogun);
-        //weaponHandling.inventory.Add(MP40);
-        //weaponHandling.inventory.Add(mine);
+        weaponHandling.inventory.Add(flame);
+        weaponHandling.inventory.Add(sniper);
+        weaponHandling.inventory.Add(biogun);
+        weaponHandling.inventory.Add(MP40);
+        weaponHandling.inventory.Add(mine);
         
         weaponHandling.activeWeapon = weaponHandling.inventory[0];
 
@@ -529,9 +546,13 @@ public abstract class PlayerBase : MonoBehaviour
         if (isShielded)
         {
             isShielded = false;
+            SoundManager.instance.PlaySingle(playerHitShieldSound);
+            //SHIELD
         }
         else
         {
+            SoundManager.instance.PlaySingle(playerHitSound);
+
             if ((hitPoints - dmg) <= 0 && !dead) 
             {
                 //UpdateAnimatorState(AnimatorStateEnum.dead);
@@ -547,7 +568,7 @@ public abstract class PlayerBase : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Clone died, no score for this");
+                    //Debug.Log("Clone died, no score for this");
                 }
 
                 IncreaseGameInfoScore(owner.playerNumber, 1);
@@ -580,7 +601,7 @@ public abstract class PlayerBase : MonoBehaviour
         //Debug.Log("dead");
 
         //play death sound
-        SoundManager.instance.RandomizeSfx(deathSound_01);
+        //SoundManager.instance.RandomizeSfx(deathSound_01);
 
         UpdateAnimatorState(AnimatorStateEnum.dead);
         //disable movement
@@ -602,6 +623,7 @@ public abstract class PlayerBase : MonoBehaviour
         if (!isClone && gameInfo.gameMode == GameModeEnum.Deathmatch && lifes <= 0)
         {
             Debug.Log("you dead");
+            SoundManager.instance.PlaySingle(playerEliminatedSound);
             gameManager.CheckLifes();
         }
         else
@@ -717,6 +739,8 @@ public abstract class PlayerBase : MonoBehaviour
         }
     }
 
+    
+
     //this way player receives info from collision with power up
     public void AddPowerUp(PowerUpEnum en)
     {
@@ -724,18 +748,22 @@ public abstract class PlayerBase : MonoBehaviour
         {
             case PowerUpEnum.Shield:
                 isShielded = true;
+                SoundManager.instance.PlaySingle(powerupShieldSound);
                 //Debug.Log("player picked up shield");
                 break;
             case PowerUpEnum.Heal:
                 ApplyHeal(maxHP / 2);
+                SoundManager.instance.PlaySingle(powerupHealSound);
                 //Debug.Log("player picked up heal");
                 break;
             case PowerUpEnum.Ammo:
                 weaponHandling.activeWeapon.reload();
+                SoundManager.instance.PlaySingle(powerupAmmoSound);
                 //Debug.Log("player picked up ammo");
                 break;
             case PowerUpEnum.Speed:
                 ApplySpeed(1.5f);
+                SoundManager.instance.PlaySingle(powerupSpeedSound);
                 //Debug.Log("player picked up speed");
                 break;
             case PowerUpEnum.Mystery:
@@ -746,10 +774,12 @@ public abstract class PlayerBase : MonoBehaviour
                 break;
             case PowerUpEnum.dealDamage:
                 ApplyDamage(maxHP / 3, this); //hit yourself
+                SoundManager.instance.PlaySingle(powerupDealDamageSound);
                 //Debug.Log("player picked up dealDamage");
                 break;
             case PowerUpEnum.slowSpeed:
                 ApplySlow(-1.0f);
+                SoundManager.instance.PlaySingle(powerupSlowSpeedSound);
                 //Debug.Log("Player picked up slowSPeed");
                 break;
             default:

@@ -26,11 +26,20 @@ public class WeaponSpecialCurieLogic : MonoBehaviour
     private float clicksShooted = 0;
     private float shootEveryDst = 0.5f;
 
+    AudioClip carSound;
+    AudioClip carCrashSound;
+    int chosenAudioSourceIndex;
+
     public void SetUpVariables(PlayerBase pb, BulletManager bm)
     {
         playerBase = pb;
         bulletManager = bm;
         animator = GetComponent<Animator>();
+
+        string soundLoaderString = "Sounds/Weapon/";
+        carSound = Resources.Load(soundLoaderString + "flamethrower") as AudioClip;
+        carCrashSound = Resources.Load(soundLoaderString + "einsteinSpecial_explode") as AudioClip;
+
     }
 
     // Update is called once per frame
@@ -92,6 +101,8 @@ public class WeaponSpecialCurieLogic : MonoBehaviour
         //renderer.sprite = spriteMapping[fp.direction];
         setBoolAnimator(animatorDirectionMapping[fp.direction], true);
 
+        chosenAudioSourceIndex = SoundManager.instance.PlaySingle(carSound, true);
+
     }
 
     void moveInShootingDirection()
@@ -136,10 +147,16 @@ public class WeaponSpecialCurieLogic : MonoBehaviour
 
     IEnumerator PlayCrash()
     {
+        AudioSource[] AScomp = SoundManager.instance.gameObject.GetComponents<AudioSource>();
+        AScomp[chosenAudioSourceIndex].loop = false;
+
         //animator.runtimeAnimatorController = null;
         //animator.runtimeAnimatorController = crashMapping[fireProps.direction];
         setBoolAnimator(animatorCrashDirectionMapping[fireProps.direction], true);
         fireProps.direction = new Vector2(0, 0);
+
+        SoundManager.instance.PlaySingle(carCrashSound);
+
         yield return new WaitForSeconds(1.0f);                                               // tento prikaz kurvy cely kod
         animator.SetBool("returnToOrig", true);
         nullAllAnimBools();

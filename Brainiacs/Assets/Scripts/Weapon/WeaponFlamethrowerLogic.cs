@@ -11,6 +11,8 @@ public class WeaponFlamethrowerLogic : MonoBehaviour
     private FireProps fp;
     private WeaponBase wb;
 
+    private AudioClip flamethrowerSound;
+
     private bool fired = false;
     private int ticks = 0;
 
@@ -19,6 +21,10 @@ public class WeaponFlamethrowerLogic : MonoBehaviour
         colider = GetComponent<Collider2D>();
         colider.enabled = false;
         animator = GetComponent<Animator>();
+
+        string soundLoaderString = "Sounds/Weapon/";
+        flamethrowerSound = Resources.Load(soundLoaderString + "flamethrower") as AudioClip;
+
     }
 
     void FixedUpdate ()
@@ -66,8 +72,11 @@ public class WeaponFlamethrowerLogic : MonoBehaviour
         }
     }
 
+    int chosenAudioSourceIndex;
+
     public void fire(FireProps fp, PlayerBase pb, WeaponBase wb)
     {
+        //Debug.Log("FIRE");
         this.pb = pb;
         this.fp = fp;
         this.wb = wb;
@@ -75,11 +84,14 @@ public class WeaponFlamethrowerLogic : MonoBehaviour
         colider.enabled = true;
         nullAllAnimBools();
         setBoolAnimator("flameStart", true);
-        
+        chosenAudioSourceIndex = SoundManager.instance.PlaySingle(flamethrowerSound, true);
     }
 
     public void stopFire()
     {
+        AudioSource[] AScomp = SoundManager.instance.gameObject.GetComponents<AudioSource>();
+        AScomp[chosenAudioSourceIndex].loop = false;
+
         nullAllAnimBools();
         setBoolAnimator("flameEnd", true);
         colider.enabled = false;

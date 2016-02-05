@@ -14,13 +14,16 @@ public class WeaponGenerator : MonoBehaviour
     private List<GameObject>[] weapons;
 
     private float time = 15.0f;
-    private float spawnInterval = 30.0f; //malý na test
+    private float spawnInterval = 3.0f; //malý na test
 
     private string location = "Prefabs/SpawnItems/Weapons/weapon_";
     private string[] weaponNames = new string[countOfWeapons - indexOfSpawnWeps] { "flamethrower", "sniper", "biogun", "MP40", "mine" };
 
     public PositionGenerator posGenerator;
-    
+
+    private AudioClip itemSpawnSound;
+
+
     void Start()
     {
         weapons = new List<GameObject>[countOfWeapons - indexOfSpawnWeps];
@@ -38,6 +41,8 @@ public class WeaponGenerator : MonoBehaviour
                 weapons[i].Add(obj);
             }
         }
+        itemSpawnSound = Resources.Load("Sounds/Items/" + "item_spawn") as AudioClip;
+
     }
 
     void FixedUpdate()
@@ -66,6 +71,8 @@ public class WeaponGenerator : MonoBehaviour
                 break;
             }
         }
+        SoundManager.instance.PlaySingle(itemSpawnSound);
+
     }
 }
 

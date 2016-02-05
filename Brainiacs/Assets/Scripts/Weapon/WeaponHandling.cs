@@ -23,6 +23,13 @@ public class WeaponHandling : MonoBehaviour {
 
     public bool shootingEnabled = true;
 
+    AudioClip addWeaponSound;
+
+    void Start()
+    {
+        addWeaponSound = Resources.Load<AudioClip>("Sounds/Items/item_addweapon");
+    }
+
     public void FixedUpdate() {
 
         if (activeWeapon.ammo <= 0 && activeWeapon.weaponType == WeaponEnum.flamethrower)
@@ -113,6 +120,7 @@ public class WeaponHandling : MonoBehaviour {
             inventory.Add(weapon);
             activeWeapon = weapon;
         }
+        SoundManager.instance.PlaySingle(addWeaponSound);
     }
 
 

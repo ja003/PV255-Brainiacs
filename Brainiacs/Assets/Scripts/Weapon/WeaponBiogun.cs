@@ -18,6 +18,8 @@ public class WeaponBiogun : WeaponBase
         base.sprite = "Sprites/Weapons/biogun";
         base.bulletAnimControler = "Animations/bullets_animators/bullet_biogun_animator";
 
+        base.setUpSounds("biogun");
+
         kadency = 0.1f;
         kadReady = true;
 

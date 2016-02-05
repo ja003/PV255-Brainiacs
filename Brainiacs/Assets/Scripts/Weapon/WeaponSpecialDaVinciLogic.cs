@@ -16,6 +16,8 @@ public class WeaponSpecialDaVinciLogic : MonoBehaviour
     private WeaponBase wb;
     private WeaponHandling wh;
 
+    private AudioClip tankHitSound;
+
     private float oldSpeed;
 
     public int hp = 100;
@@ -24,6 +26,8 @@ public class WeaponSpecialDaVinciLogic : MonoBehaviour
     void Start()
     {
         GetComponent<Collider2D>().enabled = false;
+
+        tankHitSound = Resources.Load<AudioClip>("Sounds/Weapon/davinciSpecial_hit");
     }
     
     public void SetUpVariables(PlayerBase pb, BulletManager bm, WeaponBase wb)
@@ -99,6 +103,7 @@ public class WeaponSpecialDaVinciLogic : MonoBehaviour
             {
                 coll.gameObject.GetComponent<PlayerBase>().ApplyDamage(100, playerBase);
                 //StartCoroutine(PlayCrash());
+                SoundManager.instance.PlaySingle(tankHitSound);
             }
         }
     }

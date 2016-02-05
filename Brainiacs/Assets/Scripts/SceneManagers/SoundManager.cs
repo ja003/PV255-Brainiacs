@@ -28,36 +28,40 @@ public class SoundManager : MonoBehaviour
 
     public void StartBackgroundMusic(AudioClip clip)
     {
-        PlaySingle(clip, true, 0.1f, 1); //0.1 => 1 
+        PlaySingle(clip, true, 0.4f, 1, false); //0.1 => 1 
     }
 
-    public void PlaySingle(AudioClip clip)
+    public int PlaySingle(AudioClip clip)
     {
-        PlaySingle(clip, false);
+        return PlaySingle(clip, false);
     }
 
-    public void PlaySingle(AudioClip clip, bool loop)
+    public int PlaySingle(AudioClip clip, bool loop)
     {
-        PlaySingle(clip, loop, 0.9f, 128);
+        return PlaySingle(clip, loop, 0.9f, 128, false);
     }
 
     //Used to play single sound clips.
-    public void PlaySingle(AudioClip clip, bool loop, float volume, int priority)
+    //returns index of used AudioSource
+    public int PlaySingle(AudioClip clip, bool loop, float volume, int priority, bool randomPitchBool)
     {
         //Set the clip of our efxSource audio source to the clip passed in as a parameter.
         //efxSource.clip = clip;
-
+        int ASindex = 0;
         //Play the clip.
         //efxSource.Play();
         AudioSource[] AScomp = gameObject.GetComponents<AudioSource>();
         AudioSource availableAS = null;
+        int i = 0;
         foreach(AudioSource audioS in AScomp)
         {
             if (!audioS.isPlaying)
             {
                 availableAS = audioS;
+                ASindex = i;
                 break;
             }
+            i++;
         }
 
         //assign random pitch to sound
@@ -70,7 +74,8 @@ public class SoundManager : MonoBehaviour
                 availableAS.loop = true;
             }
             availableAS.clip = clip;
-            availableAS.pitch = randomPitch;
+            if (randomPitchBool)
+                availableAS.pitch = randomPitch;
             availableAS.volume = volume;
             availableAS.priority = priority;
             availableAS.Play();
@@ -83,11 +88,14 @@ public class SoundManager : MonoBehaviour
                 newAS.loop = true;
             }
             newAS.clip = clip;
-            newAS.pitch = randomPitch;
+            if(randomPitchBool)
+                newAS.pitch = randomPitch;
             newAS.volume = volume;
             newAS.priority = priority;
             newAS.Play();
+            ASindex = AScomp.Length;
         }
+        return ASindex;
     }
     
     //RandomizeSfx chooses randomly between various audio clips and slightly changes their pitch.

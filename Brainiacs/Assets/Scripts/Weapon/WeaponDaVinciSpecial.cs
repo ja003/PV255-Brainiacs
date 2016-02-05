@@ -23,7 +23,7 @@ public class WeaponDaVinciSpecial : WeaponBase
         base.sprite = "Sprites/Special/davinciSpecial_plan";
         base.bulletAnimControler = "";
 
-        base.setUpSounds("sniper");
+        base.setUpSounds("davinciSpecial");
 
         kadency = 0.0f;
         kadReady = true;

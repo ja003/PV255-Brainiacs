@@ -14,12 +14,14 @@ public class PowerUpGenerator : MonoBehaviour
     private List<GameObject>[] powerUps;
 
     private float time = 0.0f;
-    private float spawnInterval = 30.0f; //malý pro testování
+    private float spawnInterval = 3.0f; //malý pro testování
 
     private string location = "Prefabs/SpawnItems/PowerUps/powerup_";
     private string[] powerUpNames = new string[countOfPrefabedPowerUps] { "shield", "heal", "ammo", "speed", "mystery" };
 
     public PositionGenerator posGenerator;
+
+    private AudioClip itemSpawnSound;
 
     void Start(){
         powerUps = new List<GameObject>[countOfPrefabedPowerUps];
@@ -37,6 +39,8 @@ public class PowerUpGenerator : MonoBehaviour
                 powerUps[i].Add(obj);
             }
         }
+        itemSpawnSound = Resources.Load("Sounds/Items/" + "item_spawn") as AudioClip;
+
     }
 
     void FixedUpdate()
@@ -65,6 +69,8 @@ public class PowerUpGenerator : MonoBehaviour
                 break;
             }
         }
+
+        SoundManager.instance.PlaySingle(itemSpawnSound);
     }
     
 }

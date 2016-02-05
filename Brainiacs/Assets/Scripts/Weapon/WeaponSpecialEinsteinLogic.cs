@@ -27,7 +27,9 @@ public class WeaponSpecialEinsteinLogic : MonoBehaviour {
     private float clicksShooted = 0;
     private float shootEveryDst = 0.75f;
 
- 
+    AudioClip explosionSound;
+
+
     public void SetUpVariables(PlayerBase pb, BulletManager bm)
     {
         //WhiteT = transform.Find("WhiteT", false);
@@ -36,7 +38,7 @@ public class WeaponSpecialEinsteinLogic : MonoBehaviour {
         playerBase = pb;
         bulletManager = bm;
         animator = GetComponent<Animator>();
-
+        explosionSound = Resources.Load<AudioClip>("Sounds/Weapon/einsteinSpecial_explode");
     }
 
     // Update is called once per frame
@@ -93,7 +95,7 @@ public class WeaponSpecialEinsteinLogic : MonoBehaviour {
         
         setBoolAnimator("iniciate", true);
 
-
+        
     }
 
     void SetIniciatePosition()
@@ -118,13 +120,17 @@ public class WeaponSpecialEinsteinLogic : MonoBehaviour {
         nullAllAnimBools();
         setBoolAnimator("boom", true);
         KillInRange();
+        
+        SoundManager.instance.PlaySingle(explosionSound);
         yield return new WaitForSeconds(0.5f);
+
         nullAllAnimBools();
         animator.SetBool("exitBoom", true);
         nullAllAnimBools();
         WhiteT.gameObject.SetActive(false);
         gameObject.SetActive(false);
 
+        
         //animator.runtimeAnimatorController = null;
     }
 
@@ -148,7 +154,7 @@ public class WeaponSpecialEinsteinLogic : MonoBehaviour {
 
     private void nullAllAnimBools()
     {
-        animator.SetBool("iniciated", false);
+        animator.SetBool("iniciate", false);
         animator.SetBool("boom", false);
         animator.SetBool("exitBoom", false);
     }

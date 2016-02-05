@@ -7,6 +7,7 @@ public class Loading : MonoBehaviour {
     // Use this for initialization
     private SpriteRenderer sr;
 
+    private AudioClip beep1;
     private AudioClip beep2;
     private AudioClip beep3;
     private AudioClip beep4;
@@ -41,41 +42,45 @@ public class Loading : MonoBehaviour {
         sr.sprite = Resources.Load<Sprite>("Sprites/Loading/loading_" + mapName + "_01");
         Debug.Log("Sprites/Loading/loading_" + mapName + "_01");
 
-        beep2 = Resources.Load<AudioClip>("Sounds/Loading/beep2");
-        beep3 = Resources.Load<AudioClip>("Sounds/Loading/beep2");
-        beep4 = Resources.Load<AudioClip>("Sounds/Loading/beep2");
+        beep1 = Resources.Load<AudioClip>("Sounds/Loading/loading_beep_01");
+        beep2 = Resources.Load<AudioClip>("Sounds/Loading/loading_beep_02");
+        beep3 = Resources.Load<AudioClip>("Sounds/Loading/loading_beep_03");
+        beep4 = Resources.Load<AudioClip>("Sounds/Loading/loading_beep_04");
         
         frameCountSinceLvlLoad = 0;
-    }
-	
-	// Update is called once per frame
-	void Update () {
+        SoundManager.instance.PlaySingle(beep1, false, 1f, 128, false);
 
-        if(frameCountSinceLvlLoad == 50)
+    }
+
+    int interval = 70;
+    // Update is called once per frame
+    void Update () {
+
+        if(frameCountSinceLvlLoad == interval)
         {
             sr.sprite = Resources.Load<Sprite>("Sprites/Loading/loading_" + mapName + "_02");
             //beep
-            SoundManager.instance.PlaySingle(beep2);
+            SoundManager.instance.PlaySingle(beep2, false, 1f, 128, false);
         }
 
-        if (frameCountSinceLvlLoad == 100)
+        if (frameCountSinceLvlLoad == interval*2)
         {
             sr.sprite = Resources.Load<Sprite>("Sprites/Loading/loading_" + mapName + "_03");
             //beep
-            SoundManager.instance.PlaySingle(beep3);
+            SoundManager.instance.PlaySingle(beep3, false, 1f, 128, false);
 
         }
 
-        if (frameCountSinceLvlLoad == 150)
+        if (frameCountSinceLvlLoad == interval*3)
         {
             sr.sprite = Resources.Load<Sprite>("Sprites/Loading/loading_" + mapName + "_04");
             //beep
-            SoundManager.instance.PlaySingle(beep4);
+            SoundManager.instance.PlaySingle(beep4, false, 1f, 128, false);
 
         }
 
         //chvilku trvá...případně posunout
-        if(frameCountSinceLvlLoad == 20)//fastload, normal == 200
+        if(frameCountSinceLvlLoad == interval*4)
         {
             Application.LoadLevel(mapName);
         }

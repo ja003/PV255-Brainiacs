@@ -16,7 +16,7 @@ public class WeaponFlamethrower : WeaponBase
 
         base.sprite = "Sprites/Weapons/flamethrower";
         base.bulletAnimControler = "Animations/bullets_animators/bullet_flamethrower";
-        base.setUpSounds("mine");
+        base.setUpSounds("flamethrower");
 
         kadency = 0.0f;
         kadReady = true;

@@ -20,7 +20,7 @@ public class WeaponCurieSpecial : WeaponBase{
         base.sprite = "Sprites/Special/curieSpecial";
         base.bulletAnimControler = "Animations/bullets_animators/bullet_curie_animator";
 
-        base.setUpSounds("sniper");
+        base.setUpSounds("curieSpecial_loop");
 
         kadency = 3.0f;
         kadReady = true;

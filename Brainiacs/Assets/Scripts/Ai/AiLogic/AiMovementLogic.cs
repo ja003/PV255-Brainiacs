@@ -241,7 +241,7 @@ public class AiMovementLogic {
         else if (CharacterCollidesMine(new Vector2(x, y)))
         {
             Stop();
-            Debug.Log("there is my mine, better stop");
+            //Debug.Log("there is my mine, better stop");
         }
 
         //refresh path only when target moves or there is mine collision
