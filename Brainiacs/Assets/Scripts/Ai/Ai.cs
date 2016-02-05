@@ -31,6 +31,7 @@ public class Ai : AiBase {
         //base.playerNumber = 3;
         base.speed = 2f;
         base.direction = base.left;
+        base.isAi = true;
 
         playInfo = pi;
         

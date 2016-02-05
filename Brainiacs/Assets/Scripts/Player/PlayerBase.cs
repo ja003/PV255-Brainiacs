@@ -10,6 +10,7 @@ public abstract class PlayerBase : MonoBehaviour
     public int playerNumber { get; set; }
 
     public bool isClone = false;
+    public bool isAi = false;
 
     // JP - farba spritu
     //   public string color { get; set; }
@@ -623,6 +624,7 @@ public abstract class PlayerBase : MonoBehaviour
         if (!isClone && gameInfo.gameMode == GameModeEnum.Deathmatch && lifes <= 0)
         {
             Debug.Log("you dead");
+            weaponHandling.shootingEnabled = false;
             SoundManager.instance.PlaySingle(playerEliminatedSound);
             gameManager.CheckLifes();
         }
