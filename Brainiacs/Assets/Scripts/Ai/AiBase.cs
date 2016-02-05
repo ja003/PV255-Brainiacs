@@ -12,11 +12,9 @@ public class AiBase : PlayerBase
 
     public Components comp;
     public PlayerInfo playInfo;
-
-
+    
     public int frameCountSinceLvlLoad;
-
-
+    
     //////////////////////////////MAP shit
     public GameObject[] barriers;
 
@@ -26,15 +24,9 @@ public class AiBase : PlayerBase
     public LayerMask bulletMask; //assigned manualy, but..,  mask = 1 << 12;
     public LayerMask itemMask;
 
-
-
     /// //////////////////////////////////// CHARACTER COORDINATES /////////////////////////////
-    // Collider2D collider;
-
     public float characterColliderWidth;
     public float characterColliderHeight;
-
-    
 
     /// //////////////////////////////////// LOGICS /////////////////////////////
     public AiPowerUpLogic aiPowerUpLogic;
@@ -50,27 +42,13 @@ public class AiBase : PlayerBase
     {
         comp = c;
         playInfo = p;
-        //weaponHandling = GetComponent<WeaponHandling>();
-
         rb2d = gameObject.GetComponent<Rigidbody2D>();
-
         barriers = GameObject.FindGameObjectsWithTag("Barrier");
-
-
-
-        //Debug.Log(barriers[0].name);
-        //Debug.Log(barriers[1].name);
-        //Debug.Log(barriers[2].name);
-        //Debug.Log(barriers[3].name);
-
-
         characterColliderHeight = gameObject.GetComponent<BoxCollider2D>().size.y;
         characterColliderWidth = gameObject.GetComponent<BoxCollider2D>().size.x;
 
         InitialiseLogic();
-
         AssingLogic();
-
     }
 
     public void InitialiseLogic()
@@ -123,44 +101,23 @@ public class AiBase : PlayerBase
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(playerNumber + " pos=" + posX + "," + posY);
-
         frameCountSinceLvlLoad++;
 
         if (frameCountSinceLvlLoad == playerNumber)
         {
             SetPlayers();
-
-            //weaponHandling.RemoveFromInventoryAllBut(WeaponEnum.mine);
-            Debug.Log(weaponHandling.InventoryToString());
             weaponHandling.activeWeapon = weaponHandling.inventory[0];
-
             RandomizeDirection();
-
             RefreshAnimatorState();
-
-            //Debug.Log(weaponHandling.activeWeapon);
-            weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[weaponHandling.player.directionMapping[weaponHandling.player.direction]];
-
-            
+            weaponHandling.weaponRenderer.sprite = 
+                weaponHandling.activeWeapon.weaponSprites[weaponHandling.player.directionMapping[weaponHandling.player.direction]];            
         }
-
-        //////////CHEK EVERY FRAME
-
-
-
 
         //////////CHEK ONCE PER SECOND
         if (Time.frameCount % 30 == 6)
         {
             aiPriorityLogic.UpdatePriorities();
-            /*
-            Debug.Log("kill_1=" + killPlayer1Priority);
-            Debug.Log("kill_2=" + killPlayer2Priority);
-            Debug.Log("kill_3=" + killPlayer3Priority);
-            Debug.Log("kill_4=" + killPlayer4Priority);
-            */
-
+            
             //dont kill yourself
             switch (playerNumber)
             {
@@ -177,44 +134,15 @@ public class AiBase : PlayerBase
                     aiPriorityLogic.killPlayer4Priority = 0;
                     break;
                 default:
-                    Debug.Log(gameObject.ToString() + " has no player number");
                     break;
             }
-
-            //Debug.Log("!");
-            aiPriorityLogic.PrintPriorities();
-            //Debug.Log(weaponHandling.InventoryToString());
-            aiActionLogic.UpdateCurrentAction();
-
-
-
-
-        }
-
-        //////////CHECK 4 PER SECOND
-        if (Time.frameCount % 8 == 0)
-        {
-
-        }
-
-        if (Time.frameCount % 200 == 0)
-        {
+            
             //aiPriorityLogic.PrintPriorities();
-            //aiActionLogic.PrintAction();
+            aiActionLogic.UpdateCurrentAction();
         }
-
-        //Debug.Log("currentAction:"+currentAction);
-
-        //CheckAmmo(); //check when firing
-
-        //UpdateCurrentAction(); //lagz
+        
         aiActionLogic.DoCurrentAction();
         UpdateDirection();
-
-        //PrintPriorities();
-        ///PrintAction();
-
-
     }
         
     public List<PlayerBase> GetPlayers()
@@ -234,7 +162,6 @@ public class AiBase : PlayerBase
         allPlayers = GetPlayers();
         foreach (PlayerBase player in allPlayers)
         {
-            //Debug.Log(player);
             switch (player.playerNumber)
             {
                 case 1:
@@ -250,13 +177,9 @@ public class AiBase : PlayerBase
                     player4 = player;
                     break;
                 default:
-                    Debug.Log(player.ToString() + " has no player number!");
                     break;
             }
-            //Debug.Log("setting player: " + player.gameObject.name + ", number: " + player.playerNumber);
         }
     }
-
-
-    ////// ////////////////////MOVEMENT
+    
 }

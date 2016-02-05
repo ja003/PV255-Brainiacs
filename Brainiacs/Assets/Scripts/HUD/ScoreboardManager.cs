@@ -45,11 +45,10 @@ public class ScoreboardManager : MonoBehaviour {
         try
         {
             gameInfo = GameObject.Find("GameInfo").GetComponent<GameInfo>();
-            //Debug.Log(gameInfo);
         }
         catch (Exception e)
         {
-            Debug.Log("NO GAME INFO OBJECT - setting default values");
+
         }
 
         if (gameInfo == null)
@@ -58,8 +57,7 @@ public class ScoreboardManager : MonoBehaviour {
             gameInfoObj.AddComponent<GameInfo>();
             gameInfo = gameInfoObj.GetComponent<GameInfo>();
         }
-
-        Debug.Log(gameInfo);
+        
         gameInfo.RefreshStats();
         InitializeScoreboardVariables();
 

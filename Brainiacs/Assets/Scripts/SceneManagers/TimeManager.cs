@@ -45,10 +45,8 @@ public class TimeManager : MonoBehaviour {
         }
 
         stopWatch = Stopwatch.StartNew();
-        //UnityEngine.Debug.Log(gameInfo.time);
         countdown = TimeSpan.FromSeconds(gameInfo.time);
         InvokeRepeating("Count1SecDown", 0, 1.0f);
-        //UnityEngine.Debug.Log("tick");
 
     }
     
@@ -61,18 +59,18 @@ public class TimeManager : MonoBehaviour {
             gameManager = gmObject.GetComponent<GameManager>();
             if (gameManager != null)
             {
-                UnityEngine.Debug.Log("GameManager is OK");
+
             }
             else
             {
-                UnityEngine.Debug.Log("GameManager script not assigned!");
+
                 gmObject.AddComponent<GameManager>();
             }
 
         }
         catch (Exception e)
         {
-            UnityEngine.Debug.Log("GameManager script not assigned!");
+            //UnityEngine.Debug.Log("GameManager script not assigned!");
             gmObject.AddComponent<GameManager>();
         }
     }

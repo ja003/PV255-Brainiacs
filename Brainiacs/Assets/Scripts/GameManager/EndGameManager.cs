@@ -70,11 +70,10 @@ public class EndGameManager : MonoBehaviour
         try
         {
             gameInfo = GameObject.Find("GameInfo").GetComponent<GameInfo>();
-            //Debug.Log(gameInfo);
         }
         catch (Exception e)
         {
-            Debug.Log("NO GAME INFO OBJECT - setting default values");
+
         }
 
         if (gameInfo == null)
@@ -83,9 +82,7 @@ public class EndGameManager : MonoBehaviour
             gameInfoObj.AddComponent<GameInfo>();
             gameInfo = gameInfoObj.GetComponent<GameInfo>();
         }
-
-        Debug.Log("EndgameInfo");
-        Debug.Log(gameInfo);
+        
         gameInfo.RefreshInactiveStats();
 
         textDisplay = new TextDisplay();
@@ -118,12 +115,7 @@ public class EndGameManager : MonoBehaviour
         playersOrder.Add(player4Result);
 
         playersOrder.Sort();
-
-        Debug.Log(playersOrder[0]);
-        Debug.Log(playersOrder[1]);
-        Debug.Log(playersOrder[2]);
-        Debug.Log(playersOrder[3]);
-
+        
         switch (playersOrder[0].playerNumber)
         {
             case 1:

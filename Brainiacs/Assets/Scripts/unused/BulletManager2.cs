@@ -13,7 +13,6 @@ public class BulletManager2 : MonoBehaviour {
     {
         if (!directionAssigned)
         {
-            //Debug.Log("Dir assigned");
             direction = gameObject.transform.parent.parent.GetComponent<PlayerBase>().direction;
             directionAssigned = true;
         }

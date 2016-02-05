@@ -33,11 +33,10 @@ public class HUDBase : MonoBehaviour {
         try
         {
             gameInfo = GameObject.Find("GameInfo").GetComponent<GameInfo>();
-            //Debug.Log(gameInfo);
         }
         catch (Exception e)
         {
-            Debug.Log("HUDBase - NO GAME INFO OBJECT - setting default values");
+
         }
         if (gameInfo == null)
         {
@@ -47,11 +46,6 @@ public class HUDBase : MonoBehaviour {
             gameInfoObj.AddComponent<GameInfo>();
             gameInfo = gameInfoObj.GetComponent<GameInfo>();
         }
-
-        //bool redActive = gameInfo.player1type != PlayerTypeEnum.None;
-        //bool greenActive = gameInfo.player2type != PlayerTypeEnum.None;
-        //bool blueActive = gameInfo.player3type != PlayerTypeEnum.None;
-        //bool yellowActive = gameInfo.player4type != PlayerTypeEnum.None;
 
         textDisplay = new TextDisplay();
         textDisplay.InitializeGameVariables(); 
@@ -85,7 +79,6 @@ public class HUDBase : MonoBehaviour {
         avatar = transform.Find("Avatar_" + color).gameObject;
         renderer = avatar.GetComponent<SpriteRenderer>();
 	    renderer.sprite = Resources.Load<Sprite>("Sprites/HUD/" + sprite);
-        //Debug.Log(sprite);
     }
 	
 	// Update is called once per frame
@@ -94,23 +87,18 @@ public class HUDBase : MonoBehaviour {
 	    {
             if (weaponHandling.activeWeapon.readyToFire)
 	        {
-	            //ammo.color = Color.black;
-	            //ammo.text = weaponHandling.activeWeapon.ammo.ToString();
 	            textDisplay.SetClipValue(playerColor, weaponHandling.activeWeapon.ammo);
 	        }
 	        else
 	        {
-	            //ammo.color = Color.red;
 	            string temp = (weaponHandling.activeWeapon.reloadTime - weaponHandling.activeWeapon.time).ToString();
 
 	            float reloadingProcess = weaponHandling.activeWeapon.reloadTime - weaponHandling.activeWeapon.time;
-                //Debug.Log(reloadingProcess);
                 int reloadinProcessInt = (int)(reloadingProcess);
                 if (weaponHandling.activeWeapon.weaponType == WeaponEnum.pistol)
                 {
                     reloadinProcessInt = (int)(reloadingProcess * 10);
                 }
-	            //Debug.Log(reloadinProcessInt);
 
 	            if (reloadinProcessInt < 100)
 	            {

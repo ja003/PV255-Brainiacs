@@ -59,10 +59,9 @@ public class GameManager : MonoBehaviour {
 
         try {
             gameInfo = GameObject.Find("GameInfo").GetComponent<GameInfo>();
-            //Debug.Log(gameInfo);
         }catch(Exception e)
         {
-            Debug.Log("NO GAME INFO OBJECT - setting default values");
+
         }
 
         if (gameInfo == null)
@@ -73,9 +72,7 @@ public class GameManager : MonoBehaviour {
             gameInfoObj.AddComponent<GameInfo>();
             gameInfo = gameInfoObj.GetComponent<GameInfo>();
         }
-
-        //Debug.Log(gameInfo);
-
+        
         SetUpBackgroundMusic("map");
         
         LoadPlayersTypes();
@@ -123,6 +120,7 @@ public class GameManager : MonoBehaviour {
             }
         }
         //manualni přiřazení
+        /*
         Vector2 pl1pos = new Vector2(8, 0);
         if (gameInfo.player1type != PlayerTypeEnum.None)
             player1.transform.position = pl1pos;
@@ -138,6 +136,7 @@ public class GameManager : MonoBehaviour {
         Vector2 pl4pos = new Vector2(2, 0);
         if (gameInfo.player4type != PlayerTypeEnum.None)
             player4.transform.position = pl4pos;
+        */
     }
 
     public void SetUpBackgroundMusic(string mapName)
@@ -145,19 +144,15 @@ public class GameManager : MonoBehaviour {
         GameObject sm = GameObject.Find("SoundManager");
         AudioSource[] audioSources = sm.GetComponents<AudioSource>();
         //0 = menu
-
         try {
-            Debug.Log("muting menu music");
             AudioSource menuMusicAudioSource = audioSources[0];
             menuMusicAudioSource.volume = 0;
         }catch(Exception e)
         {
-            Debug.Log("Menu music not set");
+
         }
 
-        AudioClip bgMusic = Resources.Load("Sounds/BackgroundMusic/music_" + mapName) as AudioClip;        
-        //bgMusicAudioSource.clip = bgMusic;
-        //play it
+        AudioClip bgMusic = Resources.Load("Sounds/BackgroundMusic/music_" + mapName) as AudioClip;  
         SoundManager.instance.StartBackgroundMusic(bgMusic);
     }
 
@@ -172,9 +167,7 @@ public class GameManager : MonoBehaviour {
         if (gameInfo.player4type != PlayerTypeEnum.None)
             SetUpPlayer(4, gameInfo.player4char);
     }
-
-        
-
+    
     public void LoadPlayersTypes()
     {
         prefab = (GameObject)Resources.Load("Prefabs/PlayerManagment");
@@ -249,8 +242,6 @@ public class GameManager : MonoBehaviour {
                 switch (gameInfo.player1type)
                 {
                     case PlayerTypeEnum.Player:
-                        //Debug.Log(player1Comp);               
-                        //Debug.Log(player1Info);
                         player1Comp.SetUpPlayer(player1Info, new ControlKeysP1());
                         GameObject.Find("player_info_red").GetComponent<HUDBase>().SetUp(player1Comp);
                         player1Active = true;
@@ -361,7 +352,6 @@ public class GameManager : MonoBehaviour {
         allPlayers = GetPlayers();
         foreach (PlayerBase player in allPlayers)
         {
-            //Debug.Log(player);
             switch (player.playerNumber)
             {
                 case 1:
@@ -381,7 +371,6 @@ public class GameManager : MonoBehaviour {
                     player4base.gameInfo = gameInfo;
                     break;
                 default:
-                    Debug.Log(player.ToString() + " has no player number!");
                     break;
             }
         }
@@ -402,7 +391,6 @@ public class GameManager : MonoBehaviour {
 
         if(alive <= 1)
         {
-            Debug.Log("everybody dead");
             EndGame();
         }
     }
@@ -431,7 +419,6 @@ public class GameManager : MonoBehaviour {
 
             screenFaderColor = GameObject.Find("ScreenFader").GetComponent<SpriteRenderer>().color;
             screenFaderColor.a = fadeCounter;
-            //Debug.Log(screenFaderColor.a);
 
             screenFaderRenderer = GameObject.Find("ScreenFader").GetComponent<SpriteRenderer>();
             screenFaderRenderer.color = screenFaderColor;

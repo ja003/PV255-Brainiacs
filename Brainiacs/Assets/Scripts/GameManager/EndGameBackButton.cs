@@ -23,7 +23,7 @@ public class EndGameBackButton : MonoBehaviour {
             }
             catch(Exception e)
             {
-                Debug.Log("SoundManager not found");
+
             }
             Application.LoadLevel("MainMenu");
         }

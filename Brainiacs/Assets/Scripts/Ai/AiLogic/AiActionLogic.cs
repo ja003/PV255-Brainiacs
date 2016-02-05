@@ -58,7 +58,6 @@ public class AiActionLogic {
                 aiMovementLogic.Stop();
                 break;
         }
-        //Debug.Log("processing action: " + currentAction);
     }
 
     public AiActionEnum currentAction;
@@ -67,17 +66,10 @@ public class AiActionLogic {
     {
 
     }
-
-    public void ProcessDeath()
-    {
-        //Debug.Log("DEATH");
-        //aiPriorityLogic.standPriority = 666;
-    }
-
+    
     public void UpdateCurrentAction()
     {
         int highestPriority = aiPriorityLogic.GetCurrentHighestPriority();
-        //Debug.Log("highest = " + highestPriority);
 
         if (aiPriorityLogic.killPlayer1Priority >= highestPriority)
         {
@@ -110,16 +102,12 @@ public class AiActionLogic {
         else if (aiPriorityLogic.standPriority >= highestPriority)
         {
             currentAction = AiActionEnum.stand;
-            //Debug.Log("STAND");
         }
 
         else
         {
             currentAction = AiActionEnum.stand;
         }
-
-        //Debug.Log("currentAction: " +currentAction);
-        //currentAction = AiActionEnum.stand;
     }
 
 

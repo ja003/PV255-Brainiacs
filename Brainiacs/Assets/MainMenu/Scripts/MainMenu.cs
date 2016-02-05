@@ -450,9 +450,7 @@ public class MainMenu : MonoBehaviour {
         gameInfo.time = GetInputValue() * 60; //minutes
         gameInfo.winScore = GetInputValue();
         gameInfo.lifes = GetInputValue();
-
-        Debug.Log("Start GAMEINFO");
-        Debug.Log(gameInfo);
+        
     }
     
     void FixedUpdate()
@@ -469,9 +467,6 @@ public class MainMenu : MonoBehaviour {
 
         if (moveToNewGame)
         {
-            //Debug.Log("tmp");
-            //StartGame("");
-
             cameraPositionY += movingSpeed;
             if (cameraPositionY > 0.99f)
             {
@@ -586,21 +581,18 @@ public class MainMenu : MonoBehaviour {
             case PlayerEnum.Player4:
                 return GetCharacter(p4Class);
             default:
-                Debug.Log("error in assigning class for " + p);
                 return GetCharacter(5);
         }
     }
 
     private CharacterEnum GetCharacter(int p)
     {
-        //Debug.Log(p + " = " + (CharacterEnum)p);
         if (p >= 0 && p < 5){
             return (CharacterEnum) p;
         }
         if (p == 5){
             return GetCharacter(Random.Range(0, 5));
         }
-        Debug.Log("invalid character enum number " + p);
         return GetCharacter(Random.Range(0, 5));
     }
 
@@ -617,7 +609,6 @@ public class MainMenu : MonoBehaviour {
             case PlayerEnum.Player4:
                 return (PlayerTypeEnum)p4Type;
             default:
-                Debug.Log("Invalid PlayerEnum" + p);
                 return PlayerTypeEnum.Player;
         }
     }

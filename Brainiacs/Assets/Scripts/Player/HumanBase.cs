@@ -17,19 +17,11 @@ public class HumanBase : PlayerBase {
 
 
     private WeaponBase prevWeapon;
-    //Components comp;
-    //PlayerInfo playInfo;
-
-    // JP - pre alternatibny movement
-    //public Stack<KeyCode> pressed_keys = new Stack<KeyCode>();
-    //int pops = 0;
 
     public void setUpHB(Components c, PlayerInfo p) {
         comp = c;
         playInfo = p;
-        //weaponHandling = GetComponent<WeaponHandling>();
         rb2d = gameObject.GetComponent<Rigidbody2D>();
-        //Debug.Log(rb2d);
     }
 
     public void SetControlKeys(KeyCode keyUp, KeyCode keyLeft, KeyCode keyDown, KeyCode keyRight, KeyCode keyFire, KeyCode keySwitchWeapon)
@@ -81,21 +73,17 @@ public class HumanBase : PlayerBase {
         }
         else if (Input.GetKeyDown(keyLeft) && !PressedKeysContains(keyLeft))
         {
-            //Debug.Log(keyLeft);
             teleport = false;
             pressedKeys.Add(keyLeft);
            
         }
         else if (Input.GetKeyDown(keyDown) && !PressedKeysContains(keyDown))
         {
-
-            //Debug.Log(keyDown); 
             teleport = false;
             pressedKeys.Add(keyDown);
         }
         else if (Input.GetKeyDown(keyRight) && !PressedKeysContains(keyRight))
         {
-            //Debug.Log(keyRight);
             teleport = false;
             pressedKeys.Add(keyRight);
         }

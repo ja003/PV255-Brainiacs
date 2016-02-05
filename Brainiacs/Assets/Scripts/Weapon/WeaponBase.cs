@@ -69,7 +69,6 @@ public class WeaponBase
 
     public int fireSpecial()
     {
-        Debug.Log("fire");
         ammo -= 1;
         return ammo;
     }

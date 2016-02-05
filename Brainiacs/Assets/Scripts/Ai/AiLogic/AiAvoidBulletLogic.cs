@@ -24,13 +24,10 @@ public class AiAvoidBulletLogic {
     public int killPlayer2Priority;
     public int killPlayer3Priority;
     public int killPlayer4Priority;
-
     
-
     float characterColliderWidth;
     float characterColliderHeight;
-
-
+    
     public bool bulletIncoming;
     public Vector2 bulletFrom;
     public LayerMask bulletMask;
@@ -46,18 +43,6 @@ public class AiAvoidBulletLogic {
         characterColliderHeight = aiBase.characterColliderHeight;
     }
 
-    /*
-    public void SetAvoidBulletPriority(int priority)
-    {
-        avoidBulletPriority = priority;
-
-        killPlayer1Priority = 0;
-        killPlayer2Priority = 0;
-        killPlayer3Priority = 0;
-        killPlayer4Priority = 0;
-    }*/
-
-    
     public bool RegisterBullets()
     {
         bulletIncoming = false;
@@ -74,36 +59,24 @@ public class AiAvoidBulletLogic {
 
                 if (sr.sprite.ToString().Contains("mine"))
                 {
-                    //Debug.Log("its mine");
                     listColliders.RemoveAt(i);
                 }
                 else
                 {
-                    //Debug.Log("its not mine");
+
                 }
             }
             catch (Exception e)
             {
-                Debug.Log("bullet has no BULLET script");
+
             }
         }
 
 
         foreach (Collider2D collider in listColliders)
         {
-            // enemies within 1m of the player
-            //Debug.Log(collider.name);
             Vector2 bulletPosition = collider.transform.position;
             Vector2 bulletDirection = collider.GetComponent<Bullet>().direction;
-
-            //Debug.Log(bulletPosition);
-            //Debug.Log(bulletDirection);
-
-            //Debug.Log(bulletPosition.y);
-            //Debug.Log(aiBase.posY);
-            //Debug.Log(characterColliderHeight);
-
-
 
             if (aiMapLogic.AlmostEqual(bulletPosition.x, aiBase.posX, characterColliderWidth))//bullet above or bellow
             {
@@ -132,7 +105,6 @@ public class AiAvoidBulletLogic {
                     {
                         bulletIncoming = true;
                         bulletFrom = right;
-                        //Debug.Log("!");
                     }
                 }
                 else //bullet on left
@@ -147,7 +119,6 @@ public class AiAvoidBulletLogic {
 
 
         }
-        //Debug.Log("bulletIncoming" + "from : "+bulletFrom);
         return bulletIncoming;
     }
 
@@ -155,9 +126,6 @@ public class AiAvoidBulletLogic {
     public Vector2 decidedDirection;
     public void AvoidBullet()
     {
-        Debug.Log("AVOIDING BULLET");
-        Debug.Log("decidedDirectionBool:"+ decidedDirectionBool);
-        Debug.Log("decidedDirection:" + decidedDirection);
         float verticalDistance = aiBase.characterColliderHeight;
         float horizontalDistance = aiBase.characterColliderHeight;
 
@@ -170,12 +138,6 @@ public class AiAvoidBulletLogic {
         {
             decidedDirectionBool = false;
         }
-        Debug.Log("Collides UP :" + aiMovementLogic.CollidesBarrier(up, verticalDistance));
-
-        Debug.Log("decidedDirectionBool:" + decidedDirectionBool);
-        Debug.Log("decidedDirection:" + decidedDirection);
-        Debug.Log("horizontalDistance: " + horizontalDistance);
-        Debug.Log("verticalDistance: " + verticalDistance);
 
         if (decidedDirectionBool)
         {
@@ -197,7 +159,7 @@ public class AiAvoidBulletLogic {
             }
             else
             {
-                Debug.Log("fail direction");
+                
             }
         }
         else
@@ -222,28 +184,24 @@ public class AiAvoidBulletLogic {
             }
             else if (bulletFrom == right)
             {
-                Debug.Log("from right");
                 if (!aiMovementLogic.CollidesBarrier(up, verticalDistance))
                 {
                     aiMovementLogic.MoveTo(aiBase.posX, aiBase.posY + verticalDistance);
                     decidedDirection = up;
-                    Debug.Log("go up");
                 }
                 else if (!aiMovementLogic.CollidesBarrier(down, verticalDistance))
                 {
-                    Debug.Log("go down");
                     aiMovementLogic.MoveTo(aiBase.posX, aiBase.posY - verticalDistance);
                     decidedDirection = down;
                 }
                 else if (!aiMovementLogic.CollidesBarrier(left, horizontalDistance))
                 {
-                    Debug.Log("go left");
                     aiMovementLogic.MoveTo(aiBase.posX - horizontalDistance, aiBase.posY);
                     decidedDirection = left;
                 }
                 else
                 {
-                    Debug.Log("cant avoid");
+
                 }
             }
             else if (bulletFrom == down)
@@ -266,7 +224,6 @@ public class AiAvoidBulletLogic {
             }
             else if (bulletFrom == left)
             {
-                Debug.Log("from left");
                 if (!aiMovementLogic.CollidesBarrier(up, verticalDistance))
                 {
                     aiMovementLogic.MoveTo(aiBase.posX, aiBase.posY + verticalDistance);
@@ -291,7 +248,6 @@ public class AiAvoidBulletLogic {
         {
             decidedDirectionBool = false;
             decidedDirection = down;
-            //Debug.Log("bullet avoided");
             aiPriorityLogic.SetAvoidBulletPriority(0);
             aiActionLogic.UpdateCurrentAction();
         }

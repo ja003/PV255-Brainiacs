@@ -10,15 +10,15 @@ public class GameInfo : MonoBehaviour {
     public int winScore = 10;
     public int lifes = 3;
 
-    public PlayerTypeEnum player1type = PlayerTypeEnum.Player;
-    public PlayerTypeEnum player2type = PlayerTypeEnum.Player;
+    public PlayerTypeEnum player1type = PlayerTypeEnum.None;
+    public PlayerTypeEnum player2type = PlayerTypeEnum.None;
     public PlayerTypeEnum player3type = PlayerTypeEnum.None;
-    public PlayerTypeEnum player4type = PlayerTypeEnum.Player;
+    public PlayerTypeEnum player4type = PlayerTypeEnum.None;
 
-    public CharacterEnum player1char = CharacterEnum.Tesla;
-    public CharacterEnum player2char = CharacterEnum.DaVinci;
-    public CharacterEnum player3char = CharacterEnum.Curie;
-    public CharacterEnum player4char = CharacterEnum.Curie;
+    public CharacterEnum player1char = CharacterEnum.None;
+    public CharacterEnum player2char = CharacterEnum.None;
+    public CharacterEnum player3char = CharacterEnum.None;
+    public CharacterEnum player4char = CharacterEnum.None;
 
     public int player1score = 0;
     public int player2score = 0;

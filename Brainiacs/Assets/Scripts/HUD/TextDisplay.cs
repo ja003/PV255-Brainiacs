@@ -53,8 +53,7 @@ public class TextDisplay {
         }
         catch(NullReferenceException e)
         {
-            Debug.Log("GameVariables not found");
-            Debug.Log("error: " + e);
+
         }
 
         
@@ -65,7 +64,7 @@ public class TextDisplay {
 
     public void DisplayNumberOn(SpriteRenderer singleField, SpriteRenderer tenField, SpriteRenderer unitField, int value)
     {
-        //Debug.Log("displaying " + value);
+
         if(value < 0)
         {
             tenField.sprite = null;

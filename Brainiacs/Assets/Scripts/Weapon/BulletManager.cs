@@ -17,7 +17,6 @@ public class BulletManager : MonoBehaviour {
 
     public void createBullets(PlayerBase owner)
     {
-        //Debug.Log("created");
         bullet = (GameObject)Resources.Load("Prefabs/Projectile");
 
         for (int i = 0; i < 20; i++)

@@ -47,9 +47,6 @@ public class WeaponPistol : WeaponBase {
 
         kadency = 0.1f;
         kadReady = true;
-        //Debug.Log(sprite);
-        //Debug.Log(bulletAnimControler);
-
         loadSprites(sprite, bulletAnimControler);
     }
 }

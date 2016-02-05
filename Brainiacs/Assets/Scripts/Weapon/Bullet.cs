@@ -31,7 +31,6 @@ public class Bullet : MonoBehaviour {
             transform.position = pos + new Vector2(direction.normalized.x*0.5f, -0.17f);
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-        //Debug.Log(animController);
         animator = GetComponent<Animator>();
         animator.runtimeAnimatorController = animController;
 
@@ -89,8 +88,7 @@ public class Bullet : MonoBehaviour {
             ofset.y -= 0.3f;
             c2D.offset = ofset;
         }
-
-        //Debug.Log(animController);
+        
         animator = GetComponent<Animator>();
         animator.runtimeAnimatorController = fp.animController;
         //load hitSound
@@ -145,9 +143,7 @@ public class Bullet : MonoBehaviour {
             if (fp.weapEnum != WeaponEnum.mine && fp.weapEnum != WeaponEnum.specialNobel)
             {
                 SoundManager.instance.RandomizeSfx(hitSound); //todo barrier hitSound..maybe
-
-                //Debug.Log(coll.name);
-
+                
                 StartCoroutine(playExplosion());
             }
         }

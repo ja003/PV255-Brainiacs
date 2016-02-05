@@ -21,11 +21,10 @@ public class Loading : MonoBehaviour {
         try
         {
             gameInfo = GameObject.Find("GameInfo").GetComponent<GameInfo>();
-            Debug.Log(gameInfo);
         }
         catch (Exception e)
         {
-            Debug.Log("NO GAME INFO OBJECT - setting default values");
+
         }
         if (gameInfo == null)
         {
@@ -40,7 +39,6 @@ public class Loading : MonoBehaviour {
 
         sr = gameObject.GetComponent<SpriteRenderer>();
         sr.sprite = Resources.Load<Sprite>("Sprites/Loading/loading_" + mapName + "_01");
-        Debug.Log("Sprites/Loading/loading_" + mapName + "_01");
 
         beep1 = Resources.Load<AudioClip>("Sounds/Loading/loading_beep_01");
         beep2 = Resources.Load<AudioClip>("Sounds/Loading/loading_beep_02");

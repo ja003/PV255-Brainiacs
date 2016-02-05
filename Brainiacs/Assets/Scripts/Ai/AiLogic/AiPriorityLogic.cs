@@ -47,7 +47,7 @@ public class AiPriorityLogic
         message += ",Kill-4=" + killPlayer4Priority;
         message += ",avoidBulletPriority=" + avoidBulletPriority;
 
-        //Debug.Log(message);
+        Debug.Log(message);
     }
 
 
@@ -59,8 +59,7 @@ public class AiPriorityLogic
 
         if (aiWeaponLogic.CheckAmmo())
             SetKillPriorities();
-
-
+        
         //register incoming bullets, powerups,...
         aiMapLogic.LookAroundYourself();
 
@@ -70,7 +69,6 @@ public class AiPriorityLogic
 
         if (aiBase.aiAvoidBulletLogic.bulletIncoming)
         {
-            //Debug.Log("avoiding");
             SetAvoidBulletPriority(100);
         }
 
@@ -79,14 +77,8 @@ public class AiPriorityLogic
 
         //debuggig - just stand
         //standPriority = 666;
-
-        //check bullets
-        //CheckAmmo(); //has to be updated faster
-
-
+        
         //PrintPriorities();
-
-        //....
     }
 
     public void SetDeathPriority(int priority)
@@ -100,30 +92,6 @@ public class AiPriorityLogic
 
     public int GetCurrentHighestPriority()
     {
-        /*
-        int highestPriority = 0;
-        if (killPlayer1Priority > highestPriority)
-            highestPriority = killPlayer1Priority;
-        if (killPlayer2Priority > highestPriority)
-            highestPriority = killPlayer2Priority;
-        if (killPlayer3Priority > highestPriority)
-            highestPriority = killPlayer3Priority;
-        if (killPlayer4Priority > highestPriority)
-            highestPriority = killPlayer4Priority;
-        if (avoidBulletPriority > highestPriority)
-            highestPriority = avoidBulletPriority;
-        if (aiBase.aiPowerUpLogic.pickPowerUpPriority > highestPriority)
-            highestPriority = aiBase.aiPowerUpLogic.pickPowerUpPriority;
-        if (deathPriority > highestPriority)
-            highestPriority = deathPriority;
-
-        if (standPriority > highestPriority)
-            highestPriority = standPriority;
-        //Debug.Log("highestPriority:" + highestPriority);
-        if (highestPriority == 0)
-            highestPriority++;
-        return highestPriority;
-        */
         return Mathf.Max(
             1,
             killPlayer1Priority,
@@ -163,7 +131,6 @@ public class AiPriorityLogic
 
         if (aiWeaponLogic.itemWeapons.Count == 0)
         {
-            //Debug.Log("no items around");
             pickWeaponPriority = 0;
             return;
         }
@@ -171,7 +138,6 @@ public class AiPriorityLogic
         int highestPriority = 0;
         foreach (GameObject weapon in aiWeaponLogic.itemWeapons)
         {
-            //Debug.Log("I see " + powerUp.name);
             WeaponManager manager = weapon.GetComponent<WeaponManager>();
             float distanceFromMe = aiMapLogic.GetDistance(aiBase.gameObject, weapon);
             float distanceFactor = aiMapLogic.GetDistanceFactor(distanceFromMe);
@@ -181,27 +147,9 @@ public class AiPriorityLogic
             {
 
                 case WeaponEnum.flamethrower:
-                    float flamethrowerFactor = distanceFactor;// * weaponHandling.activeWeapon.ammo / weaponHandling.activeWeapon.clip;
-                    /*if (HasWeapon(WeaponEnum.flamethrower))
-                    {
-                        //flamethrowerFactor /= ...
-                    }
-                    */
-
+                    float flamethrowerFactor = distanceFactor;
                     priority = (int)flamethrowerFactor * 10;
                     break;
-                /*
-                                case WeaponEnum.shotgun:
-                                    float shotgunFactor = distanceFactor;// * weaponHandling.activeWeapon.ammo / weaponHandling.activeWeapon.clip;
-                                    /*if (HasWeapon(WeaponEnum.flamethrower))
-                                    {
-                                        //flamethrowerFactor /= ...
-                                    }
-
-
-                                    priority = (int)shotgunFactor * 10;
-                                    break;
-                */
                 default:
                     priority = 0;
                     break;
@@ -209,9 +157,7 @@ public class AiPriorityLogic
             if (priority == 0)
                 priority = 10;
             weaponsPriorities.Add(priority);
-
-            //Debug.Log("setting: " + powerUpsPriorities[powerUpsPriorities.Count - 1]);
-
+            
             if (weaponsPriorities[weaponsPriorities.Count - 1] > highestPriority)
             {
                 highestPriority = weaponsPriorities[weaponsPriorities.Count - 1];
@@ -221,9 +167,6 @@ public class AiPriorityLogic
         aiWeaponLogic.bestWeaponItem = aiWeaponLogic.itemWeapons[weaponsPriorities.IndexOf(highestPriority)];
 
         pickWeaponPriority = highestPriority;
-        //Debug.Log("pickPowerUpPriority:" + pickPowerUpPriority);
-
-
     }
     
 
@@ -234,7 +177,6 @@ public class AiPriorityLogic
 
         if (aiPowerUpLogic.itemPowerUps.Count == 0)
         {
-            //Debug.Log("no items around");
             pickPowerUpPriority = 0;
             return;
         }
@@ -242,11 +184,9 @@ public class AiPriorityLogic
         int highestPriority = 0;
         foreach (GameObject powerUp in aiPowerUpLogic.itemPowerUps)
         {
-            //Debug.Log("I see " + powerUp.name);
             PowerUpManager manager = powerUp.GetComponent<PowerUpManager>();
             if (manager == null)
             {
-                Debug.Log(powerUp + " has no manager");
                 return;
             }
 
@@ -282,9 +222,7 @@ public class AiPriorityLogic
             if (priority == 0)
                 priority = 10;
             powerUpsPriorities.Add(priority);
-
-            //Debug.Log("setting: " + powerUpsPriorities[powerUpsPriorities.Count - 1]);
-
+            
             if (powerUpsPriorities[powerUpsPriorities.Count - 1] > highestPriority)
             {
                 highestPriority = powerUpsPriorities[powerUpsPriorities.Count - 1];
@@ -294,9 +232,6 @@ public class AiPriorityLogic
         aiPowerUpLogic.bestPowerUp = aiPowerUpLogic.itemPowerUps[powerUpsPriorities.IndexOf(highestPriority)];
 
         pickPowerUpPriority = highestPriority;
-        //Debug.Log("pickPowerUpPriority:" + pickPowerUpPriority);
-
-
     }
 
     public void SetAvoidBulletPriority(int priority)

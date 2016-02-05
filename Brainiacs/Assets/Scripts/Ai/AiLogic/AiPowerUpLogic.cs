@@ -28,7 +28,6 @@ public class AiPowerUpLogic  {
     {
         if (aiMovementLogic.MoveTo(obj.transform.position))
         {
-            //Debug.Log("picked up");
             aiMapLogic.LookAroundYourself();
         }
     }

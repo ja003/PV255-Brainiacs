@@ -86,7 +86,6 @@ public class WeaponFlamethrowerLogic : MonoBehaviour
 
     public void fire(FireProps fp, PlayerBase pb, WeaponBase wb)
     {
-        //Debug.Log("FIRE");
         this.pb = pb;
         this.fp = fp;
         this.wb = wb;
@@ -105,7 +104,6 @@ public class WeaponFlamethrowerLogic : MonoBehaviour
             chosenAudioSourceIndex = SoundManager.instance.PlaySingle(flamethrowerSound, true);
             soundLoop = true;
         }
-        Debug.Log("Start");
     }
 
     public void stopFire()
@@ -114,7 +112,6 @@ public class WeaponFlamethrowerLogic : MonoBehaviour
         {
             AudioSource[] AScomp = SoundManager.instance.gameObject.GetComponents<AudioSource>();
             AScomp[chosenAudioSourceIndex].loop = false;
-            Debug.Log("Stop");
             soundLoop = false;
         }
 

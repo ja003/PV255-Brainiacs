@@ -40,8 +40,7 @@ public abstract class PlayerBase : MonoBehaviour
     public int score;
     public GameInfo gameInfo;
     public GameManager gameManager;
-
-
+    
     //////////////////////AUDIO SOURCE/////////////////////////
     public AudioClip playerEliminatedSound;
     public AudioClip playerHitSound;
@@ -99,7 +98,6 @@ public abstract class PlayerBase : MonoBehaviour
     /////////////////////////////////////////////HANDS//////////////////////////////////////
     public SpriteRenderer handsRenderer;
     public Sprite[] handsSprites;
-
     /// //////////////////////////////////////// END ///////////////////////////////////////////
 
 
@@ -179,13 +177,10 @@ public abstract class PlayerBase : MonoBehaviour
 
         weaponHandling.player = GetComponent<PlayerBase>();
         weaponHandling.specialWeapon = GetComponent<WeaponSpecial>();
-
-        //Debug.Log(pi);
-        //Debug.Log(pi.charEnum);
+        
         WeaponBase pistol = new WeaponPistol(pi.charEnum);
         WeaponBase sniper = new WeaponSniper();
         WeaponBase biogun = new WeaponBiogun();
-        //WeaponBase flameTh = new WeaponFlamethrower();
         WeaponBase MP40 = new WeaponMP40();
         WeaponBase mine = new WeaponMine();
         WeaponBase flame = new WeaponFlamethrower();
@@ -240,35 +235,26 @@ public abstract class PlayerBase : MonoBehaviour
         // Inicializacia prvej zbrane
         weaponHandling.inventory.Add(pistol);
         weaponHandling.inventory.Add(special);
-        weaponHandling.inventory.Add(flame);
-        weaponHandling.inventory.Add(sniper);
-        weaponHandling.inventory.Add(biogun);
-        weaponHandling.inventory.Add(MP40);
-        weaponHandling.inventory.Add(mine);
+        //weaponHandling.inventory.Add(flame);
+        //weaponHandling.inventory.Add(sniper);
+        //weaponHandling.inventory.Add(biogun);
+        //weaponHandling.inventory.Add(MP40);
+        //weaponHandling.inventory.Add(mine);
         
         weaponHandling.activeWeapon = weaponHandling.inventory[0];
-
-
-        //Debug.Log("rend:" + weaponHandling.weaponRenderer);
-
     }
 
     private void setUpSprites() {
         string animControllerString = "";
         string character = playInfo.charEnum.ToString().ToLower();
-
-        //Debug.Log(character);
+        
         animControllerString +=  character + "_";
         animControllerString += playInfo.playerColor + "_";
         animControllerString += "override";
         animControllerString = "Animations/Characters/" + character + "/" + animControllerString;
-        //Debug.Log(animControllerString);
-
+        
         RuntimeAnimatorController rtac = Resources.Load(animControllerString) as AnimatorOverrideController;
-        //Debug.Log(animControllerString);
-        //Debug.Log(rtac);
         comp.animator.runtimeAnimatorController = rtac;
-
         
     }
 
@@ -283,7 +269,6 @@ public abstract class PlayerBase : MonoBehaviour
     {
         if (direction == up)
         {
-            //Debug.Log(playerNumber + ":" + weaponHandling.weaponRenderer.sprite);
             weaponHandling.weaponRenderer.sortingLayerName = "Weapon_back";
             handsRenderer.sortingLayerName = "Hand_back";
 
@@ -304,11 +289,8 @@ public abstract class PlayerBase : MonoBehaviour
         SpeedBuffChecker();
         UpdatePosition();
         GetComponent<SpriteRenderer>().color = Color.white;
-        //Debug.Log(characterAnimator.GetCurrentAnimatorStateInfo(0).length);
-        //Debug.Log(playerNumber + ":" + direction);
     }
-
-
+    
     public void RefreshAnimatorState()
     {
         if(direction == up)
@@ -327,7 +309,6 @@ public abstract class PlayerBase : MonoBehaviour
         {
             UpdateAnimatorState(AnimatorStateEnum.walkLeft);
         }
-        //Debug.Log("refreshing " + playerNumber + " to " + direction);
     }
 
     public void UpdateAnimatorState(AnimatorStateEnum state)
@@ -381,21 +362,10 @@ public abstract class PlayerBase : MonoBehaviour
 
         if (dead)
         {
-            //Debug.Log("dead");
-        }
-        /*
-        Debug.Log(
-            "walkUp:" + walkUp +
-            ",walkDown:" + walkDown +
-            ",walkRight:" + walkDown +
-            ",walkLeft:" + walkLeft +
-            ",dead:" + dead
-            );*/
-            
 
+        }
     }
     
-
     public void RandomizeDirection()
     {
         System.Random rnd = new System.Random();
@@ -427,31 +397,21 @@ public abstract class PlayerBase : MonoBehaviour
     /// </summary>
     public void UpdateDirection()
     {
-        //Debug.Log("[" + playerNumber + "]:" + direction);
 
-        
         if (direction == down)
         {
-            //transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weaponHandling.activeWeapon.weaponSprites[0];
-            //weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[0];
             handsRenderer.sprite = handsSprites[0];
         }
         else if (direction == left)
         {
-            //transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weaponHandling.activeWeapon.weaponSprites[1];
-            //weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[1];
             handsRenderer.sprite = handsSprites[1];
         }
         else if (direction == right)
         {
-            //transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weaponHandling.activeWeapon.weaponSprites[2];
-            //weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[2];
             handsRenderer.sprite = handsSprites[2];
         }
         else if (direction == up)
         {
-            //transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = weaponHandling.activeWeapon.weaponSprites[3];
-            //weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[3];
             handsRenderer.sprite = handsSprites[3];
         }
         
@@ -500,12 +460,10 @@ public abstract class PlayerBase : MonoBehaviour
     {
         if (isClone)
         {
-            //Debug.Log("Clone died, no score for you");
             return;
         }
         if(playerNumber == this.playerNumber)
         {
-            //Debug.Log("Clone killed you, no score");
             return;
         }
 
@@ -556,9 +514,7 @@ public abstract class PlayerBase : MonoBehaviour
 
             if ((hitPoints - dmg) <= 0 && !dead) 
             {
-                //UpdateAnimatorState(AnimatorStateEnum.dead);
                 hitPoints = 0;
-                //TODO sputenie animacie smrti
                 comp.rb2d.velocity = stop;
                 UpdateGameInfoDeaths(playerNumber,1);
 
@@ -569,12 +525,11 @@ public abstract class PlayerBase : MonoBehaviour
                 }
                 else
                 {
-                    //Debug.Log("Clone died, no score for this");
+
                 }
 
                 IncreaseGameInfoScore(owner.playerNumber, 1);
-
-                //Debug.Log(owner.playerNumber + ": " + owner.score);
+                
                 //check score
                 if(!isClone && gameInfo.gameMode == GameModeEnum.Score && owner.score >= gameInfo.winScore)
                 {
@@ -593,16 +548,11 @@ public abstract class PlayerBase : MonoBehaviour
                 GetComponent<SpriteRenderer>().color = Color.red;
             }
         }
-        //Debug.Log(hitPoints);
     }
 
     IEnumerator Die()
     {
         dead = true;
-        //Debug.Log("dead");
-
-        //play death sound
-        //SoundManager.instance.RandomizeSfx(deathSound_01);
 
         UpdateAnimatorState(AnimatorStateEnum.dead);
         //disable movement
@@ -610,8 +560,6 @@ public abstract class PlayerBase : MonoBehaviour
         right = stop;
         down= stop;
         left = stop;
-        //disable weapon
-        //....
         
 
         float deadTime = characterAnimator.GetCurrentAnimatorStateInfo(0).length;
@@ -623,7 +571,6 @@ public abstract class PlayerBase : MonoBehaviour
 
         if (!isClone && gameInfo.gameMode == GameModeEnum.Deathmatch && lifes <= 0)
         {
-            Debug.Log("you dead");
             weaponHandling.shootingEnabled = false;
             SoundManager.instance.PlaySingle(playerEliminatedSound);
             gameManager.CheckLifes();
@@ -634,19 +581,9 @@ public abstract class PlayerBase : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             hitPoints = maxHP;
-            
-            //Debug.Log("alive");
-            //UpdateAnimatorState(AnimatorStateEnum.walkRight);
-
-            //TODO
-            //load player again (without old weapons,...)
-
-            //Vector3 newRandomPosition = Vector3.zero;//= generator.GenerateRandomPosition();
             Vector3 newRandomPosition = posGenerator.GenerateRandomPosition();
             UpdatePosition();
             transform.position = newRandomPosition;
-            //Debug.Log("X " + newRandomPosition.x);
-            //Debug.Log("Y " + newRandomPosition.y);
 
             //enable movement
             up = Vector2.up;
@@ -658,9 +595,6 @@ public abstract class PlayerBase : MonoBehaviour
             RandomizeDirection();
             RefreshAnimatorState();
             UpdateDirection();
-            //UpdateAnimatorState(AnimatorStateEnum.stop);
-            //weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[weaponHandling.player.directionMapping[direction]];
-            //TODO - ^ udělat metodu
         }
     }
 
@@ -740,9 +674,7 @@ public abstract class PlayerBase : MonoBehaviour
             time = 0.0f;
         }
     }
-
     
-
     //this way player receives info from collision with power up
     public void AddPowerUp(PowerUpEnum en)
     {
@@ -751,45 +683,37 @@ public abstract class PlayerBase : MonoBehaviour
             case PowerUpEnum.Shield:
                 isShielded = true;
                 SoundManager.instance.PlaySingle(powerupShieldSound);
-                //Debug.Log("player picked up shield");
                 break;
             case PowerUpEnum.Heal:
                 ApplyHeal(maxHP / 2);
                 SoundManager.instance.PlaySingle(powerupHealSound);
-                //Debug.Log("player picked up heal");
                 break;
             case PowerUpEnum.Ammo:
                 weaponHandling.activeWeapon.reload();
                 SoundManager.instance.PlaySingle(powerupAmmoSound);
-                //Debug.Log("player picked up ammo");
                 break;
             case PowerUpEnum.Speed:
                 ApplySpeed(1.5f);
                 SoundManager.instance.PlaySingle(powerupSpeedSound);
-                //Debug.Log("player picked up speed");
                 break;
             case PowerUpEnum.Mystery:
                 System.Random rnd = new System.Random();
                 var v = Enum.GetValues(typeof(PowerUpEnum));
-                //Debug.Log("player picked up mystery");
                 AddPowerUp((PowerUpEnum)v.GetValue(rnd.Next(v.Length)));
                 break;
             case PowerUpEnum.dealDamage:
                 ApplyDamage(maxHP / 3, this); //hit yourself
                 SoundManager.instance.PlaySingle(powerupDealDamageSound);
-                //Debug.Log("player picked up dealDamage");
                 break;
             case PowerUpEnum.slowSpeed:
                 ApplySlow(-1.0f);
                 SoundManager.instance.PlaySingle(powerupSlowSpeedSound);
-                //Debug.Log("Player picked up slowSPeed");
                 break;
             default:
                 Debug.Log("ERROR: Unknown powerUp received.");
                 break;
         }
     }
-    //<<<...MG>>>
 }
 
 //proč mi to v Enums nefunguje?

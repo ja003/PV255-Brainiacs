@@ -45,12 +45,7 @@ public class AiMovementLogic {
 
         notproofBarrierMask = 1 << 14;
     }
-
-
     
-
-    
-
     public List<Vector2> walkingFront;
 
     public List<Vector2> GetNodes()
@@ -106,21 +101,16 @@ public class AiMovementLogic {
     public List<Vector2> GetPathTo(Vector2 target)
     {
         float step = characterColliderWidth;
-        //float step = aiBase.characterWidth/2;
-        //Debug.Log(aiBase.characterWidth);
-        //um....wtf, proč když nenapíšu ručně 0.5f tak to nejde?
 
         List<Vector2> path = new List<Vector2>();
         PathNode startNode = new PathNode(new Vector2(aiBase.posX, aiBase.posY), 0);
         List<PathNode> visitedNodes = new List<PathNode>();
-        //Debug.Log("start: " + startNode.node);
 
         bool found = false;
         int finalNodeIndex = 0;
         //trying 5 different starting points!!!!!!!!!!!!!!! - only 1 for now
         for (int start = 0; start < 1; start++)
         {
-            //Debug.Log("start:"+start);
             visitedNodes.Clear();
             switch (start)
             {
@@ -142,25 +132,21 @@ public class AiMovementLogic {
                 default:
                     break;
             }
-            //Debug.Log("startNode:"+ startNode);
 
             visitedNodes.Add(startNode);
 
             for (int i = 0; i < visitedNodes.Count; i++)
             {
-                //Debug.Log(i);
                 PathNode currentNode = visitedNodes[i];
                 //end process when current node is close to target
                 if (aiMapLogic.GetDistance(currentNode.node, target) < step)
                 {
-                    //Debug.Log("final = " + currentNode.node);
                     finalNodeIndex = i;
                     found = true;
                     break;
                 }
-                if (i > 5000)
+                if (i > 3000)
                 {
-                    Debug.Log("FAIL");
                     finalNodeIndex = 100;
                     break;
                 }
@@ -180,9 +166,6 @@ public class AiMovementLogic {
                 { visitedNodes.Add(nodeRight); }
                 if (!CharacterCollidesBarrier(nodeDown.node) && !visitedNodes.Contains(nodeDown) && !CharacterCollidesMine(nodeDown.node))
                 { visitedNodes.Add(nodeDown); }
-
-
-
             }
 
             if (found)
@@ -195,15 +178,9 @@ public class AiMovementLogic {
         {
             path.Add(visitedNodes[index].node);
             index = visitedNodes[index].parentIndex;
-            //Debug.Log(visitedNodes[index].node);
-
         }
         //reverse path
         path.Reverse();
-
-
-
-
         return path;
     }
 
@@ -229,19 +206,15 @@ public class AiMovementLogic {
     /// <param name="y"></param>
     public bool MoveTo(float x, float y, float e)
     {
-        Debug.DrawRay(new Vector2(x, y), aiBase.up, Color.yellow, 0.2f);
-        //Debug.Log("destination:" + x + "," + y);
-        //Debug.Log("IM at " + aiBase.posX + "," + aiBase.posY);
+        //Debug.DrawRay(new Vector2(x, y), aiBase.up, Color.yellow, 0.2f);
         if (ValueEquals(aiBase.posX, x, e) && ValueEquals(aiBase.posY, y, e))
         {
             Stop();
-            //Debug.Log(aiBase.playerNumber + " you there");
             return true;
         }
         else if (CharacterCollidesMine(new Vector2(x, y)))
         {
             Stop();
-            //Debug.Log("there is my mine, better stop");
         }
 
         //refresh path only when target moves or there is mine collision
@@ -249,26 +222,13 @@ public class AiMovementLogic {
             !ValueEquals(currentTargetDestination.y, y, characterColliderHeight) ||
             CharacterCollidesMine(new Vector2(x, y)))
         {
-            //Debug.Log("oldTarget:" + currentTargetDestination);
-            //Debug.Log("newTarget:" + x + "," +y);
-            //Debug.Log("recalculating");
             walkingFront = GetPathTo(new Vector2(x, y));
             currentTargetDestination = new Vector2(x, y);
         }
-
-        if (Time.frameCount % 30 == 0)
-        {
-            //Debug.Log("walkFront:" + walkingFront.Count);
-            foreach (Vector2 v in walkingFront)
-            {
-                //Debug.Log(v);
-            }
-        }
-
+        
         //walk the small distance
         if (walkingFront.Count == 0)
         {
-            //Debug.Log("getting to: " + currentTargetDestination);
             if (Time.frameCount % 30 < 15)
             {
                 PreferX(x, y);
@@ -280,12 +240,16 @@ public class AiMovementLogic {
         }
         else
         {
-            //draw path
+            //draw path - DEBUGGING
+            /*
             for (int i = 0; i < walkingFront.Count; i++)
             {
+                
                 if (i + 1 != walkingFront.Count)
                     Debug.DrawLine(walkingFront[i], walkingFront[i + 1], Color.blue);
+                
             }
+            */
 
             Vector2 currentNode = walkingFront[0];
             if (ValueEquals(aiBase.gameObject.transform.position.y, currentNode.y) && ValueEquals(aiBase.gameObject.transform.position.x, currentNode.x))
@@ -334,8 +298,7 @@ public class AiMovementLogic {
             point.y > aiBase.mapMinY &&
             point.y < aiBase.mapMaxY;
     }
-
-
+    
     /// <summary>
     /// chekovat pouze jeden směr nestačí
     /// </summary>
@@ -357,13 +320,9 @@ public class AiMovementLogic {
         //return colRight;
         return colUp;
     }
-
-
-
+    
     public bool CharacterCollidesNotproofBarrier(Vector2 center)
     {
-
-        //Debug.Log("colCheck");
         float width = characterColliderWidth / 2;
         float height = characterColliderHeight / 2;
         Vector2 colliderOffset = aiBase.GetComponent<Collider2D>().offset / 2;
@@ -406,41 +365,6 @@ public class AiMovementLogic {
     /// <returns></returns>
     public bool CharacterCollidesBarrier(Vector2 center)
     {
-        /*
-        //Debug.Log("colCheck");
-        float width = characterColliderWidth / 2;
-        float height = characterColliderHeight / 2;
-        Vector2 colliderOffset = aiBase.GetComponent<Collider2D>().offset / 2;
-        float offset = 0.1f;
-
-        Vector2 botLeft = new Vector2(center.x - width - offset, center.y - height - offset);
-        Vector2 botRight = new Vector2(center.x + width + offset, center.y - height - offset);
-        Vector2 topLeft = new Vector2(center.x - width - offset, center.y + height + offset);
-        Vector2 topRight = new Vector2(center.x + width + offset, center.y + height + offset);
-
-
-
-        RaycastHit2D hitBotLeft;
-        Ray rayBotLeft = new Ray(botLeft, aiBase.direction);
-        RaycastHit2D hitBotRight;
-        Ray rayBotRight = new Ray(botRight, aiBase.direction);
-        RaycastHit2D hitTopLeft;
-        Ray rayTopLeft = new Ray(topLeft, aiBase.direction);
-        RaycastHit2D hitTopRight;
-        Ray rayTopRight = new Ray(topRight, aiBase.direction);
-
-
-        hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, aiBase.direction, 0.1f, barrierMask);
-        hitBotRight = Physics2D.Raycast(rayBotRight.origin, aiBase.direction, 0.1f, barrierMask);
-        hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, aiBase.direction, 0.1f, barrierMask);
-        hitTopRight = Physics2D.Raycast(rayTopRight.origin, aiBase.direction, 0.1f, barrierMask);
-
-        if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
-        {
-            return true;
-        }
-        */
-
         float width = characterColliderWidth / 2;
         float height = characterColliderHeight / 2;
         float offset = 0.1f;
@@ -456,8 +380,6 @@ public class AiMovementLogic {
 
     public bool CharacterCollidesMine(Vector2 center)
     {
-        //Debug.Log("mine Check");
-
         float width = characterColliderWidth / 2;
         float height = characterColliderHeight / 2;
         Vector2 colliderOffset = aiBase.GetComponent<Collider2D>().offset / 2;
@@ -469,29 +391,26 @@ public class AiMovementLogic {
         Collider2D[] bulletsColliders = Physics2D.OverlapAreaAll(topLeft, botRight, aiBase.bulletMask);
         foreach(Collider2D c in bulletsColliders)
         {
-            //Debug.Log("-" + c.GetComponentInParent<Bullet>().name);
             try
             {
                 Bullet b = c.GetComponentInParent<Bullet>();
                 if(b.owner.playerNumber == aiBase.playerNumber)
                 {
-                    //Debug.Log("my mine - avoid");
                     return true;
                 }
                 else
                 {
-                    //Debug.Log("someone elses mine - proceed");
+
                 }
             }
             catch (Exception e)
             {
-                Debug.Log("bullet has no BULLET script");
+
             }
         }
         return false;
     }
-
-
+    
     /// <summary>
     /// bot, top, left, right might be obsolete
     /// </summary>
@@ -499,35 +418,12 @@ public class AiMovementLogic {
     public bool ObjectCollides(Vector2 center, float width, Vector2 direction, float distance)
     {
         width += 0.1f; //small offset
-        //Debug.Log("width:" + width);
         LayerMask layerMask = barrierMask;
         charBotLeft = new Vector2(center.x - width / 2, center.y - width / 2);
         charBotRight = new Vector2(center.x + width / 2, center.y - width / 2);
         charTopLeft = new Vector2(center.x - width / 2, center.y + width / 2);
         charTopRight = new Vector2(center.x + width / 2, center.y + width / 2);
-
-
-        //charBot = new Vector2(center.x - width / 2, center.y - width / 2);
-        //charTop = new Vector2(center.x + width / 2, center.y - width / 2);
-        //charLeft = new Vector2(center.x - width / 2, center.y + width / 2);
-        //charRight = new Vector2(center.x + width / 2, center.y + width / 2);
-
-
-        /*
-        for(int i = 0; i < barriers.Length; i++)
-        {
-            if (barriers[i].aiBase.GetComponent<BoxCollider2D>().bounds.Contains(charBotLeft))
-                return true;
-            if (barriers[i].aiBase.GetComponent<BoxCollider2D>().bounds.Contains(charBotRight))
-                return true;
-            if (barriers[i].aiBase.GetComponent<BoxCollider2D>().bounds.Contains(charTopLeft))
-                return true;
-            if (barriers[i].aiBase.GetComponent<BoxCollider2D>().bounds.Contains(charTopRight))
-                return true;
-        }
-        */
-
-
+        
         RaycastHit2D hitBotLeft;
         Ray rayBotLeft = new Ray(charBotLeft, aiBase.direction);
         RaycastHit2D hitBotRight;
@@ -536,48 +432,16 @@ public class AiMovementLogic {
         Ray rayTopLeft = new Ray(charTopLeft, aiBase.direction);
         RaycastHit2D hitTopRight;
         Ray rayTopRight = new Ray(charTopRight, aiBase.direction);
-
-        //RaycastHit2D hitTop;
-        //Ray rayBot= new Ray(charBot, aiBase.direction);
-        //RaycastHit2D hitBot;
-        //Ray rayTop = new Ray(charTop, aiBase.direction);
-        //RaycastHit2D hitLeft;
-        //Ray rayLeft = new Ray(charLeft, aiBase.direction);
-        //RaycastHit2D hitRight;
-        //Ray rayRight = new Ray(charRight, aiBase.direction);
-
+        
 
         hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, aiBase.direction, distance, layerMask);
         hitBotRight = Physics2D.Raycast(rayBotRight.origin, aiBase.direction, distance, layerMask);
         hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, aiBase.direction, distance, layerMask);
         hitTopRight = Physics2D.Raycast(rayTopRight.origin, aiBase.direction, distance, layerMask);
-
-        //hitTop = Physics2D.Raycast(rayTop.origin, aiBase.direction, distance, layerMask);
-        //hitBot = Physics2D.Raycast(rayBot.origin, aiBase.direction, distance, layerMask);        
-        //hitLeft = Physics2D.Raycast(rayLeft.origin, aiBase.direction, distance, layerMask);
-        //hitRight = Physics2D.Raycast(rayRight.origin, aiBase.direction, distance, layerMask);
-
-        //Debug.DrawRay(currentTargetDestination, left, Color.red);
-        //Debug.DrawRay(currentTargetDestination, up, Color.blue);
-
-        //Debug.DrawRay(rayBotLeft.origin , aiBase.direction, Color.blue);
-        //Debug.DrawRay(rayBotRight.origin , aiBase.direction, Color.red);
-
-
+        
         if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
         {
-            //Debug.DrawLine(charBotLeft, charBotRight, Color.red, 2f);
-            //Debug.DrawLine(charBotLeft, charTopLeft, Color.red, 2f);
-            //Debug.DrawLine(charBotRight, charTopRight, Color.red, 2f);
-            //Debug.DrawLine(charTopLeft, charTopRight, Color.red, 2f);
             return true;
-        }
-        else
-        {
-            //Debug.DrawLine(charBotLeft, charBotRight, Color.green, 1f);
-            //Debug.DrawLine(charBotLeft, charTopLeft, Color.green, 1f);
-            //Debug.DrawLine(charBotRight, charTopRight, Color.green, 1f);
-            //Debug.DrawLine(charTopLeft, charTopRight, Color.green, 1f);
         }
 
         return false;
@@ -586,7 +450,6 @@ public class AiMovementLogic {
     public bool CollidesBarrierFrom(Vector2 point, Vector2 direction, float distance)
     {
         LayerMask layerMask = barrierMask;
-        //Debug.DrawRay(point, direction, Color.red, 0.5f);
         return Physics2D.Raycast(point, direction, distance, layerMask);
     }
 
@@ -613,18 +476,7 @@ public class AiMovementLogic {
         hitBotRight = Physics2D.Raycast(rayBotRight.origin, direction, distance, layerMask);
         hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, direction, distance, layerMask);
         hitTopRight = Physics2D.Raycast(rayTopRight.origin, direction, distance, layerMask);
-
-        //Debug.DrawRay(currentTargetDestination, left, Color.red);
-        //Debug.DrawRay(currentTargetDestination, up, Color.blue);
-
-        //Debug.DrawRay(charBotLeft, direction, Color.cyan, 0.5f);
-        //Debug.DrawRay(charBotRight, direction, Color.green, 0.5f);
-        //Debug.DrawRay(charTopLeft, direction, Color.yellow, 0.5f);
-        //Debug.DrawRay(charTopRight, direction, Color.red, 0.5f);
         
-
-        //if(hitTopRight.rigidbody != null)
-        //Debug.Log(hitTopRight.rigidbody.transform.name);
         int hitCount = 0;
         if (hitBotLeft)
             hitCount++;
@@ -634,8 +486,7 @@ public class AiMovementLogic {
             hitCount++;
         if (hitTopRight)
             hitCount++;
-
-        //if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
+        
         if(hitCount > 0)
             return true;
 
@@ -651,7 +502,7 @@ public class AiMovementLogic {
     {
         return CollidesBarrier(left, distance) || CollidesBarrier(up, distance) || CollidesBarrier(right, distance) || CollidesBarrier(down, distance);
     }
-
+   
     //old
     public bool Collides(Vector2 center, float extens, float width, LayerMask layermask, Vector2 direction)
     {
@@ -674,14 +525,7 @@ public class AiMovementLogic {
         hitBotRight = Physics2D.Raycast(rayBotRight.origin, aiBase.direction, width, layermask);
         hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, aiBase.direction, width, layermask);
         hitTopRight = Physics2D.Raycast(rayTopRight.origin, aiBase.direction, width, layermask);
-
-        //Debug.DrawRay(currentTargetDestination, left, Color.red);
-        //Debug.DrawRay(currentTargetDestination, up, Color.blue);
-
-        // Debug.DrawRay(botLeft, aiBase.direction, Color.cyan);
-        //Debug.DrawRay(botRight, aiBase.direction, Color.green);
-        //Debug.DrawRay(topLeft, aiBase.direction, Color.yellow);
-        //Debug.DrawRay(topRight, aiBase.direction, Color.red);
+        
 
         if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
             return true;
@@ -754,8 +598,7 @@ public class AiMovementLogic {
     {
         return Collides(center, 0.5f, 0.3f, barrierMask, direction);
     }
-
-
+    
     public string PrintNodeList(List<Vector2> list)
     {
         string result = "";
@@ -765,15 +608,7 @@ public class AiMovementLogic {
         }
         return result;
     }
-
-
-
     
-
-
-
-
-
     /// <summary>
     /// moves to [x,y] preferably on x axis
     /// </summary>
@@ -804,10 +639,7 @@ public class AiMovementLogic {
         else if (ValueSmaller(aiBase.gameObject.transform.position.y, y)) { MoveUp(); }
         else { MoveDown(); }
     }
-
-
-
-
+    
     public void Move(Vector2 direction)
     {
         if (direction == left)
@@ -823,8 +655,6 @@ public class AiMovementLogic {
     {
         aiBase.rb2d.velocity = Vector2.up * aiBase.speed;
         aiBase.direction = up;
-        //Debug.Log("moving up");
-        //Debug.Log("new dir:" + aiBase.direction);
         aiBase.UpdateAnimatorState(AnimatorStateEnum.walkUp);
     }
     public void MoveLeft()
