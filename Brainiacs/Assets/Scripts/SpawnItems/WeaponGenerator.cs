@@ -13,8 +13,8 @@ public class WeaponGenerator : MonoBehaviour
 
     private List<GameObject>[] weapons;
 
-    private float time = 0.0f;
-    private float spawnInterval = 8.0f; //malý na test
+    private float time = 15.0f;
+    private float spawnInterval = 30.0f; //malý na test
 
     private string location = "Prefabs/SpawnItems/Weapons/weapon_";
     private string[] weaponNames = new string[countOfWeapons - indexOfSpawnWeps] { "flamethrower", "sniper", "biogun", "MP40", "mine" };
