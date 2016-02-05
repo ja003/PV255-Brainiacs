@@ -4,16 +4,16 @@ using System.Collections;
 public class GameInfo : MonoBehaviour {
 
     public string mapName = "BackgroundWonderland";
-    public GameModeEnum gameMode = GameModeEnum.Score;
+    public GameModeEnum gameMode = GameModeEnum.Deathmatch;
 
-    public int time = 10;
+    public int time = 70;
     public int winScore = 10;
     public int lifes = 10;
 
     public PlayerTypeEnum player1type = PlayerTypeEnum.Player;
     public PlayerTypeEnum player2type = PlayerTypeEnum.Player;
-    public PlayerTypeEnum player3type = PlayerTypeEnum.None;
-    public PlayerTypeEnum player4type = PlayerTypeEnum.AI;
+    public PlayerTypeEnum player3type = PlayerTypeEnum.Player;
+    public PlayerTypeEnum player4type = PlayerTypeEnum.Player;
 
     public CharacterEnum player1char = CharacterEnum.Tesla;
     public CharacterEnum player2char = CharacterEnum.Tesla;

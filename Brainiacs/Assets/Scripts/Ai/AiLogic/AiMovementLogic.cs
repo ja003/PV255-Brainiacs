@@ -47,11 +47,9 @@ public class AiMovementLogic {
     }
 
 
+    
 
-    public bool MoveTo(Vector2 position)
-    {
-        return MoveTo(position.x, position.y);
-    }
+    
 
     public List<Vector2> walkingFront;
 
@@ -209,21 +207,35 @@ public class AiMovementLogic {
         return path;
     }
 
+    public bool MoveTo(Vector2 position)
+    {
+        return MoveTo(position, 0.15f);
+    }
+
+    public bool MoveTo(Vector2 position, float e)
+    {
+        return MoveTo(position.x, position.y, e);
+    }
+
+    public bool MoveTo(float x, float y)
+    {
+        return MoveTo(x, y, 0.15f);
+    }
+
     /// <summary>
     /// gives commands to unit in order to get to the given coordinates
     /// </summary>
     /// <param name="x"></param>
     /// <param name="y"></param>
-    public bool MoveTo(float x, float y)
+    public bool MoveTo(float x, float y, float e)
     {
         Debug.DrawRay(new Vector2(x, y), aiBase.up, Color.yellow, 0.2f);
         //Debug.Log("destination:" + x + "," + y);
-        //Debug.Log(GetMyPosition());
-        if (ValueEquals(aiBase.posX, x) && ValueEquals(aiBase.posY, y))
+        //Debug.Log("IM at " + aiBase.posX + "," + aiBase.posY);
+        if (ValueEquals(aiBase.posX, x, e) && ValueEquals(aiBase.posY, y, e))
         {
             Stop();
             //Debug.Log(aiBase.playerNumber + " you there");
-
             return true;
         }
         else if (CharacterCollidesMine(new Vector2(x, y)))
@@ -239,7 +251,7 @@ public class AiMovementLogic {
         {
             //Debug.Log("oldTarget:" + currentTargetDestination);
             //Debug.Log("newTarget:" + x + "," +y);
-            Debug.Log("recalculating");
+            //Debug.Log("recalculating");
             walkingFront = GetPathTo(new Vector2(x, y));
             currentTargetDestination = new Vector2(x, y);
         }
@@ -303,15 +315,24 @@ public class AiMovementLogic {
         Vector2 left = new Vector2(center.x - distance, center.y);
 
         List<Vector2> availableSpots = new List<Vector2>();
-        if (!CharacterCollidesBarrier(up))
+        if (IsWithinBoundaries(up) && !CharacterCollidesBarrier(up))
             availableSpots.Add(up);
-        if (!CharacterCollidesBarrier(right))
+        if (IsWithinBoundaries(right) && !CharacterCollidesBarrier(right))
             availableSpots.Add(right);
-        if (!CharacterCollidesBarrier(down))
+        if (IsWithinBoundaries(down) && !CharacterCollidesBarrier(down))
             availableSpots.Add(down);
-        if (!CharacterCollidesBarrier(left))
+        if (IsWithinBoundaries(left) && !CharacterCollidesBarrier(left))
             availableSpots.Add(left);
         return availableSpots;
+    }
+
+    bool IsWithinBoundaries(Vector2 point)
+    {
+        return 
+            point.x > aiBase.mapMinX &&
+            point.x < aiBase.mapMaxX &&
+            point.y > aiBase.mapMinY &&
+            point.y < aiBase.mapMaxY;
     }
 
 
@@ -385,7 +406,7 @@ public class AiMovementLogic {
     /// <returns></returns>
     public bool CharacterCollidesBarrier(Vector2 center)
     {
-
+        /*
         //Debug.Log("colCheck");
         float width = characterColliderWidth / 2;
         float height = characterColliderHeight / 2;
@@ -418,8 +439,18 @@ public class AiMovementLogic {
         {
             return true;
         }
-        
+        */
 
+        float width = characterColliderWidth / 2;
+        float height = characterColliderHeight / 2;
+        float offset = 0.1f;
+
+        Vector2 botRight = new Vector2(center.x + width + offset, center.y - height - offset);
+        Vector2 topLeft = new Vector2(center.x - width - offset, center.y + height + offset);
+
+        Collider2D[] collisions = Physics2D.OverlapAreaAll(topLeft, botRight, aiBase.barrierMask);
+        if (collisions.Length != 0)
+            return true;
         return false;
     }
 
@@ -555,6 +586,7 @@ public class AiMovementLogic {
     public bool CollidesBarrierFrom(Vector2 point, Vector2 direction, float distance)
     {
         LayerMask layerMask = barrierMask;
+        //Debug.DrawRay(point, direction, Color.red, 0.5f);
         return Physics2D.Raycast(point, direction, distance, layerMask);
     }
 
@@ -577,23 +609,34 @@ public class AiMovementLogic {
         Ray rayTopRight = new Ray(charTopRight, aiBase.direction);
 
 
-        hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, aiBase.direction, distance, layerMask);
-        hitBotRight = Physics2D.Raycast(rayBotRight.origin, aiBase.direction, distance, layerMask);
-        hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, aiBase.direction, distance, layerMask);
-        hitTopRight = Physics2D.Raycast(rayTopRight.origin, aiBase.direction, distance, layerMask);
+        hitBotLeft = Physics2D.Raycast(rayBotLeft.origin, direction, distance, layerMask);
+        hitBotRight = Physics2D.Raycast(rayBotRight.origin, direction, distance, layerMask);
+        hitTopLeft = Physics2D.Raycast(rayTopLeft.origin, direction, distance, layerMask);
+        hitTopRight = Physics2D.Raycast(rayTopRight.origin, direction, distance, layerMask);
 
         //Debug.DrawRay(currentTargetDestination, left, Color.red);
         //Debug.DrawRay(currentTargetDestination, up, Color.blue);
 
-        //Debug.DrawRay(botLeft, aiBase.direction, Color.cyan);
-        //Debug.DrawRay(botRight, aiBase.direction, Color.green);
-        //Debug.DrawRay(topLeft, aiBase.direction, Color.yellow);
-        //Debug.DrawRay(topRight, aiBase.direction, Color.red);
+        //Debug.DrawRay(charBotLeft, direction, Color.cyan, 0.5f);
+        //Debug.DrawRay(charBotRight, direction, Color.green, 0.5f);
+        //Debug.DrawRay(charTopLeft, direction, Color.yellow, 0.5f);
+        //Debug.DrawRay(charTopRight, direction, Color.red, 0.5f);
+        
 
         //if(hitTopRight.rigidbody != null)
         //Debug.Log(hitTopRight.rigidbody.transform.name);
+        int hitCount = 0;
+        if (hitBotLeft)
+            hitCount++;
+        if (hitBotRight)
+            hitCount++;
+        if (hitTopLeft)
+            hitCount++;
+        if (hitTopRight)
+            hitCount++;
 
-        if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
+        //if (hitBotLeft || hitBotRight || hitTopLeft || hitTopRight)
+        if(hitCount > 0)
             return true;
 
         return false;

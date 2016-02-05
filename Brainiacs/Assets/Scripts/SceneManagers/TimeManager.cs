@@ -103,7 +103,7 @@ public class TimeManager : MonoBehaviour {
     {
         TimeSpan stopWatchSpan = stopWatch.Elapsed;
         //string str = stopWatchSpan.
-        int seconds = stopWatchSpan.Seconds;
+        int seconds = (int)stopWatchSpan.TotalSeconds;
 
         textDisplay.ShowTime(seconds);
 

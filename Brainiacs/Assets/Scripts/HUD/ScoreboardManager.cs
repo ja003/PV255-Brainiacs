@@ -67,6 +67,7 @@ public class ScoreboardManager : MonoBehaviour {
         
         RefreshStats();
         DisplayPortraits();
+        RefreshPortraits();
     }
 	
 
@@ -93,6 +94,18 @@ public class ScoreboardManager : MonoBehaviour {
         bluePortrait.sprite = Resources.Load<Sprite>(path + gameInfo.player3char + "_portrait");
         yellowPortrait.sprite = Resources.Load<Sprite>(path + gameInfo.player4char + "_portrait");
     }
+    public void RefreshPortraits()
+    {
+        if(gameInfo.player1type == PlayerTypeEnum.None)
+            redPortrait.sprite = null;
+        if (gameInfo.player2type == PlayerTypeEnum.None)
+            greenPortrait.sprite = null;
+        if (gameInfo.player3type == PlayerTypeEnum.None)
+            bluePortrait.sprite = null;
+        if (gameInfo.player4type == PlayerTypeEnum.None)
+            yellowPortrait.sprite = null;
+    }
+
 
 
 

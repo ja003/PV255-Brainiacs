@@ -39,20 +39,25 @@ public class AiWeaponLogic {
 
     public bool CheckAmmo()
     {
-        bool canShoot = true;
+        bool hasAmmo = false;
         //Debug.Log(aiBase.weaponHandling.activeWeapon.ammo);
         //Debug.Log("OK shoot");
-        if (!aiBase.weaponHandling.activeWeapon.readyToFire || !aiBase.weaponHandling.activeWeapon.kadReady)
+        foreach(WeaponBase weapon in aiBase.weaponHandling.inventory)
+        {
+            if (aiBase.weaponHandling.IsWeaponReady(weapon.weaponType))
+                hasAmmo = true;
+        }
+
+        
+        if (!hasAmmo)
         {
             //try switching to another fire weapon - TODO
-            //Debug.Log("CANT shoot");
-
-            canShoot = false;
+            //Debug.Log("no weapon rdy");
         }
 
         //Debug.Log(canShoot);
 
-        if (!canShoot)
+        if (!hasAmmo)
         {
 
             aiPriorityLogic.killPlayer1Priority -= 50;
@@ -61,7 +66,7 @@ public class AiWeaponLogic {
             aiPriorityLogic.killPlayer4Priority -= 50;
         }
 
-        return canShoot;
+        return hasAmmo;
     }
 
     public bool CanShoot(Vector2 center, Vector2 direction)

@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour {
             }
         }
         //manualni přiřazení
-        Vector2 pl1pos = new Vector2(0, 0);
+        Vector2 pl1pos = new Vector2(8, 0);
         if (gameInfo.player1type != PlayerTypeEnum.None)
             player1.transform.position = pl1pos;
 
@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour {
         if (gameInfo.player3type != PlayerTypeEnum.None)
             player3.transform.position = pl3pos;
 
-        Vector2 pl4pos = new Vector2(2, -1);
+        Vector2 pl4pos = new Vector2(2, 0);
         if (gameInfo.player4type != PlayerTypeEnum.None)
             player4.transform.position = pl4pos;
     }

@@ -14,7 +14,7 @@ public class AiBase : PlayerBase
     public PlayerInfo playInfo;
 
 
-    protected int frameCountSinceLvlLoad;
+    public int frameCountSinceLvlLoad;
 
 
     //////////////////////////////MAP shit
@@ -131,11 +131,18 @@ public class AiBase : PlayerBase
         {
             SetPlayers();
 
+            //weaponHandling.RemoveFromInventoryAllBut(WeaponEnum.mine);
+            Debug.Log(weaponHandling.InventoryToString());
+            weaponHandling.activeWeapon = weaponHandling.inventory[0];
+
             RandomizeDirection();
 
             RefreshAnimatorState();
 
+            //Debug.Log(weaponHandling.activeWeapon);
             weaponHandling.weaponRenderer.sprite = weaponHandling.activeWeapon.weaponSprites[weaponHandling.player.directionMapping[weaponHandling.player.direction]];
+
+            
         }
 
         //////////CHEK EVERY FRAME
@@ -175,7 +182,8 @@ public class AiBase : PlayerBase
             }
 
             //Debug.Log("!");
-            //aiPriorityLogic.PrintPriorities();
+            aiPriorityLogic.PrintPriorities();
+            //Debug.Log(weaponHandling.InventoryToString());
             aiActionLogic.UpdateCurrentAction();
 
 

@@ -131,7 +131,7 @@ public class TextDisplay {
 
     public void ShowTime(int seconds)
     {
-        //Debug.Log(seconds);
+
         int minutesTen = (seconds / 60) / 10;
         int minutesUnit = (seconds / 60) % 10;
         int secondsTen = (seconds % 60)/10;

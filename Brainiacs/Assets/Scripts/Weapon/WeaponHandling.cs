@@ -215,6 +215,44 @@ public class WeaponHandling : MonoBehaviour {
         }
     }
 
+    public void RemoveFromInventory(WeaponEnum weapon)
+    {
+        for (int i = inventory.Count - 1; i >= 0; i--)
+        {
+            if(inventory[i].weaponType == weapon)
+                inventory.RemoveAt(i);
+        }
+    }
+
+    public void RemoveFromInventoryAllBut(WeaponEnum weapon)
+    {
+        for (int i = inventory.Count - 1; i >= 0; i--)
+        {
+            if (inventory[i].weaponType != weapon)
+                inventory.RemoveAt(i);
+        }
+    }
+
+    public string InventoryToString()
+    {
+        string s = "";
+        foreach(WeaponBase w in inventory)
+        {
+            s += w + ", ";
+        }
+        return s;
+    }
+
+    public bool IsWeaponReady(WeaponEnum weapon)
+    {
+        for (int i = inventory.Count - 1; i >= 0; i--)
+        {
+            if (inventory[i].weaponType == weapon && inventory[i].readyToFire)
+                return true;
+        }
+        return false;
+    }
+
     public void tranActiveWeapon()
     {
         weaponRenderer.sprite = activeWeapon.weaponSprites[player.directionMapping[player.direction]];

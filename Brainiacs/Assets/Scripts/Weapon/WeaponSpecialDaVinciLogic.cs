@@ -11,14 +11,14 @@ public class WeaponSpecialDaVinciLogic : MonoBehaviour
     private Animator animator;
 
     private FireProps fireProps;
-    private bool update = false;
+    public bool update = false;
 
     private WeaponBase wb;
     private WeaponHandling wh;
 
     private float oldSpeed;
 
-    private int hp = 100;
+    public int hp = 100;
     private int exClicks;
 
     void Start()

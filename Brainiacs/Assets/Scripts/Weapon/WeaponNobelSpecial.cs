@@ -14,7 +14,7 @@ public class WeaponNobelSpecial : WeaponBase
         base.ammo = 5;
         base.maxAmmo = 5;
 
-        base.reloadTime = 2f;
+        base.reloadTime = 60f;
         base.readyToFire = true;
 
         base.sprite = "Sprites/Weapons/mine 1";

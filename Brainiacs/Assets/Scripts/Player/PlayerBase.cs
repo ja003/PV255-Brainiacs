@@ -9,6 +9,8 @@ public abstract class PlayerBase : MonoBehaviour
 
     public int playerNumber { get; set; }
 
+    public bool isClone = false;
+
     // JP - farba spritu
     //   public string color { get; set; }
 
@@ -219,13 +221,13 @@ public abstract class PlayerBase : MonoBehaviour
 
         // Inicializacia prvej zbrane
         weaponHandling.inventory.Add(pistol);
-        weaponHandling.inventory.Add(flame);
         weaponHandling.inventory.Add(special);
-        weaponHandling.inventory.Add(sniper);
-        weaponHandling.inventory.Add(biogun);
-        weaponHandling.inventory.Add(MP40);
-        weaponHandling.inventory.Add(mine);
-
+        //weaponHandling.inventory.Add(flame);
+        //weaponHandling.inventory.Add(sniper);
+        //weaponHandling.inventory.Add(biogun);
+        //weaponHandling.inventory.Add(MP40);
+        //weaponHandling.inventory.Add(mine);
+        
         weaponHandling.activeWeapon = weaponHandling.inventory[0];
 
 
@@ -448,6 +450,12 @@ public abstract class PlayerBase : MonoBehaviour
 
     public void UpdateGameInfoDeaths(int playerNumber, int value)
     {
+        if (isClone)
+        {
+            Debug.Log("Clone died");
+            return;
+        }
+
         switch (playerNumber)
         {
             case 1:
@@ -471,8 +479,19 @@ public abstract class PlayerBase : MonoBehaviour
     ScoreboardManager scoreboard;
 
     public void IncreaseGameInfoScore(int playerNumber, int value)
-    {        
-        if(scoreboard == null)
+    {
+        if (isClone)
+        {
+            //Debug.Log("Clone died, no score for you");
+            return;
+        }
+        if(playerNumber == this.playerNumber)
+        {
+            //Debug.Log("Clone killed you, no score");
+            return;
+        }
+
+        if (scoreboard == null)
         {
             scoreboard = GameObject.Find("Scoreboard").GetComponent<ScoreboardManager>();
         }
@@ -522,12 +541,20 @@ public abstract class PlayerBase : MonoBehaviour
                 UpdateGameInfoDeaths(playerNumber,1);
 
                 //add score to owner of bullet
-                owner.score++;
+                if (!isClone)
+                {
+                    owner.score++;
+                }
+                else
+                {
+                    Debug.Log("Clone died, no score for this");
+                }
+
                 IncreaseGameInfoScore(owner.playerNumber, 1);
 
-                Debug.Log(owner.playerNumber + ": " + owner.score);
+                //Debug.Log(owner.playerNumber + ": " + owner.score);
                 //check score
-                if(gameInfo.gameMode == GameModeEnum.Score && owner.score >= gameInfo.winScore)
+                if(!isClone && gameInfo.gameMode == GameModeEnum.Score && owner.score >= gameInfo.winScore)
                 {
                     gameManager.EndGame();
                 }
@@ -550,7 +577,7 @@ public abstract class PlayerBase : MonoBehaviour
     IEnumerator Die()
     {
         dead = true;
-        Debug.Log("dead");
+        //Debug.Log("dead");
 
         //play death sound
         SoundManager.instance.RandomizeSfx(deathSound_01);
@@ -572,7 +599,7 @@ public abstract class PlayerBase : MonoBehaviour
 
         transform.position = new Vector2(-666, 666);//move to hell
 
-        if (gameInfo.gameMode == GameModeEnum.Deathmatch && lifes <= 0)
+        if (!isClone && gameInfo.gameMode == GameModeEnum.Deathmatch && lifes <= 0)
         {
             Debug.Log("you dead");
             gameManager.CheckLifes();
@@ -584,7 +611,7 @@ public abstract class PlayerBase : MonoBehaviour
 
             hitPoints = maxHP;
             
-            Debug.Log("alive");
+            //Debug.Log("alive");
             //UpdateAnimatorState(AnimatorStateEnum.walkRight);
 
             //TODO

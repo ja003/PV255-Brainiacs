@@ -47,7 +47,7 @@ public class AiPriorityLogic
         message += ",Kill-4=" + killPlayer4Priority;
         message += ",avoidBulletPriority=" + avoidBulletPriority;
 
-        Debug.Log(message);
+        //Debug.Log(message);
     }
 
 
@@ -66,7 +66,7 @@ public class AiPriorityLogic
 
         SetPowerUpsPriority();
 
-        SetWeaponsPriority();
+        SetWeaponsItemPriority();
 
         if (aiBase.aiAvoidBulletLogic.bulletIncoming)
         {
@@ -78,7 +78,7 @@ public class AiPriorityLogic
             SetDeathPriority(666);
 
         //debuggig - just stand
-        standPriority = 666;
+        //standPriority = 666;
 
         //check bullets
         //CheckAmmo(); //has to be updated faster
@@ -157,7 +157,7 @@ public class AiPriorityLogic
     }
 
     //pickup weapons
-    public void SetWeaponsPriority()
+    public void SetWeaponsItemPriority()
     {
         List<int> weaponsPriorities = new List<int>();
 
@@ -226,6 +226,7 @@ public class AiPriorityLogic
 
     }
     
+
     //pickup powerups
     public void SetPowerUpsPriority()
     {

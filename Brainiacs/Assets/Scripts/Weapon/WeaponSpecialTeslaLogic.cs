@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class WeaponSpecialTeslaLogic : MonoBehaviour {
 
@@ -58,7 +59,27 @@ public class WeaponSpecialTeslaLogic : MonoBehaviour {
 
         GameObject aiPrefab = (GameObject)Resources.Load("Prefabs/AiManagement");
         goSpecial = Instantiate(aiPrefab);
+        
+        Vector2 newPosition;
+        
+        try{   
+            newPosition = new Vector2(
+                gameObject.transform.parent.GetComponentInChildren<Player>().posX + 1,
+                gameObject.transform.parent.GetComponentInChildren<Player>().posY);
+        }
+        catch (Exception e)
+        {
+            newPosition = new Vector2(
+                gameObject.transform.parent.GetComponentInChildren<Ai>().posX + 1,
+                gameObject.transform.parent.GetComponentInChildren<Ai>().posY);
+
+        }
+
+        goSpecial.transform.position = newPosition;
+
+        goSpecial.name = "Tesla CLONE [" + playerBase.playerNumber + "]";
         special = goSpecial.transform.GetChild(0).GetComponent<Ai>();
+        special.isClone = true;
         PlayerInfo specialInfo = new PlayerInfo();
 
 
@@ -68,7 +89,19 @@ public class WeaponSpecialTeslaLogic : MonoBehaviour {
         specialInfo.lifes = playerBase.playInfo.lifes;
 
         special.SetUpPlayer(specialInfo);
+        special.hitPoints = 70;
 
-        special.weaponHandling.inventory.Remove(special.weaponHandling.weapons[WeaponEnum.specialTesla]);
+        //special.weaponHandling.inventory.Remove(special.weaponHandling.weapons[WeaponEnum.specialTesla]);
+
+        //suposing pistol is on position 0 in inventory
+        special.weaponHandling.RemoveFromInventoryAllBut(WeaponEnum.pistol);
+        special.weaponHandling.activeWeapon = special.weaponHandling.inventory[0];
+
+        /*
+        for (int i = special.weaponHandling.inventory.Count-1; i > 0;i--)
+        {
+            special.weaponHandling.inventory.RemoveAt(i);
+        }*/
+
     }
 }

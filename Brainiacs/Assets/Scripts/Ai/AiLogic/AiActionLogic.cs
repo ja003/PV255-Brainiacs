@@ -118,6 +118,7 @@ public class AiActionLogic {
             currentAction = AiActionEnum.stand;
         }
 
+        //Debug.Log("currentAction: " +currentAction);
         //currentAction = AiActionEnum.stand;
     }
 

@@ -147,7 +147,7 @@ public class AiAvoidBulletLogic {
 
 
         }
-        //Debug.Log(bulletIncoming);
+        //Debug.Log("bulletIncoming" + "from : "+bulletFrom);
         return bulletIncoming;
     }
 
@@ -155,8 +155,9 @@ public class AiAvoidBulletLogic {
     public Vector2 decidedDirection;
     public void AvoidBullet()
     {
-        //Debug.Log("decidedDirectionBool:"+ decidedDirectionBool);
-        //Debug.Log("decidedDirection:" + decidedDirection);
+        Debug.Log("AVOIDING BULLET");
+        Debug.Log("decidedDirectionBool:"+ decidedDirectionBool);
+        Debug.Log("decidedDirection:" + decidedDirection);
         float verticalDistance = aiBase.characterColliderHeight;
         float horizontalDistance = aiBase.characterColliderHeight;
 
@@ -169,24 +170,30 @@ public class AiAvoidBulletLogic {
         {
             decidedDirectionBool = false;
         }
+        Debug.Log("Collides UP :" + aiMovementLogic.CollidesBarrier(up, verticalDistance));
+
+        Debug.Log("decidedDirectionBool:" + decidedDirectionBool);
+        Debug.Log("decidedDirection:" + decidedDirection);
+        Debug.Log("horizontalDistance: " + horizontalDistance);
+        Debug.Log("verticalDistance: " + verticalDistance);
 
         if (decidedDirectionBool)
         {
             if (decidedDirection == up)
             {
-                aiMovementLogic.MoveTo(aiBase.posX, aiBase.posY + verticalDistance/2);
+                aiMovementLogic.MoveTo(aiBase.posX, aiBase.posY + verticalDistance);
             }
             else if (decidedDirection == right)
             {
-                aiMovementLogic.MoveTo(aiBase.posX + horizontalDistance/2, aiBase.posY);
+                aiMovementLogic.MoveTo(aiBase.posX + horizontalDistance, aiBase.posY);
             }
             else if (decidedDirection == down)
             {
-                aiMovementLogic.MoveTo(aiBase.posX, aiBase.posY - verticalDistance/2);
+                aiMovementLogic.MoveTo(aiBase.posX, aiBase.posY - verticalDistance);
             }
             else if (decidedDirection == left)
             {
-                aiMovementLogic.MoveTo(aiBase.posX - horizontalDistance/2, aiBase.posY);
+                aiMovementLogic.MoveTo(aiBase.posX - horizontalDistance, aiBase.posY);
             }
             else
             {
@@ -199,80 +206,80 @@ public class AiAvoidBulletLogic {
             {
                 if (!aiMovementLogic.CollidesBarrier(left, horizontalDistance))
                 {
-                    aiMovementLogic.MoveTo(aiBase.posX - horizontalDistance / 2, aiBase.posY);
+                    aiMovementLogic.MoveTo(aiBase.posX - horizontalDistance, aiBase.posY);
                     decidedDirection = left;
                 }
                 else if (!aiMovementLogic.CollidesBarrier(right, horizontalDistance))
                 {
-                    aiMovementLogic.MoveTo(aiBase.posX + horizontalDistance / 2, aiBase.posY);
+                    aiMovementLogic.MoveTo(aiBase.posX + horizontalDistance, aiBase.posY);
                     decidedDirection = right;
                 }
                 else if (!aiMovementLogic.CollidesBarrier(down, verticalDistance))
                 {
-                    aiMovementLogic.MoveTo(aiBase.posX, aiBase.posY - verticalDistance/2);
+                    aiMovementLogic.MoveTo(aiBase.posX, aiBase.posY - verticalDistance);
                     decidedDirection = down;
                 }
             }
             else if (bulletFrom == right)
             {
-                //Debug.Log("from right");
+                Debug.Log("from right");
                 if (!aiMovementLogic.CollidesBarrier(up, verticalDistance))
                 {
-                    aiMovementLogic.MoveTo(aiBase.posX, aiBase.posY + verticalDistance/2);
+                    aiMovementLogic.MoveTo(aiBase.posX, aiBase.posY + verticalDistance);
                     decidedDirection = up;
-                    //Debug.Log("go up");
+                    Debug.Log("go up");
                 }
                 else if (!aiMovementLogic.CollidesBarrier(down, verticalDistance))
                 {
-                    //Debug.Log("go down");
-                    aiMovementLogic.MoveTo(aiBase.posX, aiBase.posY - verticalDistance/2);
+                    Debug.Log("go down");
+                    aiMovementLogic.MoveTo(aiBase.posX, aiBase.posY - verticalDistance);
                     decidedDirection = down;
                 }
                 else if (!aiMovementLogic.CollidesBarrier(left, horizontalDistance))
                 {
-                    //Debug.Log("go left");
-                    aiMovementLogic.MoveTo(aiBase.posX - horizontalDistance/2, aiBase.posY);
+                    Debug.Log("go left");
+                    aiMovementLogic.MoveTo(aiBase.posX - horizontalDistance, aiBase.posY);
                     decidedDirection = left;
                 }
                 else
                 {
-                    //Debug.Log("cant avoid");
+                    Debug.Log("cant avoid");
                 }
             }
             else if (bulletFrom == down)
             {
                 if (!aiMovementLogic.CollidesBarrier(left, horizontalDistance))
                 {
-                    aiMovementLogic.MoveTo(aiBase.posX - horizontalDistance / 2, aiBase.posY);
+                    aiMovementLogic.MoveTo(aiBase.posX - horizontalDistance , aiBase.posY);
                     decidedDirection = left;
                 }
                 else if (!aiMovementLogic.CollidesBarrier(right, horizontalDistance))
                 {
-                    aiMovementLogic.MoveTo(aiBase.posX + horizontalDistance / 2, aiBase.posY);
+                    aiMovementLogic.MoveTo(aiBase.posX + horizontalDistance , aiBase.posY);
                     decidedDirection = right;
                 }
                 else if (!aiMovementLogic.CollidesBarrier(up, verticalDistance))
                 {
-                    aiMovementLogic.MoveTo(aiBase.posX, aiBase.posY + verticalDistance/2);
+                    aiMovementLogic.MoveTo(aiBase.posX, aiBase.posY + verticalDistance);
                     decidedDirection = up;
                 }
             }
             else if (bulletFrom == left)
             {
-                //Debug.Log("from right");
+                Debug.Log("from left");
                 if (!aiMovementLogic.CollidesBarrier(up, verticalDistance))
                 {
-                    aiMovementLogic.MoveTo(aiBase.posX, aiBase.posY + verticalDistance/2);
+                    aiMovementLogic.MoveTo(aiBase.posX, aiBase.posY + verticalDistance);
                     decidedDirection = up;
                 }
                 else if (!aiMovementLogic.CollidesBarrier(down, verticalDistance))
                 {
-                    aiMovementLogic.MoveTo(aiBase.posX, aiBase.posY - verticalDistance/2);
+                    aiMovementLogic.MoveTo(aiBase.posX, aiBase.posY - verticalDistance);
                     decidedDirection = down;
                 }
                 else if (!aiMovementLogic.CollidesBarrier(right, horizontalDistance))
                 {
-                    aiMovementLogic.MoveTo(aiBase.posX + horizontalDistance / 2, aiBase.posY);
+                    aiMovementLogic.MoveTo(aiBase.posX + horizontalDistance , aiBase.posY);
                     decidedDirection = right;
                 }
             }
