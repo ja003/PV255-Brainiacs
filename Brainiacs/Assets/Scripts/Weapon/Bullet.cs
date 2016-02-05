@@ -125,19 +125,24 @@ public class Bullet : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        
-            if (coll.gameObject.tag == "Player")
+
+        if (coll.gameObject.tag == "Player")
+        {
+
+            if (fp.weapEnum == WeaponEnum.mine || fp.weapEnum == WeaponEnum.specialNobel)
             {
-
-                if (fp.weapEnum == WeaponEnum.mine || fp.weapEnum == WeaponEnum.specialNobel) animator.SetBool("explode", true);
-
-                //Debug.Log(coll.name);
-                coll.gameObject.GetComponent<PlayerBase>().ApplyDamage(damage, owner);
-                SoundManager.instance.RandomizeSfx(hitSound);
+                animator.SetBool("explode", true);
             }
+
+            //Debug.Log(coll.name);
+            coll.gameObject.GetComponent<PlayerBase>().ApplyDamage(damage, owner);
+            SoundManager.instance.RandomizeSfx(hitSound);
+            StartCoroutine(playExplosion());
+        }
+
         if ((coll.gameObject.tag == "Barrier") || (coll.gameObject.tag == "Border"))
         {
-            if (fp.weapEnum != WeaponEnum.mine && fp.weapEnum != WeaponEnum.specialNobel
+            if (fp.weapEnum != WeaponEnum.mine && fp.weapEnum != WeaponEnum.specialNobel)
             {
                 SoundManager.instance.RandomizeSfx(hitSound); //todo barrier hitSound..maybe
 
