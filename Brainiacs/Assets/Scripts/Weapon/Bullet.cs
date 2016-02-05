@@ -86,7 +86,7 @@ public class Bullet : MonoBehaviour {
             transform.position = fp.position;
             Collider2D c2D = GetComponent<Collider2D>();
             Vector2 ofset = c2D.offset;
-            ofset.y -= 0.42f;
+            ofset.y -= 0.3f;
             c2D.offset = ofset;
         }
 
@@ -142,7 +142,6 @@ public class Bullet : MonoBehaviour {
             }
             //Debug.Log(coll.name);
 
-
             StartCoroutine(playExplosion());
 
         }
@@ -162,6 +161,7 @@ public class Bullet : MonoBehaviour {
                 coll.gameObject.GetComponent<WeaponSpecialDaVinciLogic>().HitTank(damage);
                 StartCoroutine(playExplosion());
             }
+
         }
     }
 
@@ -173,7 +173,16 @@ public class Bullet : MonoBehaviour {
             yield return new WaitForSeconds(0.5f);
             GetComponent<Collider2D>().enabled = true;
         }
-        if (fp.weapEnum == WeaponEnum.mine) animator.SetBool("explode", false);
+        if (fp.weapEnum == WeaponEnum.mine)
+        {
+            animator.SetBool("explode", false);
+
+            Collider2D c2D = GetComponent<Collider2D>();
+            Vector2 ofset = c2D.offset;
+            ofset.y += 0.3f;
+            c2D.offset = ofset;
+        }
+
         gameObject.SetActive(false);
         animator.runtimeAnimatorController = null;
         isActive = false;

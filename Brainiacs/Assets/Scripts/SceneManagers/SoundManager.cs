@@ -28,7 +28,7 @@ public class SoundManager : MonoBehaviour
 
     public void StartBackgroundMusic(AudioClip clip)
     {
-        PlaySingle(clip, true, 0.4f, 1, false); //0.1 => 1 
+        PlaySingle(clip, true, 0.25f, 1, false); //0.1 => 1 
     }
 
     public int PlaySingle(AudioClip clip)
