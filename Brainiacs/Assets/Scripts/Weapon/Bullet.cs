@@ -125,25 +125,26 @@ public class Bullet : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if ((coll.gameObject.tag == "Barrier") || (coll.gameObject.tag == "Player") || (coll.gameObject.tag == "Border"))
-        {
+        
             if (coll.gameObject.tag == "Player")
             {
 
-                if (fp.weapEnum == WeaponEnum.mine) animator.SetBool("explode", true);
+                if (fp.weapEnum == WeaponEnum.mine || fp.weapEnum == WeaponEnum.specialNobel) animator.SetBool("explode", true);
 
                 //Debug.Log(coll.name);
                 coll.gameObject.GetComponent<PlayerBase>().ApplyDamage(damage, owner);
                 SoundManager.instance.RandomizeSfx(hitSound);
             }
-            else
+        if ((coll.gameObject.tag == "Barrier") || (coll.gameObject.tag == "Border"))
+        {
+            if (fp.weapEnum != WeaponEnum.mine && fp.weapEnum != WeaponEnum.specialNobel
             {
                 SoundManager.instance.RandomizeSfx(hitSound); //todo barrier hitSound..maybe
+
+                //Debug.Log(coll.name);
+
+                StartCoroutine(playExplosion());
             }
-            //Debug.Log(coll.name);
-
-            StartCoroutine(playExplosion());
-
         }
 
         if (coll.gameObject.tag == "Tank")
