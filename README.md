@@ -4,20 +4,19 @@
 
 The game development is still in process.
 
-screenshots:
+## screenshots:
 
-menu
-![alt tag](http://i711.photobucket.com/albums/ww117/ja003-1993/Portfolio%203D-2D/Brainiacs/01_zps7dnflpsb.png)
+menu<br/>
+<img width="500" src="https://raw.githubusercontent.com/ja003/Portfolio/main/Brainiacs/menu.webp">
 
-game settings
-![alt tag](http://i711.photobucket.com/albums/ww117/ja003-1993/Portfolio%203D-2D/Brainiacs/02_zpse8fofv9w.png)
+game settings<br/>
+<img width="500" src="https://raw.githubusercontent.com/ja003/Portfolio/main/Brainiacs/setup.png">
 
-map Wonderland
-![alt tag](http://i711.photobucket.com/albums/ww117/ja003-1993/Portfolio%203D-2D/Brainiacs/03_zpsjv8m66dd.png)
+map Wonderland<br/>
+<img width="500" src="https://github.com/ja003/Portfolio/blob/main/Brainiacs/wonderland_01.png">
 
-map Steampunk
-![alt tag](http://i711.photobucket.com/albums/ww117/ja003-1993/Portfolio%203D-2D/Brainiacs/04_zpsykmnysjb.png)
+map Steampunk<br/>
+<img width="500" src="https://github.com/ja003/Portfolio/blob/main/Brainiacs/steampunk_01.png">
 
-characters
-![alt tag](http://i711.photobucket.com/albums/ww117/ja003-1993/Portfolio%203D-2D/Brainiacs/05_zpsv3qgvs7j.png)
-
+characters<br/>
+<img width="500" src="https://raw.githubusercontent.com/ja003/Portfolio/main/Brainiacs/characters.webp">
